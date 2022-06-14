@@ -1,13 +1,17 @@
 import { lazy } from "react"
-import { Route, Switch, Redirect } from "react-router-dom"
+import {
+    Routes,
+    Route
+} from "react-router-dom"
 
 const TestPage = lazy(() => import("./test"))
+const SignIn = lazy(() => import("./sign-in"))
 
 export const Routing = () => {
     return (
-        <Switch>
-            <Route exact path="/" component={TestPage}/>
-            <Redirect to="/"/>
-        </Switch>
+        <Routes>
+            <Route path="/" element={<TestPage />} />
+            <Route path="/sign-in" element={<SignIn />} />
+        </Routes>
     )
 }
