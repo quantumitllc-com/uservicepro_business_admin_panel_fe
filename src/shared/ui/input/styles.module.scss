@@ -1,0 +1,32 @@
+.input {
+  font-size: 20px;
+  background-color: var(--light-grey);
+
+  &::placeholder {
+    color: var(--grey);
+  }
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.inputPasswordField {
+  display: grid;
+}
+
+.password {
+  position: absolute;
+  z-index: 2;
+  right: 12px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.inputField {
+  height: 40px;
+}

@@ -1,4 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap");
+
 :root {
-  --color-dark: #242424;
-  --color-primary: #108ee9;
+  --lexend: "Lexend", sans-serif;
+  --sf: "SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  //Primary colors
+  --dark-green: #3D8798;
+  --light-green: #238CA4;
+  --black-green: #205865;
+  --white: #ffffff;
+  --white-grey: #FCFCFC;
+  --grey: #8F95B2;
+  --stroke-block: #E9ECF1;
+  --black: #000000;
+  //Primary colors
+
+  //Secondary colors
+  --dark-white: #D8DAE5;
+  --light-grey: #F7F7F7;
+  //Secondary colors
+
+  //TODO: Add fonts Lexend (Regular, Medium, Semibold)
+
 }
