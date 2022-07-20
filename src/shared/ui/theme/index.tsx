@@ -37,6 +37,9 @@ export const theme = mergeTheme(defaultTheme, {
 					backgroundColor: "var(--white)",
 					border: "1px solid var(--dark-white)",
 					boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
+					_hover: {
+						border: "1px solid var(--grey)"
+					},
 				}
 			},
 		},

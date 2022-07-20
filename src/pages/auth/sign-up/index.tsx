@@ -14,7 +14,7 @@ import { briefIconSet, userIconSet } from "entities/cards/auth/account-type/ui/i
 const SignUp = () => {
 	return (
 		<Pane className={styles.container}>
-			<Logo />
+			<Logo marginBottom={minorScale(7)} />
 			<Heading
 				marginBottom={minorScale(7)}
 				size={900}

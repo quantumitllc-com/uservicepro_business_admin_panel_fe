@@ -15,7 +15,7 @@ import styles from "../styles.module.scss"
 const SignIn = () => {
     return (
         <Pane className={styles.container}>
-            <Logo />
+            <Logo marginBottom={minorScale(7)} />
             <Heading
                 marginBottom={minorScale(7)}
                 size={900}

@@ -1,27 +1,25 @@
-import { Button, ChevronLeftIcon } from "evergreen-ui"
+import { Button } from "evergreen-ui"
 import { useNavigate } from "react-router-dom"
 
 import styles from "./styles.module.scss"
+import { ReactComponent as Logout } from "./logout.svg"
 
-const ButtonBack = () => {
+const ButtonLogout = () => {
 	const navigate = useNavigate()
 
 	return (
 		<Button
-			position="absolute"
-			top="28px"
-			left="28px"
 			border="none"
 			fontFamily="var(--lexend)"
 			backgroundColor="transparent"
 			className={styles.button}
-			iconBefore={<ChevronLeftIcon size={15} color="var(--grey)" />}
+			iconBefore={<Logout />}
 			color="var(--grey)"
-			onClick={() => navigate(-1)}
+			onClick={() => navigate("/sign-in", { replace: true })}
 		>
-			Back
+			Logout
 		</Button>
 	)
 }
 
-export default ButtonBack
+export default ButtonLogout

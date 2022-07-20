@@ -1,13 +1,14 @@
-import React from "react"
-import { minorScale, Pane, Text } from "evergreen-ui"
+import { FC } from "react"
+import { minorScale, Pane, PaneProps, Text } from "evergreen-ui"
 import { ReactComponent as MySvg } from "./logo.svg"
 
-const Logo = () => {
+const Logo: FC<PaneProps> = props => {
     return (
         <Pane
             display="flex"
             alignItems="center"
-            marginBottom={minorScale(7)}
+            {...props}
+            // marginBottom={minorScale(7)}
         >
             <MySvg />
             <Text

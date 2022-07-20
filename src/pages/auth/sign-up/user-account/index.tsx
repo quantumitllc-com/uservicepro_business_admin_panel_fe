@@ -15,7 +15,7 @@ import { commercialIconSet } from "entities/cards/auth/user-type/ui/icons"
 const UserAccount = () => {
 	return (
 		<Pane className={styles.container}>
-			<Logo />
+			<Logo marginBottom={minorScale(7)} />
 			<Heading
 				marginBottom={minorScale(7)}
 				size={900}

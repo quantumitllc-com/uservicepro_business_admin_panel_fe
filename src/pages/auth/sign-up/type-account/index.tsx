@@ -21,7 +21,7 @@ const TypeAccount = () => {
 
 	return (
 		<Pane className={styles.container}>
-			<Logo />
+			<Logo marginBottom={minorScale(7)} />
 			<Heading
 				marginBottom={minorScale(6)}
 				size={900}
