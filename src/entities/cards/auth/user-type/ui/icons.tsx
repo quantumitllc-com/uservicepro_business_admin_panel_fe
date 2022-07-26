@@ -5,11 +5,11 @@ import { ReactComponent as UserHover } from "../../icons/user-hover.svg"
 import { IconSet } from "../../icons"
 
 export const commercialIconSet: IconSet = {
-	default: <Commercial />,
-	hover: <CommercialHover />
+    default: <Commercial />,
+    hover: <CommercialHover />,
 }
 
 export const userIconSet: IconSet = {
-	default: <User />,
-	hover: <UserHover />
+    default: <User />,
+    hover: <UserHover />,
 }

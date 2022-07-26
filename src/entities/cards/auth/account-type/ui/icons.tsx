@@ -5,11 +5,11 @@ import { ReactComponent as UserHover } from "../../icons/user-hover.svg"
 import { IconSet } from "../../icons"
 
 export const briefIconSet: IconSet = {
-	default: <Briefcase />,
-	hover: <BriefcaseHover />
+    default: <Briefcase />,
+    hover: <BriefcaseHover />,
 }
 
 export const userIconSet: IconSet = {
-	default: <User />,
-	hover: <UserHover />
+    default: <User />,
+    hover: <UserHover />,
 }

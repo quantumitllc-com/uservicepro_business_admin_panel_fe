@@ -1,6 +1,6 @@
 import { IconSet } from "../icons"
 
 export interface UserTypeProps {
-	iconSet: IconSet
-	title: string
+    iconSet: IconSet
+    title: string
 }

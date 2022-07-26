@@ -1,59 +1,59 @@
 .container {
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 80px 1fr;
-  gap: 0 0;
-  grid-template-areas:
-    "navbar header"
-    "navbar main";
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 80px 1fr;
+    gap: 0 0;
+    grid-template-areas:
+        "navbar header"
+        "navbar main";
 }
 
 .navbar {
-  grid-area: navbar;
-  padding: 52px 28px 0 28px;
-  background-color: var(--light-grey);
+    grid-area: navbar;
+    padding: 52px 28px 0 28px;
+    background-color: var(--light-grey);
 }
 
 .header {
-  grid-area: header;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 20px 28px;
-  border-bottom: 1px solid var(--stroke-block);
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--stroke-block);
 }
 
 .main {
-  grid-area: main;
-  padding: 28px 28px 54px 28px;
+    grid-area: main;
+    padding: 28px 28px 54px 28px;
 }
 
 .tab {
-  &:focus {
-    box-shadow: none!important;
-  }
+    &:focus {
+        box-shadow: none !important;
+    }
 
-  &:active {
-    background-color: transparent!important;;
-  }
+    &:active {
+        background-color: transparent !important;
+    }
 
-  &:hover {
-    background: none!important;;
-  }
+    &:hover {
+        background: none !important;
+    }
 }
 
 .accordionContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: var(--white);
-  border-radius: 10px;
-  border: 1px solid var(--stroke-block);
-  height: calc(100% - 72px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--stroke-block);
+    height: calc(100% - 72px);
 }
 
 .accordion {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }

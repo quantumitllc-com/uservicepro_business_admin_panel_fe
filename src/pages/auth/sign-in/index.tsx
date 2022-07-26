@@ -1,10 +1,4 @@
-import {
-    Text,
-    Pane,
-    Heading,
-    minorScale,
-    majorScale
-} from "evergreen-ui"
+import { Text, Pane, Heading, minorScale, majorScale } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
 import Logo from "shared/ui/logo"
@@ -16,10 +10,7 @@ const SignIn = () => {
     return (
         <Pane className={styles.container}>
             <Logo marginBottom={minorScale(7)} />
-            <Heading
-                marginBottom={minorScale(7)}
-                size={900}
-            >
+            <Heading marginBottom={minorScale(7)} size={900}>
                 Sign in
             </Heading>
             <MyInput
@@ -28,10 +19,7 @@ const SignIn = () => {
                 placeholder="Email address"
             />
             <MyInputPassword marginBottom={minorScale(7)} />
-            <MyButton
-                marginBottom={minorScale(4)}
-                appearance="primary"
-            >
+            <MyButton marginBottom={minorScale(4)} appearance="primary">
                 Sign in
             </MyButton>
             <Text
@@ -42,17 +30,11 @@ const SignIn = () => {
             >
                 Forgot password?
             </Text>
-            <Heading
-                marginBottom={minorScale(4)}
-                size={700}
-                fontWeight={400}
-            >
+            <Heading marginBottom={minorScale(4)} size={700} fontWeight={400}>
                 Don’t have an account?
             </Heading>
             <Link to="/sign-up">
-                <MyButton appearance="outlined">
-                    Create new account
-                </MyButton>
+                <MyButton appearance="outlined">Create new account</MyButton>
             </Link>
         </Pane>
     )

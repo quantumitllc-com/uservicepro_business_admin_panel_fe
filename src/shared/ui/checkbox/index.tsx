@@ -2,16 +2,16 @@ import { Checkbox, CheckboxProps } from "evergreen-ui"
 import { FC } from "react"
 import useCheckedCheckbox from "../../lib/hooks/useCheckedCheckbox"
 
-const MyCheckbox: FC<CheckboxProps> = props => {
-	const { checked, setChecked } = useCheckedCheckbox()
+const MyCheckbox: FC<CheckboxProps> = (props) => {
+    const { checked, setChecked } = useCheckedCheckbox()
 
-	return (
-		<Checkbox
-			onChange={e => setChecked(e.target.checked)}
-			checked={checked}
-			{...props}
-		/>
-	)
+    return (
+        <Checkbox
+            onChange={(e) => setChecked(e.target.checked)}
+            checked={checked}
+            {...props}
+        />
+    )
 }
 
 export default MyCheckbox

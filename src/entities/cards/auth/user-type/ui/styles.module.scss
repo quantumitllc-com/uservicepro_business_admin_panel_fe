@@ -1,22 +1,22 @@
 .card {
-  padding: 20px;
-  background-color: var(--white);
-  border: 1px solid var(--stroke-block);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
+    padding: 20px;
+    background-color: var(--white);
+    border: 1px solid var(--stroke-block);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
 
-  &:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--dark-green);
-    cursor: pointer;
+    &:hover {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--dark-green);
+        cursor: pointer;
 
-    .heading {
-      color: var(--dark-green);
+        .heading {
+            color: var(--dark-green);
+        }
     }
-  }
 }
 
 .icon {
-  margin-right: 10px;
+    margin-right: 10px;
 }

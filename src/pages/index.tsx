@@ -1,8 +1,5 @@
 import { lazy } from "react"
-import {
-    Routes,
-    Route
-} from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 
 // auth
 const SignIn = lazy(() => import("./auth/sign-in"))

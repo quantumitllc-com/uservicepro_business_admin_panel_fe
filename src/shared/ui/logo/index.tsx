@@ -2,7 +2,7 @@ import { FC } from "react"
 import { minorScale, Pane, PaneProps, Text } from "evergreen-ui"
 import { ReactComponent as MySvg } from "./logo.svg"
 
-const Logo: FC<PaneProps> = props => {
+const Logo: FC<PaneProps> = (props) => {
     return (
         <Pane
             display="flex"
