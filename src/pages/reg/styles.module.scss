@@ -11,7 +11,7 @@
 
 .navbar {
     grid-area: navbar;
-    padding: 52px 28px 0 28px;
+    padding: 52px 28px 0;
     background-color: var(--light-grey);
 }
 
@@ -26,7 +26,7 @@
 
 .main {
     grid-area: main;
-    padding: 28px 28px 54px 28px;
+    padding: 28px 28px 54px;
 }
 
 .tab {
