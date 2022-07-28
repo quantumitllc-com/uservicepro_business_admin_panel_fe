@@ -14,16 +14,16 @@ const User = lazy(() => import("./reg/user"))
 const Business = lazy(() => import("./reg/business"))
 // reg
 
-export const Routing = () => {
-    return (
-        <Routes>
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="sign-up/user-account" element={<UserAccount />} />
-            <Route path="sign-up/:type" element={<TypeAccount />} />
-            <Route path="reg/commercial" element={<Commercial />} />
-            <Route path="reg/user" element={<User />} />
-            <Route path="reg/business" element={<Business />} />
-        </Routes>
-    )
+export function Routing() {
+	return (
+		<Routes>
+			<Route path="/sign-in" element={<SignIn />} />
+			<Route path="sign-up" element={<SignUp />} />
+			<Route path="sign-up/user-account" element={<UserAccount />} />
+			<Route path="sign-up/:type" element={<TypeAccount />} />
+			<Route path="reg/commercial" element={<Commercial />} />
+			<Route path="reg/user" element={<User />} />
+			<Route path="reg/business" element={<Business />} />
+		</Routes>
+	)
 }

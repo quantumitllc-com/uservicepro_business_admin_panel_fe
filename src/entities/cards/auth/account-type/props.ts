@@ -1,7 +1,7 @@
 import { IconSet } from "../icons"
 
 export interface AccountTypeProps {
-    iconSet: IconSet
-    title: string
-    text: string
+	iconSet: IconSet
+	title: string
+	text: string
 }
