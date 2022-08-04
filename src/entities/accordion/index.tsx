@@ -1,24 +1,50 @@
 import { useState } from "react"
 import { minorScale, Pane, Heading } from "evergreen-ui"
+import { Link } from "react-router-dom"
 
 import MyBadge from "shared/ui/badge"
 import MyText from "shared/ui/text"
+import MyButton from "shared/ui/button"
 import styles from "./styles.module.scss"
 import { ReactComponent as Arrow } from "./icons/arrow.svg"
 import { ReactComponent as ArrowSelected } from "./icons/arrow-selected.svg"
-import MyButton from "../../shared/ui/button"
+
+interface IAccordion {
+	heading: string
+	icon: any
+	iconSelected: any
+	badgeText: string
+	successText: string
+	text: string
+	start: string
+	phone?: string
+}
 
 function Accordion({
 	heading,
 	icon,
 	iconSelected,
-	badge,
-	success,
+	badgeText,
+	successText,
 	text,
 	start,
-	verify,
-}: any) {
+	phone,
+}: IAccordion) {
 	const [isActive, setIsActive] = useState(false)
+
+	const getUrlAccordion = (url: string) => {
+		if (url.includes("profile")) {
+			return "profile"
+		}
+		if (url.includes("Verify")) {
+			return "email"
+		}
+		if (url.includes("company detail")) {
+			return "detail"
+		}
+
+		return ""
+	}
 
 	return (
 		<li className={styles.accordionItem}>
@@ -42,24 +68,29 @@ function Accordion({
 						backgroundColor="var(--grey)"
 						marginLeft={minorScale(5)}
 					>
-						{badge}
+						{badgeText}
 					</MyBadge>
 					<MyBadge
 						backgroundColor="var(--green)"
 						marginLeft={minorScale(5)}
 					>
-						{success}
+						{successText}
 					</MyBadge>
 				</Pane>
-				<span>
+				<Pane>
 					{isActive ? (
-						<ArrowSelected />
+						<Pane>
+							<ArrowSelected />
+						</Pane>
 					) : (
-						<Pane marginRight={minorScale(3)}>
+						<Pane
+							marginRight={minorScale(2)}
+							marginBottom={minorScale(2)}
+						>
 							<Arrow />
 						</Pane>
 					)}
-				</span>
+				</Pane>
 			</Pane>
 			{isActive && (
 				<Pane className={styles.accordionContent}>
@@ -71,17 +102,21 @@ function Accordion({
 						{text}
 					</MyText>
 					<Pane>
-						<MyButton
-							marginRight={minorScale(2)}
-							small="true"
-							appearance="primary"
-						>
-							{start}
-						</MyButton>
-						{verify && (
-							<MyButton small="true" appearance="outlined">
-								{verify}
+						<Link to={getUrlAccordion(heading)}>
+							<MyButton
+								marginRight={minorScale(2)}
+								small="true"
+								appearance="primary"
+							>
+								{start}
 							</MyButton>
+						</Link>
+						{phone && (
+							<Link to="phone">
+								<MyButton small="true" appearance="outlined">
+									{phone}
+								</MyButton>
+							</Link>
 						)}
 					</Pane>
 				</Pane>

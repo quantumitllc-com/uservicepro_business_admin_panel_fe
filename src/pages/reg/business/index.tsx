@@ -1,175 +1,134 @@
-import { useState } from "react"
-import {
-	majorScale,
-	Pane,
-	Tablist,
-	Tab,
-	minorScale,
-	Heading,
-} from "evergreen-ui"
+import { majorScale, minorScale } from "evergreen-ui"
 
-import ButtonLogout from "shared/ui/button-logout"
-import Logo from "shared/ui/logo"
-import MyBadge from "shared/ui/badge"
-import { accordionDataBusiness } from "entities/accordion/data"
 import Accordion from "entities/accordion"
 import MyButton from "shared/ui/button"
+import { ReactComponent as BriefcaseSelected } from "entities/accordion/icons/briefcase-selected.svg"
+import { ReactComponent as Details } from "entities/accordion/icons/details.svg"
+import { ReactComponent as Briefcase } from "entities/accordion/icons/briefcase.svg"
+import { ReactComponent as EnvelopeSelected } from "entities/accordion/icons/envelope-selected.svg"
+import { ReactComponent as DetailsSelected } from "entities/accordion/icons/details-selected.svg"
+import { ReactComponent as Money } from "entities/accordion/icons/money.svg"
+import { ReactComponent as MoneySelected } from "entities/accordion/icons/moneySelected.svg"
+import { ReactComponent as EnvelopeWithCircle } from "entities/accordion/icons/envelope.svg"
+import { ReactComponent as Home } from "../icons/home.svg"
+import { ReactComponent as User } from "../icons/user.svg"
+import { ReactComponent as ToDo } from "../icons/todo.svg"
+import { ReactComponent as Envelope } from "../icons/envelope.svg"
+import { ReactComponent as HomeHover } from "../icons/home-hover.svg"
+import { ReactComponent as UserHover } from "../icons/user-hover.svg"
+import { ReactComponent as ToDoHover } from "../icons/todo-hover.svg"
+import { ReactComponent as EnvelopeHover } from "../icons/envelope-hover.svg"
+import { ReactComponent as Payment } from "../icons/payment.svg"
+import { ReactComponent as PaymentSelected } from "../icons/payment-selected.svg"
 import styles from "../styles.module.scss"
-import { ReactComponent as Home } from "./icons/home.svg"
-import { ReactComponent as User } from "./icons/user.svg"
-import { ReactComponent as ToDo } from "./icons/todo.svg"
-import { ReactComponent as Envelope } from "./icons/envelope.svg"
-import { ReactComponent as Arrow } from "./icons/arrow.svg"
-import { ReactComponent as HomeHover } from "./icons/home-hover.svg"
-import { ReactComponent as UserHover } from "./icons/user-hover.svg"
-import { ReactComponent as ToDoHover } from "./icons/todo-hover.svg"
-import { ReactComponent as EnvelopeHover } from "./icons/envelope-hover.svg"
-import { ReactComponent as ArrowHover } from "./icons/arrow-hover.svg"
-import { ReactComponent as Payment } from "./icons/payment.svg"
-import { ReactComponent as PaymentSelected } from "./icons/payment-selected.svg"
-import { ReactComponent as ProgressBar } from "./icons/progress-bar.svg"
+
+export const tabsBusiness = [
+	{
+		icon: <Home />,
+		text: "Home",
+		selected: <HomeHover />,
+	},
+	{
+		icon: <User />,
+		text: "Profile settings",
+		selected: <UserHover />,
+	},
+	{
+		icon: <Envelope />,
+		text: "Email verification",
+		selected: <EnvelopeHover />,
+	},
+	{
+		icon: <ToDo />,
+		text: "Business details",
+		selected: <ToDoHover />,
+	},
+	{
+		icon: <Payment />,
+		text: "Payment method",
+		selected: <PaymentSelected />,
+	},
+]
+
+export const accordionBusiness = [
+	{
+		icon: <Briefcase />,
+		iconSelected: <BriefcaseSelected />,
+		heading: "Set up your profile, add some details",
+		badgeText: "Fill up application",
+		successText: "Finished",
+		text: "Before work you have to fill up the profile section",
+		start: "Start application",
+	},
+	{
+		icon: <EnvelopeWithCircle />,
+		iconSelected: <EnvelopeSelected />,
+		heading: "Verify your account",
+		badgeText: "Verify your account",
+		successText: "Verified by email",
+		text: "Before get to access for all services you have to verify your account",
+		start: "Verify by email",
+		phone: "Verify by phone",
+	},
+	{
+		icon: <Details />,
+		iconSelected: <DetailsSelected />,
+		heading: "Set up your Categories, add some categories",
+		badgeText: "Add category",
+		successText: "Finished",
+		text: "Before work you have to add category of service which you will provide",
+		start: "Add category",
+	},
+	{
+		icon: <Money />,
+		iconSelected: <MoneySelected />,
+		heading: "Add payment method",
+		badgeText: "Add payment options",
+		successText: "Payment method verified",
+		text: "Before work in platform you have to add payment options.",
+		start: "Add payment",
+	},
+]
 
 function Business() {
-	const [selectedIndex, setSelectedIndex] = useState(0)
-	const [tabs] = useState([
-		{
-			icon: <Home />,
-			text: "Home",
-			selected: <HomeHover />,
-		},
-		{
-			icon: <User />,
-			text: "Profile settings",
-			arrow: <Arrow />,
-			arrowSelected: <ArrowHover />,
-			selected: <UserHover />,
-			progress: <ProgressBar />,
-		},
-		{
-			icon: <Envelope />,
-			text: "Email verification",
-			selected: <EnvelopeHover />,
-		},
-		{
-			icon: <ToDo />,
-			text: "Business details",
-			arrow: <Arrow />,
-			arrowSelected: <ArrowHover />,
-			selected: <ToDoHover />,
-		},
-		{
-			icon: <Payment />,
-			text: "Payment method",
-			selected: <PaymentSelected />,
-		},
-	])
-
 	return (
-		<Pane className={styles.container}>
-			<nav className={styles.navbar}>
-				<Logo />
-				<MyBadge
-					backgroundColor="var(--black)"
-					marginBottom={majorScale(13)}
-				>
-					Business account
-				</MyBadge>
-				<Tablist display="flex" flexDirection="column">
-					{tabs.map((tab, index) => (
-						<Tab
-							display="flex"
-							justifyContent="space-between"
-							padding="0"
-							fontSize="16px"
-							fontFamily="var(--lexend)"
-							marginRight="0!important"
-							key={index}
-							onSelect={() => setSelectedIndex(index)}
-							isSelected={index === selectedIndex}
-							marginBottom={minorScale(7)}
-							backgroundColor={
-								index === selectedIndex
-									? "transparent!important"
-									: ""
-							}
-							color={
-								index === selectedIndex
-									? "var(--black)!important"
-									: "var(--grey)"
-							}
-							className={styles.tab}
-						>
-							<Pane display="flex" alignItems="center" gap="12px">
-								{index === selectedIndex
-									? tab.selected
-									: tab.icon}{" "}
-								{tab.text}
-							</Pane>
-							{index === selectedIndex ? (
-								tab.arrowSelected
-							) : (
-								<Pane marginRight={minorScale(2)}>
-									{tab.arrow}
-								</Pane>
-							)}
-						</Tab>
-					))}
-				</Tablist>
-			</nav>
-			<header className={styles.header}>
-				<ButtonLogout />
-			</header>
-			<main className={styles.main}>
-				<Heading
-					size={700}
-					fontWeight={500}
-					fontSize={36}
-					marginBottom={majorScale(6)}
-				>
-					Get Started, Alexandra
-				</Heading>
-				<Pane className={styles.accordionContainer}>
-					<ul className={styles.accordion}>
-						{accordionDataBusiness.map(
-							(
-								{
-									heading,
-									icon,
-									iconSelected,
-									badge,
-									success,
-									text,
-									start,
-									verify,
-								},
-								index,
-							) => (
-								<Accordion
-									key={index}
-									icon={icon}
-									iconSelected={iconSelected}
-									heading={heading}
-									badge={badge}
-									success={success}
-									text={text}
-									start={start}
-									verify={verify}
-								/>
-							),
-						)}
-					</ul>
-					<MyButton
-						small="true"
-						appearance="primary"
-						marginLeft={minorScale(5)}
-						marginBottom={majorScale(8)}
-						marginTop={majorScale(8)}
-					>
-						Start working
-					</MyButton>
-				</Pane>
-			</main>
-		</Pane>
+		<>
+			<ul className={styles.accordion}>
+				{accordionBusiness.map(
+					({
+						heading,
+						icon,
+						iconSelected,
+						badgeText,
+						successText,
+						text,
+						start,
+						phone,
+					}) => (
+						<Accordion
+							key={heading}
+							icon={icon}
+							iconSelected={iconSelected}
+							heading={heading}
+							badgeText={badgeText}
+							successText={successText}
+							text={text}
+							start={start}
+							phone={phone}
+						/>
+					),
+				)}
+			</ul>
+			<MyButton
+				small="true"
+				appearance="primary"
+				marginLeft={minorScale(5)}
+				marginBottom={majorScale(8)}
+				marginTop={majorScale(8)}
+			>
+				Start working
+			</MyButton>
+		</>
 	)
 }
 

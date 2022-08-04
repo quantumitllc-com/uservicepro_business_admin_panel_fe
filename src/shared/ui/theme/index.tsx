@@ -41,6 +41,10 @@ const theme = mergeTheme(defaultTheme, {
 						border: "1px solid var(--grey)",
 					},
 				},
+				black: {
+					backgroundColor: "var(--black)",
+					color: "var(--white)",
+				},
 			},
 		},
 		Input: {

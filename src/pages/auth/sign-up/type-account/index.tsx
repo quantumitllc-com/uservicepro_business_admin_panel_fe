@@ -52,9 +52,11 @@ function TypeAccount() {
 					marginBottom={minorScale(5)}
 					label={<MyLabel>Remember me</MyLabel>}
 				/>
-				<MyButton marginBottom={minorScale(4)} appearance="primary">
-					Sign up
-				</MyButton>
+				<Link to={`/reg/${type}`}>
+					<MyButton marginBottom={minorScale(4)} appearance="primary">
+						Sign up
+					</MyButton>
+				</Link>
 			</Pane>
 			<MyText color="muted">
 				Already have an account?&nbsp;
