@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { minorScale, Pane, Heading } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
@@ -18,6 +17,8 @@ interface IAccordion {
 	text: string
 	start: string
 	phone?: string
+	toggle: (key: string) => void
+	open: boolean
 }
 
 function Accordion({
@@ -29,9 +30,9 @@ function Accordion({
 	text,
 	start,
 	phone,
+	toggle,
+	open,
 }: IAccordion) {
-	const [isActive, setIsActive] = useState(false)
-
 	const getUrlAccordion = (url: string) => {
 		if (url.includes("profile")) {
 			return "profile"
@@ -39,8 +40,11 @@ function Accordion({
 		if (url.includes("Verify")) {
 			return "email"
 		}
-		if (url.includes("company detail")) {
+		if (url.includes("company detail") || url.includes("categories")) {
 			return "detail"
+		}
+		if (url.includes("payment")) {
+			return "payment"
 		}
 
 		return ""
@@ -50,17 +54,17 @@ function Accordion({
 		<li className={styles.accordionItem}>
 			<Pane
 				className={styles.accordionToggle}
-				onClick={() => setIsActive(!isActive)}
-				borderBottom={isActive && "none!important"}
+				onClick={() => toggle(heading)}
+				borderBottom={open && "none!important"}
 			>
 				<Pane alignItems="center" display="flex">
-					{isActive ? iconSelected : icon}
+					{open ? iconSelected : icon}
 					<Heading
 						fontFamily="var(--lexend)"
 						fontSize={21}
 						fontWeight={500}
 						marginLeft={minorScale(5)}
-						color={isActive ? "var(--black)" : "var(--grey)"}
+						color={open ? "var(--black)" : "var(--grey)"}
 					>
 						{heading}
 					</Heading>
@@ -78,7 +82,7 @@ function Accordion({
 					</MyBadge>
 				</Pane>
 				<Pane>
-					{isActive ? (
+					{open ? (
 						<Pane>
 							<ArrowSelected />
 						</Pane>
@@ -92,7 +96,7 @@ function Accordion({
 					)}
 				</Pane>
 			</Pane>
-			{isActive && (
+			{open && (
 				<Pane className={styles.accordionContent}>
 					<MyText
 						color="var(--grey)"

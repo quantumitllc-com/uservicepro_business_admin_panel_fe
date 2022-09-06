@@ -1,4 +1,4 @@
-import { minorScale, Pane } from "evergreen-ui"
+import { LockIcon, minorScale, Pane } from "evergreen-ui"
 
 import { ReactComponent as DetailsSelected } from "entities/accordion/icons/details-selected.svg"
 import MyText from "shared/ui/text"
@@ -21,11 +21,7 @@ const CommercialBusiness = () => (
 			Before work you have to fill up the profile section
 		</MyText>
 		<Pane marginBottom={minorScale(8)} marginTop={minorScale(4)}>
-			<MyButton
-				marginRight={minorScale(2)}
-				small="true"
-				appearance="outlined"
-			>
+			<MyButton appearance="black" iconAfter={LockIcon} small="true">
 				Finish
 			</MyButton>
 		</Pane>

@@ -1,4 +1,4 @@
-import { majorScale, minorScale } from "evergreen-ui"
+import { majorScale, minorScale, Pane } from "evergreen-ui"
 
 import Accordion from "entities/accordion"
 import MyButton from "shared/ui/button"
@@ -6,6 +6,7 @@ import { ReactComponent as Briefcase } from "entities/accordion/icons/briefcase.
 import { ReactComponent as BriefcaseSelected } from "entities/accordion/icons/briefcase-selected.svg"
 import { ReactComponent as EnvelopeWithCircle } from "entities/accordion/icons/envelope.svg"
 import { ReactComponent as EnvelopeSelected } from "entities/accordion/icons/envelope-selected.svg"
+import { useOpenKey } from "entities/accordion/hooks/useOpenKey"
 import { ReactComponent as Home } from "../icons/home.svg"
 import { ReactComponent as UserIcon } from "../icons/user.svg"
 import { ReactComponent as Envelope } from "../icons/envelope.svg"
@@ -27,7 +28,7 @@ export const tabsUser = [
 	},
 	{
 		icon: <Envelope />,
-		text: "Email verification",
+		text: "Verification",
 		selected: <EnvelopeHover />,
 	},
 ]
@@ -55,6 +56,8 @@ export const accordionUser = [
 ]
 
 function User() {
+	const { openKey, handleToggle } = useOpenKey()
+
 	return (
 		<>
 			<ul className={styles.accordion}>
@@ -79,18 +82,22 @@ function User() {
 							text={text}
 							start={start}
 							phone={phone}
+							toggle={handleToggle}
+							open={openKey === heading}
 						/>
 					),
 				)}
 			</ul>
-			<MyButton
-				small="true"
-				appearance="primary"
-				marginLeft={minorScale(5)}
-				marginBottom={majorScale(8)}
-			>
-				Start working
-			</MyButton>
+			<Pane>
+				<MyButton
+					small="true"
+					appearance="primary"
+					marginLeft={minorScale(5)}
+					marginBottom={majorScale(8)}
+				>
+					Start working
+				</MyButton>
+			</Pane>
 		</>
 	)
 }

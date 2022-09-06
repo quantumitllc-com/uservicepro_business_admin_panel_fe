@@ -1,4 +1,4 @@
-import { Heading, minorScale, Pane } from "evergreen-ui"
+import { Heading, LockIcon, minorScale, Pane } from "evergreen-ui"
 
 import { ReactComponent as BriefcaseSelected } from "entities/accordion/icons/briefcase-selected.svg"
 import MyText from "shared/ui/text"
@@ -24,11 +24,7 @@ const UserProfile = () => (
 			Before work you have to fill up the profile section
 		</MyText>
 		<Pane marginBottom={minorScale(8)} marginTop={minorScale(4)}>
-			<MyButton
-				marginRight={minorScale(2)}
-				small="true"
-				appearance="outlined"
-			>
+			<MyButton appearance="black" iconAfter={LockIcon} small="true">
 				Finish
 			</MyButton>
 		</Pane>

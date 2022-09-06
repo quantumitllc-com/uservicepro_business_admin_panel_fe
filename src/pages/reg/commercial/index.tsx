@@ -1,4 +1,4 @@
-import { majorScale, minorScale } from "evergreen-ui"
+import { majorScale, minorScale, Pane } from "evergreen-ui"
 
 import Accordion from "entities/accordion"
 import MyButton from "shared/ui/button"
@@ -17,6 +17,7 @@ import { ReactComponent as UserHover } from "../icons/user-hover.svg"
 import { ReactComponent as ToDoHover } from "../icons/todo-hover.svg"
 import { ReactComponent as EnvelopeHover } from "../icons/envelope-hover.svg"
 import styles from "../styles.module.scss"
+import { useOpenKey } from "../../../entities/accordion/hooks/useOpenKey"
 
 export const tabsCommercial = [
 	{
@@ -31,7 +32,7 @@ export const tabsCommercial = [
 	},
 	{
 		icon: <Envelope />,
-		text: "Email verification",
+		text: "Verification",
 		selected: <EnvelopeHover />,
 	},
 	{
@@ -72,43 +73,51 @@ export const accordionCommercial = [
 	},
 ]
 
-const Commercial = () => (
-	<>
-		<ul className={styles.accordion}>
-			{accordionCommercial.map(
-				({
-					heading,
-					icon,
-					iconSelected,
-					badgeText,
-					successText,
-					text,
-					start,
-					phone,
-				}) => (
-					<Accordion
-						key={heading}
-						icon={icon}
-						iconSelected={iconSelected}
-						heading={heading}
-						badgeText={badgeText}
-						successText={successText}
-						text={text}
-						start={start}
-						phone={phone}
-					/>
-				),
-			)}
-		</ul>
-		<MyButton
-			small="true"
-			appearance="primary"
-			marginLeft={minorScale(5)}
-			marginBottom={majorScale(8)}
-		>
-			Start working
-		</MyButton>
-	</>
-)
+const Commercial = () => {
+	const { openKey, handleToggle } = useOpenKey()
+
+	return (
+		<>
+			<ul className={styles.accordion}>
+				{accordionCommercial.map(
+					({
+						heading,
+						icon,
+						iconSelected,
+						badgeText,
+						successText,
+						text,
+						start,
+						phone,
+					}) => (
+						<Accordion
+							key={heading}
+							icon={icon}
+							iconSelected={iconSelected}
+							heading={heading}
+							badgeText={badgeText}
+							successText={successText}
+							text={text}
+							start={start}
+							phone={phone}
+							toggle={handleToggle}
+							open={openKey === heading}
+						/>
+					),
+				)}
+			</ul>
+			<Pane>
+				<MyButton
+					small="true"
+					appearance="primary"
+					marginLeft={minorScale(5)}
+					marginBottom={majorScale(8)}
+				>
+					Start working
+				</MyButton>
+			</Pane>
+		</>
+	)
+}
 
 export default Commercial

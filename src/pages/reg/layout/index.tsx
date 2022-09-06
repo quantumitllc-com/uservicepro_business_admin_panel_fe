@@ -12,7 +12,7 @@ import { useLocation } from "react-router"
 import Logo from "shared/ui/logo"
 import MyBadge from "shared/ui/badge"
 import ButtonLogout from "shared/ui/button-logout"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "../styles.module.scss"
 import { tabsCommercial } from "../commercial"
 import { tabsUser } from "../user"
@@ -47,8 +47,30 @@ function getTabType(type: string | undefined) {
 const LayoutReg = () => {
 	const { pathname } = useLocation()
 	const type = pathname.split("/")[2]
+	const activeUrl = pathname.split("/")[3]
 	const [selectedIndex, setSelectedIndex] = useState(0)
 	const [tabs] = useState(getTabType(type))
+
+	useEffect(() => {
+		function getActiveTab(activeTab: string | undefined): void {
+			switch (activeTab) {
+				case "profile":
+					return setSelectedIndex(1)
+				case "email":
+					return setSelectedIndex(2)
+				case "phone":
+					return setSelectedIndex(2)
+				case "detail":
+					return setSelectedIndex(3)
+				case "payment":
+					return setSelectedIndex(4)
+				default:
+					return setSelectedIndex(0)
+			}
+		}
+
+		getActiveTab(activeUrl)
+	}, [activeUrl])
 
 	return (
 		<Pane className={styles.container}>
@@ -70,6 +92,7 @@ const LayoutReg = () => {
 							fontFamily="var(--lexend)"
 							marginRight="0!important"
 							key={tab.text}
+							disabled
 							onSelect={() => setSelectedIndex(index)}
 							isSelected={index === selectedIndex}
 							marginBottom={minorScale(7)}

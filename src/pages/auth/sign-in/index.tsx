@@ -34,7 +34,9 @@ function SignIn() {
 				Don’t have an account?
 			</Heading>
 			<Link to="/sign-up">
-				<MyButton appearance="outlined">Create new account</MyButton>
+				<MyButton paddingX={majorScale(9)} appearance="outlined">
+					Create new account
+				</MyButton>
 			</Link>
 		</Pane>
 	)

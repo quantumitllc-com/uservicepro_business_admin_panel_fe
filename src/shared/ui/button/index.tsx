@@ -13,7 +13,7 @@ const MyButton: FC<MyButtonProps> = (props) => {
 			fontSize="16px"
 			fontFamily="var(--lexend)"
 			size="large"
-			width={small ? majorScale(21) : majorScale(37)}
+			paddingX={small ? majorScale(4) : majorScale(15)}
 			{...props}
 		/>
 	)

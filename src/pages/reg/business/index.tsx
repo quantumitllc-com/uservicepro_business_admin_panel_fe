@@ -1,4 +1,4 @@
-import { majorScale, minorScale } from "evergreen-ui"
+import { majorScale, minorScale, Pane } from "evergreen-ui"
 
 import Accordion from "entities/accordion"
 import MyButton from "shared/ui/button"
@@ -8,8 +8,9 @@ import { ReactComponent as Briefcase } from "entities/accordion/icons/briefcase.
 import { ReactComponent as EnvelopeSelected } from "entities/accordion/icons/envelope-selected.svg"
 import { ReactComponent as DetailsSelected } from "entities/accordion/icons/details-selected.svg"
 import { ReactComponent as Money } from "entities/accordion/icons/money.svg"
-import { ReactComponent as MoneySelected } from "entities/accordion/icons/moneySelected.svg"
+import { ReactComponent as MoneySelected } from "entities/accordion/icons/money-selected.svg"
 import { ReactComponent as EnvelopeWithCircle } from "entities/accordion/icons/envelope.svg"
+import { useOpenKey } from "entities/accordion/hooks/useOpenKey"
 import { ReactComponent as Home } from "../icons/home.svg"
 import { ReactComponent as User } from "../icons/user.svg"
 import { ReactComponent as ToDo } from "../icons/todo.svg"
@@ -35,7 +36,7 @@ export const tabsBusiness = [
 	},
 	{
 		icon: <Envelope />,
-		text: "Email verification",
+		text: "Verification",
 		selected: <EnvelopeHover />,
 	},
 	{
@@ -91,6 +92,8 @@ export const accordionBusiness = [
 ]
 
 function Business() {
+	const { openKey, handleToggle } = useOpenKey()
+
 	return (
 		<>
 			<ul className={styles.accordion}>
@@ -115,19 +118,23 @@ function Business() {
 							text={text}
 							start={start}
 							phone={phone}
+							toggle={handleToggle}
+							open={openKey === heading}
 						/>
 					),
 				)}
 			</ul>
-			<MyButton
-				small="true"
-				appearance="primary"
-				marginLeft={minorScale(5)}
-				marginBottom={majorScale(8)}
-				marginTop={majorScale(8)}
-			>
-				Start working
-			</MyButton>
+			<Pane>
+				<MyButton
+					small="true"
+					appearance="primary"
+					marginLeft={minorScale(5)}
+					marginBottom={majorScale(8)}
+					marginTop={majorScale(8)}
+				>
+					Start working
+				</MyButton>
+			</Pane>
 		</>
 	)
 }

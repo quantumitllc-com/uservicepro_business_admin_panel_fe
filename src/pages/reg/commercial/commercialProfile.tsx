@@ -1,4 +1,4 @@
-import { Heading, minorScale, Pane } from "evergreen-ui"
+import { LockIcon, minorScale, Pane } from "evergreen-ui"
 
 import { ReactComponent as BriefcaseSelected } from "entities/accordion/icons/briefcase-selected.svg"
 import MyText from "shared/ui/text"
@@ -6,29 +6,21 @@ import MyButton from "shared/ui/button"
 import { MyInputField } from "shared/ui/input"
 import MyLabel from "shared/ui/label"
 import MyCheckbox from "shared/ui/checkbox"
+import MyHeading from "shared/ui/heading"
 
 const CommercialProfile = () => (
 	<Pane padding="20px">
 		<Pane alignItems="center" display="flex" marginBottom={minorScale(2)}>
 			<BriefcaseSelected />
-			<Heading
-				fontFamily="var(--lexend)"
-				fontSize={21}
-				fontWeight={500}
-				marginLeft={minorScale(5)}
-			>
+			<MyHeading fontSize={21} marginLeft={minorScale(5)}>
 				Set up your Commercial profile, add some details
-			</Heading>
+			</MyHeading>
 		</Pane>
 		<MyText color="var(--grey)" fontSize="16px">
 			Before work you have to fill up the profile section
 		</MyText>
 		<Pane marginBottom={minorScale(8)} marginTop={minorScale(4)}>
-			<MyButton
-				marginRight={minorScale(2)}
-				small="true"
-				appearance="outlined"
-			>
+			<MyButton appearance="black" iconAfter={LockIcon} small="true">
 				Finish
 			</MyButton>
 		</Pane>
