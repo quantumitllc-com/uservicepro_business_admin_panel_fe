@@ -1,4 +1,4 @@
-import { defaultTheme, mergeTheme } from "evergreen-ui"
+import { defaultTheme, majorScale, mergeTheme } from "evergreen-ui"
 
 const theme = mergeTheme(defaultTheme, {
 	colors: {
@@ -34,6 +34,9 @@ const theme = mergeTheme(defaultTheme, {
 					// },
 				},
 				outlined: {
+					fontSize: "16px",
+					fontFamily: "var(--lexend)",
+					paddingX: majorScale(4),
 					backgroundColor: "var(--white)",
 					border: "1px solid var(--dark-white)",
 					boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
