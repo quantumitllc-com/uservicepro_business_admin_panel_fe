@@ -4,6 +4,7 @@ body,
 .app {
 	position: relative;
 	height: 100%;
+	overflow-y: hidden;
 }
 
 html {
@@ -48,3 +49,8 @@ a {
 	color: inherit;
 	text-decoration: inherit;
 }
+
+ul {
+	margin: 0;
+}
+

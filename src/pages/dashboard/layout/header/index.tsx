@@ -7,7 +7,7 @@ import {
 	Avatar,
 	minorScale,
 } from "evergreen-ui"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 import Logo from "shared/ui/logo"
 import MyHeading from "shared/ui/heading"
@@ -39,7 +39,16 @@ const Header = (props: PaneProps) => (
 				placeholder="What are you looking for?"
 			/>
 			<Pane justifyContent="center" gap={minorScale(7)} display="flex">
-				<ChatIcon color="var(--grey)" size={20} />
+				<NavLink to="chat">
+					{({ isActive }) => (
+						<ChatIcon
+							color={
+								isActive ? "var(--dark-green)" : "var(--grey)"
+							}
+							size={20}
+						/>
+					)}
+				</NavLink>
 				<NotificationsIcon color="var(--grey)" size={20} />
 			</Pane>
 			<Pane

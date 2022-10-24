@@ -23,6 +23,7 @@
 	},
 	"plugins": ["react", "@typescript-eslint", "prettier"],
 	"rules": {
+		"@typescript-eslint/no-unused-vars": "warn",
 		"semi": "off",
 		"quotes": [
 			"error",

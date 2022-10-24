@@ -1,5 +1,4 @@
 .container {
-	height: 100vh;
 	display: grid;
 	grid-auto-columns: 1fr;
 	grid-template-columns: 1fr 3fr;
@@ -11,12 +10,18 @@
 }
 
 .sidebar {
+	//position: sticky;
+	overflow-y: hidden;
+	//max-height: calc(100vh - 79px);
 	padding: 32px 28px;
 	grid-area: sidebar;
 	border-right: 1px solid var(--dark-grey);
 }
 
 .main {
+	position: sticky;
+	overflow-y: scroll;
+	max-height: calc(100vh - 79px);
 	background-color: var(--grey-background);
 	grid-area: main;
 	padding: 30px;

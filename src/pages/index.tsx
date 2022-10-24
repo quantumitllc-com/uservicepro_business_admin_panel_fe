@@ -13,6 +13,7 @@ import Reviews from "./dashboard/reviews"
 import Payment from "./dashboard/payment"
 import Ads from "./dashboard/ads"
 import Accounting from "./dashboard/accounting"
+import Chat from "./dashboard/chat"
 
 // auth
 const SignIn = lazy(() => import("./auth/sign-in"))
@@ -117,6 +118,7 @@ export function Routing() {
 				<Route path="payment" element={<Payment />} />
 				<Route path="ads" element={<Ads />} />
 				<Route path="accounting" element={<Accounting />} />
+				<Route path="chat" element={<Chat />} />
 			</Route>
 			{/*dashboard*/}
 		</Routes>

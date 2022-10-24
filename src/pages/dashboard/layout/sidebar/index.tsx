@@ -26,7 +26,7 @@ export interface ISidebarItem {
 	text: string
 }
 
-export const sidebarItems = [
+export const sidebarMenu = [
 	{
 		url: "/",
 		icon: HomeIcon,
@@ -81,56 +81,56 @@ export const sidebarItems = [
 
 const Sidebar = (props: PaneProps) => (
 	<Pane {...props}>
-		<MyHeading marginBottom={minorScale(5)} fontWeight={700} fontSize={28}>
+		<MyHeading marginBottom={20} fontWeight={700} fontSize={28}>
 			Menu
 		</MyHeading>
-		<nav>
-			{sidebarItems.map((item: ISidebarItem, index) => (
+		<nav className={styles.nav}>
+			{sidebarMenu.map((item: ISidebarItem) => (
 				<Pane key={item.url}>
-					<ul className={styles.list}>
-						<li>
-							<NavLink to={item.url}>
-								{({ isActive }) => (
-									<Pane
-										backgroundColor={
-											isActive ? "var(--dark-green)" : ""
-										}
-										className={styles.item}
-									>
-										<item.icon
-											color={
-												isActive
-													? "var(--white)"
-													: "var(--grey)"
-											}
-											size={20}
-										/>
-										<MyText
-											color={
-												isActive
-													? "var(--white)"
-													: "var(--black)"
-											}
-											marginLeft={minorScale(3)}
-											fontWeight={500}
-											fontSize={15}
-										>
-											{item.text}
-										</MyText>
-									</Pane>
-								)}
-							</NavLink>
-						</li>
-					</ul>
-					{index === 2 && (
-						<MyHeading
-							marginBottom={minorScale(5)}
-							fontWeight={700}
-							fontSize={28}
-						>
+					{item.url === "activity-map" && (
+						<MyHeading marginY={12} fontWeight={700} fontSize={28}>
 							Service activity
 						</MyHeading>
 					)}
+					<Pane>
+						<ul className={styles.list}>
+							<li>
+								<NavLink to={item.url}>
+									{({ isActive }) => (
+										<Pane
+											backgroundColor={
+												isActive
+													? "var(--dark-green)"
+													: ""
+											}
+											className={styles.item}
+										>
+											<item.icon
+												color={
+													isActive
+														? "var(--white)"
+														: "var(--grey)"
+												}
+												size={20}
+											/>
+											<MyText
+												color={
+													isActive
+														? "var(--white)"
+														: "var(--black)"
+												}
+												marginLeft={minorScale(3)}
+												fontWeight={500}
+												fontSize={15}
+											>
+												{item.text}
+											</MyText>
+										</Pane>
+									)}
+								</NavLink>
+							</li>
+						</ul>
+					</Pane>
 				</Pane>
 			))}
 		</nav>
