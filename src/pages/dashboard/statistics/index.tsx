@@ -18,7 +18,7 @@ import MyButton from "shared/ui/button"
 import MyText from "shared/ui/text"
 import MyBadge from "shared/ui/badge"
 import MyTabs from "shared/ui/tabs"
-import { ReactComponent as Indicator } from "./indicator.svg"
+import Employee from "entities/employee"
 import { ReactComponent as Stars } from "./stars.svg"
 
 ChartJS.register(
@@ -243,83 +243,11 @@ const Statistics = () => (
 					<MyBadge backgroundColor="var(--black)">See more</MyBadge>
 				</Pane>
 				<MyText>21 active users</MyText>
-				<Pane display="flex" flexDirection="column">
-					<Pane
-						display="flex"
-						marginTop={20}
-						justifyContent="space-between"
-						borderBottom="1px solid var(--stroke-block)"
-						paddingBottom={10}
-						alignItems="center"
-					>
-						<Pane>
-							<MyHeading>Camila Marci</MyHeading>
-							<Pane gap={5} display="flex">
-								<MyHeading>29</MyHeading>
-								<MyText>orders done</MyText>
-							</Pane>
-						</Pane>
-						<Pane>
-							<Indicator />
-						</Pane>
-					</Pane>
-					<Pane
-						display="flex"
-						marginTop={20}
-						justifyContent="space-between"
-						borderBottom="1px solid var(--stroke-block)"
-						paddingBottom={10}
-						alignItems="center"
-					>
-						<Pane>
-							<MyHeading>Camila Marci</MyHeading>
-							<Pane gap={5} display="flex">
-								<MyHeading>29</MyHeading>
-								<MyText>orders done</MyText>
-							</Pane>
-						</Pane>
-						<Pane>
-							<Indicator />
-						</Pane>
-					</Pane>
-					<Pane
-						display="flex"
-						marginTop={20}
-						justifyContent="space-between"
-						borderBottom="1px solid var(--stroke-block)"
-						paddingBottom={10}
-						alignItems="center"
-					>
-						<Pane>
-							<MyHeading>Camila Marci</MyHeading>
-							<Pane gap={5} display="flex">
-								<MyHeading>29</MyHeading>
-								<MyText>orders done</MyText>
-							</Pane>
-						</Pane>
-						<Pane>
-							<Indicator />
-						</Pane>
-					</Pane>
-					<Pane
-						display="flex"
-						marginTop={20}
-						justifyContent="space-between"
-						borderBottom="1px solid var(--stroke-block)"
-						paddingBottom={10}
-						alignItems="center"
-					>
-						<Pane>
-							<MyHeading>Camila Marci</MyHeading>
-							<Pane gap={5} display="flex">
-								<MyHeading>29</MyHeading>
-								<MyText>orders done</MyText>
-							</Pane>
-						</Pane>
-						<Pane>
-							<Indicator />
-						</Pane>
-					</Pane>
+				<Pane marginTop={10} display="flex" flexDirection="column">
+					<Employee />
+					<Employee />
+					<Employee />
+					<Employee />
 				</Pane>
 			</Pane>
 			<Pane

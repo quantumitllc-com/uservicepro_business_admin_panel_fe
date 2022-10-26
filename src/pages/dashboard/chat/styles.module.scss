@@ -1,12 +1,12 @@
 .ellipse {
-  position: absolute;
-  bottom: 0;
-  right: 10px;
+	position: absolute;
+	bottom: 0;
+	right: 10px;
 }
 
 .send {
-  &:hover {
-    background-color: var(--dark-green)!important;
-    border: none!important;
-  }
+	&:hover {
+		background-color: var(--dark-green) !important;
+		border: none !important;
+	}
 }
