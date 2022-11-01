@@ -51,6 +51,10 @@ const Congratulations = lazy(() => import("./reg/layout/icons/congratulations"))
 
 // reg
 
+// payment
+const PaymentBank = lazy(() => import("./dashboard/payment/paymentBank"))
+// payment
+
 export function Routing() {
 	return (
 		<Routes>
@@ -115,10 +119,12 @@ export function Routing() {
 				<Route path="activity-map" element={<ActivityMap />} />
 				<Route path="schedules" element={<Schedules />} />
 				<Route path="reviews" element={<Reviews />} />
-				<Route path="payment" element={<Payment />} />
 				<Route path="ads" element={<Ads />} />
 				<Route path="accounting" element={<Accounting />} />
 				<Route path="chat" element={<Chat />} />
+
+				<Route path="payment" element={<Payment />} />
+				<Route path="payment/bank" element={<PaymentBank />} />
 			</Route>
 			{/*dashboard*/}
 		</Routes>

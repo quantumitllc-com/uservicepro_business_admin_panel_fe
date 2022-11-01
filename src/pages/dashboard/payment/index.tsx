@@ -1,4 +1,5 @@
 import { Pane } from "evergreen-ui"
+import { Link } from "react-router-dom"
 
 import MyHeading from "shared/ui/heading"
 import MyText from "shared/ui/text"
@@ -103,9 +104,11 @@ const Payment = () => (
 				<MyText>
 					Please set up your account setting to receive money
 				</MyText>
-				<MyButton marginTop={60} small="true" appearance="primary">
-					Fill up
-				</MyButton>
+				<Link to="bank">
+					<MyButton marginTop={60} small="true" appearance="primary">
+						Fill up
+					</MyButton>
+				</Link>
 			</Pane>
 			<Pane
 				border="1px solid var(--white)"
