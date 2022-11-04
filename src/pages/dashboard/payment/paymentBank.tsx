@@ -4,8 +4,8 @@ import MyHeading from "shared/ui/heading"
 import MyText from "shared/ui/text"
 import { MyInputField } from "shared/ui/input"
 import MyLabel from "shared/ui/label"
+import MyButton from "shared/ui/button"
 import { ReactComponent as Bank } from "./icons/bank.svg"
-import MyButton from "../../../shared/ui/button"
 
 const PaymentBank = () => (
 	<Pane>

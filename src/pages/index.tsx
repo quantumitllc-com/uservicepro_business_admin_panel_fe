@@ -15,6 +15,11 @@ import Ads from "./dashboard/ads"
 import Accounting from "./dashboard/accounting"
 import Chat from "./dashboard/chat"
 
+// payment
+import PaymentBank from "./dashboard/payment/paymentBank"
+import SelectPayment from "./dashboard/payment/selectPayment"
+// payment
+
 // auth
 const SignIn = lazy(() => import("./auth/sign-in"))
 const SignUp = lazy(() => import("./auth/sign-up"))
@@ -50,10 +55,6 @@ const VerifyByPhone = lazy(() => import("./reg/layout/verifyByPhone"))
 const Congratulations = lazy(() => import("./reg/layout/icons/congratulations"))
 
 // reg
-
-// payment
-const PaymentBank = lazy(() => import("./dashboard/payment/paymentBank"))
-// payment
 
 export function Routing() {
 	return (
@@ -125,6 +126,7 @@ export function Routing() {
 
 				<Route path="payment" element={<Payment />} />
 				<Route path="payment/bank" element={<PaymentBank />} />
+				<Route path="payment/select" element={<SelectPayment />} />
 			</Route>
 			{/*dashboard*/}
 		</Routes>

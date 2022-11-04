@@ -132,9 +132,11 @@ const Payment = () => (
 				<MyText>
 					Please set up your account setting to receive money
 				</MyText>
-				<MyButton marginTop={60} small="true" appearance="primary">
-					Fill up
-				</MyButton>
+				<Link to="select">
+					<MyButton marginTop={60} small="true" appearance="primary">
+						Fill up
+					</MyButton>
+				</Link>
 			</Pane>
 			<Pane
 				border="1px solid var(--white)"
