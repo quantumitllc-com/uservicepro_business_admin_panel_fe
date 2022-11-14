@@ -6,6 +6,7 @@ import Layout from "./dashboard/layout"
 import Dashboard from "./dashboard"
 import Employee from "./dashboard/employee"
 import Services from "./dashboard/services"
+import AddServices from "./dashboard/services/add"
 import Statistics from "./dashboard/statistics"
 import ActivityMap from "./dashboard/activity-map"
 import Schedules from "./dashboard/schedules"
@@ -116,6 +117,7 @@ export function Routing() {
 				<Route path="/" element={<Dashboard />} />
 				<Route path="employee" element={<Employee />} />
 				<Route path="services" element={<Services />} />
+				<Route path="services/add" element={<AddServices />} />
 				<Route path="statistics" element={<Statistics />} />
 				<Route path="activity-map" element={<ActivityMap />} />
 				<Route path="schedules" element={<Schedules />} />

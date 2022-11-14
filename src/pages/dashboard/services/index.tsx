@@ -14,6 +14,7 @@ import {
 	Position,
 	Card,
 } from "evergreen-ui"
+import { Link } from "react-router-dom"
 
 import MyHeading from "shared/ui/heading"
 import MyButton from "shared/ui/button"
@@ -85,14 +86,16 @@ const Services = () => {
 				marginBottom={minorScale(5)}
 			>
 				<MyHeading>List of services</MyHeading>
-				<MyButton
-					iconBefore={AddIcon}
-					small="true"
-					appearance="primary"
-					backgroundColor="var(--green)"
-				>
-					Add Service
-				</MyButton>
+				<Link to="add">
+					<MyButton
+						iconBefore={AddIcon}
+						small="true"
+						appearance="primary"
+						backgroundColor="var(--green)"
+					>
+						Add Service
+					</MyButton>
+				</Link>
 			</Pane>
 			<Pane>
 				<Pane

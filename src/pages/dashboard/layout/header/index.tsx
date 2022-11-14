@@ -6,12 +6,19 @@ import {
 	NotificationsIcon,
 	Avatar,
 	minorScale,
+	Popover,
+	Position,
+	Menu,
+	UserIcon,
+	CogIcon,
+	LogOutIcon,
 } from "evergreen-ui"
 import { Link, NavLink } from "react-router-dom"
 
 import Logo from "shared/ui/logo"
 import MyHeading from "shared/ui/heading"
 import MyText from "shared/ui/text"
+import styles from "./styles.module.scss"
 
 const Header = (props: PaneProps) => (
 	<Pane {...props} is="header">
@@ -51,24 +58,39 @@ const Header = (props: PaneProps) => (
 				</NavLink>
 				<NotificationsIcon color="var(--grey)" size={20} />
 			</Pane>
-			<Pane
-				borderLeft="1px solid var(--dark-grey)"
-				display="flex"
-				alignItems="center"
+			<Popover
+				position={Position.BOTTOM_LEFT}
+				content={
+					<Menu>
+						<Menu.Group>
+							<Menu.Item icon={UserIcon}>Edit profile</Menu.Item>
+							<Menu.Item icon={CogIcon}>Settings</Menu.Item>
+							<Menu.Item icon={LogOutIcon}>Logout</Menu.Item>
+						</Menu.Group>
+					</Menu>
+				}
 			>
-				<Avatar
-					marginLeft={minorScale(5)}
-					marginRight={minorScale(2)}
-					src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-					size={50}
-				/>
-				<Pane>
-					<MyHeading fontSize={15} fontWeight={400}>
-						Alex Mendes
-					</MyHeading>
-					<MyText fontSize={12}>nelson-company@gmail.com</MyText>
+				<Pane
+					borderLeft="1px solid var(--dark-grey)"
+					display="flex"
+					alignItems="center"
+					className={styles.profile}
+				>
+					<Avatar
+						marginLeft={minorScale(5)}
+						marginRight={minorScale(2)}
+						src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
+						size={50}
+					/>
+					<Pane>
+						<MyHeading fontSize={15} fontWeight={400}>
+							Alex Mendes
+						</MyHeading>
+						<MyText fontSize={12}>nelson-company@gmail.com</MyText>
+					</Pane>
 				</Pane>
-			</Pane>
+				{/*</Button>*/}
+			</Popover>
 		</Pane>
 	</Pane>
 )
