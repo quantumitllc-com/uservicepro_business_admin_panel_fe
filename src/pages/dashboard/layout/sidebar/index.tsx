@@ -8,7 +8,7 @@ import {
 	PieChartIcon,
 	GlobeNetworkIcon,
 	TimelineEventsIcon,
-	FolderOpenIcon,
+	GeolocationIcon,
 	CreditCardIcon,
 	VolumeUpIcon,
 	CalculatorIcon,
@@ -58,9 +58,9 @@ export const sidebarMenu = [
 		text: "Schedules",
 	},
 	{
-		url: "reviews",
-		icon: FolderOpenIcon,
-		text: "Reviews",
+		url: "location",
+		icon: GeolocationIcon,
+		text: "Location",
 	},
 	{
 		url: "payment",

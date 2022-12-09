@@ -503,6 +503,7 @@ const Services = () => {
 				</Table>
 			</Pane>
 			<Pagination
+				marginTop={25}
 				display="flex"
 				justifyContent="center"
 				page={1}

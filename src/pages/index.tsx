@@ -10,7 +10,7 @@ import AddServices from "./dashboard/services/add"
 import Statistics from "./dashboard/statistics"
 import ActivityMap from "./dashboard/activity-map"
 import Schedules from "./dashboard/schedules"
-import Reviews from "./dashboard/reviews"
+import Location from "./dashboard/location"
 import Payment from "./dashboard/payment"
 import Ads from "./dashboard/ads"
 import Accounting from "./dashboard/accounting"
@@ -121,7 +121,7 @@ export function Routing() {
 				<Route path="statistics" element={<Statistics />} />
 				<Route path="activity-map" element={<ActivityMap />} />
 				<Route path="schedules" element={<Schedules />} />
-				<Route path="reviews" element={<Reviews />} />
+				<Route path="location" element={<Location />} />
 				<Route path="ads" element={<Ads />} />
 				<Route path="accounting" element={<Accounting />} />
 				<Route path="chat" element={<Chat />} />
