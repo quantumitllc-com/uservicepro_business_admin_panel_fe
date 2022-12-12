@@ -107,7 +107,7 @@ const Location = () => {
 								<Table.TextCell isNumber>
 									{location.zipcode}
 								</Table.TextCell>
-								<Table.TextCell isNumber>
+								<Table.TextCell>
 									<MyButton
 										paddingX="15px"
 										height="26px"
