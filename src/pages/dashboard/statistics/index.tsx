@@ -245,7 +245,7 @@ const Statistics = () => (
 				<MyText>21 active users</MyText>
 				<Pane marginTop={10} display="flex" flexDirection="column">
 					<Employee />
-					<Employee />
+					<Employee />1
 					<Employee />
 					<Employee />
 				</Pane>
