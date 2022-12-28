@@ -13,13 +13,13 @@ import {
 } from "evergreen-ui"
 import { useState } from "react"
 
-import MyHeading from "shared/ui/heading"
-import MyButton from "shared/ui/button"
-import MyText from "shared/ui/text"
+import MyHeading from "components/heading"
+import MyButton from "components/button"
+import MyText from "components/text"
 import EmployeeDetails from "entities/employee-details"
-import useIsShown from "shared/lib/hooks/useIsShown"
-import MyLabel from "../../../shared/ui/label"
-import { MyInputField } from "../../../shared/ui/input"
+import useIsShown from "hooks/useIsShown"
+import MyLabel from "../../../components/label"
+import { MyInputField } from "../../../components/input"
 
 const employees = [
 	{

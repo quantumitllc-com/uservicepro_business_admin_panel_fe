@@ -9,13 +9,13 @@ import {
 	Select,
 } from "evergreen-ui"
 
-import MyHeading from "shared/ui/heading"
-import MyButton from "shared/ui/button"
-import MyText from "shared/ui/text"
+import MyHeading from "components/heading"
+import MyButton from "components/button"
+import MyText from "components/text"
 import { useState } from "react"
 import AddCategory from "entities/cards/auth/add-category"
-import MyLabel from "shared/ui/label"
-import { MyInputField } from "shared/ui/input"
+import MyLabel from "components/label"
+import { MyInputField } from "components/input"
 import locationIcon from "./location.png"
 // import { ReactComponent as LocationIcon } from "./location.svg"
 

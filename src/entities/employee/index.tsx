@@ -1,9 +1,9 @@
 import { Pane } from "evergreen-ui"
 
-import useIsShown from "shared/lib/hooks/useIsShown"
-import MyHeading from "shared/ui/heading"
+import useIsShown from "hooks/useIsShown"
+import MyHeading from "components/heading"
 import { ReactComponent as Indicator } from "./indicator.svg"
-import MyText from "../../shared/ui/text"
+import MyText from "../../components/text"
 import styles from "./styles.module.scss"
 import EmployeeDetails from "../employee-details"
 

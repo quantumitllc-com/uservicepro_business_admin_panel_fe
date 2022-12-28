@@ -1,12 +1,12 @@
 import { LockIcon, minorScale, Pane } from "evergreen-ui"
 
 import { ReactComponent as DetailsSelected } from "entities/accordion/icons/details-selected.svg"
-import MyText from "shared/ui/text"
-import MyButton from "shared/ui/button"
-import MyHeading from "shared/ui/heading"
+import MyText from "components/text"
+import MyButton from "components/button"
+import MyHeading from "components/heading"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom"
-import MyBadge from "shared/ui/badge"
+import MyBadge from "components/badge"
 import AccordionQuestions from "entities/accordion/accordionQuestions"
 import { useOpenKey } from "entities/accordion/hooks/useOpenKey"
 

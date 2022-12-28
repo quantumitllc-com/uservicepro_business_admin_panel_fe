@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 
 import { Breadcrumbs, textObj } from "./reg/business/businessDetail"
 import Layout from "./dashboard/layout"
@@ -19,6 +19,7 @@ import Chat from "./dashboard/chat"
 // payment
 import PaymentBank from "./dashboard/payment/paymentBank"
 import SelectPayment from "./dashboard/payment/selectPayment"
+import { getTokens } from "../utils/getTokens"
 // payment
 
 // auth
@@ -54,8 +55,12 @@ const BusinessSubCategory = lazy(
 const VerifyByEmail = lazy(() => import("./reg/layout/verifyByEmail"))
 const VerifyByPhone = lazy(() => import("./reg/layout/verifyByPhone"))
 const Congratulations = lazy(() => import("./reg/layout/icons/congratulations"))
-
 // reg
+
+function PrivateRoute({ children }: any) {
+	const tokens = getTokens()
+	return tokens ? children : <Navigate to="/sign-in" />
+}
 
 export function Routing() {
 	return (
@@ -68,7 +73,14 @@ export function Routing() {
 			{/*auth*/}
 
 			{/*reg*/}
-			<Route path="reg/" element={<LayoutReg />}>
+			<Route
+				path="reg/"
+				element={
+					<PrivateRoute>
+						<LayoutReg />
+					</PrivateRoute>
+				}
+			>
 				<Route path="commercial" element={<Commercial />} />
 				<Route path="commercial/email" element={<VerifyByEmail />} />
 				<Route path="commercial/phone" element={<VerifyByPhone />} />
@@ -113,7 +125,14 @@ export function Routing() {
 			{/*reg*/}
 
 			{/*dashboard*/}
-			<Route path="/" element={<Layout />}>
+			<Route
+				path="/"
+				element={
+					<PrivateRoute>
+						<Layout />
+					</PrivateRoute>
+				}
+			>
 				<Route path="/" element={<Dashboard />} />
 				<Route path="employee" element={<Employee />} />
 				<Route path="services" element={<Services />} />

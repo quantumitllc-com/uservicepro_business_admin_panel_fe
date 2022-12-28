@@ -1,25 +1,53 @@
 import { Text, Pane, Heading, minorScale, majorScale } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
-import Logo from "shared/ui/logo"
-import MyButton from "shared/ui/button"
-import { MyInput, MyInputPassword } from "shared/ui/input"
+import Logo from "components/logo"
+import MyButton from "components/button"
+import { Input } from "components/input"
 import styles from "../styles.module.scss"
+import { useSignIn } from "./useSignIn"
 
-function SignIn() {
+const SignIn = () => {
+	const {
+		form: { control, handleSubmit },
+		isLoading,
+		onSubmit,
+	} = useSignIn()
+
 	return (
 		<Pane className={styles.container}>
 			<Logo marginBottom={minorScale(7)} />
 			<Heading marginBottom={minorScale(7)} size={900}>
 				Sign in
 			</Heading>
-			<MyInput
+			<Input
+				label=""
 				type="email"
+				name="email"
+				control={control}
 				marginBottom={minorScale(5)}
 				placeholder="Email address"
 			/>
-			<MyInputPassword marginBottom={minorScale(7)} />
-			<MyButton marginBottom={minorScale(4)} appearance="primary">
+			<Input
+				label=""
+				type="password"
+				name="password"
+				control={control}
+				marginBottom={minorScale(7)}
+				placeholder="Password"
+			/>
+			{/*<MyInput*/}
+			{/*	type="email"*/}
+			{/*	marginBottom={minorScale(5)}*/}
+			{/*	placeholder="Email address"*/}
+			{/*/>*/}
+			{/*<MyInputPassword marginBottom={minorScale(7)} />*/}
+			<MyButton
+				isLoading={isLoading}
+				onClick={handleSubmit(onSubmit)}
+				marginBottom={minorScale(4)}
+				appearance="primary"
+			>
 				Sign in
 			</MyButton>
 			<Text

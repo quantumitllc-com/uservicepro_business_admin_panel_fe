@@ -2,7 +2,7 @@ import { minorScale } from "evergreen-ui"
 import { Link } from "react-router-dom"
 import { useParams } from "react-router"
 
-import MyText from "shared/ui/text"
+import MyText from "components/text"
 import BusinessDetail from "./businessDetail"
 
 export const Breadcrumbs = () => {

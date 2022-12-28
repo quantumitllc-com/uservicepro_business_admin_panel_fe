@@ -1,6 +1,6 @@
 import { Pane, Heading, minorScale } from "evergreen-ui"
 
-import { MyInput } from "shared/ui/input"
+import { MyInput } from "components/input"
 import styles from "./styles.module.scss"
 
 interface IAccordion {

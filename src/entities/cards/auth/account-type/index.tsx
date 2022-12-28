@@ -1,7 +1,7 @@
 import { Pane, Heading, minorScale } from "evergreen-ui"
 import React, { FC } from "react"
 
-import MyParagraph from "shared/ui/paragraph"
+import MyParagraph from "components/paragraph"
 import styles from "./ui/styles.module.scss"
 import { AccountTypeProps } from "./props"
 import useHover from "../lib/hooks/useHover"

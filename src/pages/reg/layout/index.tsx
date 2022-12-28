@@ -9,9 +9,9 @@ import {
 import { Outlet } from "react-router-dom"
 import { useLocation } from "react-router"
 
-import Logo from "shared/ui/logo"
-import MyBadge from "shared/ui/badge"
-import ButtonLogout from "shared/ui/button-logout"
+import Logo from "components/logo"
+import MyBadge from "components/badge"
+import ButtonLogout from "components/button-logout"
 import { useEffect, useState } from "react"
 import styles from "../styles.module.scss"
 import { tabsCommercial } from "../commercial"

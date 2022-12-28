@@ -1,3 +1,5 @@
+import "react-toastify/dist/ReactToastify.css"
+
 import { Routing } from "pages"
 import { withProviders } from "./providers"
 

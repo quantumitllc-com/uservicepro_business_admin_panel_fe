@@ -15,9 +15,9 @@ import {
 } from "evergreen-ui"
 import { Link, NavLink } from "react-router-dom"
 
-import Logo from "shared/ui/logo"
-import MyHeading from "shared/ui/heading"
-import MyText from "shared/ui/text"
+import Logo from "components/logo"
+import MyHeading from "components/heading"
+import MyText from "components/text"
 import styles from "./styles.module.scss"
 
 const Header = (props: PaneProps) => (

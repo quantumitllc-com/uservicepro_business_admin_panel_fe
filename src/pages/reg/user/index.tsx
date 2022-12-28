@@ -1,7 +1,7 @@
 import { majorScale, minorScale, Pane } from "evergreen-ui"
 
 import Accordion from "entities/accordion"
-import MyButton from "shared/ui/button"
+import MyButton from "components/button"
 import { ReactComponent as Briefcase } from "entities/accordion/icons/briefcase.svg"
 import { ReactComponent as BriefcaseSelected } from "entities/accordion/icons/briefcase-selected.svg"
 import { ReactComponent as EnvelopeWithCircle } from "entities/accordion/icons/envelope.svg"

@@ -15,7 +15,7 @@ function ButtonLogout() {
 			className={styles.button}
 			iconBefore={<Logout />}
 			color="var(--grey)"
-			onClick={() => navigate("/sign-in", { replace: true })}
+			onClick={() => navigate("/sign-up", { replace: true })}
 		>
 			Logout
 		</Button>

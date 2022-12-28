@@ -1,8 +1,8 @@
 import { Pane, Heading, minorScale } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
-import Logo from "shared/ui/logo"
-import ButtonBack from "shared/ui/button-back"
+import Logo from "components/logo"
+import ButtonBack from "components/button-back"
 import { UserType } from "entities/cards/auth/user-type"
 import { userIconSet } from "entities/cards/auth/account-type/ui/icons"
 import { commercialIconSet } from "entities/cards/auth/user-type/ui/icons"

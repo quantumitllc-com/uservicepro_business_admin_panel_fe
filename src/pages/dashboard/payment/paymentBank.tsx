@@ -1,10 +1,10 @@
 import { Pane } from "evergreen-ui"
-import MyHeading from "shared/ui/heading"
+import MyHeading from "components/heading"
 
-import MyText from "shared/ui/text"
-import { MyInputField } from "shared/ui/input"
-import MyLabel from "shared/ui/label"
-import MyButton from "shared/ui/button"
+import MyText from "components/text"
+import { MyInputField } from "components/input"
+import MyLabel from "components/label"
+import MyButton from "components/button"
 import { ReactComponent as Bank } from "./icons/bank.svg"
 
 const PaymentBank = () => (

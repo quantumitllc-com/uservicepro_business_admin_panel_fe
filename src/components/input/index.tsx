@@ -11,24 +11,52 @@ import {
 	TextInputProps,
 	TextInputFieldProps,
 } from "evergreen-ui"
+import { Control, Controller } from "react-hook-form"
 
-import useTogglePasswordVisibility from "shared/lib/hooks/useTogglePasswordVisibility"
+import useTogglePasswordVisibility from "hooks/useTogglePasswordVisibility"
 import styles from "./styles.module.scss"
 import MyLabel from "../label"
+
+export type MyTextInputFieldProps = TextInputFieldProps & {
+	name: string
+	control: Control<any>
+}
+
+export const Input = ({ ...props }: MyTextInputFieldProps) => (
+	<Controller
+		name={props.name}
+		control={props.control}
+		render={({ field, formState: { errors } }) => (
+			<TextInputField
+				width={majorScale(37)}
+				className={`${styles.input} ${styles.inputField}`}
+				{...props}
+				{...field}
+				isInvalid={!!errors[props.name]}
+				validationMessage={
+					errors[props.name]
+						? (errors[props.name]?.message as string)
+						: null
+				}
+			/>
+		)}
+	/>
+)
+
+// TODO: Replace all MyInputField with new Input Component
+export const MyInputField: FC<TextInputFieldProps> = (props) => (
+	<TextInputField
+		width={majorScale(37)}
+		className={`${styles.input} ${styles.inputField}`}
+		{...props}
+	/>
+)
 
 export const MyInput: FC<TextInputProps> = (props) => (
 	<TextInput
 		height={majorScale(5)}
 		width={majorScale(37)}
 		className={styles.input}
-		{...props}
-	/>
-)
-
-export const MyInputField: FC<TextInputFieldProps> = (props) => (
-	<TextInputField
-		width={majorScale(37)}
-		className={`${styles.input} ${styles.inputField}`}
 		{...props}
 	/>
 )

@@ -16,13 +16,13 @@ import {
 } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
-import MyHeading from "shared/ui/heading"
-import MyButton from "shared/ui/button"
-import MyBadge from "shared/ui/badge"
+import MyHeading from "components/heading"
+import MyButton from "components/button"
+import MyBadge from "components/badge"
 import { useOpenKey } from "entities/accordion/hooks/useOpenKey"
-import MyText from "shared/ui/text"
-import MyCheckbox from "shared/ui/checkbox"
-import { MyInput } from "shared/ui/input"
+import MyText from "components/text"
+import MyCheckbox from "components/checkbox"
+import { MyInput } from "components/input"
 import styles from "../../reg/business/styles.module.scss"
 
 export const categories = [

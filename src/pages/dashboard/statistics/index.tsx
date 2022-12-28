@@ -13,11 +13,11 @@ import {
 import { Line, Bar } from "react-chartjs-2"
 import faker from "faker"
 
-import MyHeading from "shared/ui/heading"
-import MyButton from "shared/ui/button"
-import MyText from "shared/ui/text"
-import MyBadge from "shared/ui/badge"
-import MyTabs from "shared/ui/tabs"
+import MyHeading from "components/heading"
+import MyButton from "components/button"
+import MyText from "components/text"
+import MyBadge from "components/badge"
+import MyTabs from "components/tabs"
 import Employee from "entities/employee"
 import { ReactComponent as Stars } from "./stars.svg"
 

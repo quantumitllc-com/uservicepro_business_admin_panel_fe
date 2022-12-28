@@ -1,7 +1,7 @@
 import { Pane, Switch, StatusIndicator } from "evergreen-ui"
 
-import MyHeading from "shared/ui/heading"
-import MyText from "shared/ui/text"
+import MyHeading from "components/heading"
+import MyText from "components/text"
 import { ReactComponent as Info } from "./icons/info.svg"
 
 const SelectPayment = () => (

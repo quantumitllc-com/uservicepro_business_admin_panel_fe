@@ -16,8 +16,8 @@ import {
 } from "evergreen-ui"
 import { NavLink } from "react-router-dom"
 
-import MyHeading from "shared/ui/heading"
-import MyText from "shared/ui/text"
+import MyHeading from "components/heading"
+import MyText from "components/text"
 import styles from "./styles.module.scss"
 
 export interface ISidebarItem {

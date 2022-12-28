@@ -1,10 +1,10 @@
 import { minorScale, Pane, LockIcon, SelectField } from "evergreen-ui"
 
 import { ReactComponent as CardSelected } from "entities/accordion/icons/card-selected.svg"
-import MyText from "shared/ui/text"
-import MyButton from "shared/ui/button"
-import MyHeading from "shared/ui/heading"
-import MyLabel from "shared/ui/label"
+import MyText from "components/text"
+import MyButton from "components/button"
+import MyHeading from "components/heading"
+import MyLabel from "components/label"
 
 const BusinessPayment = () => (
 	<Pane padding="20px">

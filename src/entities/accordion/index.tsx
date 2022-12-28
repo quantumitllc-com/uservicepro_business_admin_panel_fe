@@ -1,9 +1,9 @@
 import { minorScale, Pane, Heading } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
-import MyBadge from "shared/ui/badge"
-import MyText from "shared/ui/text"
-import MyButton from "shared/ui/button"
+import MyBadge from "components/badge"
+import MyText from "components/text"
+import MyButton from "components/button"
 import styles from "./styles.module.scss"
 import { ReactComponent as Arrow } from "./icons/arrow.svg"
 import { ReactComponent as ArrowSelected } from "./icons/arrow-selected.svg"

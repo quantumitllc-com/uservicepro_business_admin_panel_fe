@@ -1,12 +1,12 @@
 import { LockIcon, minorScale, Pane } from "evergreen-ui"
 
 import { ReactComponent as DetailsSelected } from "entities/accordion/icons/details-selected.svg"
-import MyText from "shared/ui/text"
-import MyButton from "shared/ui/button"
-import { MyInputField } from "shared/ui/input"
-import MyLabel from "shared/ui/label"
-import MyCheckbox from "shared/ui/checkbox"
-import MyHeading from "shared/ui/heading"
+import MyText from "components/text"
+import MyButton from "components/button"
+import { MyInputField } from "components/input"
+import MyLabel from "components/label"
+import MyCheckbox from "components/checkbox"
+import MyHeading from "components/heading"
 import BriefcaseBig from "../layout/icons/briefcase-big.png"
 
 const CommercialBusiness = () => (

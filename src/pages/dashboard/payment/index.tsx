@@ -1,9 +1,9 @@
 import { Pane } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
-import MyHeading from "shared/ui/heading"
-import MyText from "shared/ui/text"
-import MyButton from "shared/ui/button"
+import MyHeading from "components/heading"
+import MyText from "components/text"
+import MyButton from "components/button"
 import money from "./icons/money.png"
 import { ReactComponent as Service } from "./icons/subservice.svg"
 import { ReactComponent as Card } from "./icons/card.svg"

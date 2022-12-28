@@ -1,6 +1,6 @@
 import { majorScale, Pane } from "evergreen-ui"
 
-import MyText from "shared/ui/text"
+import MyText from "components/text"
 import { ReactComponent as EmptyListSVG } from "./empty-list.svg"
 
 export interface IEmptyList {

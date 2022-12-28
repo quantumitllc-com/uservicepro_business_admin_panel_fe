@@ -1,8 +1,8 @@
 import { Heading, majorScale, minorScale, Pane } from "evergreen-ui"
 
-import MyText from "shared/ui/text"
-import MyBadge from "shared/ui/badge"
-import MyButton from "shared/ui/button"
+import MyText from "components/text"
+import MyBadge from "components/badge"
+import MyButton from "components/button"
 import { ReactComponent as EnvelopeSelected } from "entities/accordion/icons/envelope-selected.svg"
 import EnvelopeBig from "./icons/envelope-big.png"
 

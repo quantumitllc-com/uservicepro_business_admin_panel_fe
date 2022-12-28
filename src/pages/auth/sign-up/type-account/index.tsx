@@ -2,18 +2,24 @@ import { Pane, Heading, minorScale, majorScale } from "evergreen-ui"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom"
 
-import Logo from "shared/ui/logo"
-import MyButton from "shared/ui/button"
-import { MyInputField, MyInputPasswordField } from "shared/ui/input"
-import MyLabel from "shared/ui/label"
-import MyCheckbox from "shared/ui/checkbox"
-import MyText from "shared/ui/text"
-import ButtonBack from "shared/ui/button-back"
-import { getIconType } from "./lib/getIconByType"
+import Logo from "components/logo"
+import MyButton from "components/button"
+import { Input } from "components/input"
+import MyLabel from "components/label"
+import MyCheckbox from "components/checkbox"
+import MyText from "components/text"
+import ButtonBack from "components/button-back"
+import { getIconType } from "./helpers/getIconByType"
 import styles from "../../styles.module.scss"
+import { useSignUp } from "../useSignUp"
 
-function TypeAccount() {
+const TypeAccount = () => {
 	const { type } = useParams()
+	const {
+		form: { control, handleSubmit },
+		isLoading,
+		onSubmit,
+	} = useSignUp(type)
 
 	return (
 		<Pane className={styles.container}>
@@ -36,27 +42,43 @@ function TypeAccount() {
 				</MyText>
 			</Pane>
 			<Pane className={styles.card}>
-				<MyInputField
+				<Input
 					type="email"
-					label={<MyLabel>Email</MyLabel>}
+					label="Email"
+					name="email"
+					control={control}
 					marginBottom={minorScale(5)}
 					placeholder="Email address"
 				/>
-				<MyInputPasswordField
+				<Input
+					type="password"
 					label="Create password"
+					name="password"
+					control={control}
 					marginBottom={minorScale(5)}
+					placeholder="Password"
 				/>
-				<MyInputPasswordField label="Confirm password" />
+				<Input
+					type="password"
+					label="Confirm password"
+					name="confirmPassword"
+					control={control}
+					marginBottom={minorScale(5)}
+					placeholder="Password"
+				/>
 				<MyCheckbox
 					marginTop={minorScale(5)}
 					marginBottom={minorScale(5)}
 					label={<MyLabel>Remember me</MyLabel>}
 				/>
-				<Link to={`/reg/${type}`}>
-					<MyButton marginBottom={minorScale(4)} appearance="primary">
-						Sign up
-					</MyButton>
-				</Link>
+				<MyButton
+					isLoading={isLoading}
+					onClick={handleSubmit(onSubmit)}
+					marginBottom={minorScale(4)}
+					appearance="primary"
+				>
+					Sign up
+				</MyButton>
 			</Pane>
 			<MyText color="muted">
 				Already have an account?&nbsp;
