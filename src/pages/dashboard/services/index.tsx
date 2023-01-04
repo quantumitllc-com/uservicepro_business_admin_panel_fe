@@ -19,11 +19,11 @@ import { Link } from "react-router-dom"
 import MyHeading from "components/heading"
 import MyButton from "components/button"
 import MyBadge from "components/badge"
-import { useOpenKey } from "entities/accordion/hooks/useOpenKey"
+import { useOpenKey } from "components/accordion/hooks/useOpenKey"
 import MyText from "components/text"
 import MyCheckbox from "components/checkbox"
 import { MyInput } from "components/input"
-import styles from "../../reg/business/styles.module.scss"
+import styles from "../../pre-dashboard/business/styles.module.scss"
 
 export const categories = [
 	{

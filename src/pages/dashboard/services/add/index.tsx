@@ -1,7 +1,7 @@
 import BusinessDetail, {
 	textObj,
 	Breadcrumbs,
-} from "pages/reg/business/businessDetail"
+} from "pages/pre-dashboard/business/businessDetail"
 
 const AddServices = () => (
 	<BusinessDetail text={textObj} breadcrumbs={<Breadcrumbs />} />

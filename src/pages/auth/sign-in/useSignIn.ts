@@ -13,7 +13,7 @@ const defaultValues = {
 	password: "",
 }
 
-const getUrlUsingUserType = (userType: string) => {
+export const getUrlUsingUserType = (userType: string) => {
 	switch (userType) {
 		case "COMMERCIAL":
 			return "commercial"
@@ -31,7 +31,7 @@ export const useSignIn = () => {
 
 	const form = useForm<FormTypes>({
 		resolver: yupResolver(schema),
-		mode: "onChange",
+		mode: "onSubmit",
 		defaultValues,
 	})
 
@@ -39,11 +39,11 @@ export const useSignIn = () => {
 		onSuccess: async (data) => {
 			const tokens = JSON.stringify(data.data)
 			await localStorage.setItem("tokens", tokens)
-			if (data.data.isFinished) {
+			if (data.data.preDashboardInfo.isFinished) {
 				await navigate("/")
 			} else {
 				await navigate(
-					`/reg/${getUrlUsingUserType(data.data.userType)}`,
+					`/pre-dashboard/${getUrlUsingUserType(data.data.userType)}`,
 				)
 			}
 		},

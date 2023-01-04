@@ -19,7 +19,7 @@ import MyLabel from "../label"
 
 export type MyTextInputFieldProps = TextInputFieldProps & {
 	name: string
-	control: Control<any>
+	control?: Control<any>
 }
 
 export const Input = ({ ...props }: MyTextInputFieldProps) => (

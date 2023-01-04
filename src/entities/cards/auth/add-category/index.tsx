@@ -2,7 +2,7 @@ import React from "react"
 import { Card, Dialog, minorScale, SearchInput, Select } from "evergreen-ui"
 
 import MyHeading from "components/heading"
-import styles from "pages/reg/business/styles.module.scss"
+import styles from "pages/pre-dashboard/business/styles.module.scss"
 import MyCheckbox from "components/checkbox"
 
 interface AddCategoryProps {

@@ -40,8 +40,12 @@ export const useSignUp = (userType: string | undefined) => {
 	const { mutate, isLoading } = useMutation(signUp, {
 		onSuccess: async (data) => {
 			const tokens = JSON.stringify(data.data)
-			await localStorage.setItem("tokens", tokens)
-			await navigate(`/reg/${userType}`)
+			if (userType === "business") {
+				await navigate(`/pre-dashboard/${userType}`)
+				await localStorage.setItem("tokens", tokens)
+			} else {
+				form.reset()
+			}
 			await toast.success("User was created successfully")
 		},
 		onError: (error: any) => {
