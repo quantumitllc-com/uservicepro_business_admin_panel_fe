@@ -1,5 +1,6 @@
-import { Pane } from "evergreen-ui"
+import { Pane, Spinner } from "evergreen-ui"
 import { Navigate, Outlet } from "react-router-dom"
+import React, { Suspense } from "react"
 
 import { getTokens } from "utils/getTokens"
 import Header from "./header"
@@ -17,7 +18,9 @@ const Dashboard = () => {
 		<Pane className={styles.container}>
 			<Sidebar className={styles.sidebar} />
 			<Pane className={styles.main}>
-				<Outlet />
+				<Suspense fallback={<Spinner />}>
+					<Outlet />
+				</Suspense>
 			</Pane>
 			<Header className={styles.header} />
 		</Pane>
