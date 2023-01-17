@@ -23,7 +23,7 @@
 	},
 	"plugins": ["react", "@typescript-eslint", "prettier"],
 	"rules": {
-		"no-param-reassign": [2, {"props": false}],
+		"no-param-reassign": [2, { "props": false }],
 		"no-underscore-dangle": "off",
 		"@typescript-eslint/no-unused-vars": "warn",
 		"semi": "off",

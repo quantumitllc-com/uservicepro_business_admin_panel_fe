@@ -36,12 +36,6 @@ const SignIn = () => {
 				marginBottom={minorScale(7)}
 				placeholder="Password"
 			/>
-			{/*<MyInput*/}
-			{/*	type="email"*/}
-			{/*	marginBottom={minorScale(5)}*/}
-			{/*	placeholder="Email address"*/}
-			{/*/>*/}
-			{/*<MyInputPassword marginBottom={minorScale(7)} />*/}
 			<MyButton
 				isLoading={isLoading}
 				onClick={handleSubmit(onSubmit)}

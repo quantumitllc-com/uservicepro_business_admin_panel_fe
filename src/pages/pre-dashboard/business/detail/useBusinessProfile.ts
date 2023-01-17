@@ -6,8 +6,8 @@ import { toast } from "react-toastify"
 
 import { FormTypes } from "types/pre-dashboard/business/details"
 import { businessDetails } from "services/pre-dashboard/business/detail"
+import { getTokens } from "utils/getTokens"
 import { schema } from "./form.schema"
-import { getTokens } from "../../../../utils/getTokens"
 
 export const defaultValues = {
 	companyName: "",

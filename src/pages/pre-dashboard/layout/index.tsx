@@ -15,8 +15,6 @@ import ButtonLogout from "components/button-logout"
 import { useEffect, useState } from "react"
 import { useLogOut } from "services/auth/log-out/useLogOut"
 import styles from "../styles.module.scss"
-import { tabsCommercial } from "../commercial"
-import { tabsUser } from "../user"
 import { tabsBusiness } from "../business"
 
 function getColorType(str: string | undefined) {
@@ -34,10 +32,6 @@ function getColorType(str: string | undefined) {
 
 function getTabType(type: string | undefined) {
 	switch (type) {
-		case "commercial":
-			return tabsCommercial
-		case "user":
-			return tabsUser
 		case "business":
 			return tabsBusiness
 		default:
