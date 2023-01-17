@@ -9,7 +9,7 @@ const request = axios.create({
 	},
 })
 
-request.interceptors.request.use((config) => {
+request.interceptors.request.use((config: any) => {
 	const tokens = getTokens()
 
 	if (tokens) {

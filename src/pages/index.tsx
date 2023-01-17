@@ -26,6 +26,7 @@ import { getTokens } from "../utils/getTokens"
 // auth
 const SignIn = lazy(() => import("./auth/sign-in"))
 const SignUp = lazy(() => import("./auth/sign-up"))
+const Forget = lazy(() => import("./auth/forget"))
 const UserAccount = lazy(() => import("./auth/sign-up/user-account"))
 const TypeAccount = lazy(() => import("./auth/sign-up/type-account"))
 // auth
@@ -85,6 +86,7 @@ export function Routing() {
 			<Route path="sign-up" element={<SignUp />} />
 			<Route path="sign-up/user-account" element={<UserAccount />} />
 			<Route path="sign-up/:type" element={<TypeAccount />} />
+			<Route path="forget" element={<Forget />} />
 			{/*auth*/}
 
 			{/*pre-dashboard*/}
