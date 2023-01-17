@@ -1,10 +1,8 @@
 import { minorScale, Pane, Heading } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
-// import MyBadge from "components/badge"
 import MyText from "components/text"
 import MyButton from "components/button"
-// import { getTokens } from "utils/getTokens"
 import styles from "./styles.module.scss"
 import { ReactComponent as Arrow } from "./icons/arrow.svg"
 import { ReactComponent as ArrowSelected } from "./icons/arrow-selected.svg"
@@ -13,8 +11,7 @@ interface IAccordion {
 	heading: string
 	icon: any
 	iconSelected: any
-	staticBadge?: any
-	dynamicBadge?: any
+	dynamicBadge: any
 	text: string
 	start: string
 	phone?: string
@@ -26,7 +23,6 @@ function Accordion({
 	heading,
 	icon,
 	iconSelected,
-	staticBadge,
 	dynamicBadge,
 	text,
 	start,
@@ -41,13 +37,6 @@ function Accordion({
 		if (url.includes("Verify")) {
 			return "email"
 		}
-		if (url.includes("company detail") || url.includes("categories")) {
-			return "detail"
-		}
-		if (url.includes("payment")) {
-			return "payment"
-		}
-
 		return ""
 	}
 
@@ -69,20 +58,7 @@ function Accordion({
 					>
 						{heading}
 					</Heading>
-					{staticBadge}
 					{dynamicBadge}
-					{/*<MyBadge*/}
-					{/*	backgroundColor="var(--grey)"*/}
-					{/*	marginLeft={minorScale(5)}*/}
-					{/*>*/}
-					{/*	{badgeText}*/}
-					{/*</MyBadge>*/}
-					{/*<MyBadge*/}
-					{/*	backgroundColor="var(--green)"*/}
-					{/*	marginLeft={minorScale(5)}*/}
-					{/*>*/}
-					{/*	{successText}*/}
-					{/*</MyBadge>*/}
 				</Pane>
 				<Pane>
 					{open ? (

@@ -1,4 +1,5 @@
 import { Heading, majorScale, minorScale, Pane } from "evergreen-ui"
+import { useEffect } from "react"
 
 import MyText from "components/text"
 import MyBadge from "components/badge"
@@ -11,6 +12,11 @@ import { useEmail } from "./useEmail"
 const Email = () => {
 	const tokens = getTokens()
 	const { counter, onSubmit } = useEmail()
+
+	useEffect(() => {
+		onSubmit()
+		// eslint-disable-next-line
+	}, [])
 
 	return (
 		<Pane
