@@ -74,13 +74,13 @@ function Business() {
 			dynamicBadge: (
 				<MyBadge
 					backgroundColor={
-						preDashboardInfo.isProfileFilled
+						preDashboardInfo.isFinished
 							? "var(--green)"
 							: "var(--grey)"
 					}
 					marginLeft={minorScale(5)}
 				>
-					{preDashboardInfo.isProfileFilled
+					{preDashboardInfo.isFinished
 						? "Verified"
 						: "Verify your account"}
 				</MyBadge>

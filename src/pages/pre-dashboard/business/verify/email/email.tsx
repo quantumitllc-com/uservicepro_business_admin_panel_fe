@@ -6,6 +6,7 @@ import MyBadge from "components/badge"
 import MyButton from "components/button"
 import { ReactComponent as EnvelopeSelected } from "components/accordion/icons/envelope-selected.svg"
 import { getTokens } from "utils/getTokens"
+import { Navigate } from "react-router-dom"
 import EnvelopeBig from "../../../layout/icons/envelope-big.png"
 import { useEmail } from "./useEmail"
 
@@ -17,6 +18,10 @@ const Email = () => {
 		onSubmit()
 		// eslint-disable-next-line
 	}, [])
+
+	if (tokens.preDashboardInfo.isFinished) {
+		return <Navigate to="/" />
+	}
 
 	return (
 		<Pane
