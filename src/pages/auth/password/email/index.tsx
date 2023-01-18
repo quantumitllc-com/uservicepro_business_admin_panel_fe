@@ -1,11 +1,4 @@
-import {
-	Button,
-	Heading,
-	Label,
-	majorScale,
-	minorScale,
-	Pane,
-} from "evergreen-ui"
+import { Heading, Label, majorScale, minorScale, Pane } from "evergreen-ui"
 
 import { Input } from "components/input"
 import MyText from "components/text"
@@ -20,7 +13,6 @@ const Email = () => {
 	const {
 		onSubmit,
 		isLoading,
-		isSuccess,
 		form: { control, handleSubmit },
 	} = useEmail()
 
@@ -92,22 +84,6 @@ const Email = () => {
 					>
 						Send Email
 					</MyButton>
-					{isSuccess && (
-						<Pane display="flex" alignItems="center">
-							<MyText color="muted">Didn`t receive link?</MyText>
-							<Button
-								border="none"
-								onClick={handleSubmit(onSubmit)}
-							>
-								<MyText
-									color="var(--dark-green)"
-									marginLeft={minorScale(1)}
-								>
-									Resend
-								</MyText>
-							</Button>
-						</Pane>
-					)}
 				</Pane>
 				<ButtonBack />
 			</Pane>

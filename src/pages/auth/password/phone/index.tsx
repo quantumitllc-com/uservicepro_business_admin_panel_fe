@@ -77,15 +77,6 @@ const Phone = () => {
 					<MyButton appearance="primary" marginBottom={minorScale(4)}>
 						Send
 					</MyButton>
-					<Pane display="flex">
-						<MyText color="muted">Didn`t receive link?</MyText>
-						<MyText
-							color="var(--dark-green)"
-							marginLeft={minorScale(1)}
-						>
-							Resend
-						</MyText>
-					</Pane>
 				</Pane>
 				<ButtonBack />
 			</Pane>

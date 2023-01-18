@@ -18,7 +18,7 @@ export const useEmail = () => {
 		defaultValues,
 	})
 
-	const { mutate, isLoading, isSuccess } = useMutation(passwordEmail, {
+	const { mutate, isLoading } = useMutation(passwordEmail, {
 		onSuccess: () => {
 			toast.success("Sent successfully!")
 		},
@@ -31,5 +31,5 @@ export const useEmail = () => {
 		mutate(data)
 	}
 
-	return { form, onSubmit, isLoading, isSuccess }
+	return { form, onSubmit, isLoading }
 }
