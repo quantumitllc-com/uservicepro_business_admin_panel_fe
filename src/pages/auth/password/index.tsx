@@ -1,25 +1,18 @@
-import {
-	Pane,
-	Heading,
-	majorScale,
-	minorScale,
-	Button,
-	ChevronLeftIcon,
-} from "evergreen-ui"
+import { Pane, Heading, majorScale, minorScale } from "evergreen-ui"
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
-import Logo from "components/logo"
 import MyText from "components/text"
-import { ForgetType } from "entities/cards/auth/forget-type"
+import { ForgetType } from "pages/auth/password/components/forget-type"
 import MyButton from "components/button"
 import {
 	emailIconSet,
 	phoneIconSet,
-} from "entities/cards/auth/forget-type/ui/icons"
+} from "pages/auth/password/components/forget-type/ui/icons"
+import { Header } from "./components/header"
+import { ButtonBack } from "./components/button-back"
 
-const Forget = () => {
-	const navigate = useNavigate()
+const Passowrd = () => {
 	const [type, setType] = useState("")
 	const handleChangeType = (e: string) => {
 		setType(e)
@@ -27,37 +20,9 @@ const Forget = () => {
 
 	return (
 		<Pane flexGrow={1} display="flex" height="100vh" flexDirection="column">
+			<Header />
 			<Pane
-				display="flex"
-				background="white"
-				alignItems="center"
-				paddingLeft={majorScale(3)}
-				paddingRight={majorScale(5)}
-				style={{
-					filter: "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1))",
-				}}
-			>
-				<Pane flex={1} height={80} alignItems="center" display="flex">
-					<Logo />
-				</Pane>
-				<Pane>
-					<MyText color="muted" marginRight={majorScale(3)}>
-						Already have an account ?
-					</MyText>
-					<Link to="/sign-in">
-						<Button
-							height={42}
-							border="none"
-							minWidth="150px"
-							background="#E2EDF0"
-							color="var(--dark-green)"
-						>
-							Sign in
-						</Button>
-					</Link>
-				</Pane>
-			</Pane>
-			<Pane
+				width="100%"
 				flexGrow={1}
 				display="flex"
 				overflowY="auto"
@@ -67,9 +32,8 @@ const Forget = () => {
 				paddingBottom={majorScale(8)}
 			>
 				<Pane
-					width="100%"
 					display="flex"
-					maxWidth="40%"
+					minWidth="600px"
 					borderRadius={20}
 					background="white"
 					alignItems="center"
@@ -129,22 +93,10 @@ const Forget = () => {
 						</MyText>
 					</Pane>
 				</Pane>
-				<Button
-					border="none"
-					color="var(--grey)"
-					marginTop={majorScale(4)}
-					fontFamily="var(--lexend)"
-					onClick={() => navigate(-1)}
-					backgroundColor="transparent"
-					iconBefore={
-						<ChevronLeftIcon size={15} color="var(--grey)" />
-					}
-				>
-					Back
-				</Button>
+				<ButtonBack />
 			</Pane>
 		</Pane>
 	)
 }
 
-export default Forget
+export default Passowrd

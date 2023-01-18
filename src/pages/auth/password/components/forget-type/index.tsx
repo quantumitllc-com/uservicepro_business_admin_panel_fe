@@ -3,7 +3,7 @@ import React, { FC } from "react"
 
 import MyText from "components/text"
 import { ForgetTypeProps } from "./props"
-import { ReactComponent as Checked } from "../icons/checked.svg"
+import { ReactComponent as Checked } from "../../icons/checked.svg"
 import styles from "./ui/styles.module.scss"
 
 export const ForgetType: FC<ForgetTypeProps> = ({
@@ -21,7 +21,7 @@ export const ForgetType: FC<ForgetTypeProps> = ({
 		borderColor={isActive ? "var(--dark-green)" : "var(--stroke-block)"}
 	>
 		<Pane display="flex" alignItems="center">
-			<Pane>{isActive ? iconSet.hover : iconSet.default}</Pane>
+			<Pane>{isActive ? iconSet.active : iconSet.default}</Pane>
 			<Pane
 				display="flex"
 				maxWidth="210px"

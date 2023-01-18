@@ -27,9 +27,10 @@ const SignIn = lazy(() => import("./auth/sign-in"))
 const SignUp = lazy(() => import("./auth/sign-up"))
 const UserAccount = lazy(() => import("./auth/sign-up/user-account"))
 const TypeAccount = lazy(() => import("./auth/sign-up/type-account"))
-const Forget = lazy(() => import("./auth/forget"))
-const ForgetEmail = lazy(() => import("./auth/forget/email"))
-const ForgetPhone = lazy(() => import("./auth/forget/phone"))
+const Password = lazy(() => import("./auth/password"))
+const PasswordEmail = lazy(() => import("./auth/password/email"))
+const PasswordPhone = lazy(() => import("./auth/password/phone"))
+const PasswordReset = lazy(() => import("./auth/password/reset"))
 // auth
 
 // pre-dashboard
@@ -62,9 +63,13 @@ export function Routing() {
 			<Route path="sign-up" element={<SignUp />} />
 			<Route path="sign-up/user-account" element={<UserAccount />} />
 			<Route path="sign-up/:type" element={<TypeAccount />} />
-			<Route path="forget" element={<Forget />} />
-			<Route path="forget/email" element={<ForgetEmail />} />
-			<Route path="forget/phone" element={<ForgetPhone />} />
+			<Route path="password" element={<Password />} />
+			<Route path="password/email" element={<PasswordEmail />} />
+			<Route path="password/phone" element={<PasswordPhone />} />
+			<Route
+				path="password/reset/:resetToken"
+				element={<PasswordReset />}
+			/>
 			{/*auth*/}
 
 			{/*pre-dashboard*/}
