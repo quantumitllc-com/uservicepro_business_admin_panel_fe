@@ -1,43 +1,50 @@
 import { lazy } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 
-// dashboard
-import Layout from "./dashboard/layout"
-import Dashboard from "./dashboard"
-import Employee from "./dashboard/employee"
-import Services from "./dashboard/services"
-import AddServices from "./dashboard/services/add"
-import Statistics from "./dashboard/statistics"
-import ActivityMap from "./dashboard/activity-map"
-import Schedules from "./dashboard/schedules"
-import Location from "./dashboard/location"
-import Payment from "./dashboard/payment"
-import Ads from "./dashboard/ads"
-import Accounting from "./dashboard/accounting"
-import Chat from "./dashboard/chat"
-import PaymentBank from "./dashboard/payment/paymentBank"
-import SelectPayment from "./dashboard/payment/selectPayment"
-// dashboard
-
-// auth
-import SignIn from "./auth/sign-in"
-import SignUp from "./auth/sign-up"
-import UserAccount from "./auth/sign-up/user-account"
-import TypeAccount from "./auth/sign-up/type-account"
-import Forget from "./auth/forget"
-import ForgetEmail from "./auth/forget/email"
-import ForgetPhone from "./auth/forget/phone"
-// auth
-
-// pre-dashboard
-import LayoutReg from "./pre-dashboard/layout"
-import Business from "./pre-dashboard/business"
-import BusinessProfile from "./pre-dashboard/business/detail/businessProfile"
-import VerifyByEmail from "./pre-dashboard/business/verify/email/email"
-import VerifyByPhone from "./pre-dashboard/business/verify/phone/phone"
-// pre-dashboard
-
 import { getTokens } from "../utils/getTokens"
+
+// dashboard
+const ActivityMap = lazy(() => import("./dashboard/activity-map"))
+const Schedules = lazy(() => import("./dashboard/schedules"))
+const Location = lazy(() => import("./dashboard/location"))
+const Payment = lazy(() => import("./dashboard/payment"))
+const Ads = lazy(() => import("./dashboard/ads"))
+const Accounting = lazy(() => import("./dashboard/accounting"))
+const Chat = lazy(() => import("./dashboard/chat"))
+const PaymentBank = lazy(() => import("./dashboard/payment/paymentBank"))
+const SelectPayment = lazy(() => import("./dashboard/payment/paymentBank"))
+
+const Layout = lazy(() => import("./dashboard/layout"))
+const Dashboard = lazy(() => import("./dashboard"))
+const Employee = lazy(() => import("./dashboard/employee"))
+const Services = lazy(() => import("./dashboard/services"))
+const AddServices = lazy(() => import("./dashboard/services/add"))
+const Statistics = lazy(() => import("./dashboard/statistics"))
+// dashboard
+
+// auth
+const SignIn = lazy(() => import("./auth/sign-in"))
+const SignUp = lazy(() => import("./auth/sign-up"))
+const UserAccount = lazy(() => import("./auth/sign-up/user-account"))
+const TypeAccount = lazy(() => import("./auth/sign-up/type-account"))
+const Forget = lazy(() => import("./auth/forget"))
+const ForgetEmail = lazy(() => import("./auth/forget/email"))
+const ForgetPhone = lazy(() => import("./auth/forget/phone"))
+// auth
+
+// pre-dashboard
+const LayoutReg = lazy(() => import("./pre-dashboard/layout"))
+const Business = lazy(() => import("./pre-dashboard/business"))
+const BusinessProfile = lazy(
+	() => import("./pre-dashboard/business/detail/businessProfile"),
+)
+const VerifyByEmail = lazy(
+	() => import("./pre-dashboard/business/verify/email/email"),
+)
+const VerifyByPhone = lazy(
+	() => import("./pre-dashboard/business/verify/phone/phone"),
+)
+// pre-dashboard
 
 const Congratulations = lazy(() => import("./pre-dashboard/congratulations"))
 
@@ -98,7 +105,6 @@ export function Routing() {
 				<Route path="ads" element={<Ads />} />
 				<Route path="accounting" element={<Accounting />} />
 				<Route path="chat" element={<Chat />} />
-
 				<Route path="payment" element={<Payment />} />
 				<Route path="payment/bank" element={<PaymentBank />} />
 				<Route path="payment/select" element={<SelectPayment />} />

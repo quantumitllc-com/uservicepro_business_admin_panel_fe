@@ -3,6 +3,7 @@ import {
 	majorScale,
 	minorScale,
 	Pane,
+	Spinner,
 	Tab,
 	Tablist,
 } from "evergreen-ui"
@@ -12,7 +13,7 @@ import { useLocation } from "react-router"
 import Logo from "components/logo"
 import MyBadge from "components/badge"
 import ButtonLogout from "components/button-logout"
-import { useEffect, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { useLogOut } from "services/auth/log-out/useLogOut"
 import styles from "../styles.module.scss"
 import { tabsBusiness } from "../business"
@@ -127,7 +128,9 @@ const LayoutReg = () => {
 					Get Started
 				</Heading>
 				<Pane className={styles.accordionContainer}>
-					<Outlet />
+					<Suspense fallback={<Spinner />}>
+						<Outlet />
+					</Suspense>
 				</Pane>
 			</main>
 		</Pane>
