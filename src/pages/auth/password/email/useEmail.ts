@@ -18,7 +18,10 @@ export const useEmail = () => {
 		defaultValues,
 	})
 
-	const { mutate, isLoading } = useMutation(passwordEmail, {
+	const { mutate, isLoading, isSuccess } = useMutation(passwordEmail, {
+		onSuccess: () => {
+			toast.success("Sent successfully!")
+		},
 		onError: (error: any) => {
 			toast.error(error.response.data.message)
 		},
@@ -28,5 +31,5 @@ export const useEmail = () => {
 		mutate(data)
 	}
 
-	return { form, onSubmit, isLoading }
+	return { form, onSubmit, isLoading, isSuccess }
 }

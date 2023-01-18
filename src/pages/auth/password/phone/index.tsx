@@ -3,10 +3,10 @@ import { Heading, Label, majorScale, minorScale, Pane } from "evergreen-ui"
 import { Input } from "components/input"
 import MyText from "components/text"
 import MyButton from "components/button"
+import { ReactComponent as PhoneHover } from "entities/cards/auth/icons/phone-hover.svg"
 import { ButtonBack } from "../components/button-back"
 import { Header } from "../components/header"
 
-import { ReactComponent as PhoneActive } from "../icons/phone-active.svg"
 import { usePhone } from "./usePhone"
 
 const Phone = () => {
@@ -40,11 +40,13 @@ const Phone = () => {
 					<Heading size={900}>Forgot Password</Heading>
 					<MyText
 						color="muted"
+						maxWidth="350px"
 						textAlign="center"
 						marginTop={majorScale(1)}
 						marginBottom={majorScale(4)}
 					>
-						Please Select option to send link reset password
+						Please, enter phone number. We will send you sms to your
+						phone for reset your password
 					</MyText>
 					<Pane
 						gap="24px"
@@ -60,7 +62,7 @@ const Phone = () => {
 						boxShadow="0px 12px 50px -10px rgba(134, 162, 185, 0.2)"
 					>
 						<Pane>
-							<PhoneActive />
+							<PhoneHover />
 						</Pane>
 						<Label htmlFor="phone">Phone</Label>
 						<Input

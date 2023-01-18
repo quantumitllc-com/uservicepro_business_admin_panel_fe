@@ -1,18 +1,26 @@
-import { Heading, Label, majorScale, minorScale, Pane } from "evergreen-ui"
+import {
+	Button,
+	Heading,
+	Label,
+	majorScale,
+	minorScale,
+	Pane,
+} from "evergreen-ui"
 
 import { Input } from "components/input"
 import MyText from "components/text"
 import MyButton from "components/button"
+import { ReactComponent as EmailHover } from "entities/cards/auth/icons/email-hover.svg"
 import { ButtonBack } from "../components/button-back"
 import { Header } from "../components/header"
 
-import { ReactComponent as EmailActive } from "../icons/email-active.svg"
 import { useEmail } from "./useEmail"
 
 const Email = () => {
 	const {
 		onSubmit,
 		isLoading,
+		isSuccess,
 		form: { control, handleSubmit },
 	} = useEmail()
 
@@ -42,11 +50,13 @@ const Email = () => {
 					<Heading size={900}>Forgot Password</Heading>
 					<MyText
 						color="muted"
+						maxWidth="350px"
 						textAlign="center"
 						marginTop={majorScale(1)}
 						marginBottom={majorScale(4)}
 					>
-						Please Select option to send link reset password
+						Please, enter email address number. We will send you
+						link to your email for reset your password
 					</MyText>
 					<Pane
 						gap="24px"
@@ -62,7 +72,7 @@ const Email = () => {
 						boxShadow="0px 12px 50px -10px rgba(134, 162, 185, 0.2)"
 					>
 						<Pane>
-							<EmailActive />
+							<EmailHover />
 						</Pane>
 						<Label htmlFor="email">Email</Label>
 						<Input
@@ -80,17 +90,24 @@ const Email = () => {
 						marginBottom={minorScale(4)}
 						onClick={handleSubmit(onSubmit)}
 					>
-						Send Link
+						Send Email
 					</MyButton>
-					<Pane display="flex">
-						<MyText color="muted">Didn`t receive link?</MyText>
-						<MyText
-							color="var(--dark-green)"
-							marginLeft={minorScale(1)}
-						>
-							Resend
-						</MyText>
-					</Pane>
+					{isSuccess && (
+						<Pane display="flex" alignItems="center">
+							<MyText color="muted">Didn`t receive link?</MyText>
+							<Button
+								border="none"
+								onClick={handleSubmit(onSubmit)}
+							>
+								<MyText
+									color="var(--dark-green)"
+									marginLeft={minorScale(1)}
+								>
+									Resend
+								</MyText>
+							</Button>
+						</Pane>
+					)}
 				</Pane>
 				<ButtonBack />
 			</Pane>
