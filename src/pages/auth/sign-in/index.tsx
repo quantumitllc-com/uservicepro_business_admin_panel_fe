@@ -50,7 +50,7 @@ const SignIn = () => {
 				cursor="pointer"
 				size="large"
 			>
-				<Link to="/forget">Forgot password?</Link>
+				<Link to="/password">Forgot password?</Link>
 			</Text>
 			<Heading marginBottom={minorScale(4)} size={700} fontWeight={400}>
 				Don’t have an account?
