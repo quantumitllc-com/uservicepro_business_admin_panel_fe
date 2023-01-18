@@ -110,17 +110,24 @@ const Forget = () => {
 							text="Link reset will be send to your phone number registered"
 						/>
 					</Pane>
-					<MyButton
-						appearance="primary"
-						disabled={type === ""}
-						marginBottom={minorScale(4)}
-					>
-						Next
-					</MyButton>
-					<MyText color="muted">
-						Didn`t receive link?
-						<MyText color="var(--dark-green)">Resend</MyText>
-					</MyText>
+					<Link to={type}>
+						<MyButton
+							appearance="primary"
+							disabled={type === ""}
+							marginBottom={minorScale(4)}
+						>
+							Next
+						</MyButton>
+					</Link>
+					<Pane display="flex">
+						<MyText color="muted">Didn`t receive link?</MyText>
+						<MyText
+							color="var(--dark-green)"
+							marginLeft={minorScale(1)}
+						>
+							Resend
+						</MyText>
+					</Pane>
 				</Pane>
 				<Button
 					border="none"

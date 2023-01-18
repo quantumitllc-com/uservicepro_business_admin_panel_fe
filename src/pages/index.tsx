@@ -25,6 +25,8 @@ import SignUp from "./auth/sign-up"
 import UserAccount from "./auth/sign-up/user-account"
 import TypeAccount from "./auth/sign-up/type-account"
 import Forget from "./auth/forget"
+import ForgetEmail from "./auth/forget/email"
+import ForgetPhone from "./auth/forget/phone"
 // auth
 
 // pre-dashboard
@@ -54,6 +56,8 @@ export function Routing() {
 			<Route path="sign-up/user-account" element={<UserAccount />} />
 			<Route path="sign-up/:type" element={<TypeAccount />} />
 			<Route path="forget" element={<Forget />} />
+			<Route path="forget/email" element={<ForgetEmail />} />
+			<Route path="forget/phone" element={<ForgetPhone />} />
 			{/*auth*/}
 
 			{/*pre-dashboard*/}
