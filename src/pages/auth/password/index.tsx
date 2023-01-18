@@ -83,15 +83,6 @@ const Passowrd = () => {
 							Next
 						</MyButton>
 					</Link>
-					<Pane display="flex">
-						<MyText color="muted">Didn`t receive link?</MyText>
-						<MyText
-							color="var(--dark-green)"
-							marginLeft={minorScale(1)}
-						>
-							Resend
-						</MyText>
-					</Pane>
 				</Pane>
 				<ButtonBack />
 			</Pane>
