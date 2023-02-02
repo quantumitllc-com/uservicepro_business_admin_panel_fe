@@ -36,12 +36,6 @@ const SignIn = () => {
 				marginBottom={minorScale(7)}
 				placeholder="Password"
 			/>
-			{/*<MyInput*/}
-			{/*	type="email"*/}
-			{/*	marginBottom={minorScale(5)}*/}
-			{/*	placeholder="Email address"*/}
-			{/*/>*/}
-			{/*<MyInputPassword marginBottom={minorScale(7)} />*/}
 			<MyButton
 				isLoading={isLoading}
 				onClick={handleSubmit(onSubmit)}
@@ -56,7 +50,7 @@ const SignIn = () => {
 				cursor="pointer"
 				size="large"
 			>
-				Forgot password?
+				<Link to="/password">Forgot password?</Link>
 			</Text>
 			<Heading marginBottom={minorScale(4)} size={700} fontWeight={400}>
 				Don’t have an account?

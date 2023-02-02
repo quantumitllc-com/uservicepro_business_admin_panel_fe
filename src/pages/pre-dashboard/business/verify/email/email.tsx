@@ -1,16 +1,27 @@
 import { Heading, majorScale, minorScale, Pane } from "evergreen-ui"
+import { useEffect } from "react"
 
 import MyText from "components/text"
 import MyBadge from "components/badge"
 import MyButton from "components/button"
 import { ReactComponent as EnvelopeSelected } from "components/accordion/icons/envelope-selected.svg"
 import { getTokens } from "utils/getTokens"
+import { Navigate } from "react-router-dom"
 import EnvelopeBig from "../../../layout/icons/envelope-big.png"
 import { useEmail } from "./useEmail"
 
 const Email = () => {
 	const tokens = getTokens()
 	const { counter, onSubmit } = useEmail()
+
+	useEffect(() => {
+		onSubmit()
+		// eslint-disable-next-line
+	}, [])
+
+	if (tokens.preDashboardInfo.isFinished) {
+		return <Navigate to="/" />
+	}
 
 	return (
 		<Pane

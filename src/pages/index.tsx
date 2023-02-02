@@ -1,75 +1,53 @@
 import { lazy } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 
-// import { Breadcrumbs, textObj } from "./pre-dashboard/business/businessDetail"
-
-import Layout from "./dashboard/layout"
-import Dashboard from "./dashboard"
-import Employee from "./dashboard/employee"
-import Services from "./dashboard/services"
-import AddServices from "./dashboard/services/add"
-import Statistics from "./dashboard/statistics"
-import ActivityMap from "./dashboard/activity-map"
-import Schedules from "./dashboard/schedules"
-import Location from "./dashboard/location"
-import Payment from "./dashboard/payment"
-import Ads from "./dashboard/ads"
-import Accounting from "./dashboard/accounting"
-import Chat from "./dashboard/chat"
-
-// payment
-import PaymentBank from "./dashboard/payment/paymentBank"
-import SelectPayment from "./dashboard/payment/selectPayment"
 import { getTokens } from "../utils/getTokens"
-// payment
+
+// dashboard
+const ActivityMap = lazy(() => import("./dashboard/activity-map"))
+const Schedules = lazy(() => import("./dashboard/schedules"))
+const Location = lazy(() => import("./dashboard/location"))
+const Payment = lazy(() => import("./dashboard/payment"))
+const Ads = lazy(() => import("./dashboard/ads"))
+const Accounting = lazy(() => import("./dashboard/accounting"))
+const Chat = lazy(() => import("./dashboard/chat"))
+const PaymentBank = lazy(() => import("./dashboard/payment/paymentBank"))
+const SelectPayment = lazy(() => import("./dashboard/payment/paymentBank"))
+
+const Layout = lazy(() => import("./dashboard/layout"))
+const Dashboard = lazy(() => import("./dashboard"))
+const Employee = lazy(() => import("./dashboard/employee"))
+const Services = lazy(() => import("./dashboard/services"))
+const AddServices = lazy(() => import("./dashboard/services/add"))
+const Statistics = lazy(() => import("./dashboard/statistics"))
+// dashboard
 
 // auth
 const SignIn = lazy(() => import("./auth/sign-in"))
 const SignUp = lazy(() => import("./auth/sign-up"))
 const UserAccount = lazy(() => import("./auth/sign-up/user-account"))
 const TypeAccount = lazy(() => import("./auth/sign-up/type-account"))
+const Password = lazy(() => import("./auth/password"))
+const PasswordEmail = lazy(() => import("./auth/password/email"))
+const PasswordPhone = lazy(() => import("./auth/password/phone"))
+const PasswordReset = lazy(() => import("./auth/password/reset"))
 // auth
 
 // pre-dashboard
 const LayoutReg = lazy(() => import("./pre-dashboard/layout"))
-
-// const Commercial = lazy(() => import("./pre-dashboard/commercial"))
-// const CommercialProfile = lazy(
-// 	() => import("./pre-dashboard/commercial/commercialProfile"),
-// )
-// const CommercialDetail = lazy(
-// 	() => import("./pre-dashboard/commercial/commercialBusiness"),
-// )
-//
-// const User = lazy(() => import("./pre-dashboard/user"))
-// const UserProfile = lazy(() => import("./pre-dashboard/user/userProfile"))
-
 const Business = lazy(() => import("./pre-dashboard/business"))
 const BusinessProfile = lazy(
 	() => import("./pre-dashboard/business/detail/businessProfile"),
 )
-
-// const BusinessPayment = lazy(
-// 	() => import("./pre-dashboard/business/businessPayment"),
-// )
-// const BusinessDetail = lazy(
-// 	() => import("./pre-dashboard/business/businessDetail"),
-// )
-// const BusinessCategory = lazy(
-// 	() => import("./pre-dashboard/business/businessCategory"),
-// )
-// const BusinessSubCategory = lazy(
-// 	() => import("./pre-dashboard/business/businessSubCategory"),
-// )
-
 const VerifyByEmail = lazy(
 	() => import("./pre-dashboard/business/verify/email/email"),
 )
 const VerifyByPhone = lazy(
 	() => import("./pre-dashboard/business/verify/phone/phone"),
 )
-const Congratulations = lazy(() => import("./pre-dashboard/congratulations"))
 // pre-dashboard
+
+const Congratulations = lazy(() => import("./pre-dashboard/congratulations"))
 
 function PrivateRoute({ children }: any) {
 	const tokens = getTokens()
@@ -85,6 +63,13 @@ export function Routing() {
 			<Route path="sign-up" element={<SignUp />} />
 			<Route path="sign-up/user-account" element={<UserAccount />} />
 			<Route path="sign-up/:type" element={<TypeAccount />} />
+			<Route path="password" element={<Password />} />
+			<Route path="password/email" element={<PasswordEmail />} />
+			<Route path="password/phone" element={<PasswordPhone />} />
+			<Route
+				path="password/reset/:resetToken"
+				element={<PasswordReset />}
+			/>
 			{/*auth*/}
 
 			{/*pre-dashboard*/}
@@ -101,43 +86,6 @@ export function Routing() {
 				<Route path="business/profile" element={<BusinessProfile />} />
 				<Route path="business/email" element={<VerifyByEmail />} />
 				<Route path="business/phone" element={<VerifyByPhone />} />
-
-				{/*<Route path="business/payment" element={<BusinessPayment />} />*/}
-
-				{/*<Route*/}
-				{/*	path="business/detail"*/}
-				{/*	element={*/}
-				{/*		<BusinessDetail*/}
-				{/*			text={textObj}*/}
-				{/*			breadcrumbs={<Breadcrumbs />}*/}
-				{/*		/>*/}
-				{/*	}*/}
-				{/*/>*/}
-				{/*<Route*/}
-				{/*	path="business/detail/:category"*/}
-				{/*	element={<BusinessCategory />}*/}
-				{/*/>*/}
-				{/*<Route*/}
-				{/*	path="business/detail/:category/:subCategory"*/}
-				{/*	element={<BusinessSubCategory />}*/}
-				{/*/>*/}
-
-				{/*<Route path="commercial" element={<Commercial />} />*/}
-				{/*<Route path="commercial/email" element={<Email />} />*/}
-				{/*<Route path="commercial/phone" element={<Phone />} />*/}
-				{/*<Route*/}
-				{/*	path="commercial/profile"*/}
-				{/*	element={<CommercialProfile />}*/}
-				{/*/>*/}
-				{/*<Route*/}
-				{/*	path="commercial/detail"*/}
-				{/*	element={<CommercialDetail />}*/}
-				{/*/>*/}
-
-				{/*<Route path="user" element={<User />} />*/}
-				{/*<Route path="user/profile" element={<UserProfile />} />*/}
-				{/*<Route path="user/email" element={<Email />} />*/}
-				{/*<Route path="user/phone" element={<Phone />} />*/}
 			</Route>
 			<Route path="congratulations" element={<Congratulations />} />
 			{/*pre-dashboard*/}
@@ -162,7 +110,6 @@ export function Routing() {
 				<Route path="ads" element={<Ads />} />
 				<Route path="accounting" element={<Accounting />} />
 				<Route path="chat" element={<Chat />} />
-
 				<Route path="payment" element={<Payment />} />
 				<Route path="payment/bank" element={<PaymentBank />} />
 				<Route path="payment/select" element={<SelectPayment />} />

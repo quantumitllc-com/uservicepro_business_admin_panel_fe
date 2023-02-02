@@ -11,13 +11,10 @@ import theme from "./config/theme"
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 
 root.render(
-	<React.StrictMode>
-		<ThemeProvider value={theme}>
-			<QueryClientProvider client={queryClient}>
-				<App />
-				<ToastContainer />
-			</QueryClientProvider>
-			,
-		</ThemeProvider>
-	</React.StrictMode>,
+	<ThemeProvider value={theme}>
+		<QueryClientProvider client={queryClient}>
+			<App />
+			<ToastContainer />
+		</QueryClientProvider>
+	</ThemeProvider>,
 )

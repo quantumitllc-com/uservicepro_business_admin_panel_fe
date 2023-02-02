@@ -24,13 +24,13 @@ const SignUp = () => (
 					text="This type of account only for service owners"
 				/>
 			</Link>
-			<Link to="user-account">
-				<AccountType
-					iconSet={userIconSet}
-					title="User account"
-					text="This type of account only for service users"
-				/>
-			</Link>
+			{/*<Link to="user-account">*/}
+			<AccountType
+				iconSet={userIconSet}
+				title="User account"
+				text="This type of account only for service users"
+			/>
+			{/*</Link>*/}
 		</Pane>
 		<ButtonBack />
 	</Pane>
