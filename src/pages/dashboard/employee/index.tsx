@@ -20,6 +20,7 @@ import EmployeeDetails from "entities/employee-details"
 import useIsShown from "hooks/useIsShown"
 import MyLabel from "../../../components/label"
 import { MyInputField } from "../../../components/input"
+import { headerlist } from "./constants"
 
 const employees = [
 	{
@@ -162,27 +163,14 @@ const Employee = () => {
 				</Pane>
 				<Table>
 					<Table.Head>
-						<Table.TextHeaderCell textTransform="none">
-							Photo
-						</Table.TextHeaderCell>
-						<Table.TextHeaderCell textTransform="none">
-							Name
-						</Table.TextHeaderCell>
-						<Table.TextHeaderCell textTransform="none">
-							Employee ID
-						</Table.TextHeaderCell>
-						<Table.TextHeaderCell textTransform="none">
-							DOB
-						</Table.TextHeaderCell>
-						<Table.TextHeaderCell textTransform="none">
-							Phone
-						</Table.TextHeaderCell>
-						<Table.TextHeaderCell textTransform="none">
-							Email
-						</Table.TextHeaderCell>
-						<Table.TextHeaderCell textTransform="none">
-							Status
-						</Table.TextHeaderCell>
+						{headerlist.map((title) => (
+							<Table.TextHeaderCell
+								key={title}
+								textTransform="none"
+							>
+								{title}
+							</Table.TextHeaderCell>
+						))}
 					</Table.Head>
 					<Table.Body>
 						{employees.map((location) => (
