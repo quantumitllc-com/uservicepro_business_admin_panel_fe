@@ -1,10 +1,8 @@
-import { Pane, Heading, majorScale, minorScale } from "evergreen-ui"
-import { useState } from "react"
+import { Pane, Heading, majorScale } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
 import MyText from "components/text"
 import { PassowrdType } from "entities/cards/auth/password-type"
-import MyButton from "components/button"
 import {
 	emailIconSet,
 	phoneIconSet,

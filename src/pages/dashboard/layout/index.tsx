@@ -16,13 +16,13 @@ const Dashboard = () => {
 
 	return (
 		<Pane className={styles.container}>
+			<Header className={styles.header} />
 			<Sidebar className={styles.sidebar} />
 			<Pane className={styles.main}>
 				<Suspense fallback={<Spinner />}>
 					<Outlet />
 				</Suspense>
 			</Pane>
-			<Header className={styles.header} />
 		</Pane>
 	)
 }

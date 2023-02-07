@@ -54,6 +54,7 @@
 		],
 		"react/require-default-props": "off",
 		"import/prefer-default-export": "off",
-		"spaced-comment": ["off"]
+		"spaced-comment": ["off"],
+		"react/no-unused-prop-types": "off"
 	}
 }
