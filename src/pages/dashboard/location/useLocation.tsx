@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { createLocation, getLocations } from "services/dashboard/location"
 import { FormTypes } from "types/dashboard/location"
 import { schema } from "./add-location/form.schema"
-import { Dispatch, SetStateAction } from "react"
 
 const defaultValues = {
 	officeName: "",
@@ -41,7 +40,6 @@ export const useLocation = () => {
 	})
 
 	const onSubmit = (data: FormTypes) => {
-		console.log(data)
 		mutate(data)
 	}
 

@@ -17,7 +17,6 @@ export const usePhone = () => {
 
 	const onSubmit = (data: FormPhoneTypes) => {
 		// mutate(data)
-		console.log(data)
 	}
 
 	return { form, onSubmit }
