@@ -4,9 +4,6 @@ import { getTokens } from "../utils/getTokens"
 const baseURL = process.env.REACT_APP_BASE_URL
 const request = axios.create({
 	baseURL,
-	headers: {
-		"Content-Type": "application/json",
-	},
 })
 
 request.interceptors.request.use((config: any) => {
