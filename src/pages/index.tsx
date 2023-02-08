@@ -17,9 +17,11 @@ const SelectPayment = lazy(() => import("./dashboard/payment/paymentBank"))
 const Layout = lazy(() => import("./dashboard/layout"))
 const Dashboard = lazy(() => import("./dashboard"))
 const Employee = lazy(() => import("./dashboard/employee"))
+const EmployeeDetail = lazy(() => import("./dashboard/employee/detail"))
 const Services = lazy(() => import("./dashboard/services"))
 const AddServices = lazy(() => import("./dashboard/services/add"))
 const Statistics = lazy(() => import("./dashboard/statistics"))
+
 // dashboard
 
 // auth
@@ -101,6 +103,10 @@ export function Routing() {
 			>
 				<Route path="/" element={<Dashboard />} />
 				<Route path="employee" element={<Employee />} />
+				<Route
+					path="employee/:employeeId"
+					element={<EmployeeDetail />}
+				/>
 				<Route path="services" element={<Services />} />
 				<Route path="services/add" element={<AddServices />} />
 				<Route path="statistics" element={<Statistics />} />

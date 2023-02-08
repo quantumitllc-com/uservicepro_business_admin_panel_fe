@@ -7,3 +7,9 @@ export type FormTypes = {
 	attachedFileUrl?: string
 	sendBy: string
 }
+
+export type EditFormTypes = {
+	ssn: string
+	officeId: string
+	attachedFileUrl?: string
+}

@@ -1,6 +1,8 @@
 import { Spinner } from "evergreen-ui"
+import { Empty } from "components/empty"
 import DataTable, { TableProps } from "react-data-table-component"
 import { ReactComponent as IconDoubleCaret } from "./icons/double-caret-vertical.svg"
+import styles from "./styles.module.scss"
 
 interface TableTypes<C> extends TableProps<C> {
 	isLoading: boolean
@@ -22,8 +24,15 @@ export const Table = <C,>({
 	selectableRowsHighlight,
 	...props
 }: TableTypes<C>) => (
-	<div>
-		{isFetching && <div className="linear">LinearProgress</div>}
+	<div className={styles.container}>
+		{isFetching && (
+			<div className={styles.wrapperProgres}>
+				<div className={styles.progressBar}>
+					<div className={`${styles.bar} ${styles.bar1}`} />
+					<div className={`${styles.bar} ${styles.bar1}`} />
+				</div>
+			</div>
+		)}
 		<DataTable
 			responsive
 			fixedHeader
@@ -32,11 +41,11 @@ export const Table = <C,>({
 			keyField={keyField}
 			progressPending={isLoading}
 			progressComponent={
-				<div>
+				<div className={styles.wrapSpinner}>
 					<Spinner />
 				</div>
 			}
-			noDataComponent={<div>Empty</div>}
+			noDataComponent={<Empty />}
 			sortIcon={<IconDoubleCaret />}
 			selectableRows={selectableRows}
 			onRowClicked={onRowClicked}

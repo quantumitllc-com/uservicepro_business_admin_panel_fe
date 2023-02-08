@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { useMemo, useState } from "react"
 import { Avatar } from "evergreen-ui"
+import { useNavigate } from "react-router"
 import { useDebounce } from "hooks/useDebounce"
 import { useQuery } from "@tanstack/react-query"
 import { TableColumn } from "react-data-table-component"
 import { getEmployeeList } from "services/dashboard/employee"
+import { Status } from "./components/status"
 
 export interface DataRow {
 	id: string
@@ -16,16 +18,24 @@ export interface DataRow {
 	isActive: boolean
 }
 
-export const useEmployee = () => {
+export const usePage = () => {
+	const navigate = useNavigate()
 	const [page, setPage] = useState(1)
-	const [size, setSize] = useState(1)
+	const [size, setSize] = useState(10)
 	const [keyword, setKeyword] = useState("")
 	const searchDebounce = useDebounce(keyword, 500)
 
-	const { data = { content: [], numberOfElements: 0 }, isLoading } = useQuery(
+	const {
+		data = { content: [], totalElements: 0, totalPages: 0 },
+		isLoading,
+		isFetching,
+	} = useQuery(
 		["employee-list", size, page, searchDebounce],
 		() => getEmployeeList({ size, keyword, page: page - 1 }),
-		{ select: ({ data, ...rest }) => ({ ...rest, ...data }) },
+		{
+			select: ({ data, ...rest }) => ({ ...rest, ...data }),
+			keepPreviousData: true,
+		},
 	)
 
 	const columns: Array<TableColumn<DataRow>> = useMemo(
@@ -44,8 +54,8 @@ export const useEmployee = () => {
 				),
 			},
 			{
-				sortable: true,
 				name: "Name",
+				sortable: true,
 				selector: (row) =>
 					row.firstName + row.lastName
 						? row.firstName + row.lastName
@@ -57,15 +67,18 @@ export const useEmployee = () => {
 			},
 			{
 				name: "Phone",
+				sortable: true,
 				selector: (row) => row.phone,
 			},
 			{
 				name: "Email",
+				sortable: true,
 				selector: (row) => row.email,
 			},
 			{
 				name: "Status",
-				selector: (row) => row.isActive.toString(),
+				selector: (row) => row.isActive,
+				cell: (row) => <Status status={row.isActive} />,
 			},
 		],
 		[],
@@ -79,18 +92,33 @@ export const useEmployee = () => {
 		setPage(page)
 	}
 
+	const handleChangeNextPage = () => {
+		setPage(page + 1)
+	}
+
+	const handleChangePrevPage = () => {
+		setPage(page - 1)
+	}
+
 	const handleChangePerPage = (perPage: number) => {
 		setSize(perPage)
 	}
 
+	const handleDetail = (row: DataRow) => navigate(`${row.id}`)
+
 	return {
 		page,
 		data,
+		size,
 		keyword,
 		columns,
 		isLoading,
+		isFetching,
+		handleDetail,
 		handleSearch,
 		handleChangePage,
 		handleChangePerPage,
+		handleChangeNextPage,
+		handleChangePrevPage,
 	}
 }

@@ -23,7 +23,6 @@ export const AddEmpolyee = () => {
 		onSubmit,
 		isLoading,
 		isShownAdd,
-		mutateFile,
 		locationData,
 		setIsShownAdd,
 		handleChangeFile,
@@ -49,10 +48,7 @@ export const AddEmpolyee = () => {
 				onCloseComplete={() => setIsShownAdd(false)}
 				confirmLabel="Add employee"
 			>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					encType="multipart/form-data"
-				>
+				<form onSubmit={form.handleSubmit(onSubmit)}>
 					<Pane gap={14} display="grid" gridTemplateColumns="1fr 1fr">
 						<Input
 							name="email"

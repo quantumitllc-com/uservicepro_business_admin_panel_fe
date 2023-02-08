@@ -1,7 +1,5 @@
 import { FormTypes } from "types/dashboard/employee"
 import { request } from "http/"
-import axios from "axios"
-import { getTokens } from "utils/getTokens"
 
 export const addEmployee = (data: FormTypes) =>
 	request.post("company/employees/register", data)
@@ -11,6 +9,9 @@ export const getEmployeeList = <T>(params: T) =>
 		params,
 	})
 
+export const getEmployeeDetail = (id?: string) =>
+	request(`company/employees/${id}`)
+
 export const getLocationList = () => request("company/offices")
 
 export const sendFile = (file: any) =>
@@ -18,3 +19,6 @@ export const sendFile = (file: any) =>
 		method: "POST",
 		data: file,
 	})
+
+export const editEmployee = (data: FormTypes) =>
+	request.put("company/employees/register", data)

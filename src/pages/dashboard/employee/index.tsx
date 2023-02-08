@@ -1,25 +1,29 @@
 import { minorScale, Pagination, Pane, SearchInput } from "evergreen-ui"
-
+import { PerRows } from "components/per-rows"
 import MyHeading from "components/heading"
-import MyText from "components/text"
 import EmployeeDetails from "entities/employee-details"
 import useIsShown from "hooks/useIsShown"
 import { AddEmpolyee } from "./components/add"
-import { useEmployee } from "./useEmployee"
-import { Table } from "./components/table"
+import { usePage } from "./usePage"
+import { Table } from "../../../components/table"
 
 const Employee = () => {
 	const { setIsShown, isShown } = useIsShown()
 	const {
 		page,
 		data,
+		size,
 		keyword,
 		columns,
 		isLoading,
+		isFetching,
 		handleSearch,
+		handleDetail,
 		handleChangePage,
 		handleChangePerPage,
-	} = useEmployee()
+		handleChangeNextPage,
+		handleChangePrevPage,
+	} = usePage()
 
 	return (
 		<Pane>
@@ -44,18 +48,12 @@ const Employee = () => {
 					backgroundColor="var(--white)"
 					border="1px solid var(--white)"
 				>
-					<MyText>{data.numberOfElements} Employees</MyText>
-					<Pane display="flex" gap="10px">
-						<MyText>See:</MyText>
-						<MyText
-							textDecoration="underline"
-							color="var(--dark-green)"
-						>
-							25
-						</MyText>
-						<MyText>50</MyText>
-						<MyText>75</MyText>
-					</Pane>
+					<PerRows
+						size={size}
+						title="Employees"
+						onChange={handleChangePerPage}
+						total={data.totalElements}
+					/>
 					<SearchInput
 						value={keyword}
 						onChange={handleSearch}
@@ -66,6 +64,8 @@ const Employee = () => {
 					columns={columns}
 					data={data.content}
 					isLoading={isLoading}
+					isFetching={isFetching}
+					onRowClicked={handleDetail}
 				/>
 				<EmployeeDetails isShown={isShown} setIsShown={setIsShown} />
 			</Pane>
@@ -74,8 +74,10 @@ const Employee = () => {
 				marginTop={25}
 				display="flex"
 				justifyContent="center"
+				totalPages={data.totalPages}
 				onPageChange={handleChangePage}
-				totalPages={10}
+				onNextPage={handleChangeNextPage}
+				onPreviousPage={handleChangePrevPage}
 			/>
 		</Pane>
 	)

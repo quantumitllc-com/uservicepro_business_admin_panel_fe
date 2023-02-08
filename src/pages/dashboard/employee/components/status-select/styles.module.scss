@@ -1,0 +1,50 @@
+.list {
+	gap: 5px;
+	padding: 5px;
+	list-style: none;
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+	li {
+		width: 100%;
+		width: max-content;
+		button {
+			width: 80px;
+			border-radius: 0;
+		}
+		button:hover {
+			color: white;
+			background-color: var(--light-green);
+		}
+	}
+}
+
+button {
+	border: none;
+	display: flex;
+	cursor: pointer;
+	padding: 5px 10px;
+	border-radius: 30px;
+	align-items: center;
+	justify-content: center;
+}
+
+.ACTIVE {
+	color: white;
+	background: var(--green);
+}
+.INACTIVE {
+	color: white;
+	background: black;
+}
+.PAUSED {
+	color: black;
+	border: 1px solid black;
+	background-color: transparent;
+}
+
+.INVITED {
+	color: lightgray;
+	cursor: not-allowed;
+	background-color: var(--grey);
+}
