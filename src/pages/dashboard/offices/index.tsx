@@ -7,23 +7,27 @@ import {
 	Avatar,
 	Pagination,
 } from "evergreen-ui"
+import { useNavigate } from "react-router-dom"
 
 import MyHeading from "components/heading"
 import MyButton from "components/button"
 import MyText from "components/text"
 import useBoolean from "hooks/useBoolean"
-import { useLocation } from "./useLocation"
-import AddLocation from "./add-location"
+import { useOffices } from "./useOffices"
+import AddOffice from "./add-office"
+import { tableColumns } from "./constant"
 
-const Location = () => {
-	const { value: isShownAddLocation, setValue: setIsShownAddLocation } =
-		useBoolean(false)
-	const { locations } = useLocation()
+const Offices = () => {
+	const { value, setFalse, setTrue } = useBoolean(false)
+	const { data, page, nextPage, prevPage, handleChangePage } = useOffices()
+	const navigate = useNavigate()
+
+	console.log(data)
 
 	return (
 		<Pane>
 			<MyHeading fontSize={25} fontWeight={600}>
-				Location
+				Offices
 			</MyHeading>
 			<Pane
 				display="flex"
@@ -31,15 +35,15 @@ const Location = () => {
 				justifyContent="space-between"
 				marginBottom={minorScale(5)}
 			>
-				<MyHeading>List of locations</MyHeading>
+				<MyHeading>List of offices</MyHeading>
 				<MyButton
 					iconBefore={AddIcon}
 					small="true"
 					appearance="primary"
 					backgroundColor="var(--green)"
-					onClick={() => setIsShownAddLocation(true)}
+					onClick={setTrue}
 				>
-					Add Location
+					Add Office
 				</MyButton>
 			</Pane>
 			<Pane>
@@ -51,33 +55,33 @@ const Location = () => {
 					backgroundColor="var(--white)"
 					padding={minorScale(7)}
 				>
-					<MyText>{locations?.data.totalElements} Locations</MyText>
+					<MyText>{data?.data.totalElements} Locations</MyText>
 					<SearchInput placeholder="Search anything" />
-					<Pane display="flex" gap="10px">
-						<MyHeading>Sort by:</MyHeading>
-						<MyText color="var(--dark-green)">State</MyText>
-						<MyText>City</MyText>
-						<MyText>ZIP Code</MyText>
-					</Pane>
+					{/*<Pane display="flex" gap="10px">*/}
+					{/*	<MyHeading>Sort by:</MyHeading>*/}
+					{/*	<MyText color="var(--dark-green)">State</MyText>*/}
+					{/*	<MyText>City</MyText>*/}
+					{/*	<MyText>ZIP Code</MyText>*/}
+					{/*</Pane>*/}
 				</Pane>
 				<Table>
 					<Table.Head>
-						<Table.TextHeaderCell textTransform="none">
-							Country
-						</Table.TextHeaderCell>
-						<Table.TextHeaderCell textTransform="none">
-							State
-						</Table.TextHeaderCell>
-						<Table.TextHeaderCell textTransform="none">
-							ZIP CODE
-						</Table.TextHeaderCell>
-						<Table.TextHeaderCell textTransform="none">
-							Category
-						</Table.TextHeaderCell>
+						{tableColumns.map((column) => (
+							<Table.TextHeaderCell
+								key={column}
+								textTransform="none"
+							>
+								{column}
+							</Table.TextHeaderCell>
+						))}
 					</Table.Head>
 					<Table.Body>
-						{locations?.data.content.map((location: any) => (
-							<Table.Row key={location.id}>
+						{data?.data.content.map((office: any) => (
+							<Table.Row
+								key={office.id}
+								isSelectable
+								onSelect={() => navigate(office.id)}
+							>
 								<Table.TextCell>
 									<Avatar
 										src="https://img.freepik.com/premium-vector/flag-usa-united-states-america-background_53500-169.jpg"
@@ -85,11 +89,9 @@ const Location = () => {
 										size={40}
 									/>
 								</Table.TextCell>
-								<Table.TextCell>
-									{location.state}
-								</Table.TextCell>
+								<Table.TextCell>{office.state}</Table.TextCell>
 								<Table.TextCell isNumber>
-									{location.zipCode}
+									{office.zipCode}
 								</Table.TextCell>
 								<Table.TextCell>
 									<MyButton
@@ -115,18 +117,17 @@ const Location = () => {
 					marginTop={25}
 					display="flex"
 					justifyContent="center"
-					page={1}
-					totalPages={7}
+					page={page + 1}
+					totalPages={data?.data.totalPages}
+					onNextPage={nextPage}
+					onPreviousPage={prevPage}
+					onPageChange={handleChangePage}
 				/>
 			</Pane>
 			{/*<AddCategory isShown={isShown} setIsShown={setIsShown} />*/}
-			{/*{isShownAddLocation && }*/}
-			<AddLocation
-				isShownAddLocation={isShownAddLocation}
-				setIsShownAddLocation={setIsShownAddLocation}
-			/>
+			{value && <AddOffice value={value} setFalse={setFalse} />}
 		</Pane>
 	)
 }
 
-export default Location
+export default Offices

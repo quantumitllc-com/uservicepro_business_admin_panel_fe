@@ -6,7 +6,10 @@ import { getTokens } from "../utils/getTokens"
 // dashboard
 const ActivityMap = lazy(() => import("./dashboard/activity-map"))
 const Schedules = lazy(() => import("./dashboard/schedules"))
-const Location = lazy(() => import("./dashboard/location"))
+
+const Offices = lazy(() => import("./dashboard/offices"))
+const OneOffice = lazy(() => import("./dashboard/offices/one-office"))
+
 const Payment = lazy(() => import("./dashboard/payment"))
 const Ads = lazy(() => import("./dashboard/ads"))
 const Accounting = lazy(() => import("./dashboard/accounting"))
@@ -112,7 +115,10 @@ export function Routing() {
 				<Route path="statistics" element={<Statistics />} />
 				<Route path="activity-map" element={<ActivityMap />} />
 				<Route path="schedules" element={<Schedules />} />
-				<Route path="location" element={<Location />} />
+
+				<Route path="offices" element={<Offices />} />
+				<Route path="offices/:id" element={<OneOffice />} />
+
 				<Route path="ads" element={<Ads />} />
 				<Route path="accounting" element={<Accounting />} />
 				<Route path="chat" element={<Chat />} />

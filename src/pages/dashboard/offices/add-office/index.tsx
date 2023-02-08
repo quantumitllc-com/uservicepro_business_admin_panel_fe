@@ -1,31 +1,28 @@
 import { Dialog, minorScale, Pane } from "evergreen-ui"
-import { Dispatch, SetStateAction } from "react"
 
 import { Input } from "components/input"
 import MyButton from "components/button"
 import { ReactComponent as Location } from "./location.svg"
-import { useLocation } from "../useLocation"
+import { useAddOffice } from "./useAddOffice"
 
-interface IAddLocation {
-	isShownAddLocation: boolean
-	setIsShownAddLocation: Dispatch<SetStateAction<boolean>>
+interface AddLocationProps {
+	value: boolean
+	setFalse: () => void
 }
 
-const AddLocation = ({
-	isShownAddLocation,
-	setIsShownAddLocation,
-}: IAddLocation) => {
+const AddLocation = ({ value, setFalse }: AddLocationProps) => {
 	const {
 		form: { control, handleSubmit },
 		onSubmit,
-	} = useLocation()
+		isLoading,
+	} = useAddOffice(setFalse)
 
 	return (
 		<Dialog
 			width="50%"
-			isShown={isShownAddLocation}
-			title="Adding location"
-			onCloseComplete={() => setIsShownAddLocation(false)}
+			isShown={value}
+			title="Adding office"
+			onCloseComplete={() => setFalse()}
 			hasFooter={false}
 			confirmLabel="Done"
 			footer={
@@ -33,6 +30,7 @@ const AddLocation = ({
 					small="true"
 					appearance="primary"
 					onClick={handleSubmit(onSubmit)}
+					isLoading={isLoading}
 				>
 					Done
 				</MyButton>

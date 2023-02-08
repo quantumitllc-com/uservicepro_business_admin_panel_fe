@@ -1,5 +1,5 @@
 import * as Yup from "yup"
-import { phoneRegExp } from "../../../pre-dashboard/business/detail/form.schema"
+import { phoneRegExp } from "constants/regex"
 
 export const schema = Yup.object().shape({
 	officeName: Yup.string().required(),

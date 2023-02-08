@@ -1,7 +1,5 @@
 import * as Yup from "yup"
-
-export const phoneRegExp =
-	/^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$/
+import { phoneRegExp } from "constants/regex"
 
 export const schema = Yup.object().shape({
 	companyName: Yup.string().required(),

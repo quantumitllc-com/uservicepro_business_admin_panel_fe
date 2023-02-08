@@ -1,11 +1,11 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
-import { toast } from "react-toastify"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { toast } from "react-toastify"
+import { useMutation } from "@tanstack/react-query"
 
-import { createLocation, getLocations } from "services/dashboard/location"
-import { FormTypes } from "types/dashboard/location"
-import { schema } from "./add-location/form.schema"
+import { FormTypes } from "types/dashboard/offices"
+import { addOffice } from "services/dashboard/offices"
+import { schema } from "./form.schema"
 
 const defaultValues = {
 	officeName: "",
@@ -17,22 +17,18 @@ const defaultValues = {
 	phone: "",
 }
 
-export const useLocation = () => {
-	const { data: locations } = useQuery({
-		queryKey: ["locations"],
-		queryFn: getLocations,
-	})
-
+export const useAddOffice = (setFalse: () => void) => {
 	const form = useForm<FormTypes>({
 		resolver: yupResolver(schema),
 		mode: "onSubmit",
 		defaultValues,
 	})
 
-	const { mutate, isLoading } = useMutation(createLocation, {
+	const { mutate, isLoading, isSuccess, isError } = useMutation(addOffice, {
 		onSuccess: async () => {
 			await toast.success("Location was created successfully")
 			form.reset()
+			setFalse()
 		},
 		onError: (error: any) => {
 			toast.error(error.response.data.message)
@@ -44,9 +40,10 @@ export const useLocation = () => {
 	}
 
 	return {
-		locations,
 		form,
 		isLoading,
+		isSuccess,
+		isError,
 		onSubmit,
 	}
 }
