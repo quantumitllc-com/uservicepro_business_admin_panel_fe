@@ -15,7 +15,7 @@ export const defaultValues = {
 	officeName: "",
 	state: "",
 	city: "",
-	// zipCode: null,
+	zipCode: "",
 	addressLine1: "",
 	addressLine2: "",
 	phone: "",

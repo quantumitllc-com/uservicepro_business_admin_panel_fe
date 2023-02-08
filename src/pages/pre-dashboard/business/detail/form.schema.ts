@@ -1,6 +1,6 @@
 import * as Yup from "yup"
 
-const phoneRegExp =
+export const phoneRegExp =
 	/^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$/
 
 export const schema = Yup.object().shape({
@@ -9,7 +9,7 @@ export const schema = Yup.object().shape({
 	officeName: Yup.string().required(),
 	state: Yup.string().required(),
 	city: Yup.string().required(),
-	zipCode: Yup.number().nullable(true).required(),
+	zipCode: Yup.string().required(),
 	addressLine1: Yup.string().required(),
 	phone: Yup.string().matches(
 		phoneRegExp,

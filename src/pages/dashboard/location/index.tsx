@@ -5,36 +5,20 @@ import {
 	SearchInput,
 	Table,
 	Avatar,
-	Dialog,
-	Select,
+	Pagination,
 } from "evergreen-ui"
 
 import MyHeading from "components/heading"
 import MyButton from "components/button"
 import MyText from "components/text"
-import { useState } from "react"
-import AddCategory from "entities/cards/auth/add-category"
-import MyLabel from "components/label"
-import { MyInputField } from "components/input"
-import locationIcon from "./location.png"
-// import { ReactComponent as LocationIcon } from "./location.svg"
-
-const locations = [
-	{
-		id: "1",
-		state: "Minnesota",
-		zipcode: "56484",
-	},
-	{
-		id: "2",
-		state: "Minnesota",
-		zipcode: "56484",
-	},
-]
+import useBoolean from "hooks/useBoolean"
+import { useLocation } from "./useLocation"
+import AddLocation from "./add-location"
 
 const Location = () => {
-	const [isShown, setIsShown] = useState(false)
-	const [isShownAddLocation, setIsShownAddLocation] = useState(false)
+	const { value: isShownAddLocation, setValue: setIsShownAddLocation } =
+		useBoolean(false)
+	const { locations } = useLocation()
 
 	return (
 		<Pane>
@@ -67,7 +51,7 @@ const Location = () => {
 					backgroundColor="var(--white)"
 					padding={minorScale(7)}
 				>
-					<MyText>1 Location</MyText>
+					<MyText>{locations?.data.totalElements} Locations</MyText>
 					<SearchInput placeholder="Search anything" />
 					<Pane display="flex" gap="10px">
 						<MyHeading>Sort by:</MyHeading>
@@ -92,12 +76,12 @@ const Location = () => {
 						</Table.TextHeaderCell>
 					</Table.Head>
 					<Table.Body>
-						{locations.map((location) => (
+						{locations?.data.content.map((location: any) => (
 							<Table.Row key={location.id}>
 								<Table.TextCell>
 									<Avatar
-										src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-										name="Alan Turing"
+										src="https://img.freepik.com/premium-vector/flag-usa-united-states-america-background_53500-169.jpg"
+										name="USA flag"
 										size={40}
 									/>
 								</Table.TextCell>
@@ -105,10 +89,11 @@ const Location = () => {
 									{location.state}
 								</Table.TextCell>
 								<Table.TextCell isNumber>
-									{location.zipcode}
+									{location.zipCode}
 								</Table.TextCell>
 								<Table.TextCell>
 									<MyButton
+										disabled
 										paddingX="15px"
 										height="26px"
 										borderRadius={30}
@@ -117,7 +102,7 @@ const Location = () => {
 										appearance="primary"
 										backgroundColor="var(--green)"
 										fontSize={12}
-										onClick={() => setIsShown(true)}
+										// onClick={() => setIsShown(true)}
 									>
 										Add
 									</MyButton>
@@ -126,48 +111,20 @@ const Location = () => {
 						))}
 					</Table.Body>
 				</Table>
+				<Pagination
+					marginTop={25}
+					display="flex"
+					justifyContent="center"
+					page={1}
+					totalPages={7}
+				/>
 			</Pane>
-			<AddCategory isShown={isShown} setIsShown={setIsShown} />
-			<Dialog
-				width="50%"
-				isShown={isShownAddLocation}
-				title="Adding location"
-				onCloseComplete={() => setIsShownAddLocation(false)}
-				confirmLabel="Done"
-			>
-				<MyInputField
-					marginBottom={minorScale(4)}
-					label={<MyLabel>Address line 1 (optional)</MyLabel>}
-				/>
-				<MyInputField
-					marginBottom={minorScale(4)}
-					label={<MyLabel>Address line 2 (optional)</MyLabel>}
-				/>
-				<Pane display="flex" gap={16}>
-					<MyInputField
-						disabled
-						placeholder="United States of America"
-						label={<MyLabel>Country</MyLabel>}
-					/>
-					<MyInputField label={<MyLabel>State</MyLabel>} />
-					<MyInputField label={<MyLabel>ZIP CODE</MyLabel>} />
-				</Pane>
-				<Pane>
-					<MyLabel>Serving Area</MyLabel>
-					<Select
-						marginTop={minorScale(2)}
-						display="block"
-						height={40}
-						width="25%"
-					>
-						<option value={10}>10 miles</option>
-					</Select>
-				</Pane>
-				<Pane position="absolute" right={0} top={60}>
-					<img src={locationIcon} alt="location" />
-				</Pane>
-				{/*<LocationIcon />*/}
-			</Dialog>
+			{/*<AddCategory isShown={isShown} setIsShown={setIsShown} />*/}
+			{/*{isShownAddLocation && }*/}
+			<AddLocation
+				isShownAddLocation={isShownAddLocation}
+				setIsShownAddLocation={setIsShownAddLocation}
+			/>
 		</Pane>
 	)
 }
