@@ -17,7 +17,7 @@ import { Pause } from "../pause"
 dayjs.extend(duration)
 interface IStatus {
 	employeeStatus: string
-	pausedDate?: string | null
+	pauseDate?: string | null
 }
 
 export const StatusSelect = ({ status = "ACTIVE" }): any => {
@@ -29,6 +29,7 @@ export const StatusSelect = ({ status = "ACTIVE" }): any => {
 		(data: IStatus) => editEmployeeStatus<IStatus>(data, employeeId),
 		{
 			onSuccess: () => {
+				setFalse()
 				toast.success("Successfully updated!")
 				queryClient.invalidateQueries(["employee-detail"])
 			},
@@ -44,11 +45,11 @@ export const StatusSelect = ({ status = "ACTIVE" }): any => {
 		}
 	}
 
-	const handleOnPause = (day: number) => {
-		const pausedDate = dayjs()
-			.add(dayjs.duration({ days: day }))
+	const handleOnPause = (days: number) => {
+		const pauseDate = dayjs()
+			.add(dayjs.duration({ days }))
 			.format("YYYY-MM-DD")
-		mutate({ employeeStatus: "PAUSED", pausedDate })
+		mutate({ employeeStatus: "PAUSED", pauseDate })
 	}
 
 	return (

@@ -2,7 +2,11 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { editEmployee, getLocationList } from "services/dashboard/employee"
+import {
+	editEmployee,
+	getLocationList,
+	sendFile,
+} from "services/dashboard/employee"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { FormTypes } from "types/dashboard/employee"
 import { schema, defaultValues } from "./form.schema"
@@ -38,11 +42,24 @@ export const useEdit = () => {
 		select: ({ data, ...rest }) => ({ ...rest, ...data }),
 	})
 
+	const { mutate: mutateFile } = useMutation(sendFile, {
+		onSuccess: (data) => {
+			form.setValue("attachedFileUrl", data.data.message.file_url)
+		},
+	})
+
+	const handleChangeFile = (files: FileList) => {
+		const formdata = new FormData()
+		formdata.append("file_url", files[0], files[0].name)
+		mutateFile(formdata)
+	}
+
 	return {
 		form,
 		onSubmit,
 		isLoading,
 		locationData,
+		handleChangeFile,
 		locationIsLoading,
 	}
 }

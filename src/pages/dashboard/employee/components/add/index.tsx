@@ -94,7 +94,7 @@ export const AddEmpolyee = () => {
 												isInvalid: !!errors[field.name],
 											}}
 											itemToString={(item) =>
-												item ? item.state : ""
+												item ? item?.name : ""
 											}
 										/>
 										{errors[field.name] && (

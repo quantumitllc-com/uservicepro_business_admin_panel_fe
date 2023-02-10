@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable react/destructuring-assignment */
 import { useEffect } from "react"
 import {
 	Pane,
@@ -6,6 +8,8 @@ import {
 	Text,
 	ErrorIcon,
 	minorScale,
+	FilePicker,
+	DownloadIcon,
 } from "evergreen-ui"
 import MyButton from "components/button"
 import { Controller } from "react-hook-form"
@@ -17,8 +21,14 @@ import { useEdit } from "./useEdit"
 
 export const Edit = (values: EditFormTypes) => {
 	const { value, toggle } = useBoolean()
-	const { form, onSubmit, isLoading, locationData, locationIsLoading } =
-		useEdit()
+	const {
+		form,
+		onSubmit,
+		isLoading,
+		locationData,
+		handleChangeFile,
+		locationIsLoading,
+	} = useEdit()
 
 	useEffect(() => {
 		form.reset(values)
@@ -49,20 +59,20 @@ export const Edit = (values: EditFormTypes) => {
 									disabled={!value}
 									name={field.name}
 									selectedItem={locationData.content.find(
-										(v: any) => v.id === field.value,
+										(v: any) => v?.id === field?.value,
 									)}
 									marginTop={minorScale(2)}
 									placeholder="None selected"
 									isLoading={locationIsLoading}
 									items={locationData.content}
 									onChange={(selected) => {
-										field.onChange(selected.id)
+										field.onChange(selected?.id)
 									}}
 									inputProps={{
 										isInvalid: !!errors[field.name],
 									}}
 									itemToString={(item) =>
-										item ? item.state : ""
+										item ? item?.name : ""
 									}
 								/>
 								{errors[field.name] && (
@@ -85,7 +95,51 @@ export const Edit = (values: EditFormTypes) => {
 					/>
 				</div>
 			</Pane>
-			<Pane display="flex" justifyContent="end" gap={8}>
+			{value ? (
+				<Pane gap={8} display="flex" flexDirection="column">
+					<MyLabel>Attachment File</MyLabel>
+					<Controller
+						name="attachedFileUrl"
+						control={form.control}
+						render={({ field, formState: { errors } }) => (
+							<>
+								<FilePicker
+									{...field}
+									height={40}
+									width={310}
+									onChange={handleChangeFile}
+									placeholder="Select the file here!"
+								/>
+								{errors[field.name] && (
+									<Text
+										color="D14343"
+										display="flex"
+										fontSize={12}
+										alignItems="center"
+									>
+										<ErrorIcon
+											color="danger"
+											marginRight={8}
+										/>
+										{errors[field.name]?.message as string}
+									</Text>
+								)}
+							</>
+						)}
+					/>
+				</Pane>
+			) : (
+				<MyButton
+					iconBefore={DownloadIcon}
+					small="true"
+					appearance="outlined"
+				>
+					<a href={values.attachedFileUrl} target="_blank">
+						Download PDF file
+					</a>
+				</MyButton>
+			)}
+			<Pane display="flex" justifyContent="end" gap={8} marginTop="10px">
 				{value ? (
 					<>
 						<MyButton small="true" onClick={toggle}>
