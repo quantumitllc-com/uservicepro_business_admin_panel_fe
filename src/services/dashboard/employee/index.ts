@@ -1,4 +1,4 @@
-import { FormTypes } from "types/dashboard/employee"
+import { FormTypes, EditFormTypes } from "types/dashboard/employee"
 import { request } from "http/"
 
 export const addEmployee = (data: FormTypes) =>
@@ -20,8 +20,8 @@ export const sendFile = (file: any) =>
 		data: file,
 	})
 
-export const editEmployee = (data: FormTypes) =>
-	request.put("company/employees/register", data)
+export const editEmployee = (data: EditFormTypes, id?: string) =>
+	request.put(`company/employees/${id}`, data)
 
 export const editEmployeeStatus = <T>(data: T, id?: string) =>
 	request.patch(`company/employees/${id}`, data)

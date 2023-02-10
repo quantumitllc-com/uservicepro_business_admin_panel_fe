@@ -14,15 +14,15 @@ import {
 import MyButton from "components/button"
 import { Controller } from "react-hook-form"
 import { EditFormTypes } from "types/dashboard/employee"
-import useBoolean from "hooks/useBoolean"
 import { Input } from "components/input"
 import MyLabel from "components/label"
 import { useEdit } from "./useEdit"
 
 export const Edit = (values: EditFormTypes) => {
-	const { value, toggle } = useBoolean()
 	const {
 		form,
+		value,
+		toggle,
 		onSubmit,
 		isLoading,
 		locationData,
@@ -35,7 +35,7 @@ export const Edit = (values: EditFormTypes) => {
 	}, [form, values])
 
 	return (
-		<form onSubmit={form.handleSubmit(onSubmit)}>
+		<>
 			<Pane gap={14} display="grid" gridTemplateColumns="1fr 1fr">
 				<Input
 					name="ssn"
@@ -146,9 +146,10 @@ export const Edit = (values: EditFormTypes) => {
 							Cancel
 						</MyButton>
 						<MyButton
+							type="submit"
 							small="true"
-							onClick={toggle}
 							disabled={isLoading}
+							onClick={form.handleSubmit(onSubmit)}
 						>
 							Save
 						</MyButton>
@@ -156,7 +157,6 @@ export const Edit = (values: EditFormTypes) => {
 				) : (
 					<MyButton
 						small="true"
-						type="button"
 						onClick={toggle}
 						iconBefore={EditIcon}
 					>
@@ -164,6 +164,6 @@ export const Edit = (values: EditFormTypes) => {
 					</MyButton>
 				)}
 			</Pane>
-		</form>
+		</>
 	)
 }

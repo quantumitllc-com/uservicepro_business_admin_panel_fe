@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { toast } from "react-toastify"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -7,31 +6,39 @@ import {
 	getLocationList,
 	sendFile,
 } from "services/dashboard/employee"
+import useBoolean from "hooks/useBoolean"
+import { useParams } from "react-router"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { FormTypes } from "types/dashboard/employee"
+import { EditFormTypes } from "types/dashboard/employee"
 import { schema, defaultValues } from "./form.schema"
 
 export const useEdit = () => {
+	const { employeeId } = useParams()
 	const queryClient = useQueryClient()
+	const { value, toggle } = useBoolean()
 
-	const form = useForm<FormTypes>({
+	const form = useForm<EditFormTypes>({
 		resolver: yupResolver(schema),
 		mode: "onChange",
 		defaultValues,
 	})
 
-	const { mutate, isLoading } = useMutation(editEmployee, {
-		onSuccess: () => {
-			queryClient.invalidateQueries(["employee-list"])
-			toast.success("Sent successfully!")
-			form.reset(defaultValues)
+	const { mutate, isLoading } = useMutation(
+		(data: EditFormTypes) => editEmployee(data, employeeId),
+		{
+			onSuccess: () => {
+				toggle()
+				queryClient.invalidateQueries(["employee-detail"])
+				toast.success("Sent successfully!")
+				form.reset(defaultValues)
+			},
+			onError: (error: any) => {
+				toast.error(error.response.data.message)
+			},
 		},
-		onError: (error: any) => {
-			toast.error(error.response.data.message)
-		},
-	})
+	)
 
-	const onSubmit = (data: FormTypes) => {
+	const onSubmit = (data: EditFormTypes) => {
 		mutate(data)
 	}
 
@@ -56,6 +63,8 @@ export const useEdit = () => {
 
 	return {
 		form,
+		value,
+		toggle,
 		onSubmit,
 		isLoading,
 		locationData,
