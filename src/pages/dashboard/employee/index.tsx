@@ -69,16 +69,18 @@ const Employee = () => {
 				/>
 				<EmployeeDetails isShown={isShown} setIsShown={setIsShown} />
 			</Pane>
-			<Pagination
-				page={page}
-				marginTop={25}
-				display="flex"
-				justifyContent="center"
-				totalPages={data.totalPages}
-				onPageChange={handleChangePage}
-				onNextPage={handleChangeNextPage}
-				onPreviousPage={handleChangePrevPage}
-			/>
+			{data.totalPages > 0 && (
+				<Pagination
+					page={page}
+					marginTop={25}
+					display="flex"
+					justifyContent="center"
+					totalPages={data.totalPages}
+					onPageChange={handleChangePage}
+					onNextPage={handleChangeNextPage}
+					onPreviousPage={handleChangePrevPage}
+				/>
+			)}
 		</Pane>
 	)
 }

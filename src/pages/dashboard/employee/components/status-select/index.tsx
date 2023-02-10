@@ -2,20 +2,54 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { Pane, Popover } from "evergreen-ui"
 import useBoolean from "hooks/useBoolean"
+import { useParams } from "react-router"
+import { toast } from "react-toastify"
+import dayjs from "dayjs"
+import duration from "dayjs/plugin/duration"
+
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { editEmployeeStatus } from "services/dashboard/employee"
 import styles from "./styles.module.scss"
 import { ReactComponent as IconDown } from "../../icons/caret-down.svg"
-import { statuses } from "./constants"
+import { statuses } from "../../constants/status"
 import { Pause } from "../pause"
 
+dayjs.extend(duration)
+interface IStatus {
+	employeeStatus: string
+	pauseDate?: string | null
+}
+
 export const StatusSelect = ({ status = "ACTIVE" }): any => {
+	const queryClient = useQueryClient()
+	const { employeeId } = useParams()
 	const { value, toggle } = useBoolean()
 	const { value: valuePause, toggle: togglePause, setFalse } = useBoolean()
+	const { mutate } = useMutation(
+		(data: IStatus) => editEmployeeStatus<IStatus>(data, employeeId),
+		{
+			onSuccess: () => {
+				setFalse()
+				toast.success("Successfully updated!")
+				queryClient.invalidateQueries(["employee-detail"])
+			},
+		},
+	)
 
 	const handleClick = (status: string) => {
 		toggle()
 		if (status === "PAUSED") {
 			togglePause()
+		} else {
+			mutate({ employeeStatus: status })
 		}
+	}
+
+	const handleOnPause = (days: number) => {
+		const pauseDate = dayjs()
+			.add(dayjs.duration({ days }))
+			.format("YYYY-MM-DD")
+		mutate({ employeeStatus: "PAUSED", pauseDate })
 	}
 
 	return (
@@ -67,7 +101,11 @@ export const StatusSelect = ({ status = "ACTIVE" }): any => {
 					</div>
 				</button>
 			</Popover>
-			<Pause isShown={valuePause} setIsShown={setFalse} />
+			<Pause
+				isShown={valuePause}
+				setIsShown={setFalse}
+				onPause={handleOnPause}
+			/>
 		</>
 	)
 }

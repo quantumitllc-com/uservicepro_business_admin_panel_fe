@@ -1,0 +1,7 @@
+.button {
+	transform: translateX(1px);
+
+	&:hover {
+		transform: translateX(0);
+	}
+}

@@ -4,6 +4,8 @@ import MyText from "components/text"
 import {
 	AddIcon,
 	Avatar,
+	Button,
+	ChevronLeftIcon,
 	EditIcon,
 	Pane,
 	Spinner,
@@ -11,24 +13,44 @@ import {
 } from "evergreen-ui"
 import MyBadge from "components/badge"
 import MyButton from "components/button"
+import { useNavigate } from "react-router"
 import { usePage } from "./usePage"
 import { ReactComponent as Folders } from "../icons/folders.svg"
 import { ReactComponent as Like } from "../icons/like.svg"
 import { ReactComponent as Time } from "../icons/time.svg"
 import { Edit } from "../components/edit"
 import { StatusSelect } from "../components/status-select"
+import styles from "./styles.module.scss"
 
 const EmployeeDetail = () => {
+	const navigate = useNavigate()
 	const { data, isLoading, employeeId } = usePage()
+
 	return (
 		<Pane>
-			<MyHeading
-				fontSize={25}
-				fontWeight={600}
-				marginBottom={minorScale(5)}
-			>
-				Profile
-			</MyHeading>
+			<Pane>
+				<Button
+					border="none"
+					color="var(--grey)"
+					fontFamily="var(--lexend)"
+					backgroundColor="transparent"
+					iconBefore={
+						<ChevronLeftIcon size={15} color="var(--grey)" />
+					}
+					onClick={() => navigate(-1)}
+					className={styles.button}
+				>
+					Back
+				</Button>
+				<MyHeading
+					fontSize={25}
+					fontWeight={600}
+					marginBottom={minorScale(5)}
+				>
+					Profile
+				</MyHeading>
+			</Pane>
+
 			{isLoading ? (
 				<Pane
 					display="flex"
@@ -86,7 +108,7 @@ const EmployeeDetail = () => {
 										flexDirection="column"
 									>
 										<MyHeading>Status</MyHeading>
-										<StatusSelect />
+										<StatusSelect status={data.status} />
 									</Pane>
 								</Pane>
 							</Pane>
