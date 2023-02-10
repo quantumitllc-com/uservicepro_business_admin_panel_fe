@@ -1,14 +1,11 @@
 import styles from "./styles.module.scss"
+import { statuses } from "../../constants/status"
 
 interface IStatus {
-	status: boolean
+	status: string
 }
 export const Status = ({ status }: IStatus) => (
-	<div
-		className={`${styles.container} ${
-			status ? styles.active : styles.inactive
-		}`}
-	>
-		{status ? "Active" : "InActive"}
+	<div className={`${styles.container} ${styles[status]}`}>
+		{statuses.find((v) => v.status === status)?.title}
 	</div>
 )

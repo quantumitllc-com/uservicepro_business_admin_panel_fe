@@ -22,3 +22,6 @@ export const sendFile = (file: any) =>
 
 export const editEmployee = (data: FormTypes) =>
 	request.put("company/employees/register", data)
+
+export const editEmployeeStatus = <T>(data: T, id?: string) =>
+	request.patch(`company/employees/${id}`, data)

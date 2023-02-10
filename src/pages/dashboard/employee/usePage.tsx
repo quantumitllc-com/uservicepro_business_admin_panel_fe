@@ -15,7 +15,7 @@ export interface DataRow {
 	pictureUrl: string
 	email: string
 	phone: string
-	isActive: boolean
+	status: string
 }
 
 export const usePage = () => {
@@ -77,8 +77,8 @@ export const usePage = () => {
 			},
 			{
 				name: "Status",
-				selector: (row) => row.isActive,
-				cell: (row) => <Status status={row.isActive} />,
+				selector: (row) => row.status,
+				cell: (row) => <Status status={row.status} />,
 			},
 		],
 		[],
