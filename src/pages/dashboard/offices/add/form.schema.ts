@@ -13,3 +13,13 @@ export const schema = Yup.object().shape({
 		"Phone should be similar to this +123456789012",
 	),
 })
+
+export const defaultValues = {
+	officeName: "",
+	state: "",
+	city: "",
+	zipCode: "",
+	addressLine1: "",
+	addressLine2: "",
+	phone: "",
+}

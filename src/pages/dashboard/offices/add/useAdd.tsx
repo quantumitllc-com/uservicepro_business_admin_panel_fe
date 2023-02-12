@@ -1,23 +1,17 @@
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { toast } from "react-toastify"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import { FormTypes } from "types/dashboard/offices"
 import { addOffice } from "services/dashboard/offices"
-import { schema } from "./form.schema"
+import useBoolean from "hooks/useBoolean"
+import { defaultValues, schema } from "./form.schema"
 
-const defaultValues = {
-	officeName: "",
-	state: "",
-	city: "",
-	zipCode: "",
-	addressLine1: "",
-	addressLine2: "",
-	phone: "",
-}
+export const useAdd = () => {
+	const { value, setFalse, setTrue } = useBoolean(false)
+	const queryClient = useQueryClient()
 
-export const useAddOffice = (setFalse: () => void) => {
 	const form = useForm<FormTypes>({
 		resolver: yupResolver(schema),
 		mode: "onSubmit",
@@ -25,8 +19,10 @@ export const useAddOffice = (setFalse: () => void) => {
 	})
 
 	const { mutate, isLoading, isSuccess, isError } = useMutation(addOffice, {
-		onSuccess: async () => {
-			await toast.success("Location was created successfully")
+		onSuccess: () => {
+			queryClient.invalidateQueries(["offices"])
+
+			toast.success("Location was created successfully")
 			form.reset()
 			setFalse()
 		},
@@ -45,5 +41,8 @@ export const useAddOffice = (setFalse: () => void) => {
 		isSuccess,
 		isError,
 		onSubmit,
+		value,
+		setFalse,
+		setTrue,
 	}
 }

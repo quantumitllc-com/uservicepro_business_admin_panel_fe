@@ -8,7 +8,7 @@ const ActivityMap = lazy(() => import("./dashboard/activity-map"))
 const Schedules = lazy(() => import("./dashboard/schedules"))
 
 const Offices = lazy(() => import("./dashboard/offices"))
-const OneOffice = lazy(() => import("./dashboard/offices/one-office"))
+const OneOffice = lazy(() => import("./dashboard/offices/detail"))
 
 const Payment = lazy(() => import("./dashboard/payment"))
 const Ads = lazy(() => import("./dashboard/ads"))

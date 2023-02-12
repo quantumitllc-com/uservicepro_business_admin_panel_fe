@@ -44,7 +44,6 @@
 		"react/jsx-uses-react": ["off"],
 		"react/react-in-jsx-scope": ["off"],
 		"react/jsx-props-no-spreading": ["off"],
-		"no-shadow": "off",
 		"react/function-component-definition": [
 			"error",
 			{
@@ -55,6 +54,7 @@
 		"react/require-default-props": "off",
 		"import/prefer-default-export": "off",
 		"spaced-comment": ["off"],
-		"react/no-unused-prop-types": "off"
+		"react/no-unused-prop-types": "off",
+		"@typescript-eslint/no-shadow": "off"
 	}
 }
