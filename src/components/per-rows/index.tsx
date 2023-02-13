@@ -7,7 +7,8 @@ interface IPerRows {
 	onChange: (e: number) => void
 }
 
-const sizes = [10, 20, 50]
+// const sizes = [10, 20, 50]
+const sizes = [5, 10, 15]
 
 export const PerRows = ({ size, title, total, onChange }: IPerRows) => (
 	<div className={styles.container}>

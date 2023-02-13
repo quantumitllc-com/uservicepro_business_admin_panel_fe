@@ -43,9 +43,9 @@ export const sidebarMenu = [
 		text: "Schedules",
 	},
 	{
-		url: "location",
+		url: "offices",
 		icon: GeolocationIcon,
-		text: "Location",
+		text: "Offices",
 	},
 	{
 		url: "payment",

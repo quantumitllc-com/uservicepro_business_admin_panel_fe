@@ -1,5 +1,5 @@
 import * as Yup from "yup"
-import { phoneRegExp } from "../../../pre-dashboard/business/detail/form.schema"
+import { phoneRegExp } from "constants/regex"
 
 export const schema = Yup.object().shape({
 	officeName: Yup.string().required(),
@@ -13,3 +13,13 @@ export const schema = Yup.object().shape({
 		"Phone should be similar to this +123456789012",
 	),
 })
+
+export const defaultValues = {
+	officeName: "",
+	state: "",
+	city: "",
+	zipCode: "",
+	addressLine1: "",
+	addressLine2: "",
+	phone: "",
+}

@@ -48,7 +48,7 @@ function Business() {
 		{
 			icon: <Briefcase />,
 			iconSelected: <BriefcaseSelected />,
-			heading: "Set up your profile, add-location some details",
+			heading: "Set up your profile, add-offices some details",
 			dynamicBadge: (
 				<MyBadge
 					backgroundColor={

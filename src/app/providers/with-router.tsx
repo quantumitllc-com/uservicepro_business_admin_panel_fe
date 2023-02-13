@@ -1,6 +1,6 @@
 import React, { Suspense } from "react"
 import { BrowserRouter } from "react-router-dom"
-import { Spinner } from "evergreen-ui"
+import { Spinner } from "components/spinner"
 
 export const withRouter = (component: () => React.ReactNode) => () =>
 	(

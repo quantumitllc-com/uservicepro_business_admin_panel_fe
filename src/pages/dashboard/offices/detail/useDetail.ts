@@ -1,0 +1,33 @@
+import { useParams } from "react-router"
+import { useQuery } from "@tanstack/react-query"
+
+import { getOfficeDetail } from "services/dashboard/offices"
+import useBoolean from "hooks/useBoolean"
+
+export const useDetail = () => {
+	const { value, toggle } = useBoolean(true)
+	const { id } = useParams()
+
+	const {
+		data = {
+			id: "",
+			companyId: "",
+			name: "",
+			state: "",
+			city: "",
+			zipCode: 0,
+			addressLine1: "",
+			addressLine2: "",
+			phone: "",
+			rating: 0,
+			isMain: false,
+			isPhoneVerified: false,
+		},
+		isLoading,
+		isSuccess,
+	} = useQuery(["office-detail", id], () => getOfficeDetail(id), {
+		select: ({ data, ...rest }) => ({ ...rest, ...data }),
+	})
+
+	return { value, toggle, data, isLoading, isSuccess }
+}

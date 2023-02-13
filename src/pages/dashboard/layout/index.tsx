@@ -1,8 +1,9 @@
-import { Pane, Spinner } from "evergreen-ui"
+import { Pane } from "evergreen-ui"
 import { Navigate, Outlet } from "react-router-dom"
 import React, { Suspense } from "react"
 
 import { getTokens } from "utils/getTokens"
+import { Spinner } from "components/spinner"
 import Header from "./header"
 import Sidebar from "./sidebar"
 import styles from "./styles.module.scss"
