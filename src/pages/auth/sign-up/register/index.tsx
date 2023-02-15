@@ -1,25 +1,21 @@
 import { Pane, Heading, minorScale, majorScale } from "evergreen-ui"
-import { useParams } from "react-router"
 import { Link } from "react-router-dom"
 
 import Logo from "components/logo"
 import MyButton from "components/button"
 import { Input } from "components/input"
-import MyLabel from "components/label"
-import MyCheckbox from "components/checkbox"
 import MyText from "components/text"
 import ButtonBack from "components/button-back"
-import { getIconType } from "./helpers/getIconByType"
 import styles from "../../styles.module.scss"
-import { useSignUp } from "../useSignUp"
+import { useRegister } from "./useRegister"
+import { ReactComponent as Briefcase } from "./icons/briefcase.svg"
 
-const TypeAccount = () => {
-	const { type } = useParams()
+const Register = () => {
 	const {
 		form: { control, handleSubmit },
 		isLoading,
 		onSubmit,
-	} = useSignUp(type)
+	} = useRegister()
 
 	return (
 		<Pane className={styles.container}>
@@ -32,13 +28,13 @@ const TypeAccount = () => {
 				alignItems="center"
 				marginBottom={majorScale(5)}
 			>
-				{getIconType(type)}
+				<Briefcase />
 				<MyText
 					color="var(--dark-green)"
 					size="large"
 					marginLeft={minorScale(3)}
 				>
-					Creating {type} account
+					Creating business account
 				</MyText>
 			</Pane>
 			<Pane className={styles.card}>
@@ -66,11 +62,6 @@ const TypeAccount = () => {
 					marginBottom={minorScale(5)}
 					placeholder="Password"
 				/>
-				{/*<MyCheckbox*/}
-				{/*	marginTop={minorScale(5)}*/}
-				{/*	marginBottom={minorScale(5)}*/}
-				{/*	label={<MyLabel>Remember me</MyLabel>}*/}
-				{/*/>*/}
 				<MyButton
 					isLoading={isLoading}
 					onClick={handleSubmit(onSubmit)}
@@ -91,4 +82,4 @@ const TypeAccount = () => {
 	)
 }
 
-export default TypeAccount
+export default Register

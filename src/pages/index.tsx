@@ -36,8 +36,7 @@ const Statistics = lazy(() => import("./dashboard/statistics"))
 // auth
 const SignIn = lazy(() => import("./auth/sign-in"))
 const SignUp = lazy(() => import("./auth/sign-up"))
-const UserAccount = lazy(() => import("./auth/sign-up/user-account"))
-const TypeAccount = lazy(() => import("./auth/sign-up/type-account"))
+const Register = lazy(() => import("./auth/sign-up/register"))
 const Password = lazy(() => import("./auth/password"))
 const PasswordEmail = lazy(() => import("./auth/password/email"))
 const PasswordPhone = lazy(() => import("./auth/password/phone"))
@@ -48,7 +47,7 @@ const PasswordReset = lazy(() => import("./auth/password/reset"))
 const LayoutReg = lazy(() => import("./pre-dashboard/layout"))
 const Business = lazy(() => import("./pre-dashboard/business"))
 const BusinessProfile = lazy(
-	() => import("./pre-dashboard/business/detail/businessProfile"),
+	() => import("./pre-dashboard/business/profile/businessProfile"),
 )
 const VerifyByEmail = lazy(
 	() => import("./pre-dashboard/business/verify/email/email"),
@@ -58,7 +57,9 @@ const VerifyByPhone = lazy(
 )
 // pre-dashboard
 
-const Congratulations = lazy(() => import("./pre-dashboard/congratulations"))
+const Congratulations = lazy(
+	() => import("./pre-dashboard/congratulations/congratulations"),
+)
 
 function PrivateRoute({ children }: any) {
 	const tokens = getTokens()
@@ -72,8 +73,7 @@ export function Routing() {
 			{/*auth*/}
 			<Route path="/sign-in" element={<SignIn />} />
 			<Route path="sign-up" element={<SignUp />} />
-			<Route path="sign-up/user-account" element={<UserAccount />} />
-			<Route path="sign-up/:type" element={<TypeAccount />} />
+			<Route path="sign-up/business" element={<Register />} />
 			<Route path="password" element={<Password />} />
 			<Route path="password/email" element={<PasswordEmail />} />
 			<Route path="password/phone" element={<PasswordPhone />} />

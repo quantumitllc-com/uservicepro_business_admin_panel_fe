@@ -17,8 +17,6 @@ import MyHeading from "components/heading"
 import MyButton from "components/button"
 import MyText from "components/text"
 import MyBadge from "components/badge"
-import MyTabs from "components/tabs (delete and replace with new tabs)"
-import Employee from "entities/employee"
 import { ReactComponent as Stars } from "./stars.svg"
 
 ChartJS.register(
@@ -164,14 +162,6 @@ const Statistics = () => (
 				borderRadius={10}
 				backgroundColor="var(--white)"
 			>
-				<MyTabs
-					justifyContent="flex-end"
-					tabs={[
-						{ text: "Daily" },
-						{ text: "Weekly", active: true },
-						{ text: "Monthly" },
-					]}
-				/>
 				<MyHeading>Sales</MyHeading>
 				<Pane display="flex" gap="25%" marginBottom={30}>
 					<MyText>121 Sales</MyText>
@@ -243,12 +233,6 @@ const Statistics = () => (
 					<MyBadge backgroundColor="var(--black)">See more</MyBadge>
 				</Pane>
 				<MyText>21 active users</MyText>
-				<Pane marginTop={10} display="flex" flexDirection="column">
-					<Employee />
-					<Employee />1
-					<Employee />
-					<Employee />
-				</Pane>
 			</Pane>
 			<Pane
 				padding={20}
@@ -256,15 +240,6 @@ const Statistics = () => (
 				borderRadius={10}
 				backgroundColor="var(--white)"
 			>
-				<MyTabs
-					marginBottom={20}
-					justifyContent="flex-start"
-					tabs={[
-						{ text: "Pending" },
-						{ text: "In progress", active: true },
-						{ text: "Rejected" },
-					]}
-				/>
 				<Table>
 					<Table.Head>
 						<Table.TextHeaderCell

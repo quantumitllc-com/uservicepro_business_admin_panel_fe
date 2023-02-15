@@ -3,7 +3,7 @@ import { Heading, Label, majorScale, minorScale, Pane } from "evergreen-ui"
 import { Input } from "components/input"
 import MyText from "components/text"
 import MyButton from "components/button"
-import { ReactComponent as PhoneHover } from "pages/auth/sign-up/components/icons/phone-hover.svg"
+import { ReactComponent as PhoneHover } from "icons/auth/phone-hover.svg"
 import { ButtonBack } from "../components/button-back"
 import { Header } from "../components/header"
 

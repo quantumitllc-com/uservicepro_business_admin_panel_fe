@@ -1,4 +1,4 @@
-import { IconSet } from "../../sign-up/components/icons"
+import { IconSet } from "../../../../icons/auth"
 
 export interface PasswordTypeProps {
 	iconSet: IconSet

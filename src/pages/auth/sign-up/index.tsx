@@ -7,7 +7,7 @@ import ButtonBack from "components/button-back"
 import {
 	briefIconSet,
 	userIconSet,
-} from "pages/auth/sign-up/components/account-type/ui/icons"
+} from "pages/auth/sign-up/components/account-type/constatns"
 import styles from "../styles.module.scss"
 
 const SignUp = () => (

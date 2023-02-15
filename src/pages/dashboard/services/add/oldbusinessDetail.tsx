@@ -19,8 +19,8 @@ import MyText from "components/text"
 import MyButton from "components/button"
 import MyHeading from "components/heading"
 import MyCheckbox from "components/checkbox"
-import EmptyList from "entities/empty-list"
-import styles from "./styles.module.scss"
+import EmptyList from "./empty-list-old"
+import styles from "../../../pre-dashboard/business/styles.module.scss"
 
 export const listItems = [
 	{
@@ -81,7 +81,7 @@ export const textObj = {
 	delete: "category",
 }
 
-const BusinessDetail = ({ breadcrumbs, text }: IBusinessDetail) => {
+const OldbusinessDetail = ({ breadcrumbs, text }: IBusinessDetail) => {
 	const [isShownDelete, setIsShownDelete] = useState(false)
 	const [isShown, setIsShown] = useState(false)
 	const [list, setList] = useState<any>([])
@@ -235,4 +235,4 @@ const BusinessDetail = ({ breadcrumbs, text }: IBusinessDetail) => {
 	)
 }
 
-export default BusinessDetail
+export default OldbusinessDetail

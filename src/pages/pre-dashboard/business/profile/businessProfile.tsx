@@ -10,11 +10,7 @@ import { useBusinessProfile } from "./useBusinessProfile"
 
 const BusinessProfile = () => {
 	const {
-		form: {
-			control,
-			handleSubmit,
-			formState: { isDirty },
-		},
+		form: { control, handleSubmit },
 		isLoading,
 		onSubmit,
 	} = useBusinessProfile()

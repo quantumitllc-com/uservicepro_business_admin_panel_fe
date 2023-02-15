@@ -25,7 +25,7 @@ export const useDetail = () => {
 		},
 		isLoading,
 		isSuccess,
-	} = useQuery(["office-detail", id], () => getOfficeDetail(id), {
+	} = useQuery(["office-profile", id], () => getOfficeDetail(id), {
 		select: ({ data, ...rest }) => ({ ...rest, ...data }),
 	})
 

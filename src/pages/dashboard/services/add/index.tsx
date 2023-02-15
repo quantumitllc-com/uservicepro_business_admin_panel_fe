@@ -1,10 +1,10 @@
-import BusinessDetail, {
+import OldbusinessDetail, {
 	textObj,
 	Breadcrumbs,
-} from "pages/pre-dashboard/business/businessDetail"
+} from "pages/dashboard/services/add/oldbusinessDetail"
 
 const AddServices = () => (
-	<BusinessDetail text={textObj} breadcrumbs={<Breadcrumbs />} />
+	<OldbusinessDetail text={textObj} breadcrumbs={<Breadcrumbs />} />
 )
 
 export default AddServices

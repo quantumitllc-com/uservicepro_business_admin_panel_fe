@@ -33,8 +33,8 @@ export const useEdit = () => {
 		(newOffice: FormTypes) => editOfficeDetail(id, newOffice),
 		{
 			onSuccess: (data) => {
-				queryClient.setQueryData(["office-detail", id], data)
-				toast.success("Office detail was edited successfully!")
+				queryClient.setQueryData(["office-profile", id], data)
+				toast.success("Office profile was edited successfully!")
 				toggle()
 			},
 			onError: (error: any) => {
@@ -47,7 +47,7 @@ export const useEdit = () => {
 		() => changeOfficeToMain(id),
 		{
 			onSuccess: () => {
-				queryClient.invalidateQueries(["office-detail"])
+				queryClient.invalidateQueries(["office-profile"])
 				toast.success("Office changed to main successfully!")
 			},
 			onError: (error: any) => {

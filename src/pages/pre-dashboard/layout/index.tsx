@@ -3,7 +3,6 @@ import {
 	majorScale,
 	minorScale,
 	Pane,
-	Spinner,
 	Tab,
 	Tablist,
 } from "evergreen-ui"
@@ -11,41 +10,18 @@ import { Outlet } from "react-router-dom"
 import { useLocation } from "react-router"
 
 import Logo from "components/logo"
+import { Spinner } from "components/spinner"
 import MyBadge from "components/badge"
 import ButtonLogout from "components/button-logout"
 import React, { Suspense, useEffect, useState } from "react"
 import { useLogOut } from "services/auth/log-out/useLogOut"
 import styles from "../styles.module.scss"
-import { tabsBusiness } from "../constants"
-
-function getColorType(str: string | undefined) {
-	switch (str) {
-		case "commercial":
-			return "var(--purple)"
-		case "user":
-			return "var(--green)"
-		case "business":
-			return "var(--black)"
-		default:
-			return ""
-	}
-}
-
-function getTabType(type: string | undefined) {
-	switch (type) {
-		case "business":
-			return tabsBusiness
-		default:
-			return []
-	}
-}
+import { tabs } from "../constants"
 
 const LayoutReg = () => {
 	const { pathname } = useLocation()
-	const type = pathname.split("/")[2]
 	const activeUrl = pathname.split("/")[3]
 	const [selectedIndex, setSelectedIndex] = useState(0)
-	const [tabs] = useState(getTabType(type))
 	const { onSubmit } = useLogOut()
 
 	useEffect(() => {
@@ -74,10 +50,10 @@ const LayoutReg = () => {
 			<nav className={styles.navbar}>
 				<Logo />
 				<MyBadge
-					backgroundColor={getColorType(type)}
+					backgroundColor="var(--black)"
 					marginBottom={majorScale(13)}
 				>
-					{type && type[0].toUpperCase() + type.substring(1)} account
+					Business account
 				</MyBadge>
 				<Tablist display="flex" flexDirection="column">
 					{tabs.map((tab, index) => (

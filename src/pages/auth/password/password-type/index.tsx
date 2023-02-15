@@ -3,7 +3,7 @@ import React, { FC } from "react"
 
 import MyText from "components/text"
 import { PasswordTypeProps } from "./props"
-import { ReactComponent as Checked } from "../../sign-up/components/icons/checked.svg"
+import { ReactComponent as Checked } from "../../../../icons/auth/checked.svg"
 import styles from "./ui/styles.module.scss"
 import useHover from "../../../../hooks/useHover"
 

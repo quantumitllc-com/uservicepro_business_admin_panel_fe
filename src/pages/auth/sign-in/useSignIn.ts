@@ -6,25 +6,7 @@ import { useMutation } from "@tanstack/react-query"
 
 import { FormTypes } from "types/auth/sign-in"
 import { signIn } from "services/auth/sign-in"
-import { schema } from "./form.schema"
-
-const defaultValues = {
-	email: "",
-	password: "",
-}
-
-export const getUrlUsingUserType = (userType: string) => {
-	switch (userType) {
-		case "COMMERCIAL":
-			return "commercial"
-		case "SIMPLE":
-			return "user"
-		case "COMPANY":
-			return "business"
-		default:
-			return ""
-	}
-}
+import { schema, defaultValues } from "./form.schema"
 
 export const useSignIn = () => {
 	const navigate = useNavigate()
@@ -42,9 +24,7 @@ export const useSignIn = () => {
 			if (data.data.preDashboardInfo.isFinished) {
 				await navigate("/")
 			} else {
-				await navigate(
-					`/pre-dashboard/${getUrlUsingUserType(data.data.userType)}`,
-				)
+				await navigate("/pre-dashboard/business")
 			}
 		},
 		onError: (error: any) => {

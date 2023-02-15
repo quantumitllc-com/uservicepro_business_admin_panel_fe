@@ -14,3 +14,10 @@ export const schema = Yup.object().shape({
 		.oneOf([Yup.ref("password"), null], "Passwords must match")
 		.required("Confirm Password is required"),
 })
+
+export const defaultValues = {
+	userType: "COMPANY",
+	email: "",
+	password: "",
+	confirmPassword: "",
+}

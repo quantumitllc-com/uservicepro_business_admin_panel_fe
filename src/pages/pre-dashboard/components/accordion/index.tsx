@@ -7,7 +7,7 @@ import styles from "./styles.module.scss"
 import { ReactComponent as Arrow } from "./icons/arrow.svg"
 import { ReactComponent as ArrowSelected } from "./icons/arrow-selected.svg"
 
-interface IAccordion {
+interface AccordionProps {
 	heading: string
 	icon: any
 	iconSelected: any
@@ -29,7 +29,7 @@ function Accordion({
 	phone,
 	toggle,
 	open,
-}: IAccordion) {
+}: AccordionProps) {
 	const getUrlAccordion = (url: string) => {
 		if (url.includes("profile")) {
 			return "profile"

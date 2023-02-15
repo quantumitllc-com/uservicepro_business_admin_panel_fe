@@ -5,7 +5,7 @@ import MyHeading from "components/heading"
 import MyText from "components/text"
 import MyButton from "components/button"
 import { getTokens } from "utils/getTokens"
-import { ReactComponent as Sofa } from "./layout/icons/sofa.svg"
+import { ReactComponent as Sofa } from "./sofa.svg"
 
 const Congratulations = () => {
 	let tokens = getTokens()

@@ -1,4 +1,4 @@
-import { IconSet } from "../icons"
+import { IconSet } from "icons/auth"
 
 export interface AccountTypeProps {
 	iconSet: IconSet

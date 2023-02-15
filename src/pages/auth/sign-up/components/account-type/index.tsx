@@ -4,7 +4,7 @@ import { toast } from "react-toastify"
 
 import MyParagraph from "components/paragraph"
 import useHover from "hooks/useHover"
-import styles from "./ui/styles.module.scss"
+import styles from "./styles.module.scss"
 import { AccountTypeProps } from "./props"
 
 export const AccountType: FC<AccountTypeProps> = ({ iconSet, title, text }) => {

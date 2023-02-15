@@ -31,10 +31,7 @@ function AccordionQuestions({ heading, type, toggle, open }: IAccordion) {
 				</Pane>
 			</Pane>
 			{open && (
-				<Pane
-					className={styles.accordionContent}
-					style={{ padding: "0" }}
-				>
+				<Pane className={styles.accordionContent} padding="0">
 					<MyInput
 						marginBottom={minorScale(5)}
 						type={type}
