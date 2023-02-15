@@ -14,8 +14,9 @@ const Offices = () => {
 		columns,
 		isLoading,
 		isFetching,
+		keyword,
 		handleDetail,
-		// handleSearch,
+		handleSearch,
 		handleChangePage,
 		handleChangePerPage,
 		handleChangeNextPage,
@@ -51,7 +52,11 @@ const Offices = () => {
 						onChange={handleChangePerPage}
 						total={data.totalElements}
 					/>
-					<SearchInput placeholder="Search anything" />
+					<SearchInput
+						value={keyword}
+						onChange={handleSearch}
+						placeholder="Search anything"
+					/>
 				</Pane>
 				<Table
 					columns={columns}
@@ -61,7 +66,6 @@ const Offices = () => {
 					onRowClicked={handleDetail}
 				/>
 			</Pane>
-			{/*<AddCategory isShown={isShown} setIsShown={setIsShown} />*/}
 			<Pagination
 				marginTop={25}
 				display="flex"

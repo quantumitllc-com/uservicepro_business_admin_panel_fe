@@ -16,7 +16,7 @@ import ButtonLogout from "components/button-logout"
 import React, { Suspense, useEffect, useState } from "react"
 import { useLogOut } from "services/auth/log-out/useLogOut"
 import styles from "../styles.module.scss"
-import { tabsBusiness } from "../business"
+import { tabsBusiness } from "../constants"
 
 function getColorType(str: string | undefined) {
 	switch (str) {

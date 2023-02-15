@@ -14,7 +14,7 @@ import { useState } from "react"
 import ProgressBar from "@ramonak/react-progress-bar"
 import { Link, useNavigate } from "react-router-dom"
 
-import { ReactComponent as DetailsSelected } from "components/accordion/icons/details-selected.svg"
+import { ReactComponent as DetailsSelected } from "pages/pre-dashboard/components/accordion/icons/details-selected.svg"
 import MyText from "components/text"
 import MyButton from "components/button"
 import MyHeading from "components/heading"

@@ -5,7 +5,7 @@ import { getOfficeDetail } from "services/dashboard/offices"
 import useBoolean from "hooks/useBoolean"
 
 export const useDetail = () => {
-	const { value, toggle } = useBoolean(true)
+	const { value, toggle } = useBoolean(false)
 	const { id } = useParams()
 
 	const {

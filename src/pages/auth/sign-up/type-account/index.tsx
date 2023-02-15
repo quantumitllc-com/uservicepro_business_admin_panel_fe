@@ -66,11 +66,11 @@ const TypeAccount = () => {
 					marginBottom={minorScale(5)}
 					placeholder="Password"
 				/>
-				<MyCheckbox
-					marginTop={minorScale(5)}
-					marginBottom={minorScale(5)}
-					label={<MyLabel>Remember me</MyLabel>}
-				/>
+				{/*<MyCheckbox*/}
+				{/*	marginTop={minorScale(5)}*/}
+				{/*	marginBottom={minorScale(5)}*/}
+				{/*	label={<MyLabel>Remember me</MyLabel>}*/}
+				{/*/>*/}
 				<MyButton
 					isLoading={isLoading}
 					onClick={handleSubmit(onSubmit)}
@@ -86,7 +86,7 @@ const TypeAccount = () => {
 					<MyText color="var(--dark-green)">Sign in</MyText>
 				</Link>
 			</MyText>
-			<ButtonBack />
+			<ButtonBack position="absolute" top="28px" left="28px" />
 		</Pane>
 	)
 }

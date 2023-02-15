@@ -2,11 +2,11 @@ import { Pane, Heading, majorScale } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
 import MyText from "components/text"
-import { PassowrdType } from "entities/cards/auth/password-type"
+import { PassowrdType } from "pages/auth/password/password-type"
 import {
 	emailIconSet,
 	phoneIconSet,
-} from "entities/cards/auth/password-type/ui/icons"
+} from "pages/auth/password/password-type/ui/icons"
 import { Header } from "./components/header"
 import { ButtonBack } from "./components/button-back"
 

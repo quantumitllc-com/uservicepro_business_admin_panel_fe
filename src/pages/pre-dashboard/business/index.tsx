@@ -1,39 +1,16 @@
 import { minorScale } from "evergreen-ui"
 import { Navigate } from "react-router-dom"
 
-import Accordion from "components/accordion"
-import { ReactComponent as BriefcaseSelected } from "components/accordion/icons/briefcase-selected.svg"
-import { ReactComponent as Briefcase } from "components/accordion/icons/briefcase.svg"
-import { ReactComponent as EnvelopeSelected } from "components/accordion/icons/envelope-selected.svg"
-import { ReactComponent as EnvelopeWithCircle } from "components/accordion/icons/envelope.svg"
-import { useOpenKey } from "components/accordion/hooks/useOpenKey"
+import Accordion from "pages/pre-dashboard/components/accordion"
+import { ReactComponent as BriefcaseSelected } from "pages/pre-dashboard/components/accordion/icons/briefcase-selected.svg"
+import { ReactComponent as Briefcase } from "pages/pre-dashboard/components/accordion/icons/briefcase.svg"
+import { ReactComponent as EnvelopeSelected } from "pages/pre-dashboard/components/accordion/icons/envelope-selected.svg"
+import { ReactComponent as EnvelopeWithCircle } from "pages/pre-dashboard/components/accordion/icons/envelope.svg"
+import { useOpenKey } from "pages/pre-dashboard/components/accordion/hooks/useOpenKey"
 import MyBadge from "components/badge"
 import { getTokens } from "utils/getTokens"
-import { ReactComponent as Home } from "../icons/home.svg"
-import { ReactComponent as User } from "../icons/user.svg"
-import { ReactComponent as Envelope } from "../icons/envelope.svg"
-import { ReactComponent as HomeHover } from "../icons/home-hover.svg"
-import { ReactComponent as UserHover } from "../icons/user-hover.svg"
-import { ReactComponent as EnvelopeHover } from "../icons/envelope-hover.svg"
-import styles from "../styles.module.scss"
 
-export const tabsBusiness = [
-	{
-		icon: <Home />,
-		text: "Home",
-		selected: <HomeHover />,
-	},
-	{
-		icon: <User />,
-		text: "Profile settings",
-		selected: <UserHover />,
-	},
-	{
-		icon: <Envelope />,
-		text: "Verification",
-		selected: <EnvelopeHover />,
-	},
-]
+import styles from "../styles.module.scss"
 
 function Business() {
 	const { openKey, handleToggle } = useOpenKey()

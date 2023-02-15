@@ -2,12 +2,12 @@ import { Pane, Heading, minorScale } from "evergreen-ui"
 import { Link } from "react-router-dom"
 
 import Logo from "components/logo"
-import { AccountType } from "entities/cards/auth/account-type"
+import { AccountType } from "pages/auth/sign-up/components/account-type"
 import ButtonBack from "components/button-back"
 import {
 	briefIconSet,
 	userIconSet,
-} from "entities/cards/auth/account-type/ui/icons"
+} from "pages/auth/sign-up/components/account-type/ui/icons"
 import styles from "../styles.module.scss"
 
 const SignUp = () => (
@@ -32,7 +32,7 @@ const SignUp = () => (
 			/>
 			{/*</Link>*/}
 		</Pane>
-		<ButtonBack />
+		<ButtonBack position="absolute" top="28px" left="28px" />
 	</Pane>
 )
 

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 
 import Logo from "components/logo"
 import ButtonBack from "components/button-back"
-import { UserType } from "entities/cards/auth/user-type"
-import { userIconSet } from "entities/cards/auth/account-type/ui/icons"
-import { commercialIconSet } from "entities/cards/auth/user-type/ui/icons"
+import { UserType } from "pages/auth/sign-up/user-type (not ready)"
+import { userIconSet } from "pages/auth/sign-up/components/account-type/ui/icons"
+import { commercialIconSet } from "pages/auth/sign-up/user-type (not ready)/ui/icons"
 import styles from "../../styles.module.scss"
 
 function UserAccount() {

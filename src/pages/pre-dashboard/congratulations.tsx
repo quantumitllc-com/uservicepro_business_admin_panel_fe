@@ -27,7 +27,7 @@ const Congratulations = () => {
 			>
 				Congratulations
 			</MyHeading>
-			<MyText marginBottom={majorScale(10)}>
+			<MyText marginBottom={majorScale(4)}>
 				Your account has been created and verified!
 			</MyText>
 			<Link to="/">

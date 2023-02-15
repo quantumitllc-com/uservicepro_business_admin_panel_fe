@@ -17,7 +17,7 @@ export interface EditProps {
 	toggleDetail: () => void
 }
 
-export const useEdit = ({ toggleDetail }: EditProps) => {
+export const useEdit = () => {
 	const queryClient = useQueryClient()
 	const { id } = useParams()
 	const { value, toggle } = useBoolean(false)
@@ -36,7 +36,6 @@ export const useEdit = ({ toggleDetail }: EditProps) => {
 				queryClient.setQueryData(["office-detail", id], data)
 				toast.success("Office detail was edited successfully!")
 				toggle()
-				toggleDetail()
 			},
 			onError: (error: any) => {
 				toast.error(error.response.data.message)

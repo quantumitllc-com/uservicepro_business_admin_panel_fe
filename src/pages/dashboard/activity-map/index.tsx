@@ -31,7 +31,7 @@ import { ReactComponent as Chart } from "./chart.svg"
 import { ReactComponent as TableChart } from "./table.svg"
 import MyBadge from "../../../components/badge"
 import { subCategories } from "../services"
-import { useOpenKey } from "../../../components/accordion/hooks/useOpenKey"
+import { useOpenKey } from "../../pre-dashboard/components/accordion/hooks/useOpenKey"
 
 export const services = [
 	{
