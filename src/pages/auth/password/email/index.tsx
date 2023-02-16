@@ -3,7 +3,7 @@ import { Heading, Label, majorScale, minorScale, Pane } from "evergreen-ui"
 import { Input } from "components/input"
 import MyText from "components/text"
 import MyButton from "components/button"
-import { ReactComponent as EmailHover } from "entities/cards/auth/icons/email-hover.svg"
+import { ReactComponent as EmailHover } from "icons/auth/email-hover.svg"
 import { ButtonBack } from "../components/button-back"
 import { Header } from "../components/header"
 

@@ -19,10 +19,12 @@ import Logo from "components/logo"
 import MyHeading from "components/heading"
 import MyText from "components/text"
 import { useLogOut } from "services/auth/log-out/useLogOut"
+import { getTokens } from "utils/getTokens"
 import styles from "./styles.module.scss"
 
 const Header = (props: PaneProps) => {
 	const { onSubmit } = useLogOut()
+	const tokens = getTokens()
 
 	return (
 		<Pane {...props} is="header">
@@ -69,10 +71,12 @@ const Header = (props: PaneProps) => {
 					content={
 						<Menu>
 							<Menu.Group>
-								<Menu.Item icon={UserIcon}>
-									Edit profile
-								</Menu.Item>
-								<Menu.Item icon={CogIcon}>Settings</Menu.Item>
+								<Link to="profile">
+									<Menu.Item icon={UserIcon}>
+										Edit profile
+									</Menu.Item>
+								</Link>
+								{/*<Menu.Item icon={CogIcon}>Settings</Menu.Item>*/}
 								<Menu.Item onClick={onSubmit} icon={LogOutIcon}>
 									Logout
 								</Menu.Item>
@@ -94,10 +98,10 @@ const Header = (props: PaneProps) => {
 						/>
 						<Pane>
 							<MyHeading fontSize={15} fontWeight={400}>
-								Alex Mendes
+								{tokens.userType}
 							</MyHeading>
 							<MyText whiteSpace="nowrap" fontSize={12}>
-								nelson-company@gmail.com
+								{tokens.email}
 							</MyText>
 						</Pane>
 					</Pane>

@@ -23,17 +23,17 @@ export interface DataRow {
 export const useOffices = () => {
 	const navigate = useNavigate()
 	const [page, setPage] = useState(1)
-	const [size, setSize] = useState(5)
-	// const [keyword, setKeyword] = useState("")
-	// const searchDebounce = useDebounce(keyword, 500)
+	const [size, setSize] = useState(10)
+	const [keyword, setKeyword] = useState("")
+	const searchDebounce = useDebounce(keyword, 500)
 
 	const {
 		data = { content: [], totalElements: 0, totalPages: 0 },
 		isFetching,
 		isLoading,
 	} = useQuery(
-		["offices", page, size],
-		() => getOffices({ page: page - 1, size }),
+		["offices", page, size, searchDebounce],
+		() => getOffices({ page: page - 1, size, keyword }),
 		{
 			onError: (error: any) => {
 				toast.error(error.message)
@@ -99,7 +99,7 @@ export const useOffices = () => {
 	)
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-		// setKeyword(e.target.value)
+		setKeyword(e.target.value)
 	}
 
 	const handleChangeNextPage = () => {
@@ -127,6 +127,7 @@ export const useOffices = () => {
 		columns,
 		isLoading,
 		isFetching,
+		keyword,
 		handleDetail,
 		handleSearch,
 		handleChangePage,

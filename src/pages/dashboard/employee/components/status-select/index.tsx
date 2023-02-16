@@ -31,7 +31,7 @@ export const StatusSelect = ({ status = "ACTIVE" }): any => {
 			onSuccess: () => {
 				setFalse()
 				toast.success("Successfully updated!")
-				queryClient.invalidateQueries(["employee-detail"])
+				queryClient.invalidateQueries(["employee-profile"])
 			},
 		},
 	)

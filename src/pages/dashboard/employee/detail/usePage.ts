@@ -27,7 +27,7 @@ export const usePage = () => {
 			startedDate: "",
 		},
 	} = useQuery(
-		["employee-detail", employeeId],
+		["employee-profile", employeeId],
 		() => getEmployeeDetail(employeeId),
 		{
 			select: ({ data, ...rest }) => ({ ...rest, ...data }),

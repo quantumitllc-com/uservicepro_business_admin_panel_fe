@@ -1,21 +1,15 @@
-import { EditIcon, minorScale, Pane, Switch } from "evergreen-ui"
+import { EditIcon, minorScale, Pane } from "evergreen-ui"
 import { useEffect } from "react"
 
-import MyText from "components/text"
 import { Input } from "components/input"
-import { getBooleanSign } from "utils/getBooleanSign"
 import MyLabel from "components/label"
 import MyButton from "components/button"
-import { FormTypes } from "types/dashboard/offices/detail"
+import MyHeading from "components/heading"
 import { labels } from "../constatns"
 import { useEdit } from "./useEdit"
+import { useDetail } from "../detail/useDetail"
 
-export interface EditProps {
-	toggleDetail: () => void
-	values: FormTypes
-}
-
-const Edit = ({ toggleDetail, values }: EditProps) => {
+const Edit = () => {
 	const {
 		form,
 		onSubmit,
@@ -24,26 +18,24 @@ const Edit = ({ toggleDetail, values }: EditProps) => {
 		toggle,
 		handleChangeMainOffice,
 		checked,
-	} = useEdit({ toggleDetail })
+	} = useEdit()
+	const { data } = useDetail()
 
 	useEffect(() => {
-		form.reset(values)
-	}, [form, values])
+		form.reset(data)
+	}, [form, data])
 
 	return (
-		<>
-			<Pane
-				display={value ? "flex" : "none"}
-				rowGap="32px"
-				flexWrap="wrap"
-			>
+		<Pane>
+			<Pane display="flex" rowGap="16px" flexWrap="wrap">
 				<Pane
 					gap={minorScale(3)}
 					display="flex"
 					flexDirection="column"
-					flex="1 1 30%"
+					flex="1 1 50%"
 				>
 					<Input
+						disabled={!value}
 						name="name"
 						control={form.control}
 						label={<MyLabel>{labels.name}</MyLabel>}
@@ -53,9 +45,10 @@ const Edit = ({ toggleDetail, values }: EditProps) => {
 					gap={minorScale(3)}
 					display="flex"
 					flexDirection="column"
-					flex="1 1 30%"
+					flex="1 1 50%"
 				>
 					<Input
+						disabled={!value}
 						name="state"
 						control={form.control}
 						label={<MyLabel>{labels.state}</MyLabel>}
@@ -65,9 +58,10 @@ const Edit = ({ toggleDetail, values }: EditProps) => {
 					gap={minorScale(3)}
 					display="flex"
 					flexDirection="column"
-					flex="1 1 30%"
+					flex="1 1 50%"
 				>
 					<Input
+						disabled={!value}
 						name="city"
 						control={form.control}
 						label={<MyLabel>{labels.city}</MyLabel>}
@@ -77,9 +71,10 @@ const Edit = ({ toggleDetail, values }: EditProps) => {
 					gap={minorScale(3)}
 					display="flex"
 					flexDirection="column"
-					flex="1 1 30%"
+					flex="1 1 50%"
 				>
 					<Input
+						disabled={!value}
 						type="number"
 						name="zipCode"
 						control={form.control}
@@ -90,9 +85,10 @@ const Edit = ({ toggleDetail, values }: EditProps) => {
 					gap={minorScale(3)}
 					display="flex"
 					flexDirection="column"
-					flex="1 1 30%"
+					flex="1 1 50%"
 				>
 					<Input
+						disabled={!value}
 						name="addressLine1"
 						control={form.control}
 						label={<MyLabel>{labels.addressLine1}</MyLabel>}
@@ -102,65 +98,14 @@ const Edit = ({ toggleDetail, values }: EditProps) => {
 					gap={minorScale(3)}
 					display="flex"
 					flexDirection="column"
-					flex="1 1 30%"
+					flex="1 1 50%"
 				>
 					<Input
+						disabled={!value}
 						name="addressLine2"
 						control={form.control}
 						label={<MyLabel>{labels.addressLine2}</MyLabel>}
 					/>
-				</Pane>
-				<Pane
-					gap={minorScale(3)}
-					display="flex"
-					flexDirection="column"
-					flex="1 1 30%"
-				>
-					<Input
-						name="phone"
-						control={form.control}
-						label={<MyLabel>{labels.phone}</MyLabel>}
-					/>
-				</Pane>
-				<Pane
-					gap={minorScale(3)}
-					display="flex"
-					flexDirection="column"
-					flex="1 1 30%"
-				>
-					<MyLabel>{labels.rating}</MyLabel>
-					<MyText marginLeft={minorScale(3)} color="var(--grey)">
-						{values.rating}
-					</MyText>
-				</Pane>
-				<Pane
-					gap={minorScale(3)}
-					display="flex"
-					flexDirection="column"
-					flex="1 1 30%"
-				>
-					<MyLabel>{labels.isMain}</MyLabel>
-					{!values.isMain ? (
-						<Switch
-							checked={checked}
-							onChange={handleChangeMainOffice}
-						/>
-					) : (
-						<MyText marginLeft={minorScale(3)} color="var(--grey)">
-							{getBooleanSign(values.isMain)}
-						</MyText>
-					)}
-				</Pane>
-				<Pane
-					gap={minorScale(3)}
-					display="flex"
-					flexDirection="column"
-					flex="1 1 30%"
-				>
-					<MyLabel>{labels.isPhoneVerified}</MyLabel>
-					<MyText marginLeft={minorScale(3)} color="var(--grey)">
-						{getBooleanSign(values.isPhoneVerified)}
-					</MyText>
 				</Pane>
 			</Pane>
 			{value ? (
@@ -170,7 +115,6 @@ const Edit = ({ toggleDetail, values }: EditProps) => {
 						appearance="outlined"
 						onClick={() => {
 							toggle()
-							toggleDetail()
 						}}
 					>
 						Cancel
@@ -179,10 +123,7 @@ const Edit = ({ toggleDetail, values }: EditProps) => {
 						onClick={
 							form.formState.isDirty
 								? form.handleSubmit(onSubmit)
-								: () => {
-										toggle()
-										toggleDetail()
-								  }
+								: toggle
 						}
 						small="true"
 						appearance="outlined"
@@ -198,15 +139,12 @@ const Edit = ({ toggleDetail, values }: EditProps) => {
 					small="true"
 					appearance="primary"
 					backgroundColor="var(--green)"
-					onClick={() => {
-						toggle()
-						toggleDetail()
-					}}
+					onClick={toggle}
 				>
 					Edit
 				</MyButton>
 			)}
-		</>
+		</Pane>
 	)
 }
 

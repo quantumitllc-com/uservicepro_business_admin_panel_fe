@@ -5,7 +5,7 @@ import { getOfficeDetail } from "services/dashboard/offices"
 import useBoolean from "hooks/useBoolean"
 
 export const useDetail = () => {
-	const { value, toggle } = useBoolean(true)
+	const { value, toggle } = useBoolean(false)
 	const { id } = useParams()
 
 	const {
@@ -25,7 +25,7 @@ export const useDetail = () => {
 		},
 		isLoading,
 		isSuccess,
-	} = useQuery(["office-detail", id], () => getOfficeDetail(id), {
+	} = useQuery(["office-profile", id], () => getOfficeDetail(id), {
 		select: ({ data, ...rest }) => ({ ...rest, ...data }),
 	})
 

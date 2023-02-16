@@ -1,7 +1,7 @@
 import { minorScale, Pagination, Pane, SearchInput } from "evergreen-ui"
 import { PerRows } from "components/per-rows"
 import MyHeading from "components/heading"
-import EmployeeDetails from "entities/employee-details"
+import EmployeeDetails from "pages/dashboard/employee/employee-details-old"
 import useIsShown from "hooks/useIsShown"
 import { AddEmpolyee } from "./components/add"
 import { usePage } from "./usePage"

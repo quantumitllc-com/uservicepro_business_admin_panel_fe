@@ -1,16 +1,15 @@
-import { Button, ChevronLeftIcon } from "evergreen-ui"
+import { Button, ButtonProps, ChevronLeftIcon } from "evergreen-ui"
 import { useNavigate } from "react-router-dom"
+import { FC } from "react"
 
 import styles from "./styles.module.scss"
 
-function ButtonBack() {
+const ButtonBack: FC<ButtonProps> = (props) => {
 	const navigate = useNavigate()
 
 	return (
 		<Button
-			position="absolute"
-			top="28px"
-			left="28px"
+			{...props}
 			border="none"
 			fontFamily="var(--lexend)"
 			backgroundColor="transparent"
