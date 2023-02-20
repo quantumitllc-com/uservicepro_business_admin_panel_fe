@@ -108,7 +108,9 @@ export const usePage = ({ officeId }: UsePageProps) => {
 		setSize(perPage)
 	}
 
-	const handleDetail = (row: DataRow) => navigate(`${row.id}`)
+	const handleDetail = (row: DataRow) => {
+		navigate(`/employee/${row.id}`)
+	}
 
 	return {
 		page,
