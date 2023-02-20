@@ -8,12 +8,12 @@ import {
 	IconButton,
 } from "evergreen-ui"
 
-import ChatList from "components/chat/chat-list"
+import ChatList from "pages/dashboard/chat/components/chat/chat-list"
 import MyHeading from "components/heading"
-import { ReactComponent as Ellipse } from "components/chat/chat-list/ellipse.svg"
+import { ReactComponent as Ellipse } from "pages/dashboard/chat/components/chat/chat-list/ellipse.svg"
 import MyText from "components/text"
-import Receiver from "components/chat/receiver"
-import Sender from "components/chat/sender"
+import Receiver from "pages/dashboard/chat/components/chat/receiver"
+import Sender from "pages/dashboard/chat/components/chat/sender"
 import { MyInput } from "components/input"
 import styles from "./styles.module.scss"
 

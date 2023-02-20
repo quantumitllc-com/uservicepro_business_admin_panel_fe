@@ -11,3 +11,8 @@ export const schema = Yup.object().shape({
 			"Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character",
 		),
 })
+
+export const defaultValues = {
+	email: "",
+	password: "",
+}

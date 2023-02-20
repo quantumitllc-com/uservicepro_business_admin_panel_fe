@@ -17,7 +17,7 @@ export interface EditProps {
 	toggleDetail: () => void
 }
 
-export const useEdit = ({ toggleDetail }: EditProps) => {
+export const useEdit = () => {
 	const queryClient = useQueryClient()
 	const { id } = useParams()
 	const { value, toggle } = useBoolean(false)
@@ -33,10 +33,9 @@ export const useEdit = ({ toggleDetail }: EditProps) => {
 		(newOffice: FormTypes) => editOfficeDetail(id, newOffice),
 		{
 			onSuccess: (data) => {
-				queryClient.setQueryData(["office-detail", id], data)
-				toast.success("Office detail was edited successfully!")
+				queryClient.setQueryData(["office-profile", id], data)
+				toast.success("Office profile was edited successfully!")
 				toggle()
-				toggleDetail()
 			},
 			onError: (error: any) => {
 				toast.error(error.response.data.message)
@@ -48,7 +47,7 @@ export const useEdit = ({ toggleDetail }: EditProps) => {
 		() => changeOfficeToMain(id),
 		{
 			onSuccess: () => {
-				queryClient.invalidateQueries(["office-detail"])
+				queryClient.invalidateQueries(["office-profile"])
 				toast.success("Office changed to main successfully!")
 			},
 			onError: (error: any) => {

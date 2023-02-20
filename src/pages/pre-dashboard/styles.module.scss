@@ -51,7 +51,8 @@
 	background: var(--white);
 	border-radius: 10px;
 	border: 1px solid var(--stroke-block);
-	height: calc(100% - 72px);
+	//height: 100%;
+	//height: calc(100% - 72px);
 }
 
 .accordion {

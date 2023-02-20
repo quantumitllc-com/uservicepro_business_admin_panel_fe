@@ -1,5 +1,6 @@
 import axios from "axios"
 import { getTokens } from "../utils/getTokens"
+import { clearStorage } from "../utils/clearStorage"
 
 const baseURL = process.env.REACT_APP_BASE_URL
 const request = axios.create({
@@ -45,6 +46,8 @@ request.interceptors.response.use(
 				localStorage.setItem("tokens", JSON.stringify(response.data))
 				return await request.request(originalRequest)
 			} catch (e) {
+				clearStorage()
+				window.location.href = "/sign-in"
 				// eslint-disable-next-line no-console
 				console.log("Not Authorized")
 			}
