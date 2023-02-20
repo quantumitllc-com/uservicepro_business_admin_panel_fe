@@ -2,7 +2,11 @@ import MyText from "components/text"
 import { Pane } from "evergreen-ui"
 import { ReactComponent as IconEmpty } from "./icons/empty.svg"
 
-export const Empty = () => (
+interface IEmpty {
+	text?: string
+}
+
+export const Empty = ({ text = "There is no data" }: IEmpty) => (
 	<Pane
 		width="100%"
 		height="300px"
@@ -15,7 +19,7 @@ export const Empty = () => (
 			<IconEmpty />
 		</div>
 		<MyText marginTop="20px" fontWeight="bold">
-			There is no data
+			{text}
 		</MyText>
 	</Pane>
 )
