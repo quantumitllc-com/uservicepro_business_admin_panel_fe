@@ -88,7 +88,10 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 								<Controller
 									name="officeId"
 									control={form.control}
-									render={({ field, formState: { errors } }) => (
+									render={({
+										field,
+										formState: { errors },
+									}) => (
 										<>
 											<Combobox
 												openOnFocus
@@ -103,7 +106,8 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 													field.onChange(selected.id)
 												}}
 												inputProps={{
-													isInvalid: !!errors[field.name],
+													isInvalid:
+														!!errors[field.name],
 												}}
 												itemToString={(item) =>
 													item ? item?.name : ""
