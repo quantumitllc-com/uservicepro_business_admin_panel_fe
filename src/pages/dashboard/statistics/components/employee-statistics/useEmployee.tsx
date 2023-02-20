@@ -26,7 +26,7 @@ export const useEmployee = () => {
 	const officeId = searchParams.get("officeId")
 
 	const { data = { data: [], activeUsers: 0 }, isLoading } = useQuery(
-		["employee-statistics", top, officeId, searchDebounce],
+		["employee-statistics", officeId, searchDebounce],
 		() =>
 			getEmployeeStatistics<IEmployeeStatistics>({
 				top,
@@ -81,7 +81,9 @@ export const useEmployee = () => {
 
 	const handleDetail = (row: DataRow) => navigate(`/employee/${row.id}`)
 
-	const handleChange = (e: any) => setTop(e.target.value)
+	const handleChange = (e: any) => {
+		if (e.target.value.length !== 0) setTop(e.target.value)
+	}
 
 	const handleNavigate = () => navigate("/employee")
 

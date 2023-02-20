@@ -4,8 +4,14 @@ import { getChart } from "services/dashboard/statistics"
 import { useState } from "react"
 import dayjs from "dayjs"
 import duration from "dayjs/plugin/duration"
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
+import customParseFormat from "dayjs/plugin/customParseFormat"
+import { sortTime } from "./utils"
+import { StatisticsTypes } from "../../types"
 
 dayjs.extend(duration)
+dayjs.extend(isSameOrBefore)
+dayjs.extend(customParseFormat)
 
 const DAY = dayjs().subtract(dayjs.duration(7, "d")).format("YYYY-MM-DD")
 const WEEK = dayjs().subtract(dayjs.duration(28, "d")).format("YYYY-MM-DD")
@@ -30,7 +36,7 @@ const defaultDate = dayjs()
 export const useChart = () => {
 	const [searchParams] = useSearchParams()
 	const officeId = searchParams.get("officeId")
-	const [type, setType] = useState("DAY")
+	const [type, setType] = useState<StatisticsTypes>("DAY")
 	const [from, setFrom] = useState(defaultDate)
 
 	const {
@@ -49,15 +55,19 @@ export const useChart = () => {
 			}),
 		{
 			select: ({ data, ...rest }: any) => {
-				const categories = data.data.map((v: any) => v?.finishedAt)
+				const newData = sortTime(data.data, type).reverse()
+				const categories = newData.map((v: any) =>
+					type === "WEEK" ? v?.from : v?.finishedAt,
+				)
+
 				const series = [
 					{
 						name: "Income",
-						data: data.data.map((v: any) => v?.income),
+						data: newData.map((v: any) => v?.income),
 					},
 					{
 						name: "Sales",
-						data: data.data.map((v: any) => v?.sales),
+						data: newData.map((v: any) => v?.sales),
 					},
 				]
 
@@ -66,9 +76,9 @@ export const useChart = () => {
 		},
 	)
 
-	const handleChangeType = (SelectedType: string) => {
-		if (defaultDates[type as "DAY" | "WEEK" | "MONTH"] === from) {
-			setFrom(defaultDates[SelectedType as "DAY" | "WEEK" | "MONTH"])
+	const handleChangeType = (SelectedType: StatisticsTypes) => {
+		if (defaultDates[type] === from) {
+			setFrom(defaultDates[SelectedType])
 		}
 		setType(SelectedType)
 	}

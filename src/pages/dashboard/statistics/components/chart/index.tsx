@@ -2,6 +2,7 @@ import { Pane, TextInput } from "evergreen-ui"
 import Chart from "react-apexcharts"
 import MyHeading from "components/heading"
 import MyText from "components/text"
+import { Spinner } from "components/spinner"
 import { Tabs } from "../tabs"
 import { useChart } from "./useChart"
 import { ReactComponent as ChartBar } from "./ChartBar.svg"
@@ -73,7 +74,7 @@ export const StatisticsChart = () => {
 					<Tabs value={type} onChange={handleChangeType} />
 				</Pane>
 				{isLoading ? (
-					<div>Loading...</div>
+					<Spinner />
 				) : (
 					<Pane>
 						<Chart
@@ -92,6 +93,9 @@ export const StatisticsChart = () => {
 									type: "category",
 									tickPlacement: "on",
 									categories: data.categories,
+									labels: {
+										rotate: 45,
+									},
 								},
 								dataLabels: {
 									enabled: true,
@@ -100,6 +104,8 @@ export const StatisticsChart = () => {
 										fontSize: "12px",
 										colors: ["#000000"],
 									},
+									formatter: (val: string) =>
+										Number(val) === 0 ? "" : val,
 								},
 								grid: {
 									xaxis: {
@@ -110,7 +116,7 @@ export const StatisticsChart = () => {
 								},
 								plotOptions: {
 									bar: {
-										columnWidth: "15px",
+										columnWidth: "50px",
 										dataLabels: {
 											position: "top",
 										},
