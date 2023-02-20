@@ -7,7 +7,11 @@ import { AddEmpolyee } from "./components/add"
 import { usePage } from "./usePage"
 import { Table } from "../../../components/table"
 
-const Employee = () => {
+export interface EmployeeProps {
+	officeId?: string
+}
+
+const Employee = ({ officeId }: EmployeeProps) => {
 	const { setIsShown, isShown } = useIsShown()
 	const {
 		page,
@@ -23,7 +27,7 @@ const Employee = () => {
 		handleChangePerPage,
 		handleChangeNextPage,
 		handleChangePrevPage,
-	} = usePage()
+	} = usePage({ officeId })
 
 	return (
 		<Pane>
@@ -37,7 +41,7 @@ const Employee = () => {
 				marginBottom={minorScale(5)}
 			>
 				<MyHeading>List of employees</MyHeading>
-				<AddEmpolyee />
+				<AddEmpolyee officeId={officeId} />
 			</Pane>
 			<Pane>
 				<Pane

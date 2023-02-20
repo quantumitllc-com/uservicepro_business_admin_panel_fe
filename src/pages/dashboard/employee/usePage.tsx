@@ -18,7 +18,11 @@ export interface DataRow {
 	status: string
 }
 
-export const usePage = () => {
+export interface UsePageProps {
+	officeId?: string
+}
+
+export const usePage = ({ officeId }: UsePageProps) => {
 	const navigate = useNavigate()
 	const [page, setPage] = useState(1)
 	const [size, setSize] = useState(10)
@@ -31,7 +35,7 @@ export const usePage = () => {
 		isFetching,
 	} = useQuery(
 		["employee-list", size, page, searchDebounce],
-		() => getEmployeeList({ size, keyword, page: page - 1 }),
+		() => getEmployeeList({ size, keyword, page: page - 1, officeId }),
 		{
 			select: ({ data, ...rest }) => ({ ...rest, ...data }),
 			keepPreviousData: true,

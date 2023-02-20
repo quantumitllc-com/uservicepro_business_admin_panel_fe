@@ -11,13 +11,18 @@ import {
 	ErrorIcon,
 } from "evergreen-ui"
 import { Controller } from "react-hook-form"
+import { useEffect } from "react"
 
 import MyButton from "components/button"
 import MyLabel from "components/label"
 import { Input } from "components/input"
 import { useAdd } from "./useAdd"
 
-export const AddEmpolyee = () => {
+export interface AddEmployeeProps {
+	officeId?: string
+}
+
+export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 	const {
 		form,
 		onSubmit,
@@ -28,6 +33,12 @@ export const AddEmpolyee = () => {
 		handleChangeFile,
 		locationIsLoading,
 	} = useAdd()
+
+	useEffect(() => {
+		if (officeId) {
+			form.setValue("officeId", officeId)
+		}
+	}, [form, officeId])
 
 	return (
 		<>
@@ -71,54 +82,56 @@ export const AddEmpolyee = () => {
 							placeholder="+1 234 56 78"
 							label={<MyLabel>Phone number</MyLabel>}
 						/>
-						<div>
-							<MyLabel>Serving Location</MyLabel>
-							<Controller
-								name="officeId"
-								control={form.control}
-								render={({ field, formState: { errors } }) => (
-									<>
-										<Combobox
-											openOnFocus
-											height={40}
-											width="100%"
-											name={field.name}
-											marginTop={minorScale(2)}
-											placeholder="None selected"
-											isLoading={locationIsLoading}
-											items={locationData.content}
-											onChange={(selected) => {
-												field.onChange(selected.id)
-											}}
-											inputProps={{
-												isInvalid: !!errors[field.name],
-											}}
-											itemToString={(item) =>
-												item ? item?.name : ""
-											}
-										/>
-										{errors[field.name] && (
-											<Text
-												color="D14343"
-												display="flex"
-												fontSize={12}
-												alignItems="center"
-												marginTop={5}
-											>
-												<ErrorIcon
-													color="danger"
-													marginRight={8}
-												/>
-												{
-													errors[field.name]
-														?.message as string
+						{!officeId && (
+							<div>
+								<MyLabel>Serving Location</MyLabel>
+								<Controller
+									name="officeId"
+									control={form.control}
+									render={({ field, formState: { errors } }) => (
+										<>
+											<Combobox
+												openOnFocus
+												height={40}
+												width="100%"
+												name={field.name}
+												marginTop={minorScale(2)}
+												placeholder="None selected"
+												isLoading={locationIsLoading}
+												items={locationData.content}
+												onChange={(selected) => {
+													field.onChange(selected.id)
+												}}
+												inputProps={{
+													isInvalid: !!errors[field.name],
+												}}
+												itemToString={(item) =>
+													item ? item?.name : ""
 												}
-											</Text>
-										)}
-									</>
-								)}
-							/>
-						</div>
+											/>
+											{errors[field.name] && (
+												<Text
+													color="D14343"
+													display="flex"
+													fontSize={12}
+													alignItems="center"
+													marginTop={5}
+												>
+													<ErrorIcon
+														color="danger"
+														marginRight={8}
+													/>
+													{
+														errors[field.name]
+															?.message as string
+													}
+												</Text>
+											)}
+										</>
+									)}
+								/>
+							</div>
+						)}
 						<Pane gap={8} display="flex" flexDirection="column">
 							<MyLabel>Attachment File</MyLabel>
 							<Controller

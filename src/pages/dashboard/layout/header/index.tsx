@@ -93,7 +93,7 @@ const Header = (props: PaneProps) => {
 						<Avatar
 							marginLeft={minorScale(5)}
 							marginRight={minorScale(2)}
-							src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
+							src={tokens.pictureUrl}
 							size={50}
 						/>
 						<Pane>
