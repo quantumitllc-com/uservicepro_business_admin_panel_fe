@@ -4,21 +4,12 @@ import { useEffect } from "react"
 import { Input } from "components/input"
 import MyLabel from "components/label"
 import MyButton from "components/button"
-import MyHeading from "components/heading"
 import { labels } from "../constatns"
 import { useEdit } from "./useEdit"
 import { useDetail } from "../detail/useDetail"
 
 const Edit = () => {
-	const {
-		form,
-		onSubmit,
-		isLoading,
-		value,
-		toggle,
-		handleChangeMainOffice,
-		checked,
-	} = useEdit()
+	const { form, onSubmit, isLoading, value, toggle } = useEdit()
 	const { data } = useDetail()
 
 	useEffect(() => {
@@ -26,7 +17,7 @@ const Edit = () => {
 	}, [form, data])
 
 	return (
-		<Pane>
+		<Pane paddingTop={28}>
 			<Pane display="flex" rowGap="16px" flexWrap="wrap">
 				<Pane
 					gap={minorScale(3)}
