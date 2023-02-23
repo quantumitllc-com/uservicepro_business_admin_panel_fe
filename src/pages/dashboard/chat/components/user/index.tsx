@@ -1,9 +1,9 @@
 import { Avatar, majorScale, minorScale, Pane, PaneProps } from "evergreen-ui"
 import { FC } from "react"
 
-import MyHeading from "../../../../../../components/heading"
-import MyText from "../../../../../../components/text"
-import MyBadge from "../../../../../../components/badge"
+import MyHeading from "components/heading"
+import MyText from "components/text"
+import MyBadge from "components/badge"
 import { ReactComponent as Ellipse } from "./ellipse.svg"
 import styles from "./styles.module.scss"
 
@@ -11,7 +11,7 @@ interface ChatListProps extends PaneProps {
 	active?: boolean
 }
 
-const ChatList: FC<ChatListProps> = ({ active }) => (
+const User: FC<ChatListProps> = ({ active }) => (
 	<Pane
 		className={active ? "" : styles.chat}
 		width="330px"
@@ -43,4 +43,4 @@ const ChatList: FC<ChatListProps> = ({ active }) => (
 	</Pane>
 )
 
-export default ChatList
+export default User
