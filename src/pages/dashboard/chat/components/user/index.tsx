@@ -4,17 +4,19 @@ import { FC } from "react"
 import MyHeading from "components/heading"
 import MyText from "components/text"
 import MyBadge from "components/badge"
+import { IChatType } from "types/dashboard/chat"
 import { ReactComponent as Ellipse } from "./ellipse.svg"
 import styles from "./styles.module.scss"
 
 interface ChatListProps extends PaneProps {
 	active?: boolean
+	chat: IChatType
 }
 
-const User: FC<ChatListProps> = ({ active }) => (
+const User: FC<ChatListProps> = ({ active, chat }) => (
 	<Pane
 		className={active ? "" : styles.chat}
-		width="330px"
+		// width="330px"
 		justifyContent="space-between"
 		alignItems="center"
 		backgroundColor={active && "var(--chat-active)"}
@@ -22,17 +24,22 @@ const User: FC<ChatListProps> = ({ active }) => (
 		padding={minorScale(4)}
 		borderBottom={!active && "1px solid var(--stroke-block)"}
 	>
-		<Pane position="relative">
-			<Avatar
-				marginRight={minorScale(2)}
-				src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-				size={50}
-			/>
-			<Ellipse className={styles.ellipse} />
-		</Pane>
-		<Pane marginRight={majorScale(5)}>
-			<MyHeading fontSize={14}>Alex Mendes</MyHeading>
-			<MyText fontSize={12}>Hello Nelson, how are you?</MyText>
+		<Pane
+			display="flex"
+			alignItems="center"
+		>
+			<Pane position="relative">
+				<Avatar
+					marginRight={minorScale(2)}
+					src={chat.imageUrl}
+					size={50}
+				/>
+				<Ellipse className={styles.ellipse} />
+			</Pane>
+			<Pane marginRight={majorScale(5)}>
+				<MyHeading fontSize={14}>{chat.userName || "name"}</MyHeading>
+				<MyText fontSize={12}>{chat.lastUnreadMessage}</MyText>
+			</Pane>
 		</Pane>
 		<Pane display="flex" flexDirection="column">
 			<MyText fontSize={12} color="var(--black)">
