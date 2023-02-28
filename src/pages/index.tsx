@@ -5,6 +5,7 @@ import { getTokens } from "../utils/getTokens"
 
 // dashboard
 const ActivityMap = lazy(() => import("./dashboard/activity-map"))
+const NewActivityMap = lazy(() => import("./dashboard/new-activity-map"))
 const Schedules = lazy(() => import("./dashboard/schedules"))
 
 // offices
@@ -120,6 +121,7 @@ export function Routing() {
 				<Route path="services/add" element={<AddServices />} />
 				<Route path="statistics" element={<Statistics />} />
 				<Route path="activity-map" element={<ActivityMap />} />
+				<Route path="new-activity-map" element={<NewActivityMap />} />
 				<Route path="schedules" element={<Schedules />} />
 
 				{/*offices*/}
