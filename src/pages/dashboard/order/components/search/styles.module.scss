@@ -3,14 +3,11 @@
 	position: relative;
 }
 
-.list{
+.list {
 	left: 0;
-    z-index: 10;
-    position: absolute;
-	top:  calc(100% + 10px);
-    background-color: red;
-	border:0.938558px solid #E9ECF1;
+	z-index: 10;
+	position: absolute;
+	top: calc(100% + 10px);
+	background-color: red;
+	border: 0.938558px solid #e9ecf1;
 }
-
-
-

@@ -23,7 +23,6 @@ const HistoryOfOrders = lazy(() => import("./dashboard/order/history"))
 const OrderDetail = lazy(() => import("./dashboard/order/order-detail"))
 //order
 
-
 const Payment = lazy(() => import("./dashboard/payment"))
 const Ads = lazy(() => import("./dashboard/ads"))
 const Accounting = lazy(() => import("./dashboard/accounting"))
