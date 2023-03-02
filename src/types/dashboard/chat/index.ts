@@ -1,16 +1,32 @@
-export interface IChatType {
+export type IChatType = {
+	chatId: string
+	userId: string
+	createdAt: string
+	lastUnreadMessage: string
+	count: any
+	imageUrl: any
+	userName: any
+}
+
+export type IChatId = string | undefined
+
+export interface IMessages {
 	chatId: string;
-	userId: string;
 	createdAt: string;
-	lastUnreadMessage: string;
-	count?: any;
-	imageUrl?: any;
-	userName?: any;
+	fileUrls: any[];
+	message: string;
+	messageId: string;
+	repliedMessageId?: any;
+	userId: string;
+	userName: string;
 }
 
 export interface IChatState {
-	socket: any
-	setSocket: (socket: any) => void
 	chats: IChatType[]
 	setChats: (chats: IChatType[]) => void
+	chatId: IChatId
+	setChatId: (chatId: IChatId) => void
+	currentChat: IChatType
+	messages: IMessages[]
+	setMessages: (messages: IMessages[]) => void
 }

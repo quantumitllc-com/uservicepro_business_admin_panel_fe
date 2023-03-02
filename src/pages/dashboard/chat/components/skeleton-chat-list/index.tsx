@@ -1,15 +1,15 @@
 import ContentLoader from "react-content-loader"
 import { PropsWithChildren } from "react"
 
-const Skeleton = (props: PropsWithChildren) => (
+const SkeletonChatList = (props: PropsWithChildren) => (
 	<>
-		{Array.from({length: 5}, (_, i) => (
+		{Array.from({ length: 5 }, (_, i) => (
 			<ContentLoader
 				key={i}
 				speed={2}
-				width={330}
+				width={320}
 				height={86.5}
-				viewBox="0 0 330 86.5"
+				viewBox="0 0 320 86.5"
 				backgroundColor="#f3f3f3"
 				foregroundColor="#ecebeb"
 				{...props}
@@ -25,4 +25,4 @@ const Skeleton = (props: PropsWithChildren) => (
 	</>
 )
 
-export default Skeleton
+export default SkeletonChatList

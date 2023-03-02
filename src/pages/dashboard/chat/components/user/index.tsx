@@ -1,10 +1,12 @@
 import { Avatar, majorScale, minorScale, Pane, PaneProps } from "evergreen-ui"
-import { FC } from "react"
+import { FC, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 import MyHeading from "components/heading"
 import MyText from "components/text"
 import MyBadge from "components/badge"
 import { IChatType } from "types/dashboard/chat"
+import { useChatStore } from "store/chat"
 import { ReactComponent as Ellipse } from "./ellipse.svg"
 import styles from "./styles.module.scss"
 
@@ -13,41 +15,58 @@ interface ChatListProps extends PaneProps {
 	chat: IChatType
 }
 
-const User: FC<ChatListProps> = ({ active, chat }) => (
-	<Pane
-		className={active ? "" : styles.chat}
-		// width="330px"
-		justifyContent="space-between"
-		alignItems="center"
-		backgroundColor={active && "var(--chat-active)"}
-		display="flex"
-		padding={minorScale(4)}
-		borderBottom={!active && "1px solid var(--stroke-block)"}
-	>
+const User: FC<ChatListProps> = ({ active, chat }) => {
+	const navigate = useNavigate()
+	const { chatId, setChatId } = useChatStore((state) => ({
+		chatId: state.chatId,
+		setChatId: state.setChatId,
+	}))
+
+	useEffect(() => {
+		if (chatId) {
+			setChatId(chatId)
+		}
+	}, [chatId])
+
+	const handleOpenChat = (id: string) => {
+		setChatId(id)
+		navigate(id)
+	}
+
+	return (
 		<Pane
-			display="flex"
+			onClick={() => handleOpenChat(chat.chatId)}
+			className={active ? "" : styles.chat}
+			// width="330px"
+			justifyContent="space-between"
 			alignItems="center"
+			backgroundColor={active && "var(--chat-active)"}
+			display="flex"
+			padding={minorScale(4)}
+			borderBottom={!active && "1px solid var(--stroke-block)"}
 		>
-			<Pane position="relative">
-				<Avatar
-					marginRight={minorScale(2)}
-					src={chat.imageUrl}
-					size={50}
-				/>
-				<Ellipse className={styles.ellipse} />
+			<Pane display="flex" alignItems="center">
+				<Pane position="relative">
+					<Avatar
+						marginRight={minorScale(2)}
+						src={chat.imageUrl}
+						size={50}
+					/>
+					<Ellipse className={styles.ellipse} />
+				</Pane>
+				<Pane marginRight={majorScale(5)}>
+					<MyHeading fontSize={14}>{chat.userName || "name"}</MyHeading>
+					<MyText fontSize={12}>{chat.lastUnreadMessage}</MyText>
+				</Pane>
 			</Pane>
-			<Pane marginRight={majorScale(5)}>
-				<MyHeading fontSize={14}>{chat.userName || "name"}</MyHeading>
-				<MyText fontSize={12}>{chat.lastUnreadMessage}</MyText>
+			<Pane display="flex" flexDirection="column">
+				<MyText fontSize={12} color="var(--black)">
+					Jun 10
+				</MyText>
+				<MyBadge backgroundColor="var(--dark-green)">2</MyBadge>
 			</Pane>
 		</Pane>
-		<Pane display="flex" flexDirection="column">
-			<MyText fontSize={12} color="var(--black)">
-				Jun 10
-			</MyText>
-			<MyBadge backgroundColor="var(--dark-green)">2</MyBadge>
-		</Pane>
-	</Pane>
-)
+	)
+}
 
 export default User

@@ -1,11 +1,15 @@
 import { majorScale, minorScale, Pane } from "evergreen-ui"
 
-import MyText from "../../../../../../components/text"
+import MyText from "components/text"
 import styles from "./styles.module.scss"
 import { ReactComponent as Check } from "./check.svg"
 
-const Sender = () => (
-	<Pane marginLeft={majorScale(6)} flexDirection="column" display="flex">
+type SenderProps = {
+	text: string
+}
+
+const Sender = ({ text }: SenderProps) => (
+	<Pane marginLeft="auto" flexDirection="column" display="flex">
 		<Pane
 			backgroundColor="var(--dark-green)"
 			className={styles.sender}
@@ -16,12 +20,7 @@ const Sender = () => (
 			border="1px solid var(--stroke-block)"
 		>
 			<MyText color="var(--white)">
-				Do greatest at in learning steepest. Breakfast extremity
-				suffering one who all otherwise suspected. He at no nothing
-				forbade up moments. Wholly uneasy at missed be of pretty whence.
-				John way sir high than law who week. Surrounded prosperous
-				introduced it if is up dispatched. Improved so strictly produced
-				answered elegance is.
+				{text}
 			</MyText>
 		</Pane>
 		<Pane display="flex" justifyContent="space-between">

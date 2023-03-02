@@ -1,16 +1,14 @@
-import { Avatar, Pane, minorScale } from "evergreen-ui"
+import { Pane, minorScale } from "evergreen-ui"
 
-import MyText from "../../../../../../components/text"
+import MyText from "components/text"
 import styles from "./styles.module.scss"
 
-const Receiver = () => (
-	<Pane display="flex">
-		<Avatar
-			marginRight={minorScale(2)}
-			src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-			size={36}
-		/>
-		<Pane>
+type ReceiverProps = {
+	text: string
+}
+
+const Receiver = ({ text }: ReceiverProps) => (
+		<Pane marginRight="auto">
 			<Pane
 				className={styles.receiver}
 				paddingLeft={minorScale(5)}
@@ -20,15 +18,13 @@ const Receiver = () => (
 				border="1px solid var(--stroke-block)"
 			>
 				<MyText color="var(--black)">
-					Do greatest at in learning steepest. Breakfast extremity
-					suffering one who all otherwise suspected.
+					{text}
 				</MyText>
 			</Pane>
 			<MyText color="var(--grey)" fontSize={12} fontWeight={500}>
 				14:02
 			</MyText>
 		</Pane>
-	</Pane>
 )
 
 export default Receiver

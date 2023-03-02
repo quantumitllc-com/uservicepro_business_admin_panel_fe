@@ -18,7 +18,7 @@ const Profile = lazy(() => import("./dashboard/profile"))
 
 //chat
 const Chat = lazy(() => import("./dashboard/chat"))
-const Message = lazy(() => import("./dashboard/chat/components/message"))
+const Message = lazy(() => import("./dashboard/chat/messages"))
 
 //chat
 
@@ -138,7 +138,7 @@ export function Routing() {
 
 				{/*// chat*/}
 				<Route path="chat" element={<Chat />}>
-					<Route path=":id" element={<Message />} />
+					<Route path=":chatId" element={<Message />} />
 				</Route>
 				{/*chat*/}
 

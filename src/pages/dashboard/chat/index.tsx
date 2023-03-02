@@ -5,13 +5,11 @@ import React, { Suspense } from "react"
 import MyHeading from "components/heading"
 import { Spinner } from "components/spinner"
 import ChatList from "./components/chat-list"
-import Skeleton from "./components/skeleton"
+import SkeletonChatList from "./components/skeleton-chat-list"
 import { useChat } from "./useChat"
 
 const Chat = () => {
 	const { isLoading } = useChat()
-
-	console.log(isLoading)
 
 	return (
 		<Pane
@@ -41,7 +39,7 @@ const Chat = () => {
 					maxHeight="calc(100vh - 247px)"
 					width="330px"
 				>
-					{isLoading ? <Skeleton /> : <ChatList />}
+					{isLoading ? <SkeletonChatList /> : <ChatList />}
 				</Pane>
 			</Pane>
 			<Suspense fallback={<Spinner />}>
