@@ -16,6 +16,13 @@ const OneOffice = lazy(() => import("./dashboard/offices/detail"))
 const Profile = lazy(() => import("./dashboard/profile"))
 // profile
 
+//order
+const Order = lazy(() => import("./dashboard/order"))
+const Orders = lazy(() => import("./dashboard/order/orders"))
+const HistoryOfOrders = lazy(() => import("./dashboard/order/history"))
+const OrderDetail = lazy(() => import("./dashboard/order/order-detail"))
+//order
+
 const Payment = lazy(() => import("./dashboard/payment"))
 const Ads = lazy(() => import("./dashboard/ads"))
 const Accounting = lazy(() => import("./dashboard/accounting"))
@@ -121,16 +128,19 @@ export function Routing() {
 				<Route path="statistics" element={<Statistics />} />
 				<Route path="activity-map" element={<ActivityMap />} />
 				<Route path="schedules" element={<Schedules />} />
+				<Route path="order" element={<Order />}>
+					<Route index element={<Orders />} />
+					<Route path="history" element={<HistoryOfOrders />} />
+					<Route path=":orderId" element={<OrderDetail />} />
+				</Route>
 
 				{/*offices*/}
 				<Route path="offices" element={<Offices />} />
 				<Route path="offices/:id" element={<OneOffice />} />
 				{/*offices*/}
-
 				{/*// profile*/}
 				<Route path="profile" element={<Profile />} />
 				{/*// profile*/}
-
 				<Route path="ads" element={<Ads />} />
 				<Route path="accounting" element={<Accounting />} />
 				<Route path="chat" element={<Chat />} />
