@@ -7,9 +7,9 @@ export const getSocket = () => {
 
 	const socket = io("https://gateway.uservicepro.com", {
 		extraHeaders: {
-			Authorization: `Bearer ${tokens.accessToken}`
+			Authorization: `Bearer ${tokens.accessToken}`,
 		},
-		transports: ["polling"] // Use HTTP long-polling instead of WebSocket
+		transports: ["polling"], // Use HTTP long-polling instead of WebSocket
 	})
 
 	// if(!socket) {

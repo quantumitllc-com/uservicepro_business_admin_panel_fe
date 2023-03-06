@@ -55,16 +55,18 @@ const User: FC<ChatListProps> = ({ active, chat }) => {
 					<Ellipse className={styles.ellipse} />
 				</Pane>
 				<Pane marginRight={majorScale(5)}>
-					<MyHeading fontSize={14}>{chat.userName || "name"}</MyHeading>
+					<MyHeading fontSize={14}>
+						{chat.userName || "name"}
+					</MyHeading>
 					<MyText fontSize={12}>{chat.lastUnreadMessage}</MyText>
 				</Pane>
 			</Pane>
-			<Pane display="flex" flexDirection="column">
-				<MyText fontSize={12} color="var(--black)">
-					Jun 10
-				</MyText>
-				<MyBadge backgroundColor="var(--dark-green)">2</MyBadge>
-			</Pane>
+			{/*<Pane display="flex" flexDirection="column">*/}
+			{/*	<MyText fontSize={12} color="var(--black)">*/}
+			{/*		Jun 10*/}
+			{/*	</MyText>*/}
+			{/*	<MyBadge backgroundColor="var(--dark-green)">2</MyBadge>*/}
+			{/*</Pane>*/}
 		</Pane>
 	)
 }

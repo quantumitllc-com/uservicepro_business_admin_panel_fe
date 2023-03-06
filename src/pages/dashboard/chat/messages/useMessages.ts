@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { toast } from "react-toastify"
 import { shallow } from "zustand/shallow"
 
@@ -10,40 +10,61 @@ import { getSocket } from "utils/getSocket"
 export const useMessages = () => {
 	const [message, setMessage] = useState("")
 	const socket = getSocket()
-	const { chatId, setMessages, currentChat, messages } = useChatStore((state) => ({
-		chatId: state.chatId,
-		setMessages: state.setMessages,
-		currentChat: state.currentChat,
-		messages: state.messages
-	}), shallow)
+	const { chats, chatId, setMessages, currentChat, messages, setLastUnreadMessage } = useChatStore(
+		(state) => ({
+			chatId: state.chatId,
+			setMessages: state.setMessages,
+			currentChat: state.currentChat,
+			messages: state.messages,
+			setLastUnreadMessage: state.setLastUnreadMessage,
+			chats: state.chats,
+		}),
+		shallow,
+	)
+	const messagesEndRef = useRef<null | HTMLDivElement>(null)
 	const [size, setSize] = useState(10)
 	const [page, setPage] = useState(undefined)
 
-	const { isLoading, refetch } = useQuery(["messages", size, page, chatId], () => {
+	console.log(chats)
+	console.log(currentChat)
+
+	const { isLoading, refetch } = useQuery(
+		["messages", size, page, chatId],
+		() => {
 			return getMessages({ size, page, chatId })
 		},
 		{
-			select: data => data.data.data,
+			select: (data) => data.data.data,
 			onError: (error: any) => {
 				toast(error.message)
 			},
-			onSuccess: data => {
+			onSuccess: (data) => {
 				data.reverse()
 				setMessages(data)
-			}
-		})
+			},
+		},
+	)
 
-	const handleSendMessage = async() => {
-		if(message !== "") {
+	const handleSendMessage = async () => {
+		if (message !== "") {
 			const messageContent = {
 				message,
-				chatId
+				chatId,
 			}
 			await socket.emit("send_message", messageContent)
+			setLastUnreadMessage(message, currentChat.chatId)
 			setMessage("")
 			refetch()
 		}
 	}
+
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+	}
+
+	useEffect(() => {
+		scrollToBottom()
+	}, [messages])
 
 	return {
 		isLoading,
@@ -54,5 +75,6 @@ export const useMessages = () => {
 		handleSendMessage,
 		message,
 		setMessage,
+		messagesEndRef
 	}
 }

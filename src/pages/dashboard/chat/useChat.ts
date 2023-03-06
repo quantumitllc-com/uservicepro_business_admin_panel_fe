@@ -8,10 +8,13 @@ import { getSocket } from "utils/getSocket"
 export const useChat = () => {
 	const socket = getSocket()
 	const [isLoading, setIsLoading] = useState(true)
-	const { chats, setChats } = useChatStore((state) => ({
-		chats: state.chats,
-		setChats: state.setChats
-	}), shallow)
+	const { chats, setChats } = useChatStore(
+		(state) => ({
+			chats: state.chats,
+			setChats: state.setChats,
+		}),
+		shallow,
+	)
 
 	useEffect(() => {
 		socket.on("chats", (chats: IChatType[]) => {
@@ -26,8 +29,7 @@ export const useChat = () => {
 	}, [])
 
 	return {
-		// joinToRoom,
 		chats,
-		isLoading
+		isLoading,
 	}
 }

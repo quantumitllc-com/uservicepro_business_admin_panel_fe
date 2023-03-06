@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React from "react"
 import {
 	Avatar,
 	IconButton,
@@ -28,16 +28,8 @@ const Messages = () => {
 		handleSendMessage,
 		currentChat,
 		messages,
+		messagesEndRef
 	} = useMessages()
-	const messagesEndRef = useRef<null | HTMLDivElement>(null)
-
-	const scrollToBottom = () => {
-		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-	}
-
-	useEffect(() => {
-		scrollToBottom()
-	}, [messages])
 
 	return (
 		<Pane
@@ -53,7 +45,9 @@ const Messages = () => {
 				paddingX={majorScale(8)}
 				paddingY={minorScale(5)}
 			>
-				{isLoading ? <SkeletonAvatar /> : (
+				{isLoading ? (
+					<SkeletonAvatar />
+				) : (
 					<Pane display="flex" alignItems="center">
 						<Pane position="relative">
 							<Avatar
@@ -64,7 +58,9 @@ const Messages = () => {
 							<Ellipse className={styles.ellipse} />
 						</Pane>
 						<Pane marginRight={majorScale(5)}>
-							<MyHeading fontSize={14}>{currentChat.userName || "Name"}</MyHeading>
+							<MyHeading fontSize={14}>
+								{currentChat.userName || "Name"}
+							</MyHeading>
 							{/*<MyText fontSize={12}>Last seen 1 hour ago</MyText>*/}
 						</Pane>
 					</Pane>
@@ -80,16 +76,30 @@ const Messages = () => {
 				position="sticky"
 				overflowY="scroll"
 				height="calc(100vh - 247px)"
-				ref={messagesEndRef}
 			>
-				{isLoading ? <SkeletonMessages /> : (
+				{isLoading ? (
+					<SkeletonMessages />
+				) : (
 					<>
 						{messages.map((message) => {
 							if(message.userId === tokens.id) {
-								return <Sender key={message.createdAt} text={message.message} />
+								return (
+									<Sender
+										time={message.createdAt}
+										key={message.createdAt}
+										text={message.message}
+									/>
+								)
 							}
-							return <Receiver key={message.createdAt} text={message.message} />
+							return (
+								<Receiver
+									time={message.createdAt}
+									key={message.createdAt}
+									text={message.message}
+								/>
+							)
 						})}
+						<Pane ref={messagesEndRef} />
 					</>
 				)}
 			</Pane>
@@ -106,7 +116,10 @@ const Messages = () => {
 					width="100%"
 					placeholder="Write a message"
 				/>
-				<Pane paddingLeft={16} borderLeft="1px solid var(--stroke-block)">
+				<Pane
+					paddingLeft={16}
+					borderLeft="1px solid var(--stroke-block)"
+				>
 					<IconButton
 						disabled={message === ""}
 						onClick={handleSendMessage}
