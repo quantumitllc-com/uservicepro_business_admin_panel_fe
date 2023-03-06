@@ -133,14 +133,18 @@ const ActivityMap = () => {
 	const { openKey, handleToggle } = useOpenKey()
 
 	/* optional customization of filling per state and calling custom callbacks per state */
-	const statesCustomConfig = (chosen = "") => ({
-		[chosen]: {
-			fill: "#CC0000",
-		},
-	})
+	const statesCustomConfig = (chosen = "") => {
+		console.log(chosen)
+		return {
+			[chosen]: {
+				fill: "#CC0000",
+			},
+		}
+	}
 
 	/* mandatory */
 	const mapHandler = (event: { target: { dataset: { name: string } } }) => {
+		console.log(event.target.dataset.name)
 		setState(event.target.dataset.name)
 	}
 

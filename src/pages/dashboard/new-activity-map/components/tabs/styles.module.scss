@@ -1,0 +1,56 @@
+.container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.nav {
+	gap: 30px;
+	display: flex;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	padding: 15px 20px;
+	border-radius: 10px;
+	align-items: center;
+	border: 1px solid #e9ecf1;
+	background-color: #fcfcfc;
+	position: relative;
+	&::after {
+		top: 15px;
+		content: "";
+		width: 0.5px;
+		position: absolute;
+		left: calc(50% - 15px);
+		height: calc(100% - 30px);
+		background-color: #8f95b2;
+	}
+}
+
+.activeTab {
+	display: flex;
+	color: white;
+	padding: 6px 15px;
+	border-radius: 4px;
+	align-items: center;
+	background-color: #000;
+}
+
+.tab {
+	display: flex;
+	font-size: 14px;
+	color: #8f95b2;
+	font-weight: 400;
+	line-height: 18px;
+	padding: 6px 15px;
+	border-radius: 4px;
+	align-items: center;
+}
+
+.icon {
+	display: flex;
+	margin-right: 12px;
+	align-items: center;
+	justify-content: center;
+}

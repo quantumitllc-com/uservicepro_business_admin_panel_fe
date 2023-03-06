@@ -9,9 +9,9 @@ import duration from "dayjs/plugin/duration"
 
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { editEmployeeStatus } from "services/dashboard/employee"
+import { statuses } from "constants/employee"
 import styles from "./styles.module.scss"
 import { ReactComponent as IconDown } from "../../icons/caret-down.svg"
-import { statuses } from "../../constants/status"
 import { Pause } from "../pause"
 
 dayjs.extend(duration)
