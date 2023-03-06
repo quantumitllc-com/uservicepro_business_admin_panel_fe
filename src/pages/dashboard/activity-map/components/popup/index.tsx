@@ -41,7 +41,7 @@ export const Popup = ({
 					</div>
 					<div className={styles.info}>
 						<h3>{offices}</h3>
-						<span>Locations</span>
+						<span>Offices</span>
 					</div>
 				</div>
 				<div className={styles.wrapStatistics}>
