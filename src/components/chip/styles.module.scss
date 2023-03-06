@@ -1,0 +1,29 @@
+.container {
+	position: relative;
+	&:hover {
+		button {
+			display: flex;
+		}
+	}
+	button {
+		top: -10px;
+		right: -10px;
+		padding: 5px;
+		border: none;
+		display: none;
+		cursor: pointer;
+		margin-left: 5px;
+		position: absolute;
+		border-radius: 50%;
+		align-items: center;
+		justify-content: center;
+		background-color: #eb5757;
+	}
+	button:disabled,
+	button[disabled] {
+		color: #666666;
+		cursor: not-allowed;
+		border: 1px solid #999999;
+		background-color: #cccccc;
+	}
+}

@@ -9,6 +9,7 @@ import {
 	TimelineEventsIcon,
 	VolumeUpIcon,
 	WrenchIcon,
+	PanelTableIcon,
 } from "evergreen-ui"
 
 export const sidebarMenu = [
@@ -61,5 +62,10 @@ export const sidebarMenu = [
 		url: "accounting",
 		icon: CalculatorIcon,
 		text: "Accounting",
+	},
+	{
+		url: "order",
+		icon: PanelTableIcon,
+		text: "Order",
 	},
 ]
