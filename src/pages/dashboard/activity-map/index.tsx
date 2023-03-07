@@ -15,7 +15,7 @@ const NewActivityMap = () => (
 			<MyHeading fontSize={24} fontWeight={600}>
 				Activity map
 			</MyHeading>
-			<Tabs />
+			{/* <Tabs /> */}
 		</Pane>
 		<Suspense fallback={<Spinner />}>
 			<Outlet />
