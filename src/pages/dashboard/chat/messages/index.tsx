@@ -73,9 +73,9 @@ const Messages = () => {
 			<InfiniteScroll
 				className={styles.container}
 				pageStart={0}
-				// isReverse
+				isReverse
 				loadMore={handleNext}
-				// hasMore
+				hasMore
 				// useWindow={false}
 				// hasMore={hasMore}
 				// useWindow={false}

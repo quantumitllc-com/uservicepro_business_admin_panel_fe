@@ -67,6 +67,7 @@ export const useMessages = () => {
 	}
 
 	const handleNext = () => {
+		console.log("asd")
 		// setPage(prevState => prevState + 1)
 		// if (!isFetching && !isLoading) {
 		// setIncrementPage()
