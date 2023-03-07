@@ -69,18 +69,17 @@ export const useMessages = () => {
 	const handleNext = () => {
 		// setPage(prevState => prevState + 1)
 		// if (!isFetching && !isLoading) {
-			// setIncrementPage()
+		// setIncrementPage()
 		// }
 		// setPage(prevState => prevState + 1)
 		// setIncrementPage()
-
 		// if (!isFetching && !isLoading) {
 		// 	setIncrementPage()
-			// if (count > messages.length) {
-			// 	setIncrementPage()
-			// } else {
-			// 	setHasMore()
-			// }
+		// if (count > messages.length) {
+		// 	setIncrementPage()
+		// } else {
+		// 	setHasMore()
+		// }
 		// }
 	}
 

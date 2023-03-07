@@ -5,7 +5,7 @@ import {
 	majorScale,
 	minorScale,
 	Pane,
-	SendMessageIcon
+	SendMessageIcon,
 } from "evergreen-ui"
 import InfiniteScroll from "react-infinite-scroller"
 
@@ -30,7 +30,7 @@ const Messages = () => {
 		currentChat,
 		messages,
 		messagesEndRef,
-		handleNext
+		handleNext,
 	} = useMessages()
 
 	console.log(messages)
@@ -82,24 +82,28 @@ const Messages = () => {
 				// initialLoad={false}
 				// loader={<div className="loader" key={0}>Loading ...</div>}
 			>
-				{isLoading ? <SkeletonMessages /> : messages.map((message) => {
-					if(message.userId === tokens.id) {
+				{isLoading ? (
+					<SkeletonMessages />
+				) : (
+					messages.map((message) => {
+						if (message.userId === tokens.id) {
+							return (
+								<Sender
+									time={message.createdAt}
+									key={message.createdAt}
+									text={message.message}
+								/>
+							)
+						}
 						return (
-							<Sender
+							<Receiver
 								time={message.createdAt}
 								key={message.createdAt}
 								text={message.message}
 							/>
 						)
-					}
-					return (
-						<Receiver
-							time={message.createdAt}
-							key={message.createdAt}
-							text={message.message}
-						/>
-					)
-				})}
+					})
+				)}
 				<Pane ref={messagesEndRef} />
 			</InfiniteScroll>
 			<Pane

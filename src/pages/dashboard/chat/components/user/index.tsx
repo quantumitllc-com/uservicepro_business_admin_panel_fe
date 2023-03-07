@@ -19,11 +19,11 @@ const User: FC<ChatListProps> = ({ active, chat }) => {
 	const navigate = useNavigate()
 	const { chatId, setChatId } = useChatStore((state) => ({
 		chatId: state.chatId,
-		setChatId: state.setChatId
+		setChatId: state.setChatId,
 	}))
 
 	useEffect(() => {
-		if(chatId) {
+		if (chatId) {
 			setChatId(chatId)
 		}
 	}, [chatId])
@@ -55,10 +55,7 @@ const User: FC<ChatListProps> = ({ active, chat }) => {
 					/>
 					<Ellipse className={styles.ellipse} />
 				</Pane>
-				<Pane
-					whiteSpace="nowrap"
-					marginRight={majorScale(5)}
-				>
+				<Pane whiteSpace="nowrap" marginRight={majorScale(5)}>
 					<MyHeading fontSize={14}>
 						{chat.userName || "name"}
 					</MyHeading>
