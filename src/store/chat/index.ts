@@ -5,6 +5,8 @@ import { IChatState } from "../../types/dashboard/chat"
 import { getInitialChatId } from "../../utils/getInitialChatId"
 
 export const useChatStore = create<IChatState>((set, get) => ({
+	size: 15,
+	page: 1,
 	chats: [],
 	setChats: (chats) => set({ chats }),
 	currentChat: {
@@ -17,7 +19,9 @@ export const useChatStore = create<IChatState>((set, get) => ({
 		userName: "",
 	},
 	setLastUnreadMessage: (newLastUnreadMessage, chatId) => {
-		const currentChatIndex = get().chats.findIndex((c) => c.chatId === chatId)
+		const currentChatIndex = get().chats.findIndex(
+			(c) => c.chatId === chatId,
+		)
 		get().chats[currentChatIndex].lastUnreadMessage = newLastUnreadMessage
 	},
 	chatId: getInitialChatId(),
@@ -27,4 +31,7 @@ export const useChatStore = create<IChatState>((set, get) => ({
 	},
 	messages: [],
 	setMessages: (messages) => set({ messages }),
+	setIncrementPage: () => {
+		// get().messages
+	},
 }))

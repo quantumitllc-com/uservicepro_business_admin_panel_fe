@@ -10,26 +10,33 @@ import { getSocket } from "utils/getSocket"
 export const useMessages = () => {
 	const [message, setMessage] = useState("")
 	const socket = getSocket()
-	const { chats, chatId, setMessages, currentChat, messages, setLastUnreadMessage } = useChatStore(
+	const {
+		size,
+		// page,
+		setIncrementPage,
+		chatId,
+		setMessages,
+		currentChat,
+		messages,
+		setLastUnreadMessage,
+	} = useChatStore(
 		(state) => ({
+			size: state.size,
+			page: state.page,
+			setIncrementPage: state.setIncrementPage,
 			chatId: state.chatId,
 			setMessages: state.setMessages,
 			currentChat: state.currentChat,
 			messages: state.messages,
 			setLastUnreadMessage: state.setLastUnreadMessage,
-			chats: state.chats,
 		}),
 		shallow,
 	)
 	const messagesEndRef = useRef<null | HTMLDivElement>(null)
-	const [size, setSize] = useState(10)
-	const [page, setPage] = useState(undefined)
+	const [page, setPage] = useState(1)
 
-	console.log(chats)
-	console.log(currentChat)
-
-	const { isLoading, refetch } = useQuery(
-		["messages", size, page, chatId],
+	const { isLoading, refetch, isFetching } = useQuery(
+		["messages", page, chatId],
 		() => {
 			return getMessages({ size, page, chatId })
 		},
@@ -42,6 +49,7 @@ export const useMessages = () => {
 				data.reverse()
 				setMessages(data)
 			},
+			keepPreviousData: true,
 		},
 	)
 
@@ -58,6 +66,24 @@ export const useMessages = () => {
 		}
 	}
 
+	const handleNext = () => {
+		// setPage(prevState => prevState + 1)
+		// if (!isFetching && !isLoading) {
+			// setIncrementPage()
+		// }
+		// setPage(prevState => prevState + 1)
+		// setIncrementPage()
+
+		// if (!isFetching && !isLoading) {
+		// 	setIncrementPage()
+			// if (count > messages.length) {
+			// 	setIncrementPage()
+			// } else {
+			// 	setHasMore()
+			// }
+		// }
+	}
+
 	const scrollToBottom = () => {
 		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
 	}
@@ -67,6 +93,7 @@ export const useMessages = () => {
 	}, [messages])
 
 	return {
+		handleNext,
 		isLoading,
 		chatId,
 		setMessages,
@@ -75,6 +102,6 @@ export const useMessages = () => {
 		handleSendMessage,
 		message,
 		setMessage,
-		messagesEndRef
+		messagesEndRef,
 	}
 }

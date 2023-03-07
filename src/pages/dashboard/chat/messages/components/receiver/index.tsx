@@ -7,17 +7,13 @@ import styles from "./styles.module.scss"
 type ReceiverProps = {
 	text: string
 	time: string
-
 }
 
 const Receiver = ({ text, time }: ReceiverProps) => (
 	<Pane marginRight="auto">
 		<Pane
 			className={styles.receiver}
-			paddingLeft={minorScale(5)}
-			paddingBottom={minorScale(8)}
-			paddingRight={minorScale(8)}
-			paddingTop={minorScale(3)}
+			padding={minorScale(3)}
 			border="1px solid var(--stroke-block)"
 		>
 			<MyText color="var(--black)">{text}</MyText>

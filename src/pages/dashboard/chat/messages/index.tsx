@@ -7,6 +7,7 @@ import {
 	Pane,
 	SendMessageIcon
 } from "evergreen-ui"
+import InfiniteScroll from "react-infinite-scroller"
 
 import MyHeading from "components/heading"
 import { MyInput } from "components/input"
@@ -28,8 +29,11 @@ const Messages = () => {
 		handleSendMessage,
 		currentChat,
 		messages,
-		messagesEndRef
+		messagesEndRef,
+		handleNext
 	} = useMessages()
+
+	console.log(messages)
 
 	return (
 		<Pane
@@ -66,43 +70,38 @@ const Messages = () => {
 					</Pane>
 				)}
 			</Pane>
-			<Pane
-				display="flex"
-				flexDirection="column"
-				gap={minorScale(7)}
-				paddingRight={majorScale(9)}
-				paddingLeft={majorScale(5)}
-				paddingY={majorScale(6)}
-				position="sticky"
-				overflowY="scroll"
-				height="calc(100vh - 247px)"
+			<InfiniteScroll
+				className={styles.container}
+				pageStart={0}
+				// isReverse
+				loadMore={handleNext}
+				// hasMore
+				// useWindow={false}
+				// hasMore={hasMore}
+				// useWindow={false}
+				// initialLoad={false}
+				// loader={<div className="loader" key={0}>Loading ...</div>}
 			>
-				{isLoading ? (
-					<SkeletonMessages />
-				) : (
-					<>
-						{messages.map((message) => {
-							if(message.userId === tokens.id) {
-								return (
-									<Sender
-										time={message.createdAt}
-										key={message.createdAt}
-										text={message.message}
-									/>
-								)
-							}
-							return (
-								<Receiver
-									time={message.createdAt}
-									key={message.createdAt}
-									text={message.message}
-								/>
-							)
-						})}
-						<Pane ref={messagesEndRef} />
-					</>
-				)}
-			</Pane>
+				{isLoading ? <SkeletonMessages /> : messages.map((message) => {
+					if(message.userId === tokens.id) {
+						return (
+							<Sender
+								time={message.createdAt}
+								key={message.createdAt}
+								text={message.message}
+							/>
+						)
+					}
+					return (
+						<Receiver
+							time={message.createdAt}
+							key={message.createdAt}
+							text={message.message}
+						/>
+					)
+				})}
+				<Pane ref={messagesEndRef} />
+			</InfiniteScroll>
 			<Pane
 				justifyContent="space-between"
 				display="flex"

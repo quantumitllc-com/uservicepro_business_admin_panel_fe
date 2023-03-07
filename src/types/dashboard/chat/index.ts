@@ -22,6 +22,9 @@ export interface IMessages {
 }
 
 export interface IChatState {
+	size: number,
+	page: number,
+	setIncrementPage: () => void
 	chats: IChatType[]
 	setChats: (chats: IChatType[]) => void
 	chatId: IChatId
