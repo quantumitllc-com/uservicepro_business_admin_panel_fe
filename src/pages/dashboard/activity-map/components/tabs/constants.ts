@@ -5,7 +5,7 @@ import { ReactComponent as IconActiveMap } from "../../icons/active-map.svg"
 
 export const list = [
 	{
-		path: "/new-activity-map",
+		path: "/activity-map",
 		Icon: IconMap,
 		title: "Map",
 		IconActive: IconActiveMap,
