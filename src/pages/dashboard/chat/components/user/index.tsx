@@ -1,10 +1,11 @@
 import { Avatar, majorScale, minorScale, Pane, PaneProps } from "evergreen-ui"
 import { FC, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { shallow } from "zustand/shallow"
 
 import MyHeading from "components/heading"
 import MyText from "components/text"
-import MyBadge from "components/badge"
+// import MyBadge from "components/badge"
 import { IChatType } from "types/dashboard/chat"
 import { useChatStore } from "store/chat"
 import { ReactComponent as Ellipse } from "./ellipse.svg"
@@ -18,12 +19,14 @@ interface ChatListProps extends PaneProps {
 const User: FC<ChatListProps> = ({ active, chat }) => {
 	const navigate = useNavigate()
 	const { chatId, setChatId } = useChatStore((state) => ({
-		chatId: state.chatId,
-		setChatId: state.setChatId,
-	}))
+			chatId: state.chatId,
+			setChatId: state.setChatId
+		}),
+		shallow
+	)
 
 	useEffect(() => {
-		if (chatId) {
+		if(chatId) {
 			setChatId(chatId)
 		}
 	}, [chatId])

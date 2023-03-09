@@ -3,14 +3,10 @@ import React from "react"
 
 import { MyInput } from "components/input"
 import styles from "../middle-chat/styles.module.scss"
-import { useMessages } from "../../useMessages"
+import { useFooter } from "./useFooter"
 
 const FooterChat = () => {
-	const {
-		message,
-		setMessage,
-		handleSendMessage,
-	} = useMessages()
+	const { message, setMessage, handleSendMessage } = useFooter()
 
 	return (
 		<Pane
@@ -26,10 +22,7 @@ const FooterChat = () => {
 				width="100%"
 				placeholder="Write a message"
 			/>
-			<Pane
-				paddingLeft={16}
-				borderLeft="1px solid var(--stroke-block)"
-			>
+			<Pane paddingLeft={16} borderLeft="1px solid var(--stroke-block)">
 				<IconButton
 					disabled={message === ""}
 					onClick={handleSendMessage}

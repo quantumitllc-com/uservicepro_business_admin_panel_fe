@@ -1,25 +1,29 @@
 import React from "react"
 import { Avatar, majorScale, minorScale, Pane } from "evergreen-ui"
+import { shallow } from "zustand/shallow"
 
 import MyHeading from "components/heading"
 import { ReactComponent as Ellipse } from "pages/dashboard/chat/components/user/ellipse.svg"
+import { useChatStore } from "store/chat"
 import SkeletonAvatar from "../skeleton-avatar"
 import styles from "../middle-chat/styles.module.scss"
-import { useMessages } from "../../useMessages"
 
 const HeaderChat = () => {
 	const {
-		isLoading,
-		currentChat,
-	} = useMessages()
-
+		currentChat
+	} = useChatStore(
+		(state) => ({
+			currentChat: state.currentChat
+		}),
+		shallow
+	)
 	return (
 		<Pane
 			borderBottom="1px solid var(--stroke-block)"
 			paddingX={majorScale(8)}
 			paddingY={minorScale(5)}
 		>
-			{isLoading ? (
+			{currentChat.userName === "" ? (
 				<SkeletonAvatar />
 			) : (
 				<Pane display="flex" alignItems="center">

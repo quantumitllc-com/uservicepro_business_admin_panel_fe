@@ -22,13 +22,13 @@ export interface IMessages {
 }
 
 export interface IMeta {
-	hasNext: boolean;
-	hasPrev: boolean;
-	nextPage?: any;
-	page: number;
-	pages: number;
-	prevPage?: any;
-	totalCount: number;
+	hasNext: boolean
+	hasPrev: boolean
+	nextPage?: any
+	page: number
+	pages: number
+	prevPage?: any
+	totalCount: number
 }
 
 export interface IResponse {
@@ -49,7 +49,6 @@ export interface IChatState {
 	setLastUnreadMessage: (newLastUnreadMessage: string, chatId: string) => void
 	messages: IMessages[]
 	setMessages: (res: IResponse) => void
-	updateMessages: (res: IResponse) => void
 	hasMore: boolean
 	setHasMore: (value: boolean) => void
 	setIncrementPage: () => void

@@ -6,11 +6,7 @@ const Photo = () => {
 
 	return (
 		<Pane position="relative">
-			<Avatar
-				src={data.pictureUrl}
-				marginRight={20}
-				size={80}
-			/>
+			<Avatar src={data.pictureUrl} marginRight={20} size={80} />
 			<Pane
 				position="absolute"
 				right={20}

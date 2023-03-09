@@ -16,7 +16,7 @@ export const useChatStore = create<IChatState>((set, get) => ({
 		page: 1,
 		pages: 1,
 		prevPage: null,
-		totalCount: 0
+		totalCount: 0,
 	},
 	chats: [],
 	setChats: (chats) => set({ chats }),
@@ -27,11 +27,11 @@ export const useChatStore = create<IChatState>((set, get) => ({
 		lastUnreadMessage: "",
 		count: 0,
 		imageUrl: "",
-		userName: ""
+		userName: "",
 	},
 	setLastUnreadMessage: (newLastUnreadMessage, chatId) => {
 		const currentChatIndex = get().chats.findIndex(
-			(c) => c.chatId === chatId
+			(c) => c.chatId === chatId,
 		)
 		get().chats[currentChatIndex].lastUnreadMessage = newLastUnreadMessage
 	},
@@ -43,28 +43,14 @@ export const useChatStore = create<IChatState>((set, get) => ({
 	messages: [],
 	setMessages: (res) => {
 		res.data.reverse()
-		console.log(res)
 		set(() => ({
-			messages: [...get().messages, ...res.data],
-			meta: res.meta
-			// messages: [...state.messages, ...res.data]
-			// messages: [...res.data]
+			messages: [...res.data, ...get().messages],
+			meta: res.meta,
 		}))
-	},
-	updateMessages: (res) => {
-		set({ meta: res.meta })
-		res.data.reverse()
-		set((state) => (
-			{
-				messages: [...state.messages, ...res.data]
-			}
-		))
 	},
 	hasMore: true,
 	setHasMore: (value) => set({ hasMore: value }),
 	setIncrementPage: () => {
-		set((state) => (
-			{page: state.page + 1}
-		))
+		set((state) => ({ page: state.page + 1 }))
 	}
 }))

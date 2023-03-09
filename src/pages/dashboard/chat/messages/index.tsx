@@ -1,7 +1,5 @@
 import React from "react"
-import {
-	Pane,
-} from "evergreen-ui"
+import { Pane } from "evergreen-ui"
 
 import HeaderChat from "./components/header-chat"
 import FooterChat from "./components/footer-chat"

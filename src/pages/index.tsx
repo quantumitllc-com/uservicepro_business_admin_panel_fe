@@ -17,7 +17,6 @@ const OneOffice = lazy(() => import("./dashboard/offices/detail"))
 const Profile = lazy(() => import("./dashboard/profile"))
 // profile
 
-
 //chat
 const Chat = lazy(() => import("./dashboard/chat"))
 const Message = lazy(() => import("./dashboard/chat/messages"))

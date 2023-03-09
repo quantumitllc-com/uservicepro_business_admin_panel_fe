@@ -1,26 +1,20 @@
 import React, { memo } from "react"
 import InfiniteScroll from "react-infinite-scroller"
 import { Pane } from "evergreen-ui"
+import { shallow } from "zustand/shallow"
 
 import { Spinner } from "components/spinner"
 import { getTokens } from "utils/getTokens"
 import SkeletonMessages from "../skeleton-messages"
 import Sender from "../sender"
 import Receiver from "../receiver"
-import { useMessages } from "../../useMessages"
+import { useMessages } from "./useMessages"
 import styles from "./styles.module.scss"
 
 const MiddleChat = memo(() => {
 	const tokens = getTokens()
-	const {
-		isLoading,
-		messages,
-		messagesEndRef,
-		handleNext,
-		hasMore
-	} = useMessages()
-
-	console.log(messages)
+	const { isLoading, messages, messagesEndRef, handleNext, hasMore } =
+		useMessages()
 
 	return (
 		<Pane className={styles.container}>
@@ -36,12 +30,12 @@ const MiddleChat = memo(() => {
 				{isLoading ? (
 					<SkeletonMessages />
 				) : (
-					messages.map((message, i) => {
-						if(message.userId === tokens.id) {
+					messages.map((message) => {
+						if (message.userId === tokens.id) {
 							return (
 								<Sender
 									time={message.createdAt}
-									// key={message.messageId}
+									key={message.messageId}
 									text={message.message}
 								/>
 							)
@@ -49,7 +43,7 @@ const MiddleChat = memo(() => {
 						return (
 							<Receiver
 								time={message.createdAt}
-								// key={message.messageId}
+								key={message.messageId}
 								text={message.message}
 							/>
 						)
