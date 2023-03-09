@@ -10,7 +10,7 @@ type ReceiverProps = {
 }
 
 const Receiver = ({ text, time }: ReceiverProps) => (
-	<Pane marginRight="auto">
+	<Pane  marginRight="auto">
 		<Pane
 			className={styles.receiver}
 			padding={minorScale(3)}

@@ -7,7 +7,7 @@ import { Spinner } from "components/spinner"
 import { getBooleanSign } from "utils/getBooleanSign"
 import { useProfile } from "./useProfile"
 import Edit from "./edit"
-import Photo from "./components/Photo"
+import Photo from "./components/photo"
 
 const Profile = () => {
 	const { data, isLoading } = useProfile()

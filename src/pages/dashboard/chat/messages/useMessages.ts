@@ -12,46 +12,70 @@ export const useMessages = () => {
 	const socket = getSocket()
 	const {
 		size,
-		// page,
-		setIncrementPage,
+		page,
+		meta,
 		chatId,
 		setMessages,
+		// updateMessages,
 		currentChat,
 		messages,
 		setLastUnreadMessage,
+		hasMore,
+		setHasMore,
+		setIncrementPage
 	} = useChatStore(
 		(state) => ({
 			size: state.size,
 			page: state.page,
-			setIncrementPage: state.setIncrementPage,
+			meta: state.meta,
 			chatId: state.chatId,
 			setMessages: state.setMessages,
+			updateMessages: state.updateMessages,
 			currentChat: state.currentChat,
 			messages: state.messages,
 			setLastUnreadMessage: state.setLastUnreadMessage,
+			hasMore: state.hasMore,
+			setHasMore: state.setHasMore,
+			setIncrementPage: state.setIncrementPage
 		}),
 		shallow,
 	)
 	const messagesEndRef = useRef<null | HTMLDivElement>(null)
-	const [page, setPage] = useState(1)
 
-	const { isLoading, refetch, isFetching } = useQuery(
+	// console.log(meta)
+
+	const { isLoading, isFetching } = useQuery(
 		["messages", page, chatId],
 		() => {
 			return getMessages({ size, page, chatId })
 		},
 		{
-			select: (data) => data.data.data,
+			enabled: meta.hasNext,
+			select: (data) => data.data,
 			onError: (error: any) => {
 				toast(error.message)
 			},
 			onSuccess: (data) => {
-				data.reverse()
-				setMessages(data)
+				if (data.meta.totalCount > 0) {
+					setMessages(data)
+				}
 			},
 			keepPreviousData: true,
 		},
 	)
+
+	const handleNext = () => {
+		console.log("asd")
+		if (!isFetching && !isLoading) {
+			console.log(meta.totalCount)
+			console.log(messages.length)
+			if (meta.totalCount > messages.length) {
+				setIncrementPage()
+			} else {
+				setHasMore(false)
+			}
+		}
+	}
 
 	const handleSendMessage = async () => {
 		if (message !== "") {
@@ -62,26 +86,7 @@ export const useMessages = () => {
 			await socket.emit("send_message", messageContent)
 			setLastUnreadMessage(message, currentChat.chatId)
 			setMessage("")
-			refetch()
 		}
-	}
-
-	const handleNext = () => {
-		console.log("asd")
-		// setPage(prevState => prevState + 1)
-		// if (!isFetching && !isLoading) {
-		// setIncrementPage()
-		// }
-		// setPage(prevState => prevState + 1)
-		// setIncrementPage()
-		// if (!isFetching && !isLoading) {
-		// 	setIncrementPage()
-		// if (count > messages.length) {
-		// 	setIncrementPage()
-		// } else {
-		// 	setHasMore()
-		// }
-		// }
 	}
 
 	const scrollToBottom = () => {
@@ -103,5 +108,6 @@ export const useMessages = () => {
 		message,
 		setMessage,
 		messagesEndRef,
+		hasMore
 	}
 }

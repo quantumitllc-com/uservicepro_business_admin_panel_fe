@@ -8,6 +8,8 @@ const ChatList = () => {
 	const { chats } = useChat()
 	const { chatId } = useParams()
 
+	// console.log(chats)
+
 	return (
 		<Pane>
 			{chats.map((chat) => (

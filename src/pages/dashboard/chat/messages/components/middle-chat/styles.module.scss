@@ -12,11 +12,13 @@
 }
 
 .container {
+	padding: 36px;
+	overflow-y: scroll;
+	height: 100%;
+}
+
+.scroll {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	padding: 48px 48px 0 48px;
-	position: sticky;
-	overflow-y: scroll;
-	height: calc(100vh - 247px);
 }

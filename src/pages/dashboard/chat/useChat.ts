@@ -18,7 +18,9 @@ export const useChat = () => {
 
 	useEffect(() => {
 		socket.on("chats", (chats: IChatType[]) => {
-			setChats(chats)
+			if (Array.isArray(chats)) {
+				setChats(chats)
+			}
 			setIsLoading(false)
 		})
 
