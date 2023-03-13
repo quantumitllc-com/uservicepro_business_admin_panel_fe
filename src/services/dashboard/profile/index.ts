@@ -5,4 +5,5 @@ export const getProfile = () => request.get("company/profile")
 
 export const uploadFile = (data: FormData) => request.post("files", data)
 
-export const setCompanyPhoto = (data: SetCompanyPhotoTypes) => request.patch("company/profile/photo", data)
+export const setCompanyPhoto = (data: SetCompanyPhotoTypes) =>
+	request.patch("company/profile/photo", data)

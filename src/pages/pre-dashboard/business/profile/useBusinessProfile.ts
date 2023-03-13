@@ -45,6 +45,9 @@ export const useBusinessProfile = () => {
 	})
 
 	const onSubmit = (data: FormTypes) => {
+		// @ts-ignore
+		data.state = data.state.value
+		console.log(data)
 		mutate(data)
 	}
 

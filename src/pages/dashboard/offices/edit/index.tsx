@@ -7,6 +7,8 @@ import MyButton from "components/button"
 import { labels } from "../constatns"
 import { useEdit } from "./useEdit"
 import { useDetail } from "../detail/useDetail"
+import { states } from "../../../../constants/offices"
+import { Select } from "../../../../components/select"
 
 const Edit = () => {
 	const { form, onSubmit, isLoading, value, toggle } = useEdit()
@@ -15,6 +17,8 @@ const Edit = () => {
 	useEffect(() => {
 		form.reset(data)
 	}, [form, data])
+
+	// console.log(data)
 
 	return (
 		<Pane paddingTop={28}>
@@ -38,12 +42,20 @@ const Edit = () => {
 					flexDirection="column"
 					flex="1 1 50%"
 				>
-					<Input
+					<Select
+						placeholder={data.state}
 						disabled={!value}
 						name="state"
 						control={form.control}
-						label={<MyLabel>{labels.state}</MyLabel>}
+						label="State"
+						options={states}
 					/>
+					{/*<Input*/}
+					{/*	disabled={!value}*/}
+					{/*	name="state"*/}
+					{/*	control={form.control}*/}
+					{/*	label={<MyLabel>{labels.state}</MyLabel>}*/}
+					{/*/>*/}
 				</Pane>
 				<Pane
 					gap={minorScale(3)}

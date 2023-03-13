@@ -17,7 +17,7 @@ export const useProfile = () => {
 			rating: null,
 		},
 		isLoading,
-		refetch
+		refetch,
 	} = useQuery(["profile"], getProfile, {
 		onError: (error: any) => {
 			toast.error(error.message)

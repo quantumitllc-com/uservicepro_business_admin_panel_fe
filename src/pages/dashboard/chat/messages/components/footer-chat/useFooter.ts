@@ -8,20 +8,16 @@ import { getMessages } from "services/dashboard/chat"
 export const useFooter = () => {
 	const [message, setMessage] = useState("")
 	const socket = getSocket()
-	const {
-		chatId,
-		currentChat,
-		setLastUnreadMessage,
-		setNewMessage
-	} = useChatStore(
-		(state) => ({
-			chatId: state.chatId,
-			currentChat: state.currentChat,
-			setLastUnreadMessage: state.setLastUnreadMessage,
-			setNewMessage: state.setNewMessage
-		}),
-		shallow,
-	)
+	const { chatId, currentChat, setLastUnreadMessage, setNewMessage } =
+		useChatStore(
+			(state) => ({
+				chatId: state.chatId,
+				currentChat: state.currentChat,
+				setLastUnreadMessage: state.setLastUnreadMessage,
+				setNewMessage: state.setNewMessage,
+			}),
+			shallow,
+		)
 
 	const handleSendMessage = async () => {
 		if (message !== "") {
@@ -32,14 +28,14 @@ export const useFooter = () => {
 			await socket.emit("send_message", messageContent)
 			await setMessage("")
 			setTimeout(async () => {
-				const { data: { data } } = await getMessages({ size: 1, page: 1, chatId })
+				const {
+					data: { data },
+				} = await getMessages({ size: 1, page: 1, chatId })
 				await setLastUnreadMessage(message, currentChat.chatId)
 				await setNewMessage(data)
 			}, 1000)
-
 		}
 	}
-
 
 	return {
 		handleSendMessage,

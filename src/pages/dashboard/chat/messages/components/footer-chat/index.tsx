@@ -5,11 +5,7 @@ import styles from "../middle-chat/styles.module.scss"
 import { useFooter } from "./useFooter"
 
 const FooterChat = () => {
-	const {
-		handleSendMessage,
-		message,
-		setMessage
-	} = useFooter()
+	const { handleSendMessage, message, setMessage } = useFooter()
 
 	return (
 		<Pane

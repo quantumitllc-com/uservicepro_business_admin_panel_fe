@@ -7,9 +7,7 @@ import User from "../user"
 
 const ChatList = () => {
 	const { chatId } = useParams()
-	const {
-		chats,
-	} = useChatStore(
+	const { chats } = useChatStore(
 		(state) => ({
 			chats: state.chats,
 		}),

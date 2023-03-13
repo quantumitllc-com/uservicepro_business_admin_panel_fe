@@ -56,7 +56,7 @@ export const useChatStore = create<IChatState>((set, get) => ({
 	setNewMessage: (mes) => {
 		set((state) => ({
 			messages: [...get().messages, ...mes],
-			size: state.size + 1
+			size: state.size + 1,
 		}))
-	}
+	},
 }))
