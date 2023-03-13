@@ -1,131 +1,52 @@
-import {
-	Avatar,
-	majorScale,
-	SendMessageIcon,
-	minorScale,
-	Pane,
-	SearchInput,
-	IconButton,
-} from "evergreen-ui"
+import { minorScale, Pane, SearchInput } from "evergreen-ui"
+import { Outlet } from "react-router-dom"
+import React, { Suspense } from "react"
 
-import ChatList from "pages/dashboard/chat/components/chat/chat-list"
 import MyHeading from "components/heading"
-import { ReactComponent as Ellipse } from "pages/dashboard/chat/components/chat/chat-list/ellipse.svg"
-import MyText from "components/text"
-import Receiver from "pages/dashboard/chat/components/chat/receiver"
-import Sender from "pages/dashboard/chat/components/chat/sender"
-import { MyInput } from "components/input"
-import styles from "./styles.module.scss"
+import { Spinner } from "components/spinner"
+import ChatList from "./components/chat-list"
+import SkeletonChatList from "./components/skeleton-chat-list"
+import { useChat } from "./useChat"
 
-const Chat = () => (
-	<Pane
-		display="grid"
-		gridAutoColumns="1fr"
-		gridTemplateColumns="1fr 2fr"
-		gap="0px 0px"
-	>
-		<Pane paddingRight="30px">
-			<MyHeading
-				marginBottom={minorScale(5)}
-				fontSize={24}
-				fontWeight={600}
-			>
-				Messages
-			</MyHeading>
-			<SearchInput
-				height={minorScale(10)}
-				width="100%"
-				placeholder="Search anything"
-				marginBottom={minorScale(7)}
-			/>
-			<Pane
-				position="sticky"
-				overflowY="scroll"
-				maxHeight="calc(100vh - 247px)"
-			>
-				<ChatList active />
-				<ChatList />
-				<ChatList />
-				<ChatList />
-				<ChatList />
-				<ChatList />
-				<ChatList />
-				<ChatList />
-				<ChatList />
-			</Pane>
-		</Pane>
+const Chat = () => {
+	const { isLoading } = useChat()
+
+	return (
 		<Pane
-			maxHeight="calc(100vh - 139px)"
-			backgroundColor="var(--white)"
-			borderRadius="10px"
-			border="1px solid var(--stroke-block)"
-			display="flex"
-			flexDirection="column"
+			display="grid"
+			gridAutoColumns="1fr"
+			gridTemplateColumns="1fr 2fr"
+			gap="0px 30px"
+			height="100%"
 		>
-			<Pane
-				borderBottom="1px solid var(--stroke-block)"
-				paddingX={majorScale(8)}
-				paddingY={minorScale(5)}
-			>
-				<Pane display="flex">
-					<Pane position="relative">
-						<Avatar
-							marginRight={minorScale(2)}
-							src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
-							size={50}
-						/>
-						<Ellipse className={styles.ellipse} />
-					</Pane>
-					<Pane marginRight={majorScale(5)}>
-						<MyHeading fontSize={14}>Alex Mendes</MyHeading>
-						<MyText fontSize={12}>Last seen 1 hour ago</MyText>
-					</Pane>
-				</Pane>
-			</Pane>
-			<Pane
-				display="flex"
-				flexDirection="column"
-				gap={minorScale(7)}
-				paddingRight={majorScale(9)}
-				paddingLeft={majorScale(5)}
-				paddingY={majorScale(6)}
-				position="sticky"
-				overflowY="scroll"
-				maxHeight="calc(100vh - 247px)"
-			>
-				<Receiver />
-				<Sender />
-				<Receiver />
-				<Sender />
-			</Pane>
-			<Pane
-				justifyContent="space-between"
-				display="flex"
-				padding={minorScale(5)}
-				borderTop="1px solid var(--stroke-block)"
-			>
-				<MyInput
-					marginRight={16}
+			<Pane paddingRight="30px" borderRight="1px solid var(--grey)">
+				<MyHeading
+					marginBottom={minorScale(5)}
+					fontSize={24}
+					fontWeight={600}
+				>
+					Messages
+				</MyHeading>
+				<SearchInput
+					height={minorScale(10)}
 					width="100%"
-					placeholder="Write a message"
+					placeholder="Search anything"
+					marginBottom={minorScale(7)}
 				/>
 				<Pane
-					paddingLeft={16}
-					borderLeft="1px solid var(--stroke-block)"
+					position="sticky"
+					overflowY="scroll"
+					maxHeight="calc(100vh - 247px)"
+					width="330px"
 				>
-					<IconButton
-						className={styles.send}
-						size="large"
-						border="none"
-						borderRadius={50}
-						backgroundColor="var(--dark-green)"
-						padding={minorScale(5)}
-						icon={<SendMessageIcon color="var(--white)" />}
-					/>
+					{isLoading ? <SkeletonChatList /> : <ChatList />}
 				</Pane>
 			</Pane>
+			<Suspense fallback={<Spinner />}>
+				<Outlet />
+			</Suspense>
 		</Pane>
-	</Pane>
-)
+	)
+}
 
 export default Chat

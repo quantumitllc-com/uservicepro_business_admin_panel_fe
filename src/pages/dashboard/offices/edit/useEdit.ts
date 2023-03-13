@@ -13,10 +13,6 @@ import {
 import useBoolean from "hooks/useBoolean"
 import { defaultValues, schema } from "./form.schema"
 
-export interface EditProps {
-	toggleDetail: () => void
-}
-
 export const useEdit = () => {
 	const queryClient = useQueryClient()
 	const { id } = useParams()
@@ -57,6 +53,9 @@ export const useEdit = () => {
 	)
 
 	const onSubmit = (data: FormTypes) => {
+		// @ts-ignore
+		data.state = data.state.value
+		console.log(data)
 		mutate(data)
 	}
 

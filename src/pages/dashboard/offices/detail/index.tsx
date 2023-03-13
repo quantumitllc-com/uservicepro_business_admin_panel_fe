@@ -10,6 +10,8 @@ import Title from "./components/title"
 const OfficeDetail = () => {
 	const { isLoading, data } = useDetail()
 
+	console.log(data)
+
 	return (
 		<Pane display="flex" flexDirection="column" gap={28}>
 			<Title />

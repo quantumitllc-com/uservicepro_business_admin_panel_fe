@@ -17,6 +17,12 @@ const OneOffice = lazy(() => import("./dashboard/offices/detail"))
 const Profile = lazy(() => import("./dashboard/profile"))
 // profile
 
+//chat
+const Chat = lazy(() => import("./dashboard/chat"))
+const Message = lazy(() => import("./dashboard/chat/messages"))
+
+//chat
+
 //order
 const Order = lazy(() => import("./dashboard/order"))
 const Orders = lazy(() => import("./dashboard/order/orders"))
@@ -27,7 +33,6 @@ const OrderDetail = lazy(() => import("./dashboard/order/order-detail"))
 const Payment = lazy(() => import("./dashboard/payment"))
 const Ads = lazy(() => import("./dashboard/ads"))
 const Accounting = lazy(() => import("./dashboard/accounting"))
-const Chat = lazy(() => import("./dashboard/chat"))
 const PaymentBank = lazy(() => import("./dashboard/payment/paymentBank"))
 const SelectPayment = lazy(() => import("./dashboard/payment/paymentBank"))
 
@@ -144,9 +149,15 @@ export function Routing() {
 				{/*// profile*/}
 				<Route path="profile" element={<Profile />} />
 				{/*// profile*/}
+
+				{/*// chat*/}
+				<Route path="chat" element={<Chat />}>
+					<Route path=":chatId" element={<Message />} />
+				</Route>
+				{/*chat*/}
+
 				<Route path="ads" element={<Ads />} />
 				<Route path="accounting" element={<Accounting />} />
-				<Route path="chat" element={<Chat />} />
 				<Route path="payment" element={<Payment />} />
 				<Route path="payment/bank" element={<PaymentBank />} />
 				<Route path="payment/select" element={<SelectPayment />} />

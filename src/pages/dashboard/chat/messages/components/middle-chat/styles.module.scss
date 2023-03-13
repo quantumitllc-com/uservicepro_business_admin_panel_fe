@@ -10,3 +10,15 @@
 		border: none !important;
 	}
 }
+
+.container {
+	padding: 36px;
+	overflow-y: scroll;
+	height: 100%;
+}
+
+.scroll {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
