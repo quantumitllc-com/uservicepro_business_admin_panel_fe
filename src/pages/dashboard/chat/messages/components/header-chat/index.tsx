@@ -9,13 +9,11 @@ import SkeletonAvatar from "../skeleton-avatar"
 import styles from "../middle-chat/styles.module.scss"
 
 const HeaderChat = () => {
-	const {
-		currentChat
-	} = useChatStore(
+	const { currentChat } = useChatStore(
 		(state) => ({
-			currentChat: state.currentChat
+			currentChat: state.currentChat,
 		}),
-		shallow
+		shallow,
 	)
 	return (
 		<Pane

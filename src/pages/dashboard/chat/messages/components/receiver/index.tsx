@@ -19,7 +19,7 @@ const Receiver = ({ text, time }: ReceiverProps) => (
 			<MyText color="var(--black)">{text}</MyText>
 		</Pane>
 		<MyText color="var(--grey)" fontSize={12} fontWeight={500}>
-			{dayjs(time).format("H:m DD/MM/YY")}
+			{dayjs(time).format("H:mm DD/MM/YY")}
 		</MyText>
 	</Pane>
 )

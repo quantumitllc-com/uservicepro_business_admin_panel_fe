@@ -1,12 +1,15 @@
 import { IconButton, minorScale, Pane, SendMessageIcon } from "evergreen-ui"
-import React from "react"
 
 import { MyInput } from "components/input"
 import styles from "../middle-chat/styles.module.scss"
 import { useFooter } from "./useFooter"
 
 const FooterChat = () => {
-	const { message, setMessage, handleSendMessage } = useFooter()
+	const {
+		handleSendMessage,
+		message,
+		setMessage
+	} = useFooter()
 
 	return (
 		<Pane

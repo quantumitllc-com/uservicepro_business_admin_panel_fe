@@ -3,6 +3,7 @@ import { shallow } from "zustand/shallow"
 
 import { getSocket } from "utils/getSocket"
 import { useChatStore } from "store/chat"
+import { getMessages } from "services/dashboard/chat"
 
 export const useFooter = () => {
 	const [message, setMessage] = useState("")
@@ -11,11 +12,13 @@ export const useFooter = () => {
 		chatId,
 		currentChat,
 		setLastUnreadMessage,
+		setNewMessage
 	} = useChatStore(
 		(state) => ({
 			chatId: state.chatId,
 			currentChat: state.currentChat,
 			setLastUnreadMessage: state.setLastUnreadMessage,
+			setNewMessage: state.setNewMessage
 		}),
 		shallow,
 	)
@@ -27,8 +30,13 @@ export const useFooter = () => {
 				chatId,
 			}
 			await socket.emit("send_message", messageContent)
-			setLastUnreadMessage(message, currentChat.chatId)
-			setMessage("")
+			await setMessage("")
+			setTimeout(async () => {
+				const { data: { data } } = await getMessages({ size: 1, page: 1, chatId })
+				await setLastUnreadMessage(message, currentChat.chatId)
+				await setNewMessage(data)
+			}, 1000)
+
 		}
 	}
 

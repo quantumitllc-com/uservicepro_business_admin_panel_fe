@@ -52,4 +52,5 @@ export interface IChatState {
 	hasMore: boolean
 	setHasMore: (value: boolean) => void
 	setIncrementPage: () => void
+	setNewMessage: (mes: IMessages[]) => void
 }

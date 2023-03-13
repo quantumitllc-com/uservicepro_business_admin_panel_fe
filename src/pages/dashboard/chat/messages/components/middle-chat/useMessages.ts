@@ -4,7 +4,7 @@ import { shallow } from "zustand/shallow"
 
 import { getMessages } from "services/dashboard/chat"
 import { useChatStore } from "store/chat"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export const useMessages = () => {
 	const messagesEndRef = useRef<null | HTMLDivElement>(null)
@@ -34,6 +34,7 @@ export const useMessages = () => {
 		}),
 		shallow,
 	)
+	const [message, setMessage] = useState("")
 
 	const { isLoading, isFetching } = useQuery(
 		["messages", page, chatId],
@@ -74,6 +75,7 @@ export const useMessages = () => {
 	}, [messages])
 
 	return {
+		messagesEndRef,
 		handleNext,
 		isLoading,
 		chatId,
@@ -81,6 +83,7 @@ export const useMessages = () => {
 		currentChat,
 		messages,
 		hasMore,
-		messagesEndRef
+		message,
+		setMessage,
 	}
 }

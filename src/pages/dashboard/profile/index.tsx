@@ -12,7 +12,7 @@ import Photo from "./components/photo"
 const Profile = () => {
 	const { data, isLoading } = useProfile()
 
-	console.log(data)
+	// console.log(data)
 
 	return (
 		<Pane>
@@ -43,7 +43,7 @@ const Profile = () => {
 									<MyHeading>Company Details</MyHeading>
 								</Pane>
 								<Pane display="flex">
-									<Photo />
+									<Photo data={data} />
 									<Pane
 										display="flex"
 										gap={8}

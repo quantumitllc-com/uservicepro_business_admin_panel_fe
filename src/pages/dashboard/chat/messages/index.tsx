@@ -2,8 +2,8 @@ import React from "react"
 import { Pane } from "evergreen-ui"
 
 import HeaderChat from "./components/header-chat"
-import FooterChat from "./components/footer-chat"
 import MiddleChat from "./components/middle-chat"
+import FooterChat from "./components/footer-chat"
 
 const Messages = () => {
 	return (

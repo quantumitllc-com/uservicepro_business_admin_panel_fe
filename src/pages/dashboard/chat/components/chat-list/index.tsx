@@ -1,14 +1,20 @@
 import { Pane } from "evergreen-ui"
 import { useParams } from "react-router"
+import { shallow } from "zustand/shallow"
 
+import { useChatStore } from "store/chat"
 import User from "../user"
-import { useChat } from "../../useChat"
 
 const ChatList = () => {
-	const { chats } = useChat()
 	const { chatId } = useParams()
-
-	// console.log(chats)
+	const {
+		chats,
+	} = useChatStore(
+		(state) => ({
+			chats: state.chats,
+		}),
+		shallow,
+	)
 
 	return (
 		<Pane>

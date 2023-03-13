@@ -52,5 +52,11 @@ export const useChatStore = create<IChatState>((set, get) => ({
 	setHasMore: (value) => set({ hasMore: value }),
 	setIncrementPage: () => {
 		set((state) => ({ page: state.page + 1 }))
+	},
+	setNewMessage: (mes) => {
+		set((state) => ({
+			messages: [...get().messages, ...mes],
+			size: state.size + 1
+		}))
 	}
 }))

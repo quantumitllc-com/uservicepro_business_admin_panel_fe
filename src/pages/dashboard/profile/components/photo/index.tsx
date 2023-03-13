@@ -1,26 +1,32 @@
 import { Avatar, CameraIcon, Pane } from "evergreen-ui"
-import { useProfile } from "../../useProfile"
 
-const Photo = () => {
-	const { data } = useProfile()
+import { CompanyProfile } from "types/dashboard/profile"
+import styles from "./styles.module.scss"
+import { usePhoto } from "./usePhoto"
+
+const loader = "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921"
+
+const Photo = ({ data }: CompanyProfile) => {
+	const {
+		isLoading,
+		selectPhoto,
+		isLoadingSetPhoto
+	} = usePhoto()
 
 	return (
 		<Pane position="relative">
-			<Avatar src={data.pictureUrl} marginRight={20} size={80} />
-			<Pane
-				position="absolute"
-				right={20}
-				bottom={1}
-				height={30}
-				width={30}
-				backgroundColor="var(--dark-green)"
-				display="flex"
-				alignItems="center"
-				justifyContent="center"
-				borderRadius={16}
-			>
-				<CameraIcon color="var(--white)" />
-			</Pane>
+			<Avatar src={(isLoading || isLoadingSetPhoto) ? loader : data.pictureUrl} marginRight={20} size={80} />
+			<label htmlFor="upload" className={styles.label}>
+				<CameraIcon className={styles.avatar}
+				            color="var(--white)" />
+				<input
+					accept="image/png, image/jpeg"
+					onChange={selectPhoto}
+					type="file"
+					id="upload"
+					className={styles.hidden}
+				/>
+			</label>
 		</Pane>
 	)
 }

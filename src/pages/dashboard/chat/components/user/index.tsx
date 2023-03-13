@@ -2,6 +2,7 @@ import { Avatar, majorScale, minorScale, Pane, PaneProps } from "evergreen-ui"
 import { FC, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { shallow } from "zustand/shallow"
+import dayjs from "dayjs"
 
 import MyHeading from "components/heading"
 import MyText from "components/text"
@@ -18,15 +19,16 @@ interface ChatListProps extends PaneProps {
 
 const User: FC<ChatListProps> = ({ active, chat }) => {
 	const navigate = useNavigate()
-	const { chatId, setChatId } = useChatStore((state) => ({
+	const { chatId, setChatId } = useChatStore(
+		(state) => ({
 			chatId: state.chatId,
-			setChatId: state.setChatId
+			setChatId: state.setChatId,
 		}),
-		shallow
+		shallow,
 	)
 
 	useEffect(() => {
-		if(chatId) {
+		if (chatId) {
 			setChatId(chatId)
 		}
 	}, [chatId])
@@ -41,7 +43,7 @@ const User: FC<ChatListProps> = ({ active, chat }) => {
 			overflowX="hidden"
 			onClick={() => handleOpenChat(chat.chatId)}
 			className={active ? "" : styles.chat}
-			// width="330px"
+			width="auto"
 			justifyContent="space-between"
 			alignItems="center"
 			backgroundColor={active && "var(--chat-active)"}
@@ -65,12 +67,12 @@ const User: FC<ChatListProps> = ({ active, chat }) => {
 					<MyText fontSize={12}>{chat.lastUnreadMessage}</MyText>
 				</Pane>
 			</Pane>
-			{/*<Pane display="flex" flexDirection="column">*/}
-			{/*	<MyText fontSize={12} color="var(--black)">*/}
-			{/*		Jun 10*/}
-			{/*	</MyText>*/}
-			{/*	<MyBadge backgroundColor="var(--dark-green)">2</MyBadge>*/}
-			{/*</Pane>*/}
+			<Pane display="flex" flexDirection="column">
+				<MyText fontSize={12} color="var(--black)">
+					{dayjs(chat.createdAt).format("DD/MM/YY")}
+				</MyText>
+				{/*<MyBadge backgroundColor="var(--dark-green)">2</MyBadge>*/}
+			</Pane>
 		</Pane>
 	)
 }
