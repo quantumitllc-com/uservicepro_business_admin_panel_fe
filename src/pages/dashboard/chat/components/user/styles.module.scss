@@ -1,8 +1,6 @@
-.chat {
-	&:hover {
-		cursor: pointer;
-		background-color: var(--chat-active);
-	}
+.activeChat {
+	background-color: var(--chat-active)
+
 }
 
 .ellipse {

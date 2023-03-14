@@ -42,19 +42,20 @@ export const useMessages = () => {
 			return getMessages({ size, page, chatId })
 		},
 		{
-			enabled: meta.hasNext,
 			select: (data) => data.data,
 			onError: (error: any) => {
 				toast(error.message)
 			},
 			onSuccess: (data) => {
 				if (data.meta.totalCount > 0) {
+					setHasMore(true)
 					setMessages(data)
 				}
 			},
 			keepPreviousData: true,
 		},
 	)
+
 
 	const handleNext = () => {
 		if (!isFetching && !isLoading) {

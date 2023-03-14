@@ -1,8 +1,9 @@
 import ContentLoader from "react-content-loader"
 import { PropsWithChildren } from "react"
+import { Pane } from "evergreen-ui"
 
 const SkeletonChatList = (props: PropsWithChildren) => (
-	<>
+	<Pane display="flex" flexDirection="column">
 		{Array.from({ length: 5 }, (_, i) => (
 			<ContentLoader
 				key={i}
@@ -22,7 +23,7 @@ const SkeletonChatList = (props: PropsWithChildren) => (
 				<rect x="282" y="31" rx="3" ry="3" width="33" height="14" />
 			</ContentLoader>
 		))}
-	</>
+	</Pane>
 )
 
 export default SkeletonChatList

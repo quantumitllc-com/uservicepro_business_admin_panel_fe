@@ -3,7 +3,7 @@ import {
 	CreditCardIcon,
 	GeolocationIcon,
 	GlobeNetworkIcon,
-	HomeIcon,
+	// HomeIcon,
 	PeopleIcon,
 	PieChartIcon,
 	TimelineEventsIcon,
@@ -13,11 +13,11 @@ import {
 } from "evergreen-ui"
 
 export const sidebarMenu = [
-	{
-		url: "/",
-		icon: HomeIcon,
-		text: "Dashboard",
-	},
+	// {
+	// 	url: "/",
+	// 	icon: HomeIcon,
+	// 	text: "Dashboard",
+	// },
 	{
 		url: "employee",
 		icon: PeopleIcon,
