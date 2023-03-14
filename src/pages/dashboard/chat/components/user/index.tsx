@@ -33,11 +33,20 @@ const User: FC<ChatListProps> = ({ isActive, chat }) => {
 					/>
 					<Ellipse className={styles.ellipse} />
 				</Pane>
-				<Pane whiteSpace="nowrap" marginRight={majorScale(5)}>
+				<Pane
+					width="200px"
+					textOverflow="ellipsis"
+					overflow="hidden"
+					whiteSpace="nowrap"
+				>
 					<MyHeading fontSize={14}>
 						{chat.userName || "name"}
 					</MyHeading>
-					<MyText fontSize={12}>{chat.lastUnreadMessage}</MyText>
+					<MyText
+						fontSize={12}
+					>
+						{chat.lastUnreadMessage}
+					</MyText>
 				</Pane>
 			</Pane>
 			<Pane display="flex" flexDirection="column">

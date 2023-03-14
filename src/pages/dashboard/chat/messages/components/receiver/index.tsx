@@ -3,6 +3,7 @@ import dayjs from "dayjs"
 
 import MyText from "components/text"
 import styles from "./styles.module.scss"
+import { findSubstring } from "../../../../../../utils/findSubstring"
 
 type ReceiverProps = {
 	text: string
@@ -16,7 +17,9 @@ const Receiver = ({ text, time }: ReceiverProps) => (
 			padding={minorScale(3)}
 			border="1px solid var(--stroke-block)"
 		>
-			<MyText color="var(--black)">{text}</MyText>
+			{findSubstring(text) ? <a className={styles.link} rel="noreferrer" target="_blank" href={text}>file</a> : (
+				<MyText color="var(--black)">{text}</MyText>
+			)}
 		</Pane>
 		<MyText color="var(--grey)" fontSize={12} fontWeight={500}>
 			{dayjs(time).format("H:mm DD/MM/YY")}

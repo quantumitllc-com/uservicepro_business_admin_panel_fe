@@ -1,36 +1,51 @@
-import { IconButton, minorScale, Pane, SendMessageIcon } from "evergreen-ui"
+import { IconButton, minorScale, Pane, SendMessageIcon, PaperclipIcon } from "evergreen-ui"
 
 import { MyInput } from "components/input"
-import styles from "../middle-chat/styles.module.scss"
+import styles from "./styles.module.scss"
 import { useFooter } from "./useFooter"
 
 const FooterChat = () => {
-	const { handleSendMessage, message, setMessage } = useFooter()
+	const { handleSendMessage, message, setMessage, file, selectFile, isLoading } = useFooter()
 
 	return (
 		<Pane
+			alignItems="center"
 			justifyContent="space-between"
 			display="flex"
 			padding={minorScale(5)}
 			borderTop="1px solid var(--stroke-block)"
+			gap={20}
 		>
+			<label htmlFor="file" className={styles.label}>
+				<PaperclipIcon
+					className={styles.clip}
+					size={30}
+					color="var(--grey)"
+				/>
+				<input
+					onChange={selectFile}
+					accept="image/png, image/jpeg .doc, .docx, .pdf"
+					type="file"
+					id="file"
+					className={styles.hidden}
+				/>
+			</label>
 			<MyInput
+				disabled={!!file || isLoading}
 				value={message}
 				onChange={(e) => setMessage(e.target.value)}
-				marginRight={16}
 				width="100%"
 				placeholder="Write a message"
 			/>
-			<Pane paddingLeft={16} borderLeft="1px solid var(--stroke-block)">
+			<Pane>
 				<IconButton
-					disabled={message === ""}
+					disabled={!message || isLoading}
 					onClick={handleSendMessage}
 					className={styles.send}
 					size="large"
 					border="none"
 					borderRadius={50}
 					backgroundColor="var(--dark-green)"
-					padding={minorScale(5)}
 					icon={<SendMessageIcon color="var(--white)" />}
 				/>
 			</Pane>
