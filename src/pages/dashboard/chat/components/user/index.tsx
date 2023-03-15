@@ -1,57 +1,30 @@
 import { Avatar, majorScale, minorScale, Pane, PaneProps } from "evergreen-ui"
-import { FC, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { shallow } from "zustand/shallow"
+import { FC } from "react"
 import dayjs from "dayjs"
 
 import MyHeading from "components/heading"
 import MyText from "components/text"
 // import MyBadge from "components/badge"
 import { IChatType } from "types/dashboard/chat"
-import { useChatStore } from "store/chat"
 import { ReactComponent as Ellipse } from "./ellipse.svg"
 import styles from "./styles.module.scss"
 
 interface ChatListProps extends PaneProps {
-	active?: boolean
+	isActive: boolean
 	chat: IChatType
 }
 
-const User: FC<ChatListProps> = ({ active, chat }) => {
-	const navigate = useNavigate()
-	const { chatId, setChatId } = useChatStore(
-		(state) => ({
-			chatId: state.chatId,
-			setChatId: state.setChatId,
-		}),
-		shallow,
-	)
-
-	useEffect(() => {
-		if (chatId) {
-			setChatId(chatId)
-		}
-	}, [chatId])
-
-	const handleOpenChat = (id: string) => {
-		setChatId(id)
-		navigate(id)
-	}
-
+const User: FC<ChatListProps> = ({ isActive, chat }) => {
 	return (
 		<Pane
-			overflowX="hidden"
-			onClick={() => handleOpenChat(chat.chatId)}
-			className={active ? "" : styles.chat}
-			width="auto"
+			className={isActive ? styles.activeChat : ""}
 			justifyContent="space-between"
 			alignItems="center"
-			backgroundColor={active && "var(--chat-active)"}
 			display="flex"
 			padding={minorScale(4)}
-			borderBottom={!active && "1px solid var(--stroke-block)"}
+			borderBottom={!isActive && "1px solid var(--stroke-block)"}
 		>
-			<Pane display="flex" alignItems="center">
+			<Pane width="75%" display="flex" alignItems="center">
 				<Pane position="relative">
 					<Avatar
 						marginRight={minorScale(2)}
@@ -60,11 +33,20 @@ const User: FC<ChatListProps> = ({ active, chat }) => {
 					/>
 					<Ellipse className={styles.ellipse} />
 				</Pane>
-				<Pane whiteSpace="nowrap" marginRight={majorScale(5)}>
+				<Pane
+					width="200px"
+					textOverflow="ellipsis"
+					overflow="hidden"
+					whiteSpace="nowrap"
+				>
 					<MyHeading fontSize={14}>
 						{chat.userName || "name"}
 					</MyHeading>
-					<MyText fontSize={12}>{chat.lastUnreadMessage}</MyText>
+					<MyText
+						fontSize={12}
+					>
+						{chat.lastUnreadMessage}
+					</MyText>
 				</Pane>
 			</Pane>
 			<Pane display="flex" flexDirection="column">

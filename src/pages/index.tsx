@@ -74,6 +74,8 @@ const Congratulations = lazy(
 	() => import("./pre-dashboard/congratulations/congratulations"),
 )
 
+const NotFound = lazy(() => import("./not-found"))
+
 function PrivateRoute({ children }: any) {
 	const tokens = getTokens()
 
@@ -123,7 +125,7 @@ export function Routing() {
 					</PrivateRoute>
 				}
 			>
-				<Route path="/" element={<Dashboard />} />
+				{/*<Route path="/" element={<Dashboard />} />*/}
 				<Route path="employee" element={<Employee />} />
 				<Route
 					path="employee/:employeeId"
@@ -163,6 +165,8 @@ export function Routing() {
 				<Route path="payment/select" element={<SelectPayment />} />
 			</Route>
 			{/*dashboard*/}
+
+			<Route path="*" element={<NotFound />} />
 		</Routes>
 	)
 }

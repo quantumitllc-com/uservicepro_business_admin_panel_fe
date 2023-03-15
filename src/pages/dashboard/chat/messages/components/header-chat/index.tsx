@@ -15,13 +15,14 @@ const HeaderChat = () => {
 		}),
 		shallow,
 	)
+
 	return (
 		<Pane
 			borderBottom="1px solid var(--stroke-block)"
 			paddingX={majorScale(8)}
 			paddingY={minorScale(5)}
 		>
-			{currentChat.userName === "" ? (
+			{!currentChat.chatId ? (
 				<SkeletonAvatar />
 			) : (
 				<Pane display="flex" alignItems="center">

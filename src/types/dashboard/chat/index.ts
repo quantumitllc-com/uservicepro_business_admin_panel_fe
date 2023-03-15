@@ -48,6 +48,7 @@ export interface IChatState {
 	currentChat: IChatType
 	setLastUnreadMessage: (newLastUnreadMessage: string, chatId: string) => void
 	messages: IMessages[]
+	resetMessages: () => void
 	setMessages: (res: IResponse) => void
 	hasMore: boolean
 	setHasMore: (value: boolean) => void

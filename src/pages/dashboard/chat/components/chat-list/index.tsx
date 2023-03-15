@@ -1,27 +1,49 @@
 import { Pane } from "evergreen-ui"
-import { useParams } from "react-router"
 import { shallow } from "zustand/shallow"
+import { NavLink } from "react-router-dom"
+import { useEffect } from "react"
 
 import { useChatStore } from "store/chat"
 import User from "../user"
 
 const ChatList = () => {
-	const { chatId } = useParams()
-	const { chats } = useChatStore(
+	const { chats, chatId, setChatId, resetMessages } = useChatStore(
 		(state) => ({
+			chatId: state.chatId,
+			resetMessages: state.resetMessages,
+			setChatId: state.setChatId,
 			chats: state.chats,
 		}),
 		shallow,
 	)
 
+	useEffect(() => {
+		if (chatId) {
+			setChatId(chatId)
+		}
+	}, [chatId])
+
+	const handleOpenChat = (id: string) => {
+		setChatId(id)
+		resetMessages()
+	}
+
 	return (
 		<Pane>
 			{chats.map((chat) => (
-				<User
+				<NavLink
 					key={chat.chatId}
-					active={chatId === chat.chatId ? true : undefined}
-					chat={chat}
-				/>
+					to={chat.chatId}
+					onClick={() => handleOpenChat(chat.chatId)}
+				>
+					{({ isActive }) => (
+						<User
+							isActive={isActive}
+							chat={chat}
+						/>
+					)}
+				</NavLink>
+
 			))}
 		</Pane>
 	)
