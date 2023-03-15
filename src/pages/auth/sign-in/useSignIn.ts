@@ -14,15 +14,15 @@ export const useSignIn = () => {
 	const form = useForm<FormTypes>({
 		resolver: yupResolver(schema),
 		mode: "onSubmit",
-		defaultValues
+		defaultValues,
 	})
 
 	const { mutate, isLoading } = useMutation(signIn, {
-		onSuccess: async({ data }) => {
+		onSuccess: async ({ data }) => {
 			if (data.userType === "COMPANY") {
 				const tokens = JSON.stringify(data)
 				await localStorage.setItem("tokens", tokens)
-				if(data.preDashboardInfo.isFinished) {
+				if (data.preDashboardInfo.isFinished) {
 					await navigate("/employee")
 				} else {
 					await navigate("/pre-dashboard/business")
@@ -33,7 +33,7 @@ export const useSignIn = () => {
 		},
 		onError: (error: any) => {
 			toast.error(error.response.data.message)
-		}
+		},
 	})
 
 	const onSubmit = (data: FormTypes) => {

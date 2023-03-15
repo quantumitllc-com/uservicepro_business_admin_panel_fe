@@ -8,7 +8,7 @@ export const schema = Yup.object().shape({
 	// state: Yup.string().required(),
 	state: Yup.object().shape({
 		label: Yup.string().required("Is required"),
-		value: Yup.string().required("Is required")
+		value: Yup.string().required("Is required"),
 	}),
 	city: Yup.string().required(),
 	zipCode: Yup.string().required(),

@@ -26,7 +26,7 @@ export const useDetail = () => {
 		},
 		isLoading,
 		isSuccess,
-	} = useQuery(["office-profile", id], () => getOfficeDetail(id), {
+	} = useQuery(["office-user", id], () => getOfficeDetail(id), {
 		select: ({ data, ...rest }) => ({ ...rest, ...data }),
 		onError: (error: any) => {
 			toast(error.message)

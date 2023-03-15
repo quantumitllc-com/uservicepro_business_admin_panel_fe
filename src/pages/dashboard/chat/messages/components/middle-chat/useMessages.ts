@@ -56,7 +56,6 @@ export const useMessages = () => {
 		},
 	)
 
-
 	const handleNext = () => {
 		if (!isFetching && !isLoading) {
 			if (meta.totalCount > messages.length) {

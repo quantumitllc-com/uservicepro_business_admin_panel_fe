@@ -1,16 +1,16 @@
 .clip {
-  &:hover {
-    cursor: pointer;
-  }
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 .send {
-  &:hover {
-    background-color: var(--dark-green) !important;
-    border: none !important;
-  }
+	&:hover {
+		background-color: var(--dark-green) !important;
+		border: none !important;
+	}
 }
 
 .hidden {
-  display: none;
+	display: none;
 }

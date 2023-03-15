@@ -25,14 +25,17 @@ export const Select = ({
 	label,
 	isLoading,
 	options = [],
-	placeholder = "None selected", control, name, disabled
+	placeholder = "None selected",
+	control,
+	name,
+	disabled,
 }: ISelect) => {
 	const a = 1
 	return (
 		<Controller
 			name={name}
 			control={control}
-			render={({ field, formState: { errors} }) => {
+			render={({ field, formState: { errors } }) => {
 				return (
 					<Pane
 						display="flex"
@@ -61,7 +64,9 @@ export const Select = ({
 									borderWidth: "1.28927px",
 									borderRadius: "5.15708px",
 									outline: "none",
-									borderColor: state.isFocused ? "#9DB5FF" : "#D8DAE5",
+									borderColor: state.isFocused
+										? "#9DB5FF"
+										: "#D8DAE5",
 									"*": {
 										boxShadow: "none !important",
 									},
@@ -91,12 +96,21 @@ export const Select = ({
 									minHeight: "40px",
 								}),
 
-								option: (styles, { isDisabled, isSelected }) => ({
+								option: (
+									styles,
+									{ isDisabled, isSelected },
+								) => ({
 									...styles,
-									cursor: isDisabled ? "not-allowed" : "pointer",
-									backgroundColor: isSelected ? "#3D8798" : "white",
+									cursor: isDisabled
+										? "not-allowed"
+										: "pointer",
+									backgroundColor: isSelected
+										? "#3D8798"
+										: "white",
 									"&:hover": {
-										backgroundColor: isSelected ? "#3D8798" : "#DFF9FF",
+										backgroundColor: isSelected
+											? "#3D8798"
+											: "#DFF9FF",
 									},
 								}),
 							}}

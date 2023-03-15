@@ -36,14 +36,8 @@ const ChatList = () => {
 					to={chat.chatId}
 					onClick={() => handleOpenChat(chat.chatId)}
 				>
-					{({ isActive }) => (
-						<User
-							isActive={isActive}
-							chat={chat}
-						/>
-					)}
+					{({ isActive }) => <User isActive={isActive} chat={chat} />}
 				</NavLink>
-
 			))}
 		</Pane>
 	)

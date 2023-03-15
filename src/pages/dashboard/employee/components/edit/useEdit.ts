@@ -28,7 +28,7 @@ export const useEdit = () => {
 		{
 			onSuccess: () => {
 				toggle()
-				queryClient.invalidateQueries(["employee-profile"])
+				queryClient.invalidateQueries(["employee-user"])
 				toast.success("Sent successfully!")
 				form.reset(defaultValues)
 			},

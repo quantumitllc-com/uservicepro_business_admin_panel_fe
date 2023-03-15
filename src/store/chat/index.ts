@@ -15,7 +15,7 @@ export const useChatStore = create<IChatState>((set, get) => ({
 		lastUnreadMessage: "",
 		count: 0,
 		imageUrl: "",
-		userName: ""
+		userName: "",
 	},
 	setChatId: (chatId) => {
 		const currentChat = get().chats.find((c) => c.chatId === chatId)
@@ -30,13 +30,13 @@ export const useChatStore = create<IChatState>((set, get) => ({
 		page: 1,
 		pages: 1,
 		prevPage: null,
-		totalCount: 0
+		totalCount: 0,
 	},
 	chats: [],
 	setChats: (chats) => set({ chats }),
 	setLastUnreadMessage: (newLastUnreadMessage, chatId) => {
 		const currentChatIndex = get().chats.findIndex(
-			(c) => c.chatId === chatId
+			(c) => c.chatId === chatId,
 		)
 		get().chats[currentChatIndex].lastUnreadMessage = newLastUnreadMessage
 	},
@@ -48,7 +48,7 @@ export const useChatStore = create<IChatState>((set, get) => ({
 		res.data.reverse()
 		set(() => ({
 			messages: [...res.data, ...get().messages],
-			meta: res.meta
+			meta: res.meta,
 		}))
 	},
 	hasMore: true,
@@ -59,7 +59,7 @@ export const useChatStore = create<IChatState>((set, get) => ({
 	setNewMessage: (mes) => {
 		set((state) => ({
 			messages: [...get().messages, ...mes],
-			size: state.size + 1
+			size: state.size + 1,
 		}))
-	}
+	},
 }))

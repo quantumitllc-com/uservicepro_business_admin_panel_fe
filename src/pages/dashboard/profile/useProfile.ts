@@ -18,7 +18,7 @@ export const useProfile = () => {
 		},
 		isLoading,
 		refetch,
-	} = useQuery(["profile"], getProfile, {
+	} = useQuery(["user"], getProfile, {
 		onError: (error: any) => {
 			toast.error(error.message)
 		},
