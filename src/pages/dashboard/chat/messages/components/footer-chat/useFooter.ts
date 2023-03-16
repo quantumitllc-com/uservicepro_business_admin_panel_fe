@@ -54,9 +54,10 @@ export const useFooter = () => {
 				message,
 				chatId,
 			}
-			await socket.emit("send_message", messageContent)
-			await setMessage("")
-			await setFile(null)
+			socket.connect()
+			socket.emit("send_message", messageContent)
+			setMessage("")
+			setFile(null)
 			setTimeout(async () => {
 				const {
 					data: { data },

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useMutation } from "@tanstack/react-query"
 import { toast } from "react-toastify"
 import { shallow } from "zustand/shallow"
@@ -11,15 +11,13 @@ import { useProfile } from "../../useProfile"
 export const usePhoto = () => {
 	const tokens = getTokens()
 	const { refetch } = useProfile()
-	const { user, setPictureUrl } = useUserStore(
+	const { setPictureUrl } = useUserStore(
 		(state) => ({
 			user: state.user,
-			setPictureUrl: state.setPictureUrl
+			setPictureUrl: state.setPictureUrl,
 		}),
 		shallow,
 	)
-
-	// console.log(user)
 
 	const { isLoading: isLoadingSetPhoto, mutate: mutateSetPhoto } =
 		useMutation(setCompanyPhoto, {
@@ -33,7 +31,11 @@ export const usePhoto = () => {
 		})
 
 	const { isLoading, mutate } = useMutation(uploadFile, {
-		onSuccess: ({ data: { message: { file_url }, }, }) => {
+		onSuccess: ({
+			data: {
+				message: { file_url },
+			},
+		}) => {
 			toast.success("File is uploaded successfully")
 			mutateSetPhoto({ pictureUrl: file_url })
 			setPictureUrl(file_url)

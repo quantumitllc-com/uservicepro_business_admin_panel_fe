@@ -13,7 +13,7 @@ const Photo = ({ data }: CompanyProfile) => {
 	return (
 		<Pane position="relative">
 			<Avatar
-				src={(isLoading || isLoadingSetPhoto) ? loader : data.pictureUrl}
+				src={isLoading || isLoadingSetPhoto ? loader : data.pictureUrl}
 				marginRight={20}
 				size={80}
 			/>

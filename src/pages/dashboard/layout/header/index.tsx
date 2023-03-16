@@ -10,7 +10,7 @@ import {
 	Position,
 	Menu,
 	UserIcon,
-	CogIcon,
+	// CogIcon,
 	LogOutIcon,
 } from "evergreen-ui"
 import { Link, NavLink } from "react-router-dom"
@@ -31,8 +31,6 @@ const Header = (props: PaneProps) => {
 		}),
 		shallow,
 	)
-
-	console.log(user)
 
 	return (
 		<Pane {...props} is="header">
