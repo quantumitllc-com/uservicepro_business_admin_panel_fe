@@ -43,6 +43,7 @@ export interface IChatState {
 	// setIncrementPage: () => void
 	chats: IChatType[]
 	setChats: (chats: IChatType[]) => void
+	totalCount: number
 	chatId: IChatId
 	setChatId: (chatId: IChatId) => void
 	currentChat: IChatType

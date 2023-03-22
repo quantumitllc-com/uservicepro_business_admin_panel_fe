@@ -11,7 +11,6 @@ export const getSocket = () => {
 		},
 		transports: ["polling"], // Use HTTP long-polling instead of WebSocket
 		autoConnect: false,
-
 	})
 
 	// if(!socket) {

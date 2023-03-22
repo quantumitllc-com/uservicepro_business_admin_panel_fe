@@ -27,9 +27,10 @@ export const useChat = () => {
 
 		return () => {
 			socket.off("chats")
-			socket.disconnect()
 		}
 	}, [])
+
+	console.log(chats)
 
 	return {
 		chats,

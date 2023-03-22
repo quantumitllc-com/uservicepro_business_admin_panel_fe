@@ -33,7 +33,13 @@ export const useChatStore = create<IChatState>((set, get) => ({
 		totalCount: 0
 	},
 	chats: [],
-	setChats: (chats) => set({ chats }),
+	setChats: (chats) => {
+		const totalCount = chats.reduce((acc, obj) => {
+			return acc + obj.count
+		}, 0)
+		return set({ chats, totalCount })
+	},
+	totalCount: 0,
 	setLastUnreadMessage: (newLastUnreadMessage, chatId) => {
 		const chats = get().chats.map(
 			(c) => {

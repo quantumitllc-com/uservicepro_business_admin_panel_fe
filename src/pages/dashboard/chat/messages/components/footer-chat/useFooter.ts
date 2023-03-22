@@ -55,16 +55,17 @@ export const useFooter = () => {
 				chatId,
 			}
 			socket.connect()
-			socket.emit("send_message", messageContent)
-			setMessage("")
-			setFile(null)
-			setTimeout(async () => {
-				const {
-					data: { data },
-				} = await getMessages({ size: 1, page: 1, chatId })
-				await setLastUnreadMessage(message, currentChat.chatId)
-				await setNewMessage(data)
-			}, 1000)
+			socket.emit("send_message", messageContent, () => {
+				setMessage("")
+				setFile(null)
+				setTimeout(async () => {
+					const {
+						data: { data },
+					} = await getMessages({ size: 1, page: 1, chatId })
+					await setLastUnreadMessage(message, currentChat.chatId)
+					await setNewMessage(data)
+				}, 500)
+			})
 		}
 	}
 
