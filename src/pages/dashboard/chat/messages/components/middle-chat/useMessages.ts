@@ -23,7 +23,7 @@ export const useMessages = () => {
 		setHasMore,
 		setIncrementPage,
 		setNewMessage,
-		setLastUnreadMessage
+		setLastUnreadMessage,
 	} = useChatStore(
 		(state) => ({
 			size: state.size,
@@ -37,9 +37,9 @@ export const useMessages = () => {
 			setHasMore: state.setHasMore,
 			setIncrementPage: state.setIncrementPage,
 			setNewMessage: state.setNewMessage,
-			setLastUnreadMessage: state.setLastUnreadMessage
+			setLastUnreadMessage: state.setLastUnreadMessage,
 		}),
-		shallow
+		shallow,
 	)
 	const { user } = useUserStore(
 		(state) => ({
@@ -60,18 +60,18 @@ export const useMessages = () => {
 				toast(error.message)
 			},
 			onSuccess: (data) => {
-				if(data.meta.totalCount > 0) {
+				if (data.meta.totalCount > 0) {
 					setHasMore(true)
 					setMessages(data)
 				}
 			},
-			keepPreviousData: true
-		}
+			keepPreviousData: true,
+		},
 	)
 
 	const handleNext = () => {
-		if(!isFetching && !isLoading) {
-			if(meta.totalCount > messages.length) {
+		if (!isFetching && !isLoading) {
+			if (meta.totalCount > messages.length) {
 				setIncrementPage()
 			} else {
 				setHasMore(false)
@@ -95,7 +95,7 @@ export const useMessages = () => {
 			// coming message
 			if (msg.userId !== user.id) {
 				setNewMessage([msg])
-				if(chatId) {
+				if (chatId) {
 					setLastUnreadMessage(msg.message, chatId)
 				}
 			}
@@ -117,6 +117,6 @@ export const useMessages = () => {
 		messages,
 		hasMore,
 		message,
-		setMessage
+		setMessage,
 	}
 }

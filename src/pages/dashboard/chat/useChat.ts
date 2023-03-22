@@ -11,15 +11,15 @@ export const useChat = () => {
 	const { chats, setChats } = useChatStore(
 		(state) => ({
 			chats: state.chats,
-			setChats: state.setChats
+			setChats: state.setChats,
 		}),
-		shallow
+		shallow,
 	)
 
 	useEffect(() => {
 		socket.connect()
 		socket.on("chats", (chats: IChatType[]) => {
-			if(Array.isArray(chats)) {
+			if (Array.isArray(chats)) {
 				setChats(chats)
 			}
 			setIsLoading(false)
@@ -33,6 +33,6 @@ export const useChat = () => {
 
 	return {
 		chats,
-		isLoading
+		isLoading,
 	}
 }
