@@ -20,7 +20,16 @@ const Sender = ({ text, time }: SenderProps) => {
 				padding={minorScale(3)}
 				border="1px solid var(--stroke-block)"
 			>
-				{findSubstring(text) ? <a className={styles.link} rel="noreferrer" target="_blank" href={text}>file</a> : (
+				{findSubstring(text) ? (
+					<a
+						className={styles.link}
+						rel="noreferrer"
+						target="_blank"
+						href={text}
+					>
+						file
+					</a>
+				) : (
 					<MyText color="var(--white)">{text}</MyText>
 				)}
 			</Pane>

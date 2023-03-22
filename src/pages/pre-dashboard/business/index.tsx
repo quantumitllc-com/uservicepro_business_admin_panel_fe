@@ -25,7 +25,7 @@ function Business() {
 		{
 			icon: <Briefcase />,
 			iconSelected: <BriefcaseSelected />,
-			heading: "Set up your profile, add-offices some details",
+			heading: "Set up your user, add-offices some details",
 			dynamicBadge: (
 				<MyBadge
 					backgroundColor={
@@ -40,7 +40,7 @@ function Business() {
 						: "Fill up application"}
 				</MyBadge>
 			),
-			text: "Before work you have to fill up the profile section",
+			text: "Before work you have to fill up the user section",
 			start: "Start application",
 			toggle: !preDashboardInfo.isProfileFilled && handleToggle,
 		},

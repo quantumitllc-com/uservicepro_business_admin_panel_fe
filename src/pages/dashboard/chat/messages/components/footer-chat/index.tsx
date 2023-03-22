@@ -1,11 +1,24 @@
-import { IconButton, minorScale, Pane, SendMessageIcon, PaperclipIcon } from "evergreen-ui"
+import {
+	IconButton,
+	minorScale,
+	Pane,
+	SendMessageIcon,
+	PaperclipIcon,
+} from "evergreen-ui"
 
 import { MyInput } from "components/input"
 import styles from "./styles.module.scss"
 import { useFooter } from "./useFooter"
 
 const FooterChat = () => {
-	const { handleSendMessage, message, setMessage, file, selectFile, isLoading } = useFooter()
+	const {
+		handleSendMessage,
+		message,
+		setMessage,
+		file,
+		selectFile,
+		isLoading,
+	} = useFooter()
 
 	return (
 		<Pane

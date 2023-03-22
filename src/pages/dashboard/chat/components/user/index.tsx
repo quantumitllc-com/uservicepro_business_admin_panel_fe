@@ -42,11 +42,7 @@ const User: FC<ChatListProps> = ({ isActive, chat }) => {
 					<MyHeading fontSize={14}>
 						{chat.userName || "name"}
 					</MyHeading>
-					<MyText
-						fontSize={12}
-					>
-						{chat.lastUnreadMessage}
-					</MyText>
+					<MyText fontSize={12}>{chat.lastUnreadMessage}</MyText>
 				</Pane>
 			</Pane>
 			<Pane display="flex" flexDirection="column">

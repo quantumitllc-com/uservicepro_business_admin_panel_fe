@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom"
 import { useEffect } from "react"
 
 import { useChatStore } from "store/chat"
+import { getSocket } from "utils/getSocket"
 import User from "../user"
 
 const ChatList = () => {
+	const socket = getSocket()
 	const { chats, chatId, setChatId, resetMessages } = useChatStore(
 		(state) => ({
 			chatId: state.chatId,
@@ -26,6 +28,7 @@ const ChatList = () => {
 	const handleOpenChat = (id: string) => {
 		setChatId(id)
 		resetMessages()
+		socket.emit("left", { chatId })
 	}
 
 	return (
@@ -36,14 +39,8 @@ const ChatList = () => {
 					to={chat.chatId}
 					onClick={() => handleOpenChat(chat.chatId)}
 				>
-					{({ isActive }) => (
-						<User
-							isActive={isActive}
-							chat={chat}
-						/>
-					)}
+					{({ isActive }) => <User isActive={isActive} chat={chat} />}
 				</NavLink>
-
 			))}
 		</Pane>
 	)

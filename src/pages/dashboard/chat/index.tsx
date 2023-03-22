@@ -22,7 +22,11 @@ const Chat = () => {
 			gap="0px 30px"
 			height="100%"
 		>
-			<Pane width="350px" paddingRight="30px" borderRight="1px solid var(--grey)">
+			<Pane
+				width="350px"
+				paddingRight="30px"
+				borderRight="1px solid var(--grey)"
+			>
 				<MyHeading
 					marginBottom={minorScale(5)}
 					fontSize={24}
@@ -42,13 +46,11 @@ const Chat = () => {
 				{/*	// overflowX="hidden"*/}
 				{/*	// maxHeight="calc(100vh - 247px)"*/}
 				{/*>*/}
-					{isLoading ? <SkeletonChatList /> : <ChatList />}
+				{isLoading ? <SkeletonChatList /> : <ChatList />}
 				{/*</Pane>*/}
 			</Pane>
 			<Suspense fallback={<Spinner />}>
-				{chatId ?
-					<Outlet /> : <ChooseChat />
-				}
+				{chatId ? <Outlet /> : <ChooseChat />}
 			</Suspense>
 		</Pane>
 	)

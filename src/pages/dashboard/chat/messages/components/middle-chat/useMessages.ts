@@ -5,8 +5,11 @@ import { shallow } from "zustand/shallow"
 import { getMessages } from "services/dashboard/chat"
 import { useChatStore } from "store/chat"
 import { useEffect, useRef, useState } from "react"
+import { getSocket } from "utils/getSocket"
+import { useUserStore } from "store/user"
 
 export const useMessages = () => {
+	const socket = getSocket()
 	const messagesEndRef = useRef<null | HTMLDivElement>(null)
 	const {
 		size,
@@ -19,6 +22,8 @@ export const useMessages = () => {
 		hasMore,
 		setHasMore,
 		setIncrementPage,
+		setNewMessage,
+		setLastUnreadMessage
 	} = useChatStore(
 		(state) => ({
 			size: state.size,
@@ -31,6 +36,14 @@ export const useMessages = () => {
 			hasMore: state.hasMore,
 			setHasMore: state.setHasMore,
 			setIncrementPage: state.setIncrementPage,
+			setNewMessage: state.setNewMessage,
+			setLastUnreadMessage: state.setLastUnreadMessage
+		}),
+		shallow
+	)
+	const { user } = useUserStore(
+		(state) => ({
+			user: state.user,
 		}),
 		shallow,
 	)
@@ -47,19 +60,18 @@ export const useMessages = () => {
 				toast(error.message)
 			},
 			onSuccess: (data) => {
-				if (data.meta.totalCount > 0) {
+				if(data.meta.totalCount > 0) {
 					setHasMore(true)
 					setMessages(data)
 				}
 			},
-			keepPreviousData: true,
-		},
+			keepPreviousData: true
+		}
 	)
 
-
 	const handleNext = () => {
-		if (!isFetching && !isLoading) {
-			if (meta.totalCount > messages.length) {
+		if(!isFetching && !isLoading) {
+			if(meta.totalCount > messages.length) {
 				setIncrementPage()
 			} else {
 				setHasMore(false)
@@ -75,6 +87,26 @@ export const useMessages = () => {
 		scrollToBottom()
 	}, [messages])
 
+	useEffect(() => {
+		socket.connect()
+		socket.emit("join", { chatId })
+		socket.on("msg", (msg) => {
+			console.log(msg)
+			// coming message
+			if (msg.userId !== user.id) {
+				setNewMessage([msg])
+				if(chatId) {
+					setLastUnreadMessage(msg.message, chatId)
+				}
+			}
+		})
+
+		return () => {
+			socket.off("msg")
+			socket.disconnect()
+		}
+	}, [chatId])
+
 	return {
 		messagesEndRef,
 		handleNext,
@@ -85,6 +117,6 @@ export const useMessages = () => {
 		messages,
 		hasMore,
 		message,
-		setMessage,
+		setMessage
 	}
 }

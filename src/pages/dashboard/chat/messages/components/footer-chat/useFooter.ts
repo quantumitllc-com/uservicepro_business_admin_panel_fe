@@ -18,23 +18,27 @@ export const useFooter = () => {
 				chatId: state.chatId,
 				currentChat: state.currentChat,
 				setLastUnreadMessage: state.setLastUnreadMessage,
-				setNewMessage: state.setNewMessage
+				setNewMessage: state.setNewMessage,
 			}),
-			shallow
+			shallow,
 		)
 
 	const { isLoading, mutate } = useMutation(uploadFile, {
-		onSuccess: ({ data: { message: { file_url } } }) => {
+		onSuccess: ({
+			data: {
+				message: { file_url },
+			},
+		}) => {
 			toast.success("File is uploaded successfully")
 			setMessage(file_url)
 		},
 		onError: (error: any) => {
 			toast.error(error.response.data.message)
-		}
+		},
 	})
 
-	const selectFile = async(event: React.ChangeEvent<HTMLInputElement>) => {
-		if(event.target.files) {
+	const selectFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files) {
 			const file = event.target.files[0]
 			setMessage(file.name)
 			setFile(file)
@@ -44,18 +48,19 @@ export const useFooter = () => {
 		}
 	}
 
-	const handleSendMessage = async() => {
-		if(message !== "") {
+	const handleSendMessage = async () => {
+		if (message !== "") {
 			const messageContent = {
 				message,
-				chatId
+				chatId,
 			}
-			await socket.emit("send_message", messageContent)
-			await setMessage("")
-			await setFile(null)
-			setTimeout(async() => {
+			socket.connect()
+			socket.emit("send_message", messageContent)
+			setMessage("")
+			setFile(null)
+			setTimeout(async () => {
 				const {
-					data: { data }
+					data: { data },
 				} = await getMessages({ size: 1, page: 1, chatId })
 				await setLastUnreadMessage(message, currentChat.chatId)
 				await setNewMessage(data)
@@ -69,6 +74,6 @@ export const useFooter = () => {
 		message,
 		setMessage,
 		file,
-		selectFile
+		selectFile,
 	}
 }

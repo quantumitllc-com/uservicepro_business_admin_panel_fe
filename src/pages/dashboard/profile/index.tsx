@@ -12,8 +12,6 @@ import Photo from "./components/photo"
 const Profile = () => {
 	const { data, isLoading } = useProfile()
 
-	// console.log(data)
-
 	return (
 		<Pane>
 			<MyHeading

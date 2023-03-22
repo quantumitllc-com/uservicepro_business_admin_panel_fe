@@ -13,9 +13,9 @@ const Offices = lazy(() => import("./dashboard/offices"))
 const OneOffice = lazy(() => import("./dashboard/offices/detail"))
 // offices
 
-// profile
+// user
 const Profile = lazy(() => import("./dashboard/profile"))
-// profile
+// user
 
 //chat
 const Chat = lazy(() => import("./dashboard/chat"))
@@ -148,9 +148,9 @@ export function Routing() {
 				<Route path="offices" element={<Offices />} />
 				<Route path="offices/:id" element={<OneOffice />} />
 				{/*offices*/}
-				{/*// profile*/}
+				{/*// user*/}
 				<Route path="profile" element={<Profile />} />
-				{/*// profile*/}
+				{/*// user*/}
 
 				{/*// chat*/}
 				<Route path="chat" element={<Chat />}>

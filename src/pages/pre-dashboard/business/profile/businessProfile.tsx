@@ -1,8 +1,6 @@
 import { minorScale, Pane } from "evergreen-ui"
 
-import {
-	ReactComponent as BriefcaseSelected
-} from "pages/pre-dashboard/components/accordion/icons/briefcase-selected.svg"
+import { ReactComponent as BriefcaseSelected } from "pages/pre-dashboard/components/accordion/icons/briefcase-selected.svg"
 import MyText from "components/text"
 import MyButton from "components/button"
 import { Input } from "components/input"
@@ -16,7 +14,7 @@ const BusinessProfile = () => {
 	const {
 		form: { control, handleSubmit },
 		isLoading,
-		onSubmit
+		onSubmit,
 	} = useBusinessProfile()
 
 	return (

@@ -35,10 +35,15 @@ export const useChatStore = create<IChatState>((set, get) => ({
 	chats: [],
 	setChats: (chats) => set({ chats }),
 	setLastUnreadMessage: (newLastUnreadMessage, chatId) => {
-		const currentChatIndex = get().chats.findIndex(
-			(c) => c.chatId === chatId
+		const chats = get().chats.map(
+			(c) => {
+				if(c.chatId === chatId) {
+					return { ...c, lastUnreadMessage: newLastUnreadMessage }
+				}
+				return c
+			}
 		)
-		get().chats[currentChatIndex].lastUnreadMessage = newLastUnreadMessage
+		set({ chats })
 	},
 	messages: [],
 	resetMessages: () => {
