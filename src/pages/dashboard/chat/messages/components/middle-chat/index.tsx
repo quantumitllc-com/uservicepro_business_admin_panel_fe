@@ -9,11 +9,13 @@ import Sender from "../sender"
 import Receiver from "../receiver"
 import { useMessages } from "./useMessages"
 import styles from "./styles.module.scss"
+import { useScrollToBottom } from "./useScrollToBottom"
 
 const MiddleChat = memo(() => {
 	const tokens = getTokens()
-	const { isLoading, messages, messagesEndRef, handleNext, hasMore } =
+	const { isLoading, messages, handleNext, hasMore } =
 		useMessages()
+	const { messagesEndRef } = useScrollToBottom()
 
 	return (
 		<Pane className={styles.container}>

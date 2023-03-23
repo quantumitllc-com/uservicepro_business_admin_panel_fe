@@ -1,7 +1,8 @@
-import { lazy } from "react"
+import React, { lazy } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 
 import { getTokens } from "../utils/getTokens"
+
 
 // dashboard
 const ActivityMap = lazy(() => import("./dashboard/activity-map"))

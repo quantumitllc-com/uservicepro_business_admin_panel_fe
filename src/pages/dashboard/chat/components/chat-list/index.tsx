@@ -19,16 +19,10 @@ const ChatList = () => {
 		shallow,
 	)
 
-	useEffect(() => {
-		if (chatId) {
-			setChatId(chatId)
-		}
-	}, [chatId])
-
 	const handleOpenChat = (id: string) => {
 		setChatId(id)
 		resetMessages()
-		socket.emit("left", { chatId })
+		// socket.emit("left", { chatId })
 	}
 
 	return (

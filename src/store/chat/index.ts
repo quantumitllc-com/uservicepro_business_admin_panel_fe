@@ -1,22 +1,23 @@
 import { create } from "zustand"
 import dayjs from "dayjs"
 
+import { getInitialChatId } from "utils/getInitialChatId"
 import { IChatState } from "../../types/dashboard/chat"
-import { getInitialChatId } from "../../utils/getInitialChatId"
 
 const size = 15
+const emptyCurrentChat = {
+	chatId: "",
+	userId: "",
+	createdAt: dayjs().toString(),
+	lastUnreadMessage: "",
+	count: 0,
+	imageUrl: "",
+	userName: ""
+}
 
 export const useChatStore = create<IChatState>((set, get) => ({
 	chatId: getInitialChatId(),
-	currentChat: {
-		chatId: "",
-		userId: "",
-		createdAt: dayjs().toString(),
-		lastUnreadMessage: "",
-		count: 0,
-		imageUrl: "",
-		userName: ""
-	},
+	currentChat: emptyCurrentChat,
 	setChatId: (chatId) => {
 		const currentChat = get().chats.find((c) => c.chatId === chatId)
 		return set({ chatId, currentChat })
@@ -37,7 +38,8 @@ export const useChatStore = create<IChatState>((set, get) => ({
 		const totalCount = chats.reduce((acc, obj) => {
 			return acc + obj.count
 		}, 0)
-		return set({ chats, totalCount })
+		const currentChat = chats.find((c) => c.chatId === get().chatId) ?? emptyCurrentChat
+		return set({ chats, totalCount, currentChat })
 	},
 	totalCount: 0,
 	setLastUnreadMessage: (newLastUnreadMessage, chatId) => {
@@ -68,7 +70,7 @@ export const useChatStore = create<IChatState>((set, get) => ({
 		set((state) => ({ page: state.page + 1 }))
 	},
 	setNewMessage: (mes) => {
-		set((state) => ({
+		return set((state) => ({
 			messages: [...get().messages, ...mes],
 			size: state.size + 1
 		}))
