@@ -11,7 +11,7 @@ import {
 	Menu,
 	UserIcon,
 	// CogIcon,
-	LogOutIcon
+	LogOutIcon,
 } from "evergreen-ui"
 import { Link, NavLink } from "react-router-dom"
 import { shallow } from "zustand/shallow"
@@ -30,9 +30,9 @@ const Header = (props: PaneProps) => {
 	const { totalCount } = useHeader()
 	const { user } = useUserStore(
 		(state) => ({
-			user: state.user
+			user: state.user,
 		}),
-		shallow
+		shallow,
 	)
 
 	return (
@@ -72,9 +72,9 @@ const Header = (props: PaneProps) => {
 									}
 									size={20}
 								/>
-								{totalCount > 0 &&
-                                    <Ellipse className={styles.ellipse} />
-								}
+								{totalCount > 0 && (
+									<Ellipse className={styles.ellipse} />
+								)}
 							</Pane>
 						)}
 					</NavLink>

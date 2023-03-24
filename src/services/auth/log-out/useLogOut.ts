@@ -7,7 +7,6 @@ export const useLogOut = () => {
 	const navigate = useNavigate()
 	const socket = getSocket()
 
-
 	const onSubmit = () => {
 		clearStorage()
 		socket.disconnect()

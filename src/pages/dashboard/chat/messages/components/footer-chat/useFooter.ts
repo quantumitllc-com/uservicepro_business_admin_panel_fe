@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { shallow } from "zustand/shallow"
 import { toast } from "react-toastify"
 
@@ -64,6 +64,7 @@ export const useFooter = () => {
 					} = await getMessages({ size: 1, page: 1, chatId })
 					await setLastUnreadMessage(message, currentChat.chatId)
 					await setNewMessage(data)
+					await socket.disconnect()
 				}, 500)
 			})
 		}

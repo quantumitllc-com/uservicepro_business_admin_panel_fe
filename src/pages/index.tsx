@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from "react-router-dom"
 
 import { getTokens } from "../utils/getTokens"
 
-
 // dashboard
 const ActivityMap = lazy(() => import("./dashboard/activity-map"))
 const Map = lazy(() => import("./dashboard/activity-map/map"))

@@ -52,8 +52,9 @@ const FooterChat = () => {
 				placeholder="Write a message"
 			/>
 			<Pane>
-				{isLoading ?
-					<Spinner /> :
+				{isLoading ? (
+					<Spinner />
+				) : (
 					<IconButton
 						disabled={!message || isLoading}
 						onClick={handleSendMessage}
@@ -64,7 +65,7 @@ const FooterChat = () => {
 						backgroundColor="var(--dark-green)"
 						icon={<SendMessageIcon color="var(--white)" />}
 					/>
-				}
+				)}
 			</Pane>
 		</Pane>
 	)

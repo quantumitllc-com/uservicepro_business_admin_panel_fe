@@ -44,7 +44,7 @@ export const useMessages = () => {
 			setNewMessage: state.setNewMessage,
 			setLastUnreadMessage: state.setLastUnreadMessage,
 		}),
-		shallow
+		shallow,
 	)
 	const [message, setMessage] = useState("")
 
@@ -59,18 +59,18 @@ export const useMessages = () => {
 				toast(error.message)
 			},
 			onSuccess: (data) => {
-				if(data.meta.totalCount > 0) {
+				if (data.meta.totalCount > 0) {
 					setHasMore(true)
 					setMessages(data)
 				}
 			},
-			keepPreviousData: true
-		}
+			keepPreviousData: true,
+		},
 	)
 
 	const handleNext = () => {
-		if(!isFetching && !isLoading) {
-			if(meta.totalCount > messages.length) {
+		if (!isFetching && !isLoading) {
+			if (meta.totalCount > messages.length) {
 				setIncrementPage()
 			} else {
 				setHasMore(false)
@@ -87,7 +87,7 @@ export const useMessages = () => {
 				// console.log(msg)
 				// coming message
 				setNewMessage([msg])
-				if(chatId) {
+				if (chatId) {
 					setLastUnreadMessage(msg.message, chatId)
 				}
 			}
@@ -103,7 +103,6 @@ export const useMessages = () => {
 			socket.off("chats")
 			socket.disconnect()
 		}
-
 	}, [chatId])
 
 	return {
@@ -115,6 +114,6 @@ export const useMessages = () => {
 		messages,
 		hasMore,
 		message,
-		setMessage
+		setMessage,
 	}
 }

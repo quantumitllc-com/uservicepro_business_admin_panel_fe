@@ -13,8 +13,7 @@ import { useScrollToBottom } from "./useScrollToBottom"
 
 const MiddleChat = memo(() => {
 	const tokens = getTokens()
-	const { isLoading, messages, handleNext, hasMore } =
-		useMessages()
+	const { isLoading, messages, handleNext, hasMore } = useMessages()
 	const { messagesEndRef } = useScrollToBottom()
 
 	return (

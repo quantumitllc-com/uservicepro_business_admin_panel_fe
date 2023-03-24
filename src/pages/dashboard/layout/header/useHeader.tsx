@@ -13,23 +13,24 @@ export const useHeader = () => {
 	const navigate = useNavigate()
 	const tokens = getTokens()
 	const socket = getSocket()
-	const { setChats, totalCount, chatId, setChatId, resetMessages } = useChatStore(
-		(state) => ({
-			chatId: state.chatId,
-			setChats: state.setChats,
-			totalCount: state.totalCount,
-			setChatId: state.setChatId,
-			resetMessages: state.resetMessages
-		}),
-		shallow
-	)
+	const { setChats, totalCount, chatId, setChatId, resetMessages } =
+		useChatStore(
+			(state) => ({
+				chatId: state.chatId,
+				setChats: state.setChats,
+				totalCount: state.totalCount,
+				setChatId: state.setChatId,
+				resetMessages: state.resetMessages,
+			}),
+			shallow,
+		)
 
 	useEffect(() => {
 		socket.connect()
 		socket.on("chats", (chats: IChatType[]) => {
 			console.log(chats)
 			// console.log(chats)
-			if(Array.isArray(chats)) {
+			if (Array.isArray(chats)) {
 				setChats(chats)
 			}
 		})
@@ -37,14 +38,16 @@ export const useHeader = () => {
 		socket.on("msg", (msg) => {
 			console.log(msg)
 			console.log(chatId)
-			if(msg.userId !== tokens.id && msg.chatId !== chatId) {
+			if (msg.userId !== tokens.id && msg.chatId !== chatId) {
 				// toast(`User: ${msg.userName} sent a message: ${msg.message}`)
 				toast(() => (
-					<Pane onClick={() => {
-						setChatId(msg.chatId)
-						resetMessages()
-						navigate(`/chat/${msg.chatId}`)
-					}}>
+					<Pane
+						onClick={() => {
+							setChatId(msg.chatId)
+							resetMessages()
+							navigate(`/chat/${msg.chatId}`)
+						}}
+					>
 						User: {msg.userName} sent a message: {msg.message}
 					</Pane>
 				))
@@ -57,7 +60,6 @@ export const useHeader = () => {
 			socket.disconnect()
 		}
 	}, [chatId])
-
 
 	return { totalCount }
 }

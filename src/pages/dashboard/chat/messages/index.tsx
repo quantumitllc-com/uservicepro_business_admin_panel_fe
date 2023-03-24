@@ -8,17 +8,13 @@ import MiddleChat from "./components/middle-chat"
 import FooterChat from "./components/footer-chat"
 
 const Messages = () => {
-	const {
-		chatId,
-		setChatId,
-		currentChat
-	} = useChatStore(
+	const { chatId, setChatId, currentChat } = useChatStore(
 		(state) => ({
 			chatId: state.chatId,
 			setChatId: state.setChatId,
-			currentChat: state.currentChat
+			currentChat: state.currentChat,
 		}),
-		shallow
+		shallow,
 	)
 
 	// useEffect(() => {
@@ -29,7 +25,6 @@ const Messages = () => {
 
 	// console.log(chatId)
 	// console.log(currentChat)
-
 
 	return (
 		<Pane

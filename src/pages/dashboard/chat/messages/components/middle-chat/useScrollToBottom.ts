@@ -4,13 +4,11 @@ import { useChatStore } from "store/chat"
 
 export const useScrollToBottom = () => {
 	const messagesEndRef = useRef<null | HTMLDivElement>(null)
-	const {
-		messages
-	} = useChatStore(
+	const { messages } = useChatStore(
 		(state) => ({
 			messages: state.messages,
 		}),
-		shallow
+		shallow,
 	)
 
 	const scrollToBottom = () => {
@@ -22,6 +20,6 @@ export const useScrollToBottom = () => {
 	}, [messages])
 
 	return {
-		messagesEndRef
+		messagesEndRef,
 	}
 }

@@ -6,11 +6,11 @@ import { getTokens } from "../../utils/getTokens"
 export const useUserStore = create<IUserState>((set, get) => {
 	const tokens = getTokens()
 
-	return ({
+	return {
 		user: tokens,
 		setUser: (user) => set({ user }),
 		setPictureUrl: (url: string) => {
 			set({ user: { ...get().user, pictureUrl: url } })
 		},
-	})
+	}
 })
