@@ -1,59 +1,36 @@
 import axios from "axios"
-import { getTokens } from "../utils/getTokens"
+import { refreshToken } from "utils/refreshToken"
 import { clearStorage } from "../utils/clearStorage"
+import { isExpiredToken } from "../utils/isExpiredToken"
 
 export const baseURL = process.env.REACT_APP_BASE_URL
 const request = axios.create({
-	baseURL,
+	baseURL
 })
 
-request.interceptors.request.use((config: any) => {
-	const tokens = getTokens()
+request.interceptors.request.use(async (config: any) => {
+	const tokens = isExpiredToken()
 
 	if (tokens) {
-		config.headers = {
-			...config.headers,
-			Authorization: `Bearer ${tokens.accessToken}`,
+		if (tokens.isExpiredRefresh) {
+			clearStorage()
+			window.location.href = "/sign-in"
+			console.log("Not Authorized")
 		}
-	}
 
-	return config
-})
-
-request.interceptors.response.use(
-	(config) => config,
-	async (error) => {
-		const tokens = getTokens()
-		const originalRequest = error.config
-		if (
-			error.response.status === 401 &&
-			error.config &&
-			!error.config._isRetry
-		) {
-			originalRequest._isRetry = true
-			try {
-				const response = await axios.post(
-					"refresh_token",
-					{},
-					{
-						baseURL,
-						headers: {
-							"Content-Type": "application/json",
-							refreshToken: tokens.refreshToken,
-						},
-					},
-				)
-				localStorage.setItem("tokens", JSON.stringify(response.data))
-				return await request.request(originalRequest)
-			} catch (e) {
-				clearStorage()
-				window.location.href = "/sign-in"
-				// eslint-disable-next-line no-console
-				console.log("Not Authorized")
+		if (!tokens.isExpiredAccess) {
+			config.headers = {
+				...config.headers,
+				Authorization: `Bearer ${tokens.accessToken}`,
 			}
 		}
-		throw error
-	},
-)
+
+		if (tokens.isExpiredAccess) {
+			await refreshToken()
+		}
+		return config
+	}
+	return config
+})
 
 export { request }

@@ -13,6 +13,8 @@ export const getSocket = () => {
 		autoConnect: false,
 	})
 
+	// const newSocket = socket.connect()
+	// console.log(newSocket)
 	// if(!socket) {
 	// 	throw new Error("Socket not initialized")
 	// }
