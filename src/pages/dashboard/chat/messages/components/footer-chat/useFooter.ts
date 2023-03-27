@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { shallow } from "zustand/shallow"
 import { toast } from "react-toastify"
 
-import { getSocket } from "utils/getSocket"
+import { useSocket } from "hooks/useSocket"
 import { useChatStore } from "store/chat"
 import { getMessages } from "services/dashboard/chat"
 import { useMutation } from "@tanstack/react-query"
@@ -11,7 +11,7 @@ import { uploadFile } from "services/dashboard/profile"
 export const useFooter = () => {
 	const [message, setMessage] = useState("")
 	const [file, setFile] = useState<null | File>(null)
-	const socket = getSocket()
+	const socket = useSocket()
 	const { chatId, currentChat, setLastUnreadMessage, setNewMessage } =
 		useChatStore(
 			(state) => ({
@@ -54,8 +54,8 @@ export const useFooter = () => {
 				message,
 				chatId,
 			}
-			socket.connect()
-			socket.emit("send_message", messageContent, () => {
+			socket?.connect()
+			socket?.emit("send_message", messageContent, () => {
 				setMessage("")
 				setFile(null)
 				setTimeout(async () => {

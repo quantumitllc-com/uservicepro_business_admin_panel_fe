@@ -5,14 +5,14 @@ import { Pane } from "evergreen-ui"
 import { useNavigate } from "react-router-dom"
 
 import { IChatType } from "types/dashboard/chat"
-import { getSocket } from "utils/getSocket"
+import { useSocket } from "hooks/useSocket"
 import { useChatStore } from "store/chat"
 import { getTokens } from "utils/getTokens"
 
 export const useHeader = () => {
 	const navigate = useNavigate()
 	const tokens = getTokens()
-	const socket = getSocket()
+	const socket = useSocket()
 	const { setChats, totalCount, chatId, setChatId, resetMessages } =
 		useChatStore(
 			(state) => ({
@@ -26,8 +26,8 @@ export const useHeader = () => {
 		)
 
 	useEffect(() => {
-		socket.connect()
-		socket.on("chats", (chats: IChatType[]) => {
+		socket?.connect()
+		socket?.on("chats", (chats: IChatType[]) => {
 			console.log(chats)
 			// console.log(chats)
 			if(Array.isArray(chats)) {
@@ -39,7 +39,6 @@ export const useHeader = () => {
 			console.log(msg)
 			console.log(chatId)
 			if(msg.userId !== tokens.id && msg.chatId !== chatId) {
-				// toast(`User: ${msg.userName} sent a message: ${msg.message}`)
 				toast(() => (
 					<Pane
 						onClick={() => {
@@ -55,11 +54,11 @@ export const useHeader = () => {
 		})
 
 		return () => {
-			socket.off("chats")
-			socket.off("msg")
-			socket.disconnect()
+			socket?.off("chats")
+			socket?.off("msg")
+			socket?.disconnect()
 		}
-	}, [chatId])
+	}, [chatId, socket])
 
 	return { totalCount }
 }

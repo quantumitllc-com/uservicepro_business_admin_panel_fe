@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom"
 
 import { clearStorage } from "utils/clearStorage"
-import { getSocket } from "utils/getSocket"
+import { useSocket } from "hooks/useSocket"
 
 export const useLogOut = () => {
 	const navigate = useNavigate()
-	const socket = getSocket()
+	const socket = useSocket()
 
 	const onSubmit = () => {
 		clearStorage()
-		socket.disconnect()
+		socket?.disconnect()
 		navigate("/sign-in")
 	}
 

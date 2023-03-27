@@ -2,9 +2,9 @@ import { minorScale, Pane } from "evergreen-ui"
 import dayjs from "dayjs"
 
 import MyText from "components/text"
+import { findSubstring } from "utils/findSubstring"
 import styles from "./styles.module.scss"
 import { ReactComponent as Check } from "./check.svg"
-import { findSubstring } from "../../../../../../utils/findSubstring"
 
 type SenderProps = {
 	text: string

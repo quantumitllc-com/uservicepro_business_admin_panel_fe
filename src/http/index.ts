@@ -1,7 +1,8 @@
 import axios from "axios"
+
 import { refreshToken } from "utils/refreshToken"
+import { isExpiredToken } from "utils/isExpiredToken"
 import { clearStorage } from "../utils/clearStorage"
-import { isExpiredToken } from "../utils/isExpiredToken"
 
 export const baseURL = process.env.REACT_APP_BASE_URL
 const request = axios.create({
@@ -15,7 +16,6 @@ request.interceptors.request.use(async (config: any) => {
 		if (tokens.isExpiredRefresh) {
 			clearStorage()
 			window.location.href = "/sign-in"
-			console.log("Not Authorized")
 		}
 
 		if (!tokens.isExpiredAccess) {

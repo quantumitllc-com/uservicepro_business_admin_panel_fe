@@ -5,18 +5,18 @@ import { shallow } from "zustand/shallow"
 import { getMessages } from "services/dashboard/chat"
 import { useChatStore } from "store/chat"
 import { useEffect, useState } from "react"
-import { getSocket } from "utils/getSocket"
+import { useSocket } from "hooks/useSocket"
 import { getTokens } from "utils/getTokens"
 import { IChatType } from "types/dashboard/chat"
 
 export const useMessages = () => {
-	const socket = getSocket()
+	const socket = useSocket()
 	const tokens = getTokens()
 	const {
 		size,
 		page,
 		meta,
-		setChatId,
+		// setChatId,
 		setChats,
 		chatId,
 		setMessages,
@@ -79,10 +79,10 @@ export const useMessages = () => {
 	}
 
 	useEffect(() => {
-		socket.connect()
-		console.log(chatId)
-		socket.emit("join", { chatId })
-		socket.on("msg", (msg) => {
+		socket?.connect()
+		// console.log(chatId)
+		socket?.emit("join", { chatId })
+		socket?.on("msg", (msg) => {
 			if (msg.chatId === chatId && msg.userId !== tokens.id) {
 				// console.log(msg)
 				// coming message
@@ -93,17 +93,17 @@ export const useMessages = () => {
 			}
 		})
 
-		socket.on("chats", (chats: IChatType[]) => {
+		socket?.on("chats", (chats: IChatType[]) => {
 			console.log(chats)
 			setChats(chats)
 		})
 
 		return () => {
-			socket.off("msg")
-			socket.off("chats")
-			socket.disconnect()
+			socket?.off("msg")
+			socket?.off("chats")
+			socket?.disconnect()
 		}
-	}, [chatId])
+	}, [chatId, socket])
 
 	return {
 		handleNext,
