@@ -12,38 +12,38 @@ export const useSocket = () => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
+		if (!tokens.isExpiredAccess) {
+			const newSocket = io("https://gateway.uservicepro.com", {
+				extraHeaders: {
+					Authorization: `Bearer ${tokens.accessToken}`,
+				},
+				transports: ["polling"], // Use HTTP long-polling instead of WebSocket
+				autoConnect: false,
+			})
 
-			if (tokens.isExpiredRefresh || tokens.isExpiredAccess) {
-				clearStorage()
-				navigate("/sign-in")
-			}
+			setSocket(newSocket)
+		}
 
-			if (tokens.isExpiredAccess) {
-				(async () => {
-					await refreshToken()
-				})()
-			}
+		if (tokens.isExpiredAccess) {
+			;(async () => {
+				await refreshToken()
+			})()
+		}
 
-			if (!tokens.isExpiredAccess) {
-				const newSocket = io("https://gateway.uservicepro.com", {
-					extraHeaders: {
-						Authorization: `Bearer ${tokens.accessToken}`,
-					},
-					transports: ["polling"], // Use HTTP long-polling instead of WebSocket
-					autoConnect: false,
-				})
-
-				setSocket(newSocket)
-			}
+		if (tokens.isExpiredRefresh) {
+			clearStorage()
+			navigate("/sign-in")
+		}
 
 		return () => {
 			socket?.close()
 		}
 
-	}, [setSocket,
+	}, [
+		setSocket,
 		tokens.accessToken,
 		tokens.isExpiredRefresh,
-		tokens.isExpiredAccess
+		tokens.isExpiredAccess,
 	])
 
 	return socket

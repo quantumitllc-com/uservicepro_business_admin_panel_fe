@@ -11,7 +11,8 @@ export const isExpiredToken = () => {
 		const jwtAccess: TokenTypes = jwt_decode(tokens?.accessToken)
 		const jwtAccessRefresh: TokenTypes = jwt_decode(tokens?.refreshToken)
 		const isExpiredAccess = dayjs.unix(jwtAccess.exp).diff(dayjs()) < 1
-		const isExpiredRefresh = dayjs.unix(jwtAccessRefresh.exp).diff(dayjs()) < 1
+		const isExpiredRefresh =
+			dayjs.unix(jwtAccessRefresh.exp).diff(dayjs()) < 1
 
 		// console.log(dayjs.unix(jwtAccess.exp).diff(dayjs()))
 		// console.log(dayjs.unix(jwtAccessRefresh.exp).diff(dayjs()))

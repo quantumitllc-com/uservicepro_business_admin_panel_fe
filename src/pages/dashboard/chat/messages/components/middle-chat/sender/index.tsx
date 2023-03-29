@@ -1,10 +1,9 @@
-import { minorScale, Pane } from "evergreen-ui"
+import { Pane } from "evergreen-ui"
 import dayjs from "dayjs"
 
 import MyText from "components/text"
-import { findSubstring } from "utils/findSubstring"
-import styles from "./styles.module.scss"
 import { ReactComponent as Check } from "./check.svg"
+import { getMessageType } from "../getMessageType"
 
 type SenderProps = {
 	text: string
@@ -14,25 +13,7 @@ type SenderProps = {
 const Sender = ({ text, time }: SenderProps) => {
 	return (
 		<Pane marginLeft="auto">
-			<Pane
-				backgroundColor="var(--dark-green)"
-				className={styles.sender}
-				padding={minorScale(3)}
-				border="1px solid var(--stroke-block)"
-			>
-				{findSubstring(text) ? (
-					<a
-						className={styles.link}
-						rel="noreferrer"
-						target="_blank"
-						href={text}
-					>
-						file
-					</a>
-				) : (
-					<MyText color="var(--white)">{text}</MyText>
-				)}
-			</Pane>
+			{getMessageType(text, "sender")}
 			<Pane display="flex" justifyContent="space-between">
 				<Check />
 				<MyText

@@ -15,13 +15,13 @@ export const refreshToken = async () => {
 				baseURL,
 				headers: {
 					"Content-Type": "application/json",
-					refreshToken: tokens.refreshToken
-				}
-			}
+					refreshToken: tokens.refreshToken,
+				},
+			},
 		)
 		localStorage.setItem("tokens", JSON.stringify(response.data))
 		return response
-	} catch(e: any) {
+	} catch (e: any) {
 		clearStorage()
 		window.location.href = "/sign-in"
 		console.log("Not Authorized")

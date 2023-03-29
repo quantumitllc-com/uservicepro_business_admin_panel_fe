@@ -15,3 +15,11 @@
 	flex-direction: column;
 	gap: 24px;
 }
+
+.receiver {
+	border-radius: 0 25px 25px 25px;
+}
+
+.sender {
+	border-radius: 25px 0 25px 25px;
+}

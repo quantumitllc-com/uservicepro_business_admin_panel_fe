@@ -20,9 +20,9 @@ export const useHeader = () => {
 				setChats: state.setChats,
 				totalCount: state.totalCount,
 				setChatId: state.setChatId,
-				resetMessages: state.resetMessages
+				resetMessages: state.resetMessages,
 			}),
-			shallow
+			shallow,
 		)
 
 	useEffect(() => {
@@ -30,7 +30,7 @@ export const useHeader = () => {
 		socket?.on("chats", (chats: IChatType[]) => {
 			console.log(chats)
 			// console.log(chats)
-			if(Array.isArray(chats)) {
+			if (Array.isArray(chats)) {
 				setChats(chats)
 			}
 		})
@@ -38,7 +38,7 @@ export const useHeader = () => {
 		socket?.on("msg", (msg) => {
 			console.log(msg)
 			console.log(chatId)
-			if(msg.userId !== tokens.id && msg.chatId !== chatId) {
+			if (msg.userId !== tokens.id && msg.chatId !== chatId) {
 				toast(() => (
 					<Pane
 						onClick={() => {

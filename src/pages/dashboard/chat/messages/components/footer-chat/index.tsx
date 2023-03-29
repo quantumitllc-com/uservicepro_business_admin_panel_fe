@@ -38,7 +38,7 @@ const FooterChat = () => {
 				/>
 				<input
 					onChange={selectFile}
-					accept="image/png, image/jpeg .doc, .docx, .pdf"
+					accept="image/png, image/jpeg, image/jpg, image/webp, .doc, .docx, .pdf"
 					type="file"
 					id="file"
 					className={styles.hidden}

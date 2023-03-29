@@ -6,7 +6,7 @@ import { clearStorage } from "../utils/clearStorage"
 
 export const baseURL = process.env.REACT_APP_BASE_URL
 const request = axios.create({
-	baseURL
+	baseURL,
 })
 
 request.interceptors.request.use(async (config: any) => {
