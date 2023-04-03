@@ -38,7 +38,6 @@ export const useSocket = () => {
 		return () => {
 			socket?.close()
 		}
-
 	}, [
 		setSocket,
 		tokens.accessToken,

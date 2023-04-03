@@ -7,7 +7,8 @@ interface ImageTypes {
 	open: (e: MouseEvent) => void
 }
 
-const placeholder = "https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg"
+const placeholder =
+	"https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg"
 
 export const Image = forwardRef<any, ImageTypes>(({ src, open }, ref) => {
 	return (
@@ -16,7 +17,8 @@ export const Image = forwardRef<any, ImageTypes>(({ src, open }, ref) => {
 			onClick={(e: any) => {
 				e.stopPropagation()
 				open(e)
-			}}>
+			}}
+		>
 			<LazyLoadImage
 				width="250px"
 				effect="blur"

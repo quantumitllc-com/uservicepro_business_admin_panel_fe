@@ -7,7 +7,7 @@ import { Image } from "./image"
 import styles from "./styles.module.scss"
 
 export const getMessageType = (text: string, userType: string) => {
-	switch(getFormatOfMessage(text)) {
+	switch (getFormatOfMessage(text)) {
 		case "png":
 		case "jpeg":
 		case "jpg":
@@ -21,11 +21,7 @@ export const getMessageType = (text: string, userType: string) => {
 						height="600"
 					>
 						{({ ref, open }) => (
-							<Image
-								ref={ref}
-								src={text}
-								open={open}
-							/>
+							<Image ref={ref} src={text} open={open} />
 						)}
 					</Item>
 				</Gallery>
@@ -34,27 +30,40 @@ export const getMessageType = (text: string, userType: string) => {
 		case "doc":
 		case "docx":
 			return (
-				<a
-					rel="noreferrer"
-					target="_blank"
-					href={text}
-				>
+				<a rel="noreferrer" target="_blank" href={text}>
 					<SavedIcon
 						size={100}
-						color={userType === "sender" ?
-							"var(--dark-green)" :  "var(--black)"}
+						color={
+							userType === "sender"
+								? "var(--dark-green)"
+								: "var(--black)"
+						}
 					/>
 				</a>
 			)
 		default:
 			return (
 				<Pane
-					backgroundColor={userType === "sender" ? "var(--dark-green)" : "var(--white)"}
-					className={userType === "sender" ? styles.sender : styles.receiver}
+					backgroundColor={
+						userType === "sender"
+							? "var(--dark-green)"
+							: "var(--white)"
+					}
+					className={
+						userType === "sender" ? styles.sender : styles.receiver
+					}
 					padding={minorScale(3)}
 					border="1px solid var(--stroke-block)"
 				>
-					<MyText color={userType === "sender" ? "var(--white)" : "var(--black)"}>{text}</MyText>
+					<MyText
+						color={
+							userType === "sender"
+								? "var(--white)"
+								: "var(--black)"
+						}
+					>
+						{text}
+					</MyText>
 				</Pane>
 			)
 	}

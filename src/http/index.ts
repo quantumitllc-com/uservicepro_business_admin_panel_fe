@@ -13,11 +13,6 @@ request.interceptors.request.use(async (config: any) => {
 	const tokens = isExpiredToken()
 
 	if (tokens) {
-		if (tokens.isExpiredRefresh) {
-			clearStorage()
-			window.location.href = "/sign-in"
-		}
-
 		if (!tokens.isExpiredAccess) {
 			config.headers = {
 				...config.headers,
@@ -25,9 +20,20 @@ request.interceptors.request.use(async (config: any) => {
 			}
 		}
 
+		console.log(tokens.isExpiredRefresh)
+
 		if (tokens.isExpiredAccess) {
 			await refreshToken()
 		}
+
+		console.log(tokens.isExpiredAccess)
+
+
+		if (tokens.isExpiredRefresh) {
+			clearStorage()
+			window.location.href = "/sign-in"
+		}
+
 		return config
 	}
 	return config
