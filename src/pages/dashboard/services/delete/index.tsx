@@ -26,7 +26,6 @@ export const Delete = ({ id }: IDelete) => {
 			>
 				Are you sure you want to delete this item?
 			</Dialog>
-
 			<Pane
 				onClick={() => setValue(true)}
 				borderRadius={4}

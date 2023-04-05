@@ -31,7 +31,7 @@ function Accordion({
 	open,
 }: AccordionProps) {
 	const getUrlAccordion = (url: string) => {
-		if (url.includes("details")) {
+		if (url.includes("detail")) {
 			return "profile"
 		}
 		if (url.includes("Verify")) {

@@ -20,14 +20,13 @@ request.interceptors.request.use(async (config: any) => {
 			}
 		}
 
-		console.log(tokens.isExpiredRefresh)
+		// console.log(tokens.isExpiredRefresh)
 
 		if (tokens.isExpiredAccess) {
 			await refreshToken()
 		}
 
-		console.log(tokens.isExpiredAccess)
-
+		// console.log(tokens.isExpiredAccess)
 
 		if (tokens.isExpiredRefresh) {
 			clearStorage()

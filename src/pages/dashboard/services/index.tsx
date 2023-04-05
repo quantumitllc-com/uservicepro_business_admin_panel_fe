@@ -1,12 +1,10 @@
-import {
-	minorScale,
-	Pane,
-	SearchInput
-} from "evergreen-ui"
+import { minorScale, Pane, SearchInput } from "evergreen-ui"
 
 import MyHeading from "components/heading"
 import { Table } from "components/table"
 import { useServices } from "./useServices"
+import { Detail } from "./detail"
+import useBoolean from "../../../hooks/useBoolean"
 
 const Services = () => {
 	const {
@@ -14,14 +12,18 @@ const Services = () => {
 		data,
 		isLoading,
 		isFetching,
-		handleDetail,
-		handleSearch
+		handleSearch,
+		handleDetail
 	} = useServices()
+
 
 	return (
 		<Pane>
-			<MyHeading marginBottom={minorScale(5)}
-			           fontSize={25} fontWeight={600}>
+			<MyHeading
+				marginBottom={minorScale(5)}
+				fontSize={25}
+				fontWeight={600}
+			>
 				Services
 			</MyHeading>
 			<Pane
@@ -43,7 +45,8 @@ const Services = () => {
 				>
 					<SearchInput
 						onChange={handleSearch}
-						placeholder="Search anything" />
+						placeholder="Search anything"
+					/>
 				</Pane>
 				<Table
 					onRowClicked={handleDetail}

@@ -7,7 +7,6 @@ import { clearStorage } from "./clearStorage"
 export const refreshToken = async () => {
 	const tokens = getTokens()
 
-	try {
 		const response = await axios.post(
 			"refresh_token",
 			{},
@@ -18,14 +17,13 @@ export const refreshToken = async () => {
 					refreshToken: tokens.refreshToken,
 				},
 			},
-		)
-		localStorage.setItem("tokens", JSON.stringify(response.data))
-		return response
-	} catch (e: any) {
-		clearStorage()
-		window.location.href = "/sign-in"
-		console.log("Not Authorized")
-	}
+		).then(res => {
+			localStorage.setItem("tokens", JSON.stringify(res.data))
+		}).catch((e) => {
+			clearStorage()
+			window.location.href = "/sign-in"
+			console.log(e)
+		})
 
-	return null
+		return response
 }

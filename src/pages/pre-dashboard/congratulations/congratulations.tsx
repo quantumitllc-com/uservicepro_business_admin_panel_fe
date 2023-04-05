@@ -30,7 +30,7 @@ const Congratulations = () => {
 			<MyText marginBottom={majorScale(4)}>
 				Your account has been created and verified!
 			</MyText>
-			<Link to="/">
+			<Link to="/employee">
 				<MyButton
 					onClick={verifyIsFinished}
 					small="true"
