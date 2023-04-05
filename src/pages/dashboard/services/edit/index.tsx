@@ -61,9 +61,7 @@ export const Edit = ({ data }: any) => {
 						</Pane>
 					</Pane>
 					<Pane>
-						<MyText>
-							Description
-						</MyText>
+						<MyText>Description</MyText>
 						<Textarea value={description} />
 					</Pane>
 				</Pane>

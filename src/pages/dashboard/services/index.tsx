@@ -7,15 +7,8 @@ import { Detail } from "./detail"
 import useBoolean from "../../../hooks/useBoolean"
 
 const Services = () => {
-	const {
-		columns,
-		data,
-		isLoading,
-		isFetching,
-		handleSearch,
-		handleDetail
-	} = useServices()
-
+	const { columns, data, isLoading, isFetching, handleSearch, handleDetail } =
+		useServices()
 
 	return (
 		<Pane>

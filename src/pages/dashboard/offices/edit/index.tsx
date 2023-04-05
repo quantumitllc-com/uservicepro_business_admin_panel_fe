@@ -18,8 +18,6 @@ const Edit = () => {
 		form.reset(data)
 	}, [form, data])
 
-	// console.log(data)
-
 	return (
 		<Pane paddingTop={28}>
 			<Pane display="flex" rowGap="16px" flexWrap="wrap">
@@ -50,12 +48,6 @@ const Edit = () => {
 						label="State"
 						options={states}
 					/>
-					{/*<Input*/}
-					{/*	disabled={!value}*/}
-					{/*	name="state"*/}
-					{/*	control={form.control}*/}
-					{/*	label={<MyLabel>{labels.state}</MyLabel>}*/}
-					{/*/>*/}
 				</Pane>
 				<Pane
 					gap={minorScale(3)}

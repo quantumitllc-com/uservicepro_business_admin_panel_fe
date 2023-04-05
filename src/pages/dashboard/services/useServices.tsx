@@ -83,17 +83,12 @@ export const useServices = () => {
 			{
 				omit: true,
 				cell: (row) => (
-					<Detail
-						value={value}
-						setValue={setValue}
-						data={row}
-					/>
+					<Detail value={value} setValue={setValue} data={row} />
 				),
-			}
+			},
 		],
 		[value],
 	)
-
 
 	const handleDetail = () => {
 		setValue(true)
@@ -109,6 +104,6 @@ export const useServices = () => {
 		handleSearch,
 		handleDetail,
 		value,
-		setValue
+		setValue,
 	}
 }

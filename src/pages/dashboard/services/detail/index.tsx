@@ -4,7 +4,6 @@ import MyText from "components/text"
 import styles from "../edit/styles.module.scss"
 
 export const Detail = ({ data, value, setValue }: any) => {
-
 	// console.log(value)
 
 	return (
@@ -43,9 +42,7 @@ export const Detail = ({ data, value, setValue }: any) => {
 						</Pane>
 					</Pane>
 					<Pane>
-						<MyText>
-							Description
-						</MyText>
+						<MyText>Description</MyText>
 						{/*<Textarea value={data.description} />*/}
 					</Pane>
 				</Pane>
