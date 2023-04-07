@@ -33,7 +33,7 @@ export const useOffices = () => {
 		isLoading,
 	} = useQuery(
 		["offices", page, size, searchDebounce],
-		() => getOffices({ page: page - 1, size, keyword }),
+		() => getOffices({ page: page - 1, size, officeName: keyword }),
 		{
 			onError: (error: any) => {
 				toast.error(error.message)

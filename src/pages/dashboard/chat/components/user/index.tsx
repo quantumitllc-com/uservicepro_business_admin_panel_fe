@@ -1,4 +1,4 @@
-import { Avatar, majorScale, minorScale, Pane, PaneProps } from "evergreen-ui"
+import { Avatar, minorScale, Pane, PaneProps } from "evergreen-ui"
 import { FC } from "react"
 import dayjs from "dayjs"
 
@@ -6,7 +6,7 @@ import MyHeading from "components/heading"
 import MyText from "components/text"
 // import MyBadge from "components/badge"
 import { IChatType } from "types/dashboard/chat"
-import { ReactComponent as Ellipse } from "./ellipse.svg"
+import { ReactComponent as Ellipse } from "icons/ellipse.svg"
 import styles from "./styles.module.scss"
 
 interface ChatListProps extends PaneProps {

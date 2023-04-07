@@ -3,7 +3,7 @@ import { Avatar, majorScale, minorScale, Pane } from "evergreen-ui"
 import { shallow } from "zustand/shallow"
 
 import MyHeading from "components/heading"
-import { ReactComponent as Ellipse } from "pages/dashboard/chat/components/user/ellipse.svg"
+import { ReactComponent as Ellipse } from "icons/ellipse.svg"
 import { useChatStore } from "store/chat"
 import SkeletonAvatar from "../skeleton-avatar"
 import styles from "../middle-chat/styles.module.scss"

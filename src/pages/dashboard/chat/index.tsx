@@ -34,12 +34,12 @@ const Chat = () => {
 				>
 					Messages
 				</MyHeading>
-				<SearchInput
-					height={minorScale(10)}
-					width="100%"
-					placeholder="Search anything"
-					marginBottom={minorScale(7)}
-				/>
+				{/*<SearchInput*/}
+				{/*	height={minorScale(10)}*/}
+				{/*	width="100%"*/}
+				{/*	placeholder="Search anything"*/}
+				{/*	marginBottom={minorScale(7)}*/}
+				{/*/>*/}
 				{/*<Pane*/}
 				{/*	// position="sticky"*/}
 				{/*	// overflowY="scroll"*/}

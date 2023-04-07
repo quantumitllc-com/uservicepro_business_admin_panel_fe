@@ -4,6 +4,8 @@ import { Input } from "components/input"
 import MyButton from "components/button"
 import { ReactComponent as Location } from "./location.svg"
 import { useAdd } from "./useAdd"
+import { states } from "../../../../constants/offices"
+import { Select } from "../../../../components/select"
 
 const Add = () => {
 	const {
@@ -67,13 +69,19 @@ const Add = () => {
 					<Location />
 				</Pane>
 				<Pane display="flex" gap={16}>
-					<Input
-						type="text"
-						label="State"
+					<Select
 						name="state"
 						control={control}
-						placeholder="State"
+						label="State"
+						options={states}
 					/>
+					{/*<Input*/}
+					{/*	type="text"*/}
+					{/*	label="State"*/}
+					{/*	name="state"*/}
+					{/*	control={control}*/}
+					{/*	placeholder="State"*/}
+					{/*/>*/}
 					<Input
 						type="text"
 						label="City"

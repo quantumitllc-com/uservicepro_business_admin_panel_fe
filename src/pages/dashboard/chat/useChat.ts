@@ -3,10 +3,10 @@ import { shallow } from "zustand/shallow"
 
 import { useChatStore } from "store/chat"
 import { IChatType } from "types/dashboard/chat"
-import { getSocket } from "utils/getSocket"
+import { useSocket } from "hooks/useSocket"
 
 export const useChat = () => {
-	const socket = getSocket()
+	const socket = useSocket()
 	const [isLoading, setIsLoading] = useState(true)
 	const { chats, setChats } = useChatStore(
 		(state) => ({
@@ -17,8 +17,8 @@ export const useChat = () => {
 	)
 
 	useEffect(() => {
-		socket.connect()
-		socket.on("chats", (chats: IChatType[]) => {
+		socket?.connect()
+		socket?.on("chats", (chats: IChatType[]) => {
 			if (Array.isArray(chats)) {
 				setChats(chats)
 			}
@@ -26,10 +26,12 @@ export const useChat = () => {
 		})
 
 		return () => {
-			socket.off("chats")
-			socket.disconnect()
+			socket?.off("chats")
+			socket?.disconnect()
 		}
-	}, [])
+	}, [socket])
+
+	// console.log(chats)
 
 	return {
 		chats,

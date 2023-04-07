@@ -8,7 +8,7 @@ import { useEdit } from "./useEdit"
 import { useProfile } from "../useProfile"
 
 const Edit = () => {
-	const { value, toggle, form } = useEdit()
+	const { value, toggle, form, onSubmit, isLoading } = useEdit()
 	const { data } = useProfile()
 
 	useEffect(() => {
@@ -46,7 +46,16 @@ const Edit = () => {
 					>
 						Cancel
 					</MyButton>
-					<MyButton small="true" appearance="outlined">
+					<MyButton
+						onClick={
+							form.formState.isDirty
+								? form.handleSubmit(onSubmit)
+								: toggle
+						}
+						small="true"
+						appearance="outlined"
+						isLoading={isLoading}
+					>
 						Save
 					</MyButton>
 				</Pane>

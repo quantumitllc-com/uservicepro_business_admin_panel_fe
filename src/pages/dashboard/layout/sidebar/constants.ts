@@ -38,11 +38,11 @@ export const sidebarMenu = [
 		icon: GlobeNetworkIcon,
 		text: "Activity Map",
 	},
-	{
-		url: "schedules",
-		icon: TimelineEventsIcon,
-		text: "Schedules",
-	},
+	// {
+	// 	url: "schedules",
+	// 	icon: TimelineEventsIcon,
+	// 	text: "Schedules",
+	// },
 	{
 		url: "offices",
 		icon: GeolocationIcon,
@@ -53,16 +53,16 @@ export const sidebarMenu = [
 		icon: CreditCardIcon,
 		text: "Payment",
 	},
-	{
-		url: "ads",
-		icon: VolumeUpIcon,
-		text: "Ads",
-	},
-	{
-		url: "accounting",
-		icon: CalculatorIcon,
-		text: "Accounting",
-	},
+	// {
+	// 	url: "ads",
+	// 	icon: VolumeUpIcon,
+	// 	text: "Ads",
+	// },
+	// {
+	// 	url: "accounting",
+	// 	icon: CalculatorIcon,
+	// 	text: "Accounting",
+	// },
 	{
 		url: "order",
 		icon: PanelTableIcon,
