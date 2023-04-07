@@ -30,7 +30,7 @@ export const useEdit = () => {
 		{
 			onSuccess: (data) => {
 				queryClient.setQueryData(["office-user", id], data)
-				toast.success("Office user was edited successfully!")
+				toast.success("Office was edited successfully!")
 				toggle()
 			},
 			onError: (error: any) => {

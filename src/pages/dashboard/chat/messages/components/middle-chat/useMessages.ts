@@ -4,17 +4,20 @@ import { shallow } from "zustand/shallow"
 
 import { getMessages } from "services/dashboard/chat"
 import { useChatStore } from "store/chat"
-import { useEffect, useRef, useState } from "react"
-import { getSocket } from "utils/getSocket"
-import { useUserStore } from "store/user"
+import { useEffect, useState } from "react"
+import { useSocket } from "hooks/useSocket"
+import { getTokens } from "utils/getTokens"
+import { IChatType } from "types/dashboard/chat"
 
 export const useMessages = () => {
-	const socket = getSocket()
-	const messagesEndRef = useRef<null | HTMLDivElement>(null)
+	const socket = useSocket()
+	const tokens = getTokens()
 	const {
 		size,
 		page,
 		meta,
+		// setChatId,
+		setChats,
 		chatId,
 		setMessages,
 		currentChat,
@@ -29,6 +32,8 @@ export const useMessages = () => {
 			size: state.size,
 			page: state.page,
 			meta: state.meta,
+			setChatId: state.setChatId,
+			setChats: state.setChats,
 			chatId: state.chatId,
 			setMessages: state.setMessages,
 			currentChat: state.currentChat,
@@ -38,12 +43,6 @@ export const useMessages = () => {
 			setIncrementPage: state.setIncrementPage,
 			setNewMessage: state.setNewMessage,
 			setLastUnreadMessage: state.setLastUnreadMessage,
-		}),
-		shallow,
-	)
-	const { user } = useUserStore(
-		(state) => ({
-			user: state.user,
 		}),
 		shallow,
 	)
@@ -79,21 +78,14 @@ export const useMessages = () => {
 		}
 	}
 
-	const scrollToBottom = () => {
-		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-	}
-
 	useEffect(() => {
-		scrollToBottom()
-	}, [messages])
-
-	useEffect(() => {
-		socket.connect()
-		socket.emit("join", { chatId })
-		socket.on("msg", (msg) => {
-			console.log(msg)
-			// coming message
-			if (msg.userId !== user.id) {
+		socket?.connect()
+		// console.log(chatId)
+		socket?.emit("join", { chatId })
+		socket?.on("msg", (msg) => {
+			if (msg.chatId === chatId && msg.userId !== tokens.id) {
+				// console.log(msg)
+				// coming message
 				setNewMessage([msg])
 				if (chatId) {
 					setLastUnreadMessage(msg.message, chatId)
@@ -101,14 +93,19 @@ export const useMessages = () => {
 			}
 		})
 
+		socket?.on("chats", (chats: IChatType[]) => {
+			console.log(chats)
+			setChats(chats)
+		})
+
 		return () => {
-			socket.off("msg")
-			socket.disconnect()
+			socket?.off("msg")
+			socket?.off("chats")
+			socket?.disconnect()
 		}
-	}, [chatId])
+	}, [chatId, socket])
 
 	return {
-		messagesEndRef,
 		handleNext,
 		isLoading,
 		chatId,

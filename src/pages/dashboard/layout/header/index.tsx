@@ -21,10 +21,13 @@ import MyHeading from "components/heading"
 import MyText from "components/text"
 import { useLogOut } from "services/auth/log-out/useLogOut"
 import { useUserStore } from "store/user"
+import { ReactComponent as Ellipse } from "icons/ellipse.svg"
 import styles from "./styles.module.scss"
+import { useHeader } from "./useHeader"
 
 const Header = (props: PaneProps) => {
 	const { onSubmit } = useLogOut()
+	const { totalCount } = useHeader()
 	const { user } = useUserStore(
 		(state) => ({
 			user: state.user,
@@ -60,14 +63,19 @@ const Header = (props: PaneProps) => {
 				<Pane display="flex" gap="40px">
 					<NavLink to="chat">
 						{({ isActive }) => (
-							<ChatIcon
-								color={
-									isActive
-										? "var(--dark-green)"
-										: "var(--grey)"
-								}
-								size={20}
-							/>
+							<Pane position="relative">
+								<ChatIcon
+									color={
+										isActive
+											? "var(--dark-green)"
+											: "var(--grey)"
+									}
+									size={20}
+								/>
+								{totalCount > 0 && (
+									<Ellipse className={styles.ellipse} />
+								)}
+							</Pane>
 						)}
 					</NavLink>
 					<NotificationsIcon color="var(--grey)" size={20} />

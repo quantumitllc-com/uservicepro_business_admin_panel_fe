@@ -1,20 +1,21 @@
-import React, { memo, useEffect } from "react"
+import React, { memo } from "react"
 import InfiniteScroll from "react-infinite-scroller"
 import { Pane } from "evergreen-ui"
+import "photoswipe/dist/photoswipe.css"
 
 import { Spinner } from "components/spinner"
 import { getTokens } from "utils/getTokens"
 import SkeletonMessages from "../skeleton-messages"
-import Sender from "../sender"
-import Receiver from "../receiver"
+import Sender from "./sender"
+import Receiver from "./receiver"
 import { useMessages } from "./useMessages"
 import styles from "./styles.module.scss"
-import { getSocket } from "../../../../../../utils/getSocket"
+import { useScrollToBottom } from "./useScrollToBottom"
 
 const MiddleChat = memo(() => {
 	const tokens = getTokens()
-	const { isLoading, messages, messagesEndRef, handleNext, hasMore } =
-		useMessages()
+	const { isLoading, messages, handleNext, hasMore } = useMessages()
+	const { messagesEndRef } = useScrollToBottom()
 
 	return (
 		<Pane className={styles.container}>

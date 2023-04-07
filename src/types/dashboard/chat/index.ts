@@ -43,9 +43,10 @@ export interface IChatState {
 	// setIncrementPage: () => void
 	chats: IChatType[]
 	setChats: (chats: IChatType[]) => void
+	totalCount: number
 	chatId: IChatId
 	setChatId: (chatId: IChatId) => void
-	currentChat: IChatType
+	currentChat: any
 	setLastUnreadMessage: (newLastUnreadMessage: string, chatId: string) => void
 	messages: IMessages[]
 	resetMessages: () => void

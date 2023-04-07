@@ -7,6 +7,7 @@ import {
 } from "evergreen-ui"
 
 import { MyInput } from "components/input"
+import { Spinner } from "components/spinner"
 import styles from "./styles.module.scss"
 import { useFooter } from "./useFooter"
 
@@ -37,7 +38,7 @@ const FooterChat = () => {
 				/>
 				<input
 					onChange={selectFile}
-					accept="image/png, image/jpeg .doc, .docx, .pdf"
+					accept="image/png, image/jpeg, image/jpg, image/webp, .doc, .docx, .pdf"
 					type="file"
 					id="file"
 					className={styles.hidden}
@@ -51,16 +52,20 @@ const FooterChat = () => {
 				placeholder="Write a message"
 			/>
 			<Pane>
-				<IconButton
-					disabled={!message || isLoading}
-					onClick={handleSendMessage}
-					className={styles.send}
-					size="large"
-					border="none"
-					borderRadius={50}
-					backgroundColor="var(--dark-green)"
-					icon={<SendMessageIcon color="var(--white)" />}
-				/>
+				{isLoading ? (
+					<Spinner />
+				) : (
+					<IconButton
+						disabled={!message || isLoading}
+						onClick={handleSendMessage}
+						className={styles.send}
+						size="large"
+						border="none"
+						borderRadius={50}
+						backgroundColor="var(--dark-green)"
+						icon={<SendMessageIcon color="var(--white)" />}
+					/>
+				)}
 			</Pane>
 		</Pane>
 	)

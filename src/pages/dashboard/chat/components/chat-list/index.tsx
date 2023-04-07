@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom"
 import { useEffect } from "react"
 
 import { useChatStore } from "store/chat"
-import { getSocket } from "utils/getSocket"
+import { useSocket } from "hooks/useSocket"
 import User from "../user"
 
 const ChatList = () => {
-	const socket = getSocket()
+	const socket = useSocket()
 	const { chats, chatId, setChatId, resetMessages } = useChatStore(
 		(state) => ({
 			chatId: state.chatId,
@@ -19,16 +19,10 @@ const ChatList = () => {
 		shallow,
 	)
 
-	useEffect(() => {
-		if (chatId) {
-			setChatId(chatId)
-		}
-	}, [chatId])
-
 	const handleOpenChat = (id: string) => {
 		setChatId(id)
 		resetMessages()
-		socket.emit("left", { chatId })
+		// socket.emit("left", { chatId })
 	}
 
 	return (
