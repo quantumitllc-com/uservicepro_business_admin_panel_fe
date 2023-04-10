@@ -8,8 +8,6 @@ import { getServices } from "services/dashboard/services"
 import { useDebounce } from "hooks/useDebounce"
 import { Delete } from "./delete"
 import { Edit } from "./edit"
-import { Detail } from "./detail"
-import useBoolean from "../../../hooks/useBoolean"
 
 export interface DataRow {
 	id: string
@@ -23,7 +21,6 @@ export interface DataRow {
 export const useServices = () => {
 	const [keyword, setKeyword] = useState("")
 	const searchDebounce = useDebounce(keyword, 500)
-	const { value, setValue } = useBoolean(false)
 
 	const {
 		data = [],
@@ -35,7 +32,9 @@ export const useServices = () => {
 		},
 		select: ({ data }) =>
 			data.filter((item: any) =>
-				item.serviceName.includes(searchDebounce),
+				item.serviceName
+					.toLowerCase()
+					.includes(searchDebounce.toLowerCase()),
 			),
 	})
 
@@ -80,21 +79,9 @@ export const useServices = () => {
 					</Pane>
 				),
 			},
-			{
-				omit: true,
-				cell: (row) => (
-					<Detail value={value} setValue={setValue} data={row} />
-				),
-			},
 		],
-		[value],
+		[],
 	)
-
-	const handleDetail = () => {
-		setValue(true)
-	}
-
-	// console.log(value)
 
 	return {
 		data,
@@ -102,8 +89,5 @@ export const useServices = () => {
 		isFetching,
 		isLoading,
 		handleSearch,
-		handleDetail,
-		value,
-		setValue,
 	}
 }

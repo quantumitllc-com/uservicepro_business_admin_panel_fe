@@ -1,24 +1,26 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useForm } from "react-hook-form"
+import useBoolean from "hooks/useBoolean"
 import { toast } from "react-toastify"
-import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import React from "react"
 
+import { useMutation } from "@tanstack/react-query"
 import { uploadFile } from "services/dashboard/profile"
-import { editService } from "../../../../services/dashboard/services"
-import { EditFormTypes } from "../../../../types/dashboard/services"
-import useBoolean from "../../../../hooks/useBoolean"
+import { useForm } from "react-hook-form"
+import { AddFormTypes } from "types/dashboard/services"
+import { addServiceToCompany } from "services/dashboard/services"
 
-export const useEdit = ({ data }: any) => {
+export const defaultValues = {
+	description: "",
+	pictureUrl: "",
+}
+
+export const useAddService = ({ data }: any) => {
 	const { value, setValue, toggle } = useBoolean(false)
-	const [photoUrl, setPhotoUrl] = useState("")
-	const queryClient = useQueryClient()
+	const navigate = useNavigate()
 
-	const form = useForm<EditFormTypes>({
+	const form = useForm<AddFormTypes>({
 		mode: "onSubmit",
-		defaultValues: {
-			description: data.description,
-			pictureUrl: data.pictureUrl,
-		},
+		defaultValues,
 	})
 
 	const { isLoading, mutate } = useMutation(uploadFile, {
@@ -29,7 +31,6 @@ export const useEdit = ({ data }: any) => {
 		}) => {
 			toast.success("Photo is uploaded successfully")
 			form.setValue("pictureUrl", file_url)
-			setPhotoUrl(file_url)
 		},
 		onError: (error: any) => {
 			toast.error(error.response.statusText)
@@ -46,12 +47,12 @@ export const useEdit = ({ data }: any) => {
 	}
 
 	const { mutate: mutateService } = useMutation(
-		(newService: EditFormTypes) => editService(newService, data.id),
+		(newService: AddFormTypes) => addServiceToCompany(newService, data.id),
 		{
 			onSuccess: () => {
-				queryClient.invalidateQueries(["services"])
-				toast.success("Service was edited successfully!")
+				toast.success("Service was added successfully!")
 				setValue(false)
+				navigate("/services")
 			},
 			onError: (error: any) => {
 				toast.error(error.response.data.message)
@@ -59,18 +60,17 @@ export const useEdit = ({ data }: any) => {
 		},
 	)
 
-	const onSubmit = (newService: EditFormTypes) => {
+	const onSubmit = (newService: AddFormTypes) => {
 		mutateService(newService)
 	}
 
 	return {
 		isLoading,
 		selectPhoto,
-		photoUrl,
-		form,
-		onSubmit,
 		value,
 		setValue,
 		toggle,
+		form,
+		onSubmit,
 	}
 }
