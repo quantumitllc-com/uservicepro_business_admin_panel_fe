@@ -17,12 +17,15 @@ export const useEdit = ({ data }: any) => {
 		mode: "onSubmit",
 		defaultValues: {
 			description: data.description,
-			pictureUrl: data.pictureUrl
-		}
+			pictureUrl: data.pictureUrl,
+		},
 	})
 
 	const { isLoading, mutate } = useMutation(uploadFile, {
-		onSuccess: ({ data: { message: { file_url }, },
+		onSuccess: ({
+			data: {
+				message: { file_url },
+			},
 		}) => {
 			toast.success("Photo is uploaded successfully")
 			form.setValue("pictureUrl", file_url)
@@ -53,7 +56,7 @@ export const useEdit = ({ data }: any) => {
 			onError: (error: any) => {
 				toast.error(error.response.data.message)
 			},
-		}
+		},
 	)
 
 	const onSubmit = (newService: EditFormTypes) => {
@@ -68,6 +71,6 @@ export const useEdit = ({ data }: any) => {
 		onSubmit,
 		value,
 		setValue,
-		toggle
+		toggle,
 	}
 }

@@ -12,16 +12,10 @@ import { EditFormTypes } from "../../../types/dashboard/services"
 
 const Services = () => {
 	const { value, setValue } = useBoolean(false)
-	const {
-		columns,
-		data,
-		isLoading,
-		isFetching,
-		handleSearch ,
-	} = useServices()
+	const { columns, data, isLoading, isFetching, handleSearch } = useServices()
 	const [detail, setDetail] = useState<EditFormTypes>({
 		pictureUrl: "",
-		description: ""
+		description: "",
 	})
 
 	const handleDetail = (data: any) => {
@@ -31,10 +25,7 @@ const Services = () => {
 
 	return (
 		<Pane>
-			<MyHeading
-				fontSize={25}
-				fontWeight={600}
-			>
+			<MyHeading fontSize={25} fontWeight={600}>
 				Services
 			</MyHeading>
 			<Pane
@@ -50,7 +41,7 @@ const Services = () => {
 						small="true"
 						appearance="primary"
 						backgroundColor="var(--green)"
-						>
+					>
 						Add Service
 					</MyButton>
 				</Link>
@@ -76,11 +67,7 @@ const Services = () => {
 					isLoading={isLoading}
 					isFetching={isFetching}
 				/>
-				<Detail
-					data={detail}
-					setValue={setValue}
-					value={value}
-				/>
+				<Detail data={detail} setValue={setValue} value={value} />
 			</Pane>
 		</Pane>
 	)

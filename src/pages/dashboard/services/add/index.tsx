@@ -8,21 +8,11 @@ import CategoryService from "./components/category-service"
 
 const AddServices = () => {
 	const [currentRow, setCurrentRow] = useState("")
-	const {
-		data,
-		columns,
-		isFetching,
-		isLoading,
-		handleSearch
-	} = useAdd()
+	const { data, columns, isFetching, isLoading, handleSearch } = useAdd()
 
 	return (
 		<Pane>
-			<MyHeading
-				fontSize={25}
-				fontWeight={600}
-				marginBottom={24}
-			>
+			<MyHeading fontSize={25} fontWeight={600} marginBottom={24}>
 				Add services
 			</MyHeading>
 			<Pane
@@ -56,7 +46,7 @@ const AddServices = () => {
 					expandableRowsComponent={CategoryService}
 					onRowClicked={(row) => setCurrentRow(row.id)}
 					onRowExpandToggled={(bool, row) => setCurrentRow(row.id)}
-					expandableRowExpanded={(row) => (row.id === currentRow)}
+					expandableRowExpanded={(row) => row.id === currentRow}
 				/>
 			</Pane>
 		</Pane>

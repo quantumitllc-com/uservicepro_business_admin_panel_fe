@@ -19,7 +19,7 @@ export const Edit = ({ data }: any) => {
 		onSubmit,
 		value,
 		setValue,
-		toggle
+		toggle,
 	} = useEdit({ data })
 
 	return (
@@ -35,8 +35,9 @@ export const Edit = ({ data }: any) => {
 						appearance="primary"
 						isLoading={isLoading}
 						onClick={
-							form.formState.isDirty ?
-								form.handleSubmit(onSubmit) : toggle
+							form.formState.isDirty
+								? form.handleSubmit(onSubmit)
+								: toggle
 						}
 					>
 						Save
@@ -83,10 +84,7 @@ export const Edit = ({ data }: any) => {
 					</Pane>
 					<Pane>
 						<MyText>Description</MyText>
-						<MyTextarea
-							name="description"
-							control={form.control}
-						/>
+						<MyTextarea name="description" control={form.control} />
 					</Pane>
 				</Pane>
 			</Dialog>

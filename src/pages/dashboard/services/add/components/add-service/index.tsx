@@ -10,14 +10,8 @@ import { useAddService } from "./useAddService"
 import styles from "../../../styles.module.scss"
 
 export const AddService = ({ data }: any) => {
-	const {
-		value,
-		setValue,
-		form,
-		selectPhoto,
-		isLoading,
-		onSubmit
-	} = useAddService({ data })
+	const { value, setValue, form, selectPhoto, isLoading, onSubmit } =
+		useAddService({ data })
 
 	return (
 		<Pane>
@@ -38,7 +32,12 @@ export const AddService = ({ data }: any) => {
 				}
 			>
 				<Pane>
-					<Pane display="flex" alignItems="center" gap={24} marginBottom={24}>
+					<Pane
+						display="flex"
+						alignItems="center"
+						gap={24}
+						marginBottom={24}
+					>
 						<Pane display="flex" flexDirection="column">
 							<MyText marginBottom={4}>Upload photo</MyText>
 							{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -79,10 +78,7 @@ export const AddService = ({ data }: any) => {
 					</Pane>
 					<Pane>
 						<MyText>Description</MyText>
-						<MyTextarea
-							name="description"
-							control={form.control}
-						/>
+						<MyTextarea name="description" control={form.control} />
 					</Pane>
 				</Pane>
 			</Dialog>

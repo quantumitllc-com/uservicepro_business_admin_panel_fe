@@ -32,7 +32,9 @@ export const useServices = () => {
 		},
 		select: ({ data }) =>
 			data.filter((item: any) =>
-				item.serviceName.toLowerCase().includes(searchDebounce.toLowerCase()),
+				item.serviceName
+					.toLowerCase()
+					.includes(searchDebounce.toLowerCase()),
 			),
 	})
 
@@ -76,11 +78,10 @@ export const useServices = () => {
 						<Delete id={row.id} />
 					</Pane>
 				),
-			}
+			},
 		],
 		[],
 	)
-
 
 	return {
 		data,

@@ -10,7 +10,7 @@ export interface DataRow {
 	id: string
 	pictureUrl: string
 	num: number
-	name: string,
+	name: string
 }
 
 export const useAdd = () => {
@@ -37,9 +37,9 @@ export const useAdd = () => {
 				name: "Category name",
 				sortable: true,
 				selector: (row) => row.name,
-
-			}
-		], []
+			},
+		],
+		[],
 	)
 
 	const handleSearch = (e: any) => {
@@ -51,6 +51,6 @@ export const useAdd = () => {
 		columns,
 		isFetching,
 		isLoading,
-		handleSearch
+		handleSearch,
 	}
 }

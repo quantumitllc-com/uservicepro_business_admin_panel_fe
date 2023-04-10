@@ -11,43 +11,40 @@ import button from "../../../../../../components/button"
 export interface DataRow {
 	id: string
 	num: number
-	name: string,
+	name: string
 }
 
 export const useCategoryService = ({ data }: any) => {
 	const {
 		isFetching,
 		isLoading,
-		data: services = []
-	} = useQuery(["category-service"],
-		() => getCategoryToService(data.id),
-		{
-			onError: (error: any) => {
-				toast.error(error.message)
-			},
-			select: ({ data }) => ([ ...data ])
-		})
+		data: services = [],
+	} = useQuery(["category-service"], () => getCategoryToService(data.id), {
+		onError: (error: any) => {
+			toast.error(error.message)
+		},
+		select: ({ data }) => [...data],
+	})
 
 	const columns: Array<TableColumn<DataRow>> = useMemo(
 		() => [
 			{
 				name: "Service name",
 				sortable: true,
-				selector: (row) => row.name
+				selector: (row) => row.name,
 			},
 			{
 				name: "Service id",
 				sortable: true,
-				selector: (row) => row.id
+				selector: (row) => row.id,
 			},
 			{
 				ignoreRowClick: true,
 				button: true,
-				cell: (row) => (
-					<AddService data={row} />
-				)
-			}
-		], []
+				cell: (row) => <AddService data={row} />,
+			},
+		],
+		[],
 	)
 
 	return {

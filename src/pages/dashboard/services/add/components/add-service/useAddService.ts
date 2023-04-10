@@ -11,7 +11,7 @@ import { addServiceToCompany } from "services/dashboard/services"
 
 export const defaultValues = {
 	description: "",
-	pictureUrl: ""
+	pictureUrl: "",
 }
 
 export const useAddService = ({ data }: any) => {
@@ -20,23 +20,25 @@ export const useAddService = ({ data }: any) => {
 
 	const form = useForm<AddFormTypes>({
 		mode: "onSubmit",
-		defaultValues
+		defaultValues,
 	})
 
 	const { isLoading, mutate } = useMutation(uploadFile, {
 		onSuccess: ({
-			            data: { message: { file_url } }
-		            }) => {
+			data: {
+				message: { file_url },
+			},
+		}) => {
 			toast.success("Photo is uploaded successfully")
 			form.setValue("pictureUrl", file_url)
 		},
 		onError: (error: any) => {
 			toast.error(error.response.statusText)
-		}
+		},
 	})
 
-	const selectPhoto = async(event: React.ChangeEvent<HTMLInputElement>) => {
-		if(event.target.files) {
+	const selectPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files) {
 			const file = event.target.files[0]
 			const formData = new FormData()
 			formData.append("file_url", file)
@@ -55,7 +57,7 @@ export const useAddService = ({ data }: any) => {
 			onError: (error: any) => {
 				toast.error(error.response.data.message)
 			},
-		}
+		},
 	)
 
 	const onSubmit = (newService: AddFormTypes) => {
@@ -69,6 +71,6 @@ export const useAddService = ({ data }: any) => {
 		setValue,
 		toggle,
 		form,
-		onSubmit
+		onSubmit,
 	}
 }
