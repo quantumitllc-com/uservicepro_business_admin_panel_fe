@@ -1,49 +1,37 @@
-import { Dialog, Pane } from "evergreen-ui"
+import { Dialog, Pane, Textarea } from "evergreen-ui"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 import MyText from "components/text"
-import styles from "../edit/styles.module.scss"
+import { placeholder } from "../../../../utils/imagePlaceholder"
 
 export const Detail = ({ data, value, setValue }: any) => {
-	// console.log(value)
-
 	return (
 		<Pane>
 			<Dialog
 				isShown={value}
-				title="Edit service"
+				title="Service"
 				onCloseComplete={() => setValue(false)}
-				confirmLabel="Save"
-				// onConfirm={(close) => {
-				// 	handleDelete(id)
-				// 	close()
-				// }}
+				footer={<Pane />}
 			>
 				<Pane>
 					<Pane marginBottom={24}>
-						<label htmlFor="service-image">
-							{/*<ImgIcon />*/}
-							<input
-								accept="image/png, image/jpeg"
-								// onChange={selectPhoto}
-								type="file"
-								id="service-image"
-								className={styles.hidden}
-							/>
-						</label>
+						<LazyLoadImage
+							width="171px"
+							effect="blur"
+							height="178px"
+							alt="picture"
+							placeholderSrc={placeholder}
+							src={data.pictureUrl}
+						/>
 					</Pane>
-					<Pane marginBottom={24}>
-						<Pane>
-							<MyText>Type:</MyText>
-							<MyText color="var(--black)"> png, jpeg</MyText>
-						</Pane>
-						<Pane>
-							<MyText>Max size:</MyText>
-							<MyText color="var(--black)"> 3MB</MyText>
-						</Pane>
-					</Pane>
+
 					<Pane>
 						<MyText>Description</MyText>
-						{/*<Textarea value={data.description} />*/}
+						<Textarea
+							name="description"
+							disabled
+							value={data.description}
+						/>
 					</Pane>
 				</Pane>
 			</Dialog>

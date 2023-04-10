@@ -1,19 +1,37 @@
-import { minorScale, Pane, SearchInput } from "evergreen-ui"
+import { AddIcon, minorScale, Pane, SearchInput } from "evergreen-ui"
+import { Link } from "react-router-dom"
+import { useState } from "react"
 
 import MyHeading from "components/heading"
 import { Table } from "components/table"
+import MyButton from "components/button"
 import { useServices } from "./useServices"
 import { Detail } from "./detail"
 import useBoolean from "../../../hooks/useBoolean"
+import { EditFormTypes } from "../../../types/dashboard/services"
 
 const Services = () => {
-	const { columns, data, isLoading, isFetching, handleSearch, handleDetail } =
-		useServices()
+	const { value, setValue } = useBoolean(false)
+	const {
+		columns,
+		data,
+		isLoading,
+		isFetching,
+		handleSearch ,
+	} = useServices()
+	const [detail, setDetail] = useState<EditFormTypes>({
+		pictureUrl: "",
+		description: ""
+	})
+
+	const handleDetail = (data: any) => {
+		setDetail(data)
+		setValue(true)
+	}
 
 	return (
 		<Pane>
 			<MyHeading
-				marginBottom={minorScale(5)}
 				fontSize={25}
 				fontWeight={600}
 			>
@@ -26,6 +44,16 @@ const Services = () => {
 				marginBottom={minorScale(5)}
 			>
 				<MyHeading>List of services</MyHeading>
+				<Link to="add">
+					<MyButton
+						iconBefore={AddIcon}
+						small="true"
+						appearance="primary"
+						backgroundColor="var(--green)"
+						>
+						Add Service
+					</MyButton>
+				</Link>
 			</Pane>
 			<Pane>
 				<Pane
@@ -42,11 +70,16 @@ const Services = () => {
 					/>
 				</Pane>
 				<Table
-					onRowClicked={handleDetail}
+					onRowClicked={(row) => handleDetail(row)}
 					columns={columns}
 					data={data}
 					isLoading={isLoading}
 					isFetching={isFetching}
+				/>
+				<Detail
+					data={detail}
+					setValue={setValue}
+					value={value}
 				/>
 			</Pane>
 		</Pane>
