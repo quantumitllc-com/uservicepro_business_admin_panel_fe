@@ -16,3 +16,6 @@ export const getCategoryToService = (id: string) =>
 
 export const addServiceToCompany = (data: AddFormTypes, id: string) =>
 	request.post(`core/company/service/${id}`, data)
+
+export const getOfficeService = (officeId?: string) =>
+	request(`core/company/office/${officeId}/services`)

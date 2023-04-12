@@ -10,9 +10,19 @@ import { Detail } from "./detail"
 import useBoolean from "../../../hooks/useBoolean"
 import { EditFormTypes } from "../../../types/dashboard/services"
 
-const Services = () => {
+export interface ServicesProps {
+	officeId?: string
+}
+
+const Services = ({ officeId }: ServicesProps) => {
 	const { value, setValue } = useBoolean(false)
-	const { columns, data, isLoading, isFetching, handleSearch } = useServices()
+	const {
+		columns,
+		data,
+		isLoading,
+		isFetching,
+		handleSearch
+	} = useServices({ officeId })
 	const [detail, setDetail] = useState<EditFormTypes>({
 		pictureUrl: "",
 		description: "",
@@ -35,7 +45,7 @@ const Services = () => {
 				marginBottom={minorScale(5)}
 			>
 				<MyHeading>List of services</MyHeading>
-				<Link to="add">
+				<Link to="/services/add">
 					<MyButton
 						iconBefore={AddIcon}
 						small="true"

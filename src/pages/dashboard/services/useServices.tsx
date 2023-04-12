@@ -4,7 +4,7 @@ import { Avatar, Pane } from "evergreen-ui"
 
 import { TableColumn } from "react-data-table-component"
 import React, { useMemo, useState } from "react"
-import { getServices } from "services/dashboard/services"
+import { getOfficeService, getServices } from "services/dashboard/services"
 import { useDebounce } from "hooks/useDebounce"
 import { Delete } from "./delete"
 import { Edit } from "./edit"
@@ -18,25 +18,43 @@ export interface DataRow {
 	num: number
 }
 
-export const useServices = () => {
+export interface UseServicesProps {
+	officeId?: string
+}
+
+export const useServices = ({ officeId }: UseServicesProps) => {
 	const [keyword, setKeyword] = useState("")
 	const searchDebounce = useDebounce(keyword, 500)
+
+	const getQueryFn = () => {
+		if (officeId) {
+			return getOfficeService(officeId)
+		}
+		return getServices()
+	}
 
 	const {
 		data = [],
 		isFetching,
 		isLoading,
-	} = useQuery(["services"], getServices, {
+	} = useQuery(["services"],
+		// () => getServices(),
+		// () => getOfficeService(officeId),
+		() => getQueryFn(),
+		{
 		onError: (error: any) => {
 			toast.error(error.message)
 		},
-		select: ({ data }) =>
-			data.filter((item: any) =>
-				item.serviceName
-					.toLowerCase()
-					.includes(searchDebounce.toLowerCase()),
-			),
+			select: ({ data }) => [...data]
+		// select: ({ data }) =>
+		// 	data.filter((item: any) =>
+		// 		item.serviceName
+		// 			.toLowerCase()
+		// 			.includes(searchDebounce.toLowerCase()),
+		// 	),
 	})
+
+	console.log(data)
 
 	const handleSearch = (e: any) => {
 		setKeyword(e.target.value)

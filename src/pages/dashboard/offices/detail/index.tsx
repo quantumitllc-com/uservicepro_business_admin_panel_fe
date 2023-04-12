@@ -6,11 +6,10 @@ import Employee from "pages/dashboard/employee"
 import { useDetail } from "./useDetail"
 import Edit from "../edit"
 import Title from "./components/title"
+import Services from "../../services"
 
 const OfficeDetail = () => {
 	const { isLoading, data } = useDetail()
-
-	console.log(data)
 
 	return (
 		<Pane display="flex" flexDirection="column" gap={28}>
@@ -34,7 +33,9 @@ const OfficeDetail = () => {
 							</Pane>
 						</Tab>
 						<Tab title="Services">
-							<Pane paddingTop={28}>Services</Pane>
+							<Pane paddingTop={28}>
+								<Services officeId={data.id} />
+							</Pane>
 						</Tab>
 					</Tabs>
 				)}

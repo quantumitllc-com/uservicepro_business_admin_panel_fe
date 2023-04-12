@@ -19,7 +19,6 @@ export const Edit = ({ data }: any) => {
 		onSubmit,
 		value,
 		setValue,
-		toggle,
 	} = useEdit({ data })
 
 	return (
@@ -34,11 +33,7 @@ export const Edit = ({ data }: any) => {
 						small="true"
 						appearance="primary"
 						isLoading={isLoading}
-						onClick={
-							form.formState.isDirty
-								? form.handleSubmit(onSubmit)
-								: toggle
-						}
+						onClick={form.handleSubmit(onSubmit)}
 					>
 						Save
 					</MyButton>
