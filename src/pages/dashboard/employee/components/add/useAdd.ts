@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useForm } from "react-hook-form"
+import { useForm, useWatch } from "react-hook-form"
 import {
 	addEmployee,
 	getLocationList,
@@ -26,6 +26,11 @@ export const useAdd = () => {
 		resolver: yupResolver(schema),
 		mode: "onChange",
 		defaultValues,
+	})
+
+	const isOfficeId = useWatch({
+		control: form.control,
+		name: "officeId",
 	})
 
 	const { mutate, isLoading } = useMutation(addEmployee, {
@@ -85,6 +90,7 @@ export const useAdd = () => {
 		services,
 		onSubmit,
 		isLoading,
+		isOfficeId,
 		isShownAdd,
 		locationData,
 		setIsShownAdd,

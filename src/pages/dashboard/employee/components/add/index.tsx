@@ -29,6 +29,7 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 		services,
 		onSubmit,
 		isLoading,
+		isOfficeId,
 		isShownAdd,
 		locationData,
 		setIsShownAdd,
@@ -42,7 +43,7 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 			form.setValue("officeId", officeId)
 		}
 	}, [form, officeId])
-
+	console.log()
 	return (
 		<>
 			<MyButton
@@ -175,8 +176,8 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 								)}
 							/>
 						</Pane>
-						{!officeId && (
-							<div>
+						{isOfficeId.length > 0 ? (
+							<Pane gap={8} display="flex" flexDirection="column">
 								<MyLabel>Services</MyLabel>
 								<Controller
 									name="officeServiceIds"
@@ -186,35 +187,50 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 										formState: { errors },
 									}) => (
 										<>
-											<div>
-												<SelectMenu
-													isMultiSelect
-													options={services}
-													selected={field.value}
-													onSelect={(item) => {
-														const services = [
-															...form.getValues(
-																"officeServiceIds",
-															),
-															item.value as string,
-														]
-
-														form.setValue(
+											<SelectMenu
+												isMultiSelect
+												options={services}
+												selected={field.value}
+												onSelect={(item) => {
+													const services = [
+														...form.getValues(
 															"officeServiceIds",
-															services,
+														),
+														item.value as string,
+													]
+
+													form.setValue(
+														"officeServiceIds",
+														services,
+													)
+												}}
+												onDeselect={(item) => {
+													const filtered = form
+														.getValues(
+															"officeServiceIds",
 														)
-													}}
-													onDeselect={(item) => {
-														console.log(item)
-													}}
-													title="Select multiple services"
+														.filter(
+															(v) =>
+																v !==
+																item.value,
+														)
+													form.setValue(
+														"officeServiceIds",
+														filtered,
+													)
+												}}
+												title="Select multiple services"
+											>
+												<Button
+													width="100%"
+													type="button"
+													height="40px"
 												>
-													<Button type="button">
-														{field.value?.length ??
-															"Select services"}
-													</Button>
-												</SelectMenu>
-											</div>
+													{field.value?.length === 0
+														? "Select services"
+														: `selected ${field.value?.length} services `}
+												</Button>
+											</SelectMenu>
 											{errors[field.name] && (
 												<Text
 													color="D14343"
@@ -236,7 +252,9 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 										</>
 									)}
 								/>
-							</div>
+							</Pane>
+						) : (
+							<Pane />
 						)}
 						<Pane
 							gap={8}

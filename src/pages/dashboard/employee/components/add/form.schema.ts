@@ -8,7 +8,8 @@ export const schema: SchemaOf<FormTypes> = object().shape({
 	officeId: string().nullable(true).required(),
 	officeServiceIds: array()
 		.of(string().required("Office services is a required field"))
-		.required("services is a required field"),
+		.min(1, "Services field must have at least 1 service")
+		.required("Services is a required field"),
 	attachedFileUrl: string().notRequired(),
 	sendBy: string().nullable(true).required(),
 })
