@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query"
 import { toast } from "react-toastify"
 import React, { useMemo, useState } from "react"
-import { AddIcon, Avatar } from "evergreen-ui"
+import { Avatar } from "evergreen-ui"
 import { useNavigate } from "react-router"
 import { TableColumn } from "react-data-table-component"
 
 import { getOffices } from "services/dashboard/offices"
 import { useDebounce } from "hooks/useDebounce"
-import MyButton from "components/button"
+import AddService from "./components/add-service"
 
 export interface DataRow {
 	id: string
@@ -77,21 +77,9 @@ export const useOffices = () => {
 				selector: (row) => row.zipCode,
 			},
 			{
-				name: "Category",
-				selector: (row) => row.id,
-				cell: () => (
-					<MyButton
-						paddingX="15px"
-						height="26px"
-						borderRadius={30}
-						iconBefore={<AddIcon size={15} />}
-						small="true"
-						appearance="primary"
-						backgroundColor="var(--green)"
-						fontSize={12}
-					>
-						Add
-					</MyButton>
+				name: "Service",
+				cell: (row) => (
+					<AddService office={row} />
 				),
 			},
 		],

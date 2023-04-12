@@ -4,10 +4,9 @@ import { Avatar, Pane } from "evergreen-ui"
 
 import { TableColumn } from "react-data-table-component"
 import React, { useMemo, useState } from "react"
-import { getServices } from "services/dashboard/services"
+import { getOfficeService } from "services/dashboard/services"
 import { useDebounce } from "hooks/useDebounce"
 import { Delete } from "./delete"
-import { Edit } from "./edit"
 
 export interface DataRow {
 	id: string
@@ -15,30 +14,33 @@ export interface DataRow {
 	serviceName: string
 	pictureUrl: string
 	description: string
-	num: number
 }
 
-export const useServices = () => {
+interface UseServicesProps {
+	officeId: string
+}
+
+export const useServices = ({ officeId }: UseServicesProps) => {
 	const [keyword, setKeyword] = useState("")
 	const searchDebounce = useDebounce(keyword, 500)
 
 	const {
 		data = [],
 		isFetching,
-		isLoading,
-	} = useQuery(["services"],
-		() => getServices(),
+		isLoading
+	} = useQuery(["office-services"],
+		() => getOfficeService(officeId),
 		{
-		onError: (error: any) => {
-			toast.error(error.message)
-		},
-		select: ({ data }) =>
-			data.filter((item: any) =>
-				item.serviceName
-					.toLowerCase()
-					.includes(searchDebounce.toLowerCase()),
-			),
-	})
+			onError: (error: any) => {
+				toast.error(error.message)
+			},
+			select: ({ data }) =>
+				data.filter((item: any) =>
+					item.serviceName
+						.toLowerCase()
+						.includes(searchDebounce.toLowerCase())
+				)
+		})
 
 	const handleSearch = (e: any) => {
 		setKeyword(e.target.value)
@@ -59,30 +61,24 @@ export const useServices = () => {
 						/>
 						{row.serviceName}
 					</Pane>
-				),
+				)
 			},
 			{
 				name: "Service ID",
 				sortable: true,
-				selector: (row) => row.serviceId,
-			},
-			{
-				name: "Applicable office",
-				sortable: true,
-				selector: (row) => row.num,
+				selector: (row) => row.serviceId
 			},
 			{
 				ignoreRowClick: true,
 				button: true,
 				cell: (row) => (
 					<Pane gap={12} display="flex">
-						<Edit data={row} />
 						<Delete id={row.id} />
 					</Pane>
-				),
-			},
+				)
+			}
 		],
-		[],
+		[]
 	)
 
 	return {
@@ -90,6 +86,6 @@ export const useServices = () => {
 		columns,
 		isFetching,
 		isLoading,
-		handleSearch,
+		handleSearch
 	}
 }

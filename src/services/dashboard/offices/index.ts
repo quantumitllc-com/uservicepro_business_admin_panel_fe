@@ -16,3 +16,6 @@ export const editOfficeDetail = (id?: string, data?: EditFormTypes) =>
 
 export const changeOfficeToMain = (id?: string) =>
 	request.patch(`company/office/${id}`)
+
+export const addServiceToOffice = (officeId: string, serviceId: string) =>
+	request.post(`core/company/office/${officeId}/company-service/${serviceId}`)

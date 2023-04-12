@@ -49,8 +49,8 @@ export const useEdit = ({ data }: any) => {
 		(newService: EditFormTypes) => editService(newService, data.id),
 		{
 			onSuccess: () => {
-				queryClient.invalidateQueries(["services"])
 				toast.success("Service was edited successfully!")
+				queryClient.invalidateQueries(["services"])
 				setValue(false)
 			},
 			onError: (error: any) => {
