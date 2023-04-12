@@ -29,7 +29,7 @@ export const useEdit = () => {
 			onError: (error: any) => {
 				toast.error(error.response.data.message)
 			},
-		}
+		},
 	)
 
 	const onSubmit = (data: EditFormTypes) => {
@@ -41,6 +41,6 @@ export const useEdit = () => {
 		value,
 		toggle,
 		form,
-		onSubmit
+		onSubmit,
 	}
 }
