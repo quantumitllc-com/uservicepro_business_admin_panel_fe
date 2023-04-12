@@ -19,3 +19,6 @@ export const addServiceToCompany = (data: AddFormTypes, id: string) =>
 
 export const getOfficeService = (officeId?: string) =>
 	request(`core/company/office/${officeId}/services`)
+
+export const deleteServiceFromOffice = (officeId: string) =>
+	request.delete(`core/company/office-service/${officeId}`)

@@ -6,7 +6,7 @@ import Employee from "pages/dashboard/employee"
 import { useDetail } from "./useDetail"
 import Edit from "../edit"
 import Title from "./components/title"
-import Services from "../../services"
+import Services from "./components/services"
 
 const OfficeDetail = () => {
 	const { isLoading, data } = useDetail()
