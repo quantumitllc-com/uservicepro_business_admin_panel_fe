@@ -97,5 +97,6 @@ export const useAdd = () => {
 		mutateServices,
 		handleChangeFile,
 		locationIsLoading,
+		isLoadingServices,
 	}
 }

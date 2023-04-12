@@ -36,6 +36,7 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 		mutateServices,
 		handleChangeFile,
 		locationIsLoading,
+		isLoadingServices,
 	} = useAdd()
 
 	useEffect(() => {
@@ -43,7 +44,7 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 			form.setValue("officeId", officeId)
 		}
 	}, [form, officeId])
-	console.log()
+
 	return (
 		<>
 			<MyButton
@@ -225,6 +226,7 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 													width="100%"
 													type="button"
 													height="40px"
+													disabled={isLoadingServices}
 												>
 													{field.value?.length === 0
 														? "Select services"
