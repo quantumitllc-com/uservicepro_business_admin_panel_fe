@@ -2,10 +2,10 @@ import { AddIcon, Dialog, minorScale, Pane } from "evergreen-ui"
 
 import { Input } from "components/input"
 import MyButton from "components/button"
+import { states } from "constants/offices"
+import { Select } from "components/select"
 import { ReactComponent as Location } from "./location.svg"
 import { useAdd } from "./useAdd"
-import { states } from "../../../../constants/offices"
-import { Select } from "../../../../components/select"
 
 const Add = () => {
 	const {

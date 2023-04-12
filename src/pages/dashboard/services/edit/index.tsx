@@ -1,20 +1,26 @@
-import { Dialog, EditIcon, Pane, Textarea } from "evergreen-ui"
-import { useState } from "react"
+import { Dialog, EditIcon, Pane } from "evergreen-ui"
+import { Controller } from "react-hook-form"
 
-import useBoolean from "hooks/useBoolean"
 import MyText from "components/text"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { placeholder } from "utils/imagePlaceholder"
+import MyButton from "components/button"
+import { MyTextarea } from "components/textarea"
 import { ReactComponent as ImgIcon } from "./image.svg"
-import styles from "./styles.module.scss"
+import styles from "../styles.module.scss"
 import { useEdit } from "./useEdit"
 
 export const Edit = ({ data }: any) => {
-	const { value, setValue } = useBoolean(false)
-	const [description, setDescription] = useState(data.description)
-	const { isLoading, selectPhoto, photoUrl } = useEdit()
-
-	console.log(photoUrl)
+	const {
+		isLoading,
+		selectPhoto,
+		photoUrl,
+		form,
+		onSubmit,
+		value,
+		setValue,
+		toggle,
+	} = useEdit({ data })
 
 	return (
 		<Pane>
@@ -23,22 +29,38 @@ export const Edit = ({ data }: any) => {
 				title="Edit service"
 				onCloseComplete={() => setValue(false)}
 				confirmLabel="Save"
-				// hasFooter={false}
-				// onConfirm={(close) => {
-				// 	handleDelete(id)
-				// 	close()
-				// }}
+				footer={
+					<MyButton
+						small="true"
+						appearance="primary"
+						isLoading={isLoading}
+						onClick={
+							form.formState.isDirty
+								? form.handleSubmit(onSubmit)
+								: toggle
+						}
+					>
+						Save
+					</MyButton>
+				}
 			>
 				<Pane>
 					<Pane display="flex" gap={24} marginBottom={24}>
+						{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
 						<label htmlFor="service-image">
 							<ImgIcon />
-							<input
-								accept="image/png, image/jpeg"
-								onChange={selectPhoto}
-								type="file"
-								id="service-image"
-								className={styles.hidden}
+							<Controller
+								control={form.control}
+								name="pictureUrl"
+								render={() => (
+									<input
+										accept="image/png, image/jpeg"
+										onChange={selectPhoto}
+										type="file"
+										id="service-image"
+										className={styles.hidden}
+									/>
+								)}
 							/>
 						</label>
 						<LazyLoadImage
@@ -47,7 +69,7 @@ export const Edit = ({ data }: any) => {
 							height="178px"
 							alt="picture"
 							placeholderSrc={placeholder}
-							src={data.pictureUrl}
+							src={!photoUrl ? data.pictureUrl : photoUrl}
 						/>
 					</Pane>
 					<Pane marginBottom={24}>
@@ -57,12 +79,12 @@ export const Edit = ({ data }: any) => {
 						</Pane>
 						<Pane>
 							<MyText>Max size:</MyText>
-							<MyText color="var(--black)"> 3MB</MyText>
+							<MyText color="var(--black)"> 2MB</MyText>
 						</Pane>
 					</Pane>
 					<Pane>
 						<MyText>Description</MyText>
-						<Textarea value={description} />
+						<MyTextarea name="description" control={form.control} />
 					</Pane>
 				</Pane>
 			</Dialog>
