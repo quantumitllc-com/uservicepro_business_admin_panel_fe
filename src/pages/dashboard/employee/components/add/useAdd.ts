@@ -50,9 +50,9 @@ export const useAdd = () => {
 		useMutation(getServicesById, {
 			onSuccess: (data) => {
 				const newData = data.data.map(
-					(service: { id: string; name: string }) => ({
+					(service: { id: string; serviceName: string }) => ({
 						value: service.id,
-						label: service.name,
+						label: service.serviceName,
 					}),
 				)
 				setService(newData)
