@@ -3,7 +3,7 @@ export type FormTypes = {
 	email: string
 	ssn: string
 	officeId: string
-	categoryId: string
+	officeServiceIds: string[]
 	attachedFileUrl?: string
 	sendBy: string
 }

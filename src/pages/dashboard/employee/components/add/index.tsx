@@ -9,6 +9,7 @@ import {
 	majorScale,
 	Text,
 	ErrorIcon,
+	SelectMenu,
 } from "evergreen-ui"
 import { Controller } from "react-hook-form"
 import { useEffect } from "react"
@@ -25,11 +26,14 @@ export interface AddEmployeeProps {
 export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 	const {
 		form,
+		services,
 		onSubmit,
 		isLoading,
+		isOfficeId,
 		isShownAdd,
 		locationData,
 		setIsShownAdd,
+		mutateServices,
 		handleChangeFile,
 		locationIsLoading,
 	} = useAdd()
@@ -39,7 +43,7 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 			form.setValue("officeId", officeId)
 		}
 	}, [form, officeId])
-
+	console.log()
 	return (
 		<>
 			<MyButton
@@ -104,6 +108,7 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 												items={locationData.content}
 												onChange={(selected) => {
 													field.onChange(selected.id)
+													mutateServices(selected.id)
 												}}
 												inputProps={{
 													isInvalid:
@@ -171,7 +176,86 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 								)}
 							/>
 						</Pane>
-						<Pane />
+						{isOfficeId.length > 0 ? (
+							<Pane gap={8} display="flex" flexDirection="column">
+								<MyLabel>Services</MyLabel>
+								<Controller
+									name="officeServiceIds"
+									control={form.control}
+									render={({
+										field,
+										formState: { errors },
+									}) => (
+										<>
+											<SelectMenu
+												isMultiSelect
+												options={services}
+												selected={field.value}
+												onSelect={(item) => {
+													const services = [
+														...form.getValues(
+															"officeServiceIds",
+														),
+														item.value as string,
+													]
+
+													form.setValue(
+														"officeServiceIds",
+														services,
+													)
+												}}
+												onDeselect={(item) => {
+													const filtered = form
+														.getValues(
+															"officeServiceIds",
+														)
+														.filter(
+															(v) =>
+																v !==
+																item.value,
+														)
+													form.setValue(
+														"officeServiceIds",
+														filtered,
+													)
+												}}
+												title="Select multiple services"
+											>
+												<Button
+													width="100%"
+													type="button"
+													height="40px"
+												>
+													{field.value?.length === 0
+														? "Select services"
+														: `selected ${field.value?.length} services `}
+												</Button>
+											</SelectMenu>
+											{errors[field.name] && (
+												<Text
+													color="D14343"
+													display="flex"
+													fontSize={12}
+													alignItems="center"
+													marginTop={5}
+												>
+													<ErrorIcon
+														color="danger"
+														marginRight={8}
+													/>
+													{
+														errors[field.name]
+															?.message as string
+													}
+												</Text>
+											)}
+										</>
+									)}
+								/>
+							</Pane>
+						) : (
+							<Pane />
+						)}
 						<Pane
 							gap={8}
 							display="flex"
