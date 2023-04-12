@@ -9,6 +9,7 @@ import {
 	majorScale,
 	Text,
 	ErrorIcon,
+	SelectMenu,
 } from "evergreen-ui"
 import { Controller } from "react-hook-form"
 import { useEffect } from "react"
@@ -25,11 +26,13 @@ export interface AddEmployeeProps {
 export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 	const {
 		form,
+		services,
 		onSubmit,
 		isLoading,
 		isShownAdd,
 		locationData,
 		setIsShownAdd,
+		mutateServices,
 		handleChangeFile,
 		locationIsLoading,
 	} = useAdd()
@@ -104,6 +107,7 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 												items={locationData.content}
 												onChange={(selected) => {
 													field.onChange(selected.id)
+													mutateServices(selected.id)
 												}}
 												inputProps={{
 													isInvalid:
@@ -171,7 +175,69 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 								)}
 							/>
 						</Pane>
-						<Pane />
+						{!officeId && (
+							<div>
+								<MyLabel>Services</MyLabel>
+								<Controller
+									name="officeServiceIds"
+									control={form.control}
+									render={({
+										field,
+										formState: { errors },
+									}) => (
+										<>
+											<div>
+												<SelectMenu
+													isMultiSelect
+													options={services}
+													selected={field.value}
+													onSelect={(item) => {
+														const services = [
+															...form.getValues(
+																"officeServiceIds",
+															),
+															item.value as string,
+														]
+
+														form.setValue(
+															"officeServiceIds",
+															services,
+														)
+													}}
+													onDeselect={(item) => {
+														console.log(item)
+													}}
+													title="Select multiple services"
+												>
+													<Button type="button">
+														{field.value?.length ??
+															"Select services"}
+													</Button>
+												</SelectMenu>
+											</div>
+											{errors[field.name] && (
+												<Text
+													color="D14343"
+													display="flex"
+													fontSize={12}
+													alignItems="center"
+													marginTop={5}
+												>
+													<ErrorIcon
+														color="danger"
+														marginRight={8}
+													/>
+													{
+														errors[field.name]
+															?.message as string
+													}
+												</Text>
+											)}
+										</>
+									)}
+								/>
+							</div>
+						)}
 						<Pane
 							gap={8}
 							display="flex"
