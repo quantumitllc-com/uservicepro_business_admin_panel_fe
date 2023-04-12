@@ -1,5 +1,8 @@
 import { request } from "http/"
-import { EditFormTypes, SetCompanyPhotoTypes } from "types/dashboard/profile/edit"
+import {
+	EditFormTypes,
+	SetCompanyPhotoTypes,
+} from "types/dashboard/profile/edit"
 
 export const getProfile = () => request.get("company/profile")
 
