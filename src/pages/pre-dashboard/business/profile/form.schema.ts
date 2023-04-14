@@ -5,11 +5,11 @@ export const schema = Yup.object().shape({
 	companyName: Yup.string().required(),
 	companyTin: Yup.string().required(),
 	officeName: Yup.string().required(),
-	// state: Yup.string().required(),
-	state: Yup.object().shape({
-		label: Yup.string().required("Is required"),
-		value: Yup.string().required("Is required"),
-	}),
+	state: Yup.string().required(),
+	// state: Yup.object().shape({
+	// 	label: Yup.string().required("Is required"),
+	// 	value: Yup.string().required("Is required"),
+	// }),
 	city: Yup.string().required(),
 	zipCode: Yup.string().required(),
 	addressLine1: Yup.string().required(),

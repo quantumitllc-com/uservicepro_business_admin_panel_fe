@@ -19,11 +19,7 @@ import MyLabel from "components/label"
 import { Input } from "components/input"
 import { useAdd } from "./useAdd"
 
-export interface AddEmployeeProps {
-	officeId?: string
-}
-
-export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
+export const AddEmpolyee = () => {
 	const {
 		form,
 		services,
@@ -38,13 +34,7 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 		locationIsLoading,
 		isLoadingServices,
 	} = useAdd()
-
-	useEffect(() => {
-		if (officeId) {
-			form.setValue("officeId", officeId)
-		}
-	}, [form, officeId])
-
+	
 	return (
 		<>
 			<MyButton
@@ -87,7 +77,6 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 							placeholder="+1 234 56 78"
 							label={<MyLabel>Phone number</MyLabel>}
 						/>
-						{!officeId && (
 							<div>
 								<MyLabel>Serving Location</MyLabel>
 								<Controller
@@ -141,7 +130,6 @@ export const AddEmpolyee = ({ officeId }: AddEmployeeProps) => {
 									)}
 								/>
 							</div>
-						)}
 						<Pane gap={8} display="flex" flexDirection="column">
 							<MyLabel>Attachment File</MyLabel>
 							<Controller

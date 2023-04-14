@@ -31,8 +31,6 @@ export const useAdd = () => {
 	})
 
 	const onSubmit = (data: FormTypes) => {
-		// @ts-ignore
-		data.state = data.state.value
 		mutate(data)
 	}
 

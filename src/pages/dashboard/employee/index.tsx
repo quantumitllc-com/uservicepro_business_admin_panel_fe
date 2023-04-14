@@ -41,7 +41,7 @@ const Employee = ({ officeId }: EmployeeProps) => {
 				marginBottom={minorScale(5)}
 			>
 				<MyHeading>List of employees</MyHeading>
-				<AddEmpolyee officeId={officeId} />
+				<AddEmpolyee />
 			</Pane>
 			<Pane>
 				<Pane
