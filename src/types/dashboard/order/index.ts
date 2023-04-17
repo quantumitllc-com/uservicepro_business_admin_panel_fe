@@ -4,3 +4,7 @@ export type OrderTypeOfStatus =
 	| "ASSIGNED"
 	| "CANCELLED"
 	| "PROCESSING"
+
+export interface FormTypes {
+	totalPrice: number | null
+}

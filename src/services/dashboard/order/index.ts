@@ -13,7 +13,7 @@ export const getOrdersHistory = <T>(params: T) =>
 export const getOrderDetail = (id?: string) => request(`/business/orders/${id}`)
 
 export const deleteOrder = (orderId?: string, employeeId?: string) =>
-	request.delete(`business/orders/${orderId}/unassign`, {
+	request.patch(`business/orders/${orderId}/unassign`, {
 		data: {
 			employeeId: [employeeId],
 		},
@@ -28,3 +28,6 @@ export const getAssignedEmployess = (id: string) =>
 
 export const assignedEmployess = (id: string | undefined, ids: string[]) =>
 	request.post(`business/orders/${id}/assign`, { employeeId: ids })
+
+export const orderTotal = <T>(data: T, id?: string) =>
+	request.patch(`business/orders/price/${id}`, data)
