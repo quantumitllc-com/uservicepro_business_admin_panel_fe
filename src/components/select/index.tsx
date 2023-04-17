@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import MyLabel from "components/label"
-import { Pane } from "evergreen-ui"
+import { ErrorIcon, Pane, Text } from "evergreen-ui"
 import ReactSelect, { components } from "react-select"
 import { Control, Controller } from "react-hook-form"
 import { ReactComponent as Down } from "./down.svg"
@@ -30,7 +30,6 @@ export const Select = ({
 	name,
 	disabled,
 }: ISelect) => {
-	const a = 1
 	return (
 		<Controller
 			name={name}
@@ -46,6 +45,9 @@ export const Select = ({
 						{label && <MyLabel marginBottom={8}>{label}</MyLabel>}
 						<ReactSelect
 							{...field}
+							onChange={(option) => {
+								field.onChange(option.value)}}
+							value={field.value.value}
 							isDisabled={disabled}
 							options={options}
 							isLoading={isLoading}
@@ -64,9 +66,10 @@ export const Select = ({
 									borderWidth: "1.28927px",
 									borderRadius: "5.15708px",
 									outline: "none",
-									borderColor: state.isFocused
-										? "#9DB5FF"
-										: "#D8DAE5",
+									borderColor: errors[field.name] ? "var(--red)" : "#D8DAE5",
+									// borderColor: state.isFocused
+									// 	? "#9DB5FF"
+									// 	: "#D8DAE5",
 									"*": {
 										boxShadow: "none !important",
 									},
@@ -115,6 +118,24 @@ export const Select = ({
 								}),
 							}}
 						/>
+						{errors[field.name] && (
+							<Text
+								color="D14343"
+								display="flex"
+								fontSize={12}
+								alignItems="center"
+								marginTop={5}
+							>
+								<ErrorIcon
+									color="danger"
+									marginRight={8}
+								/>
+								{
+									errors[field.name]
+										?.message as string
+								}
+							</Text>
+						)}
 					</Pane>
 				)
 			}}

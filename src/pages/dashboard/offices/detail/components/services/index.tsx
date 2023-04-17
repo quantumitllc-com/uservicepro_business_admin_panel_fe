@@ -1,16 +1,18 @@
-import { AddIcon, minorScale, Pane, SearchInput } from "evergreen-ui"
-import { Link } from "react-router-dom"
-import { useState } from "react"
+import React, { useState } from "react"
+import { minorScale, Pane, SearchInput } from "evergreen-ui"
 
 import MyHeading from "components/heading"
 import { Table } from "components/table"
-import MyButton from "components/button"
+import { Detail } from "pages/dashboard/services/detail"
+import useBoolean from "hooks/useBoolean"
 import { EditFormTypes } from "types/dashboard/services"
 import { useServices } from "./useServices"
-import { Detail } from "./detail"
-import useBoolean from "../../../hooks/useBoolean"
 
-const Services = () => {
+export interface ServicesProps {
+	officeId: string
+}
+
+const Services = ({ officeId }: ServicesProps) => {
 	const { value, setValue } = useBoolean(false)
 	const {
 		columns,
@@ -18,7 +20,7 @@ const Services = () => {
 		isLoading,
 		isFetching,
 		handleSearch
-	} = useServices()
+	} = useServices({ officeId })
 	const [detail, setDetail] = useState<EditFormTypes>({
 		pictureUrl: "",
 		description: "",
@@ -31,7 +33,7 @@ const Services = () => {
 
 	return (
 		<Pane>
-			<MyHeading fontSize={25} fontWeight={600}>
+			<MyHeading fontSize={25} fontWeight={600} marginBottom={20}>
 				Services
 			</MyHeading>
 			<Pane
@@ -41,16 +43,6 @@ const Services = () => {
 				marginBottom={minorScale(5)}
 			>
 				<MyHeading>List of services</MyHeading>
-				<Link to="/services/add">
-					<MyButton
-						iconBefore={AddIcon}
-						small="true"
-						appearance="primary"
-						backgroundColor="var(--green)"
-					>
-						Add Service
-					</MyButton>
-				</Link>
 			</Pane>
 			<Pane>
 				<Pane
