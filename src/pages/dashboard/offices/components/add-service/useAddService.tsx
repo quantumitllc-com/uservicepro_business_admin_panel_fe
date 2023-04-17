@@ -30,21 +30,22 @@ export const useAddService = ({ office }: any) => {
 		onError: (error: any) => {
 			toast.error(error.message)
 		},
-		select: ({ data }) => [...data]
+		select: ({ data }) => [...data],
 	})
 
-	const { mutate,
-		isLoading: addIsLoading} = useMutation(
-		(serviceId: string) => addServiceToOffice(office.id, serviceId), {
-		onSuccess: () => {
-			toast.success("Service was added to office successfully")
-			toggle()
-			queryClient.invalidateQueries(["services"])
+	const { mutate, isLoading: addIsLoading } = useMutation(
+		(serviceId: string) => addServiceToOffice(office.id, serviceId),
+		{
+			onSuccess: () => {
+				toast.success("Service was added to office successfully")
+				toggle()
+				queryClient.invalidateQueries(["services"])
+			},
+			onError: (error: any) => {
+				toast.error(error.response.data.message)
+			},
 		},
-		onError: (error: any) => {
-			toast.error(error.response.data.message)
-		},
-	})
+	)
 
 	const handleClick = (officeId: string) => {
 		mutate(officeId)
@@ -94,7 +95,8 @@ export const useAddService = ({ office }: any) => {
 					</MyButton>
 				),
 			},
-		], []
+		],
+		[],
 	)
 
 	return {
@@ -104,6 +106,6 @@ export const useAddService = ({ office }: any) => {
 		columns,
 		data,
 		isFetching,
-		isLoading
+		isLoading,
 	}
 }

@@ -78,9 +78,7 @@ export const useOffices = () => {
 			},
 			{
 				name: "Service",
-				cell: (row) => (
-					<AddService office={row} />
-				),
+				cell: (row) => <AddService office={row} />,
 			},
 		],
 		[],
