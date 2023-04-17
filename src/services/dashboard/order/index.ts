@@ -14,9 +14,7 @@ export const getOrderDetail = (id?: string) => request(`/business/orders/${id}`)
 
 export const deleteOrder = (orderId?: string, employeeId?: string) =>
 	request.patch(`business/orders/${orderId}/unassign`, {
-		data: {
-			employeeId: [employeeId],
-		},
+		employeeId,
 	})
 
 export const getAssignedEmployess = (id: string) =>
