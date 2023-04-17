@@ -3,7 +3,11 @@ import { Button, Checkbox, Pane, Popover, SearchInput } from "evergreen-ui"
 import styles from "./styles.module.scss"
 import { useSearch } from "./useSearch"
 
-export const Search = () => {
+interface ISearch {
+	officeId: string
+}
+
+export const Search = ({ officeId }: ISearch) => {
 	const {
 		ids,
 		data,
@@ -13,7 +17,7 @@ export const Search = () => {
 		isLoading,
 		handleSearch,
 		assignIsLoading,
-	} = useSearch()
+	} = useSearch(officeId)
 
 	return (
 		<Pane className={styles.container}>

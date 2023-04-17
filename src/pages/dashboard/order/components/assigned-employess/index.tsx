@@ -5,10 +5,11 @@ import { Search } from "../search"
 import { useAssigned } from "./useAssigned"
 
 interface IAssign {
+	officeId: string
 	list: { id: string; name: string }[]
 }
 
-export const AssignedEmployess = ({ list }: IAssign) => {
+export const AssignedEmployess = ({ list, officeId }: IAssign) => {
 	const { handleDelete, isLoadingDelete } = useAssigned()
 
 	return (
@@ -16,7 +17,7 @@ export const AssignedEmployess = ({ list }: IAssign) => {
 			<MyHeading marginBottom="24px" fontSize="20px">
 				ASSIGN EMPLOYEE
 			</MyHeading>
-			<Search />
+			<Search officeId={officeId} />
 			<Pane
 				width="100%"
 				marginTop="20px"

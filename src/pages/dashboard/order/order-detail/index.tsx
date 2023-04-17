@@ -8,7 +8,7 @@ import { AssignedEmployess } from "../components/assigned-employess"
 
 const OrderDetail = () => {
 	const { data, isLoading } = useDetail()
-
+	console.log(data)
 	return (
 		<Pane>
 			<Pane paddingY={10}>
@@ -269,7 +269,10 @@ const OrderDetail = () => {
 						border=" 1px solid rgba(0, 0, 0, 0.1)"
 						boxShadow="0px 2px 50px rgba(0, 0, 0, 0.05)"
 					>
-						<AssignedEmployess list={data.data?.employeeInfos} />
+						<AssignedEmployess
+							officeId={data.data?.officeId}
+							list={data.data?.employeeInfos}
+						/>
 					</Pane>
 					<Pane
 						width="100%"

@@ -19,7 +19,12 @@ export const deleteOrder = (orderId?: string, employeeId?: string) =>
 		},
 	})
 
-export const getAssignedEmployess = () => request("company/employees/list")
+export const getAssignedEmployess = (id: string) =>
+	request("company/employees/list", {
+		params: {
+			officeId: id,
+		},
+	})
 
 export const assignedEmployess = (id: string | undefined, ids: string[]) =>
 	request.post(`business/orders/${id}/assign`, { employeeId: ids })
