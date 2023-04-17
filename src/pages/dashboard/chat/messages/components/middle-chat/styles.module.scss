@@ -1,0 +1,25 @@
+.ellipse {
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+}
+
+.container {
+	padding: 36px;
+	overflow-y: scroll;
+	height: 100%;
+}
+
+.scroll {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.receiver {
+	border-radius: 0 25px 25px 25px;
+}
+
+.sender {
+	border-radius: 25px 0 25px 25px;
+}

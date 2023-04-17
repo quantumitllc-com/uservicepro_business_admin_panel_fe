@@ -1,10 +1,11 @@
-import { lazy } from "react"
+import React, { lazy } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 
 import { getTokens } from "../utils/getTokens"
 
 // dashboard
 const ActivityMap = lazy(() => import("./dashboard/activity-map"))
+const Map = lazy(() => import("./dashboard/activity-map/map"))
 const Schedules = lazy(() => import("./dashboard/schedules"))
 
 // offices
@@ -12,9 +13,15 @@ const Offices = lazy(() => import("./dashboard/offices"))
 const OneOffice = lazy(() => import("./dashboard/offices/detail"))
 // offices
 
-// profile
+// user
 const Profile = lazy(() => import("./dashboard/profile"))
-// profile
+// user
+
+//chat
+const Chat = lazy(() => import("./dashboard/chat"))
+const Message = lazy(() => import("./dashboard/chat/messages"))
+
+//chat
 
 //order
 const Order = lazy(() => import("./dashboard/order"))
@@ -26,7 +33,6 @@ const OrderDetail = lazy(() => import("./dashboard/order/order-detail"))
 const Payment = lazy(() => import("./dashboard/payment"))
 const Ads = lazy(() => import("./dashboard/ads"))
 const Accounting = lazy(() => import("./dashboard/accounting"))
-const Chat = lazy(() => import("./dashboard/chat"))
 const PaymentBank = lazy(() => import("./dashboard/payment/paymentBank"))
 const SelectPayment = lazy(() => import("./dashboard/payment/paymentBank"))
 
@@ -67,6 +73,8 @@ const VerifyByPhone = lazy(
 const Congratulations = lazy(
 	() => import("./pre-dashboard/congratulations/congratulations"),
 )
+
+const NotFound = lazy(() => import("./not-found"))
 
 function PrivateRoute({ children }: any) {
 	const tokens = getTokens()
@@ -117,7 +125,7 @@ export function Routing() {
 					</PrivateRoute>
 				}
 			>
-				<Route path="/" element={<Dashboard />} />
+				{/*<Route path="/" element={<Dashboard />} />*/}
 				<Route path="employee" element={<Employee />} />
 				<Route
 					path="employee/:employeeId"
@@ -126,7 +134,9 @@ export function Routing() {
 				<Route path="services" element={<Services />} />
 				<Route path="services/add" element={<AddServices />} />
 				<Route path="statistics" element={<Statistics />} />
-				<Route path="activity-map" element={<ActivityMap />} />
+				<Route path="activity-map" element={<ActivityMap />}>
+					<Route index element={<Map />} />
+				</Route>
 				<Route path="schedules" element={<Schedules />} />
 				<Route path="order" element={<Order />}>
 					<Route index element={<Orders />} />
@@ -138,17 +148,25 @@ export function Routing() {
 				<Route path="offices" element={<Offices />} />
 				<Route path="offices/:id" element={<OneOffice />} />
 				{/*offices*/}
-				{/*// profile*/}
+				{/*// user*/}
 				<Route path="profile" element={<Profile />} />
-				{/*// profile*/}
+				{/*// user*/}
+
+				{/*// chat*/}
+				<Route path="chat" element={<Chat />}>
+					<Route path=":chatId" element={<Message />} />
+				</Route>
+				{/*chat*/}
+
 				<Route path="ads" element={<Ads />} />
 				<Route path="accounting" element={<Accounting />} />
-				<Route path="chat" element={<Chat />} />
 				<Route path="payment" element={<Payment />} />
 				<Route path="payment/bank" element={<PaymentBank />} />
 				<Route path="payment/select" element={<SelectPayment />} />
 			</Route>
 			{/*dashboard*/}
+
+			<Route path="*" element={<NotFound />} />
 		</Routes>
 	)
 }

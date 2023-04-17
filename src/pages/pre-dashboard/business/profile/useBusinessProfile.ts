@@ -34,7 +34,7 @@ export const useBusinessProfile = () => {
 	const { mutate, isLoading } = useMutation(businessDetails, {
 		onSuccess: async () => {
 			await navigate("/pre-dashboard/business")
-			await toast.success("Company details was filled successfully")
+			await toast.success("Company detail was filled successfully")
 			tokens.preDashboardInfo.isProfileFilled = true
 			tokens = JSON.stringify(tokens)
 			await localStorage.setItem("tokens", tokens)

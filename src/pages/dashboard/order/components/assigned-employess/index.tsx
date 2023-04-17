@@ -5,7 +5,7 @@ import { Search } from "../search"
 import { useAssigned } from "./useAssigned"
 
 interface IAssign {
-	list: string[]
+	list: { id: string; name: string }[]
 }
 
 export const AssignedEmployess = ({ list }: IAssign) => {
@@ -13,8 +13,8 @@ export const AssignedEmployess = ({ list }: IAssign) => {
 
 	return (
 		<div>
-			<MyHeading marginTop="55px" marginBottom="24px" fontSize="20px">
-				Assigned employess
+			<MyHeading marginBottom="24px" fontSize="20px">
+				ASSIGN EMPLOYEE
 			</MyHeading>
 			<Search />
 			<Pane
@@ -24,10 +24,10 @@ export const AssignedEmployess = ({ list }: IAssign) => {
 				flexWrap="wrap"
 				gap="10px 20px"
 			>
-				{list.map((id: string) => (
+				{list.map(({ id, name }) => (
 					<Chip
 						key={id}
-						title={id}
+						title={name}
 						disabled={isLoadingDelete}
 						onClick={() => handleDelete(id)}
 					/>

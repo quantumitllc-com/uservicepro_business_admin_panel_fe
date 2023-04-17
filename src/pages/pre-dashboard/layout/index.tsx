@@ -27,7 +27,7 @@ const LayoutReg = () => {
 	useEffect(() => {
 		function getActiveTab(activeTab: string | undefined): void {
 			switch (activeTab) {
-				case "profile":
+				case "user":
 					return setSelectedIndex(1)
 				case "email":
 					return setSelectedIndex(2)

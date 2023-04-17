@@ -6,6 +6,8 @@ import MyButton from "components/button"
 import { Input } from "components/input"
 import MyCheckbox from "components/checkbox"
 import MyHeading from "components/heading"
+import { Select } from "components/select"
+import { states } from "constants/offices"
 import { useBusinessProfile } from "./useBusinessProfile"
 
 const BusinessProfile = () => {
@@ -56,13 +58,32 @@ const BusinessProfile = () => {
 				/>
 			</Pane>
 			<Pane display="flex" gap={minorScale(4)}>
-				<Input
-					label="State"
-					type="text"
+				<Select
 					name="state"
 					control={control}
-					placeholder="State"
+					label="State"
+					options={states}
 				/>
+				{/*<SelectField label="State">*/}
+
+				{/*</SelectField>*/}
+				{/*<Pane>*/}
+				{/*	<MyLabel>State</MyLabel>*/}
+				{/*	<Select height={40} onChange={event => alert(event.target.value)}>*/}
+				{/*		<option value="foo" selected>*/}
+				{/*			Foo*/}
+				{/*		</option>*/}
+				{/*		<option value="bar">Bar</option>*/}
+				{/*	</Select>*/}
+				{/*</Pane>*/}
+
+				{/*<Input*/}
+				{/*	label="State"*/}
+				{/*	type="text"*/}
+				{/*	name="state"*/}
+				{/*	control={control}*/}
+				{/*	placeholder="State"*/}
+				{/*/>*/}
 				<Input
 					label="City"
 					type="text"

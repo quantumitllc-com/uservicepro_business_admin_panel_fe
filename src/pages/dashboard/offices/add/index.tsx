@@ -2,6 +2,8 @@ import { AddIcon, Dialog, minorScale, Pane } from "evergreen-ui"
 
 import { Input } from "components/input"
 import MyButton from "components/button"
+import { states } from "constants/offices"
+import { Select } from "components/select"
 import { ReactComponent as Location } from "./location.svg"
 import { useAdd } from "./useAdd"
 
@@ -26,7 +28,6 @@ const Add = () => {
 			>
 				Add Office
 			</MyButton>
-
 			<Dialog
 				width={700}
 				isShown={value}
@@ -67,13 +68,19 @@ const Add = () => {
 					<Location />
 				</Pane>
 				<Pane display="flex" gap={16}>
-					<Input
-						type="text"
-						label="State"
+					<Select
 						name="state"
 						control={control}
-						placeholder="State"
+						label="State"
+						options={states}
 					/>
+					{/*<Input*/}
+					{/*	type="text"*/}
+					{/*	label="State"*/}
+					{/*	name="state"*/}
+					{/*	control={control}*/}
+					{/*	placeholder="State"*/}
+					{/*/>*/}
 					<Input
 						type="text"
 						label="City"

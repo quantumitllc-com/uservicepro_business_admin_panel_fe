@@ -13,10 +13,6 @@ import {
 import useBoolean from "hooks/useBoolean"
 import { defaultValues, schema } from "./form.schema"
 
-export interface EditProps {
-	toggleDetail: () => void
-}
-
 export const useEdit = () => {
 	const queryClient = useQueryClient()
 	const { id } = useParams()
@@ -33,8 +29,8 @@ export const useEdit = () => {
 		(newOffice: FormTypes) => editOfficeDetail(id, newOffice),
 		{
 			onSuccess: (data) => {
-				queryClient.setQueryData(["office-profile", id], data)
-				toast.success("Office profile was edited successfully!")
+				queryClient.setQueryData(["office-user", id], data)
+				toast.success("Office was edited successfully!")
 				toggle()
 			},
 			onError: (error: any) => {
@@ -47,7 +43,7 @@ export const useEdit = () => {
 		() => changeOfficeToMain(id),
 		{
 			onSuccess: () => {
-				queryClient.invalidateQueries(["office-profile"])
+				queryClient.invalidateQueries(["office-user"])
 				toast.success("Office changed to main successfully!")
 			},
 			onError: (error: any) => {

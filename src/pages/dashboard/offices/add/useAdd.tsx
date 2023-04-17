@@ -21,7 +21,6 @@ export const useAdd = () => {
 	const { mutate, isLoading, isSuccess, isError } = useMutation(addOffice, {
 		onSuccess: () => {
 			queryClient.invalidateQueries(["offices"])
-
 			toast.success("Location was created successfully")
 			form.reset()
 			setFalse()

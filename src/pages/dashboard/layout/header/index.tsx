@@ -10,21 +10,30 @@ import {
 	Position,
 	Menu,
 	UserIcon,
-	CogIcon,
+	// CogIcon,
 	LogOutIcon,
 } from "evergreen-ui"
 import { Link, NavLink } from "react-router-dom"
+import { shallow } from "zustand/shallow"
 
 import Logo from "components/logo"
 import MyHeading from "components/heading"
 import MyText from "components/text"
 import { useLogOut } from "services/auth/log-out/useLogOut"
-import { getTokens } from "utils/getTokens"
+import { useUserStore } from "store/user"
+import { ReactComponent as Ellipse } from "icons/ellipse.svg"
 import styles from "./styles.module.scss"
+import { useHeader } from "./useHeader"
 
 const Header = (props: PaneProps) => {
 	const { onSubmit } = useLogOut()
-	const tokens = getTokens()
+	const { totalCount } = useHeader()
+	const { user } = useUserStore(
+		(state) => ({
+			user: state.user,
+		}),
+		shallow,
+	)
 
 	return (
 		<Pane {...props} is="header">
@@ -54,14 +63,19 @@ const Header = (props: PaneProps) => {
 				<Pane display="flex" gap="40px">
 					<NavLink to="chat">
 						{({ isActive }) => (
-							<ChatIcon
-								color={
-									isActive
-										? "var(--dark-green)"
-										: "var(--grey)"
-								}
-								size={20}
-							/>
+							<Pane position="relative">
+								<ChatIcon
+									color={
+										isActive
+											? "var(--dark-green)"
+											: "var(--grey)"
+									}
+									size={20}
+								/>
+								{totalCount > 0 && (
+									<Ellipse className={styles.ellipse} />
+								)}
+							</Pane>
 						)}
 					</NavLink>
 					<NotificationsIcon color="var(--grey)" size={20} />
@@ -93,15 +107,15 @@ const Header = (props: PaneProps) => {
 						<Avatar
 							marginLeft={minorScale(5)}
 							marginRight={minorScale(2)}
-							src={tokens.pictureUrl}
+							src={user.pictureUrl}
 							size={50}
 						/>
 						<Pane>
 							<MyHeading fontSize={15} fontWeight={400}>
-								{tokens.userType}
+								{user.userType}
 							</MyHeading>
 							<MyText whiteSpace="nowrap" fontSize={12}>
-								{tokens.email}
+								{user.email}
 							</MyText>
 						</Pane>
 					</Pane>

@@ -20,8 +20,7 @@ const theme = mergeTheme(defaultTheme, {
 					color: "var(--white)",
 					backgroundColor: "var(--dark-green)",
 					_hover: {
-						backgroundColor: "var(--light-green)",
-						border: "1px solid var(--black-green)",
+						opacity: "0.9",
 					},
 					// _focus: {
 					// backgroundColor: "var(--black-green)",

@@ -18,14 +18,14 @@ function Business() {
 	const { preDashboardInfo } = tokens
 
 	if (tokens.preDashboardInfo.isFinished) {
-		return <Navigate to="/" />
+		return <Navigate to="/employee" />
 	}
 
 	const accordionBusiness = [
 		{
 			icon: <Briefcase />,
 			iconSelected: <BriefcaseSelected />,
-			heading: "Set up your profile, add-offices some details",
+			heading: "Set up your user, add-offices some detail",
 			dynamicBadge: (
 				<MyBadge
 					backgroundColor={
@@ -40,7 +40,7 @@ function Business() {
 						: "Fill up application"}
 				</MyBadge>
 			),
-			text: "Before work you have to fill up the profile section",
+			text: "Before work you have to fill up the user section",
 			start: "Start application",
 			toggle: !preDashboardInfo.isProfileFilled && handleToggle,
 		},

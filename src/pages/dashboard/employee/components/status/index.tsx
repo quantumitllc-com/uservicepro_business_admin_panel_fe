@@ -1,5 +1,5 @@
+import { statuses } from "constants/employee"
 import styles from "./styles.module.scss"
-import { statuses } from "../../constants/status"
 
 interface IStatus {
 	status: string
