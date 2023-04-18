@@ -26,9 +26,7 @@ export const useServices = () => {
 		data = [],
 		isFetching,
 		isLoading,
-	} = useQuery(["services"],
-		() => getServices(),
-		{
+	} = useQuery(["services"], () => getServices(), {
 		onError: (error: any) => {
 			toast.error(error.message)
 		},

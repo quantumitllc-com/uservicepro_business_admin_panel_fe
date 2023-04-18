@@ -6,3 +6,8 @@ export type EditFormTypes = {
 export type SetCompanyPhotoTypes = {
 	pictureUrl: string
 }
+
+export type SubscribeTypes = {
+	planId: string,
+	isMonths: boolean
+}
