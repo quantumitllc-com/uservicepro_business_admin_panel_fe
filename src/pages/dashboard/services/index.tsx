@@ -12,13 +12,7 @@ import useBoolean from "../../../hooks/useBoolean"
 
 const Services = () => {
 	const { value, setValue } = useBoolean(false)
-	const {
-		columns,
-		data,
-		isLoading,
-		isFetching,
-		handleSearch
-	} = useServices()
+	const { columns, data, isLoading, isFetching, handleSearch } = useServices()
 	const [detail, setDetail] = useState<EditFormTypes>({
 		pictureUrl: "",
 		description: "",

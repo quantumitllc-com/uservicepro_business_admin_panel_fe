@@ -14,13 +14,9 @@ export interface ServicesProps {
 
 const Services = ({ officeId }: ServicesProps) => {
 	const { value, setValue } = useBoolean(false)
-	const {
-		columns,
-		data,
-		isLoading,
-		isFetching,
-		handleSearch
-	} = useServices({ officeId })
+	const { columns, data, isLoading, isFetching, handleSearch } = useServices({
+		officeId,
+	})
 	const [detail, setDetail] = useState<EditFormTypes>({
 		pictureUrl: "",
 		description: "",

@@ -46,7 +46,8 @@ export const Select = ({
 						<ReactSelect
 							{...field}
 							onChange={(option) => {
-								field.onChange(option.value)}}
+								field.onChange(option.value)
+							}}
 							value={field.value.value}
 							isDisabled={disabled}
 							options={options}
@@ -66,7 +67,9 @@ export const Select = ({
 									borderWidth: "1.28927px",
 									borderRadius: "5.15708px",
 									outline: "none",
-									borderColor: errors[field.name] ? "var(--red)" : "#D8DAE5",
+									borderColor: errors[field.name]
+										? "var(--red)"
+										: "#D8DAE5",
 									// borderColor: state.isFocused
 									// 	? "#9DB5FF"
 									// 	: "#D8DAE5",
@@ -126,14 +129,8 @@ export const Select = ({
 								alignItems="center"
 								marginTop={5}
 							>
-								<ErrorIcon
-									color="danger"
-									marginRight={8}
-								/>
-								{
-									errors[field.name]
-										?.message as string
-								}
+								<ErrorIcon color="danger" marginRight={8} />
+								{errors[field.name]?.message as string}
 							</Text>
 						)}
 					</Pane>
