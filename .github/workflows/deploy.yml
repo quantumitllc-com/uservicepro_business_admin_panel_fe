@@ -26,7 +26,7 @@ jobs:
 
             - name: Log in to Server and Restarting Kubernetes
               uses: appleboy/ssh-action@master
-              with: 
+              with:
                   host: 157.230.98.254
                   username: root
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
