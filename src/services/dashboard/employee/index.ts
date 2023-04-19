@@ -28,3 +28,9 @@ export const editEmployee = (data: EditFormTypes, id?: string) =>
 
 export const editEmployeeStatus = <T>(data: T, id?: string) =>
 	request.patch(`company/employees/${id}`, data)
+
+export const addEmployeeToService = <T>(data: T, id?: string) =>
+	request.patch(`company/employee/${id}/services`, { serviceIds: data })
+
+export const deleteEmployeeService = (id: string, employeeId?: string) =>
+	request.delete(`company/employee/${employeeId}/service/${id}`)

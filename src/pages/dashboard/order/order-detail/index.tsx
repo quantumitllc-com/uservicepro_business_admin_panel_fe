@@ -1,14 +1,25 @@
+/* eslint-disable no-nested-ternary */
 import ButtonBack from "components/button-back"
 import MyHeading from "components/heading"
 import { Spinner } from "components/spinner"
-import { Pane, TextInput } from "evergreen-ui"
-import dayjs from "dayjs"
+import { Pane } from "evergreen-ui"
+import { Input } from "components/input"
+import MyButton from "components/button"
 import { useDetail } from "./useDetail"
 import { AssignedEmployess } from "../components/assigned-employess"
 
 const OrderDetail = () => {
-	const { data, isLoading } = useDetail()
-
+	const {
+		data,
+		form,
+		value,
+		orderId,
+		setTrue,
+		onSubmit,
+		setFalse,
+		isLoading,
+		totalPrice,
+	} = useDetail()
 	return (
 		<Pane>
 			<Pane paddingY={10}>
@@ -125,9 +136,7 @@ const OrderDetail = () => {
 									lineHeight="21px"
 									letterSpacing="0.35px"
 								>
-									{dayjs(data.data?.orderTime).format(
-										"mm:hh A; D MMM, YYYY",
-									) ?? "-"}
+									{data.data?.orderTime}
 								</Pane>
 								<Pane
 									fontSize="15px"
@@ -145,9 +154,7 @@ const OrderDetail = () => {
 									lineHeight="21px"
 									letterSpacing="0.35px"
 								>
-									{dayjs(data.data?.startDateTime).format(
-										"mm:hh A; D MMM, YYYY",
-									) ?? "-"}
+									{data.data?.startDateTime}
 								</Pane>
 								<Pane
 									fontSize="15px"
@@ -165,9 +172,7 @@ const OrderDetail = () => {
 									lineHeight="21px"
 									letterSpacing="0.35px"
 								>
-									{dayjs(data.data?.endDateTime).format(
-										"mm:hh A; D MMM, YYYY",
-									) ?? "-"}
+									{data.data?.endDateTime}
 								</Pane>
 								<Pane
 									fontSize="15px"
@@ -221,7 +226,7 @@ const OrderDetail = () => {
 									lineHeight="21px"
 									letterSpacing="0.35px"
 								>
-									{data.data?.paymentMethod}
+									-
 								</Pane>
 							</Pane>
 						</Pane>
@@ -269,7 +274,10 @@ const OrderDetail = () => {
 						border=" 1px solid rgba(0, 0, 0, 0.1)"
 						boxShadow="0px 2px 50px rgba(0, 0, 0, 0.05)"
 					>
-						<AssignedEmployess list={data.data?.employeeInfos} />
+						<AssignedEmployess
+							officeId={data.data?.officeId}
+							list={data.data?.employeeInfos}
+						/>
 					</Pane>
 					<Pane
 						width="100%"
@@ -281,14 +289,43 @@ const OrderDetail = () => {
 						border=" 1px solid rgba(0, 0, 0, 0.1)"
 						boxShadow="0px 2px 50px rgba(0, 0, 0, 0.05)"
 					>
-						<MyHeading fontSize="20px" marginBottom="22px">
-							ANSWERS
-						</MyHeading>
-						<TextInput
-							name="text-input-name"
-							value={data.data?.totalPrice}
-							placeholder="Text input placeholder..."
-						/>
+						<MyHeading fontSize="20px">PRICE</MyHeading>
+						<Pane display="flex" alignItems="center">
+							<Input
+								type="number"
+								disabled={!value}
+								name="totalPrice"
+								control={form.control}
+								placeholder="Enter price"
+							/>
+							<Pane
+								gap="10px"
+								display="flex"
+								marginLeft="15px"
+								marginTop="-17px"
+							>
+								{value ? (
+									<>
+										<MyButton
+											appearance="primary"
+											type="submit"
+											onClick={form.handleSubmit(
+												onSubmit,
+											)}
+										>
+											Save
+										</MyButton>
+										<MyButton onClick={setFalse}>
+											No
+										</MyButton>
+									</>
+								) : (
+									<MyButton type="button" onClick={setTrue}>
+										Edit
+									</MyButton>
+								)}
+							</Pane>
+						</Pane>
 					</Pane>
 				</Pane>
 			)}

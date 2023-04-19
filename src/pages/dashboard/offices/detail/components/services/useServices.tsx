@@ -27,20 +27,18 @@ export const useServices = ({ officeId }: UseServicesProps) => {
 	const {
 		data = [],
 		isFetching,
-		isLoading
-	} = useQuery(["office-services"],
-		() => getOfficeService(officeId),
-		{
-			onError: (error: any) => {
-				toast.error(error.message)
-			},
-			select: ({ data }) =>
-				data.filter((item: any) =>
-					item.serviceName
-						.toLowerCase()
-						.includes(searchDebounce.toLowerCase())
-				)
-		})
+		isLoading,
+	} = useQuery(["office-services"], () => getOfficeService(officeId), {
+		onError: (error: any) => {
+			toast.error(error.message)
+		},
+		select: ({ data }) =>
+			data.filter((item: any) =>
+				item.serviceName
+					.toLowerCase()
+					.includes(searchDebounce.toLowerCase()),
+			),
+	})
 
 	const handleSearch = (e: any) => {
 		setKeyword(e.target.value)
@@ -61,12 +59,12 @@ export const useServices = ({ officeId }: UseServicesProps) => {
 						/>
 						{row.serviceName}
 					</Pane>
-				)
+				),
 			},
 			{
 				name: "Service ID",
 				sortable: true,
-				selector: (row) => row.serviceId
+				selector: (row) => row.serviceId,
 			},
 			{
 				ignoreRowClick: true,
@@ -75,10 +73,10 @@ export const useServices = ({ officeId }: UseServicesProps) => {
 					<Pane gap={12} display="flex">
 						<Delete id={row.id} />
 					</Pane>
-				)
-			}
+				),
+			},
 		],
-		[]
+		[],
 	)
 
 	return {
@@ -86,6 +84,6 @@ export const useServices = ({ officeId }: UseServicesProps) => {
 		columns,
 		isFetching,
 		isLoading,
-		handleSearch
+		handleSearch,
 	}
 }

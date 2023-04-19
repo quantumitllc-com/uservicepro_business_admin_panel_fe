@@ -4,15 +4,18 @@ import { toast } from "react-toastify"
 
 export const useDelete = () => {
 	const queryClient = useQueryClient()
-	const { mutate } = useMutation((id: string) => deleteServiceFromOffice(id), {
-		onSuccess: () => {
-			queryClient.invalidateQueries(["office-services"])
-			toast.success("The service is deleted successfully!")
+	const { mutate } = useMutation(
+		(id: string) => deleteServiceFromOffice(id),
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries(["office-services"])
+				toast.success("The service is deleted successfully!")
+			},
+			onError: (error: any) => {
+				toast.error(error.message)
+			},
 		},
-		onError: (error: any) => {
-			toast.error(error.message)
-		},
-	})
+	)
 
 	const handleDelete = (id: string) => mutate(id)
 

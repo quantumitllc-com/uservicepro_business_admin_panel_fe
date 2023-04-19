@@ -10,11 +10,13 @@ import { OrderTypeOfStatus } from "types/dashboard/order"
 
 export interface DataRow {
 	employeeIds: string[]
-	subCategoryId: string
+	serviceName: string
 	status: OrderTypeOfStatus
 	id: string
-	customerId: string
-	officeId: string
+	customerName: string
+	officeName: string
+	type: string
+	isPaid: boolean
 }
 
 export const usePage = () => {
@@ -45,7 +47,7 @@ export const usePage = () => {
 			},
 			{
 				name: "Office Name",
-				selector: (row) => row.officeId,
+				selector: (row) => row.officeName,
 			},
 			{
 				name: "Employee",
@@ -53,11 +55,20 @@ export const usePage = () => {
 			},
 			{
 				name: "Service",
-				selector: (row) => row.subCategoryId,
+				selector: (row) => row.serviceName,
 			},
 			{
 				name: "Customer",
-				selector: (row) => row.customerId,
+				selector: (row) => row.customerName,
+			},
+			{
+				name: "Order type",
+				selector: (row) => row.type,
+			},
+			{
+				name: "Paid",
+				selector: (row) => row.isPaid,
+				cell: (row) => (row.isPaid ? "Paid" : "Unpaid"),
 			},
 			{
 				name: "Status",

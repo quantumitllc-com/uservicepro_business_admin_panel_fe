@@ -57,6 +57,7 @@
 		"react/no-unused-prop-types": "off",
 		"@typescript-eslint/no-shadow": "off",
 		"arrow-body-style": "off",
-		"prefer-const": "off"
+		"prefer-const": "off",
+		"react/destructuring-assignment": "off"
 	}
 }

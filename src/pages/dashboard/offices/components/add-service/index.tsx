@@ -6,14 +6,8 @@ import { Table } from "components/table"
 import { useAddService } from "./useAddService"
 
 const AddService = ({ office }: any) => {
-	const {
-		value,
-		setValue,
-		columns,
-		data,
-		isFetching,
-		isLoading
-	} = useAddService({ office })
+	const { value, setValue, columns, data, isFetching, isLoading } =
+		useAddService({ office })
 
 	return (
 		<Pane>

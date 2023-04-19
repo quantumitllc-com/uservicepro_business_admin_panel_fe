@@ -3,7 +3,11 @@ import { Button, Checkbox, Pane, Popover, SearchInput } from "evergreen-ui"
 import styles from "./styles.module.scss"
 import { useSearch } from "./useSearch"
 
-export const Search = () => {
+interface ISearch {
+	officeId: string
+}
+
+export const Search = ({ officeId }: ISearch) => {
 	const {
 		ids,
 		data,
@@ -13,7 +17,7 @@ export const Search = () => {
 		isLoading,
 		handleSearch,
 		assignIsLoading,
-	} = useSearch()
+	} = useSearch(officeId)
 
 	return (
 		<Pane className={styles.container}>
@@ -29,33 +33,12 @@ export const Search = () => {
 					>
 						<Pane flexGrow={1} overflowY="auto">
 							{search === ""
-								? data?.data.map(({ id, name }: any) => (
-										<Checkbox
-											label={name}
-											checked={ids.includes(id)}
-											onChange={(e) => {
-												if (e.target.checked) {
-													setIds((prev) => [
-														...prev,
-														id,
-													])
-												} else {
-													const newIds = ids.filter(
-														(v) => v !== id,
-													)
-													setIds(newIds)
-												}
-											}}
-										/>
-								  ))
-								: data?.data
-										.filter(({ name }: any) =>
-											name.includes(search),
-										)
-										.map(({ id, name }: any) => (
+								? data?.data.content.map(
+										({ id, firstName, lastName }: any) => (
 											<Checkbox
-												label={name}
+												key={id}
 												checked={ids.includes(id)}
+												label={`${firstName} ${lastName}`}
 												onChange={(e) => {
 													if (e.target.checked) {
 														setIds((prev) => [
@@ -71,7 +54,41 @@ export const Search = () => {
 													}
 												}}
 											/>
-										))}
+										),
+								  )
+								: data?.data.content
+										.filter(({ firstName }: any) =>
+											firstName.includes(search),
+										)
+										.map(
+											({
+												id,
+												firstName,
+												lastName,
+											}: any) => (
+												<Checkbox
+													key={id}
+													checked={ids.includes(id)}
+													label={`${firstName} ${lastName}`}
+													onChange={(e) => {
+														if (e.target.checked) {
+															setIds((prev) => [
+																...prev,
+																id,
+															])
+														} else {
+															const newIds =
+																ids.filter(
+																	(v) =>
+																		v !==
+																		id,
+																)
+															setIds(newIds)
+														}
+													}}
+												/>
+											),
+										)}
 						</Pane>
 						<Pane
 							marginY="10px"
@@ -87,7 +104,7 @@ export const Search = () => {
 										},
 									})
 								}}
-								disabled={assignIsLoading}
+								disabled={assignIsLoading || ids.length === 0}
 							>
 								Save
 							</Button>

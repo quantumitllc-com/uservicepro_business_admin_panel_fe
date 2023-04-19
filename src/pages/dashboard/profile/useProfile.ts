@@ -15,6 +15,7 @@ export const useProfile = () => {
 			paymentOptions: [],
 			pictureUrl: "",
 			rating: null,
+			planId: "",
 		},
 		isLoading,
 		refetch,

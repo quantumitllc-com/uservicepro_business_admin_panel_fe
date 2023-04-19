@@ -5,23 +5,36 @@ import MyHeading from "components/heading"
 import MyText from "components/text"
 import { Spinner } from "components/spinner"
 import { getBooleanSign } from "utils/getBooleanSign"
+import { Link } from "react-router-dom"
 import { useProfile } from "./useProfile"
 import Edit from "./edit"
 import Photo from "./components/photo"
+import MyButton from "../../../components/button"
 
 const Profile = () => {
 	const { data, isLoading } = useProfile()
 
 	return (
 		<Pane>
-			<MyHeading
-				fontSize={25}
-				fontWeight={600}
-				marginBottom={minorScale(5)}
+			<Pane
+				marginBottom={20}
+				display="flex"
+				justifyContent="space-between"
 			>
-				Profile
-			</MyHeading>
-			<Pane display="flex" width="100%" gap={20}>
+				<MyHeading
+					fontSize={25}
+					fontWeight={600}
+					marginBottom={minorScale(5)}
+				>
+					Profile
+				</MyHeading>
+				<Link to={data.planId}>
+					<MyButton appearance="primary" small="true">
+						Upgrade plan
+					</MyButton>
+				</Link>
+			</Pane>
+			<Pane display="flex" width="100%" gap={20} marginBottom={20}>
 				<Pane
 					padding={minorScale(7)}
 					backgroundColor="var(--white)"
@@ -47,26 +60,41 @@ const Profile = () => {
 										gap={8}
 										flexDirection="column"
 									>
-										<MyHeading>Company</MyHeading>
-										<Pane
-											gap={4}
-											alignItems="center"
-											display="flex"
-										>
-											<MyText>{data.email}</MyText>
-											{getBooleanSign(
-												data.isEmailVerified,
-											)}
+										<Pane display="flex" gap={8}>
+											<MyHeading>Company name:</MyHeading>
+											<MyText>{data.companyName}</MyText>
 										</Pane>
-										<Pane
-											gap={4}
-											alignItems="center"
-											display="flex"
-										>
-											<MyText>{data.mainPhone}</MyText>
-											{getBooleanSign(
-												data.isMainPhoneNumberVerified,
-											)}
+										<Pane display="flex" gap={8}>
+											<MyHeading>Email:</MyHeading>
+											<Pane
+												gap={4}
+												alignItems="center"
+												display="flex"
+											>
+												<MyText>{data.email}</MyText>
+												{getBooleanSign(
+													data.isEmailVerified,
+												)}
+											</Pane>
+										</Pane>
+										<Pane display="flex" gap={8}>
+											<MyHeading>Phone:</MyHeading>
+											<Pane
+												gap={4}
+												alignItems="center"
+												display="flex"
+											>
+												<MyText>
+													{data.mainPhone}
+												</MyText>
+												{getBooleanSign(
+													data.isMainPhoneNumberVerified,
+												)}
+											</Pane>
+										</Pane>
+										<Pane display="flex" gap={8}>
+											<MyHeading>Plan name:</MyHeading>
+											<MyText>{data.planName}</MyText>
 										</Pane>
 									</Pane>
 								</Pane>
