@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  business_admin_panel:
+      container_name: business_admin_panel
+      build: .
+      ports:
+          - 3000:3000
