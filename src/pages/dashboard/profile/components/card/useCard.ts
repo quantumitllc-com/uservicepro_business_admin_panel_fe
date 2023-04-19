@@ -21,12 +21,12 @@ export const useCard = (props: ICardPlan) => {
 	const onSubmit = () => {
 		mutate({
 			planId: props.id,
-			isMonths: props.type === "Month"
+			isMonths: props.type === "Month",
 		})
 	}
 
 	return {
 		isLoading,
-		onSubmit
+		onSubmit,
 	}
 }

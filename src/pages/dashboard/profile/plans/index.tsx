@@ -7,13 +7,8 @@ import Card from "../components/card"
 import { usePlans } from "./usePlans"
 
 const Plans = () => {
-	const {
-		data,
-		selectedIndex,
-		isLoading,
-		setSelectedIndex,
-		tabs
-	} = usePlans()
+	const { data, selectedIndex, isLoading, setSelectedIndex, tabs } =
+		usePlans()
 
 	return (
 		<Pane>
@@ -43,14 +38,20 @@ const Plans = () => {
 						key="Monthly"
 						role="tabpanel"
 					>
-						{data.data.map(({ pricePerMonth, pricePerYear, ...rest }: IPlan) => (
-							<Card
-								key={rest.id}
-								price={pricePerMonth}
-								{...rest}
-								type="Month"
-							/>
-						))}
+						{data.data.map(
+							({
+								pricePerMonth,
+								pricePerYear,
+								...rest
+							}: IPlan) => (
+								<Card
+									key={rest.id}
+									price={pricePerMonth}
+									{...rest}
+									type="Month"
+								/>
+							),
+						)}
 					</Pane>
 					<Pane
 						gap={24}
@@ -60,15 +61,21 @@ const Plans = () => {
 						key="Yearly"
 						role="tabpanel"
 					>
-						{data.data.map(({ pricePerMonth, pricePerYear, ...rest }: IPlan) => (
-							<Card
-								isLink
-								key={rest.id}
-								price={pricePerYear}
-								{...rest}
-								type="Year"
-							/>
-						))}
+						{data.data.map(
+							({
+								pricePerMonth,
+								pricePerYear,
+								...rest
+							}: IPlan) => (
+								<Card
+									isLink
+									key={rest.id}
+									price={pricePerYear}
+									{...rest}
+									type="Year"
+								/>
+							),
+						)}
 					</Pane>
 				</Pane>
 			)}

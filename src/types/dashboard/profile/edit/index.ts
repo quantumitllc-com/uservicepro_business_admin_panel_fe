@@ -8,6 +8,6 @@ export type SetCompanyPhotoTypes = {
 }
 
 export type SubscribeTypes = {
-	planId: string,
+	planId: string
 	isMonths: boolean
 }

@@ -16,7 +16,11 @@ const Profile = () => {
 
 	return (
 		<Pane>
-			<Pane marginBottom={20} display="flex" justifyContent="space-between">
+			<Pane
+				marginBottom={20}
+				display="flex"
+				justifyContent="space-between"
+			>
 				<MyHeading
 					fontSize={25}
 					fontWeight={600}
@@ -25,7 +29,9 @@ const Profile = () => {
 					Profile
 				</MyHeading>
 				<Link to={data.planId}>
-					<MyButton appearance="primary" small="true">Upgrade plan</MyButton>
+					<MyButton appearance="primary" small="true">
+						Upgrade plan
+					</MyButton>
 				</Link>
 			</Pane>
 			<Pane display="flex" width="100%" gap={20} marginBottom={20}>
@@ -67,7 +73,7 @@ const Profile = () => {
 											>
 												<MyText>{data.email}</MyText>
 												{getBooleanSign(
-													data.isEmailVerified
+													data.isEmailVerified,
 												)}
 											</Pane>
 										</Pane>
@@ -78,9 +84,11 @@ const Profile = () => {
 												alignItems="center"
 												display="flex"
 											>
-												<MyText>{data.mainPhone}</MyText>
+												<MyText>
+													{data.mainPhone}
+												</MyText>
 												{getBooleanSign(
-													data.isMainPhoneNumberVerified
+													data.isMainPhoneNumberVerified,
 												)}
 											</Pane>
 										</Pane>
@@ -112,7 +120,7 @@ const Profile = () => {
 													<MyText key={item}>
 														{item}
 													</MyText>
-												)
+												),
 											)}
 										</Pane>
 									</Pane>
