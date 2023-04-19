@@ -18,9 +18,10 @@ export const deleteOrder = (orderId?: string, employeeId?: string) =>
 	})
 
 export const getAssignedEmployess = (id: string) =>
-	request("company/employees/list", {
+	request("company/employees", {
 		params: {
 			officeId: id,
+			status: "ACTIVE",
 		},
 	})
 

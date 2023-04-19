@@ -12,7 +12,6 @@ import {
 	SelectMenu,
 } from "evergreen-ui"
 import { Controller } from "react-hook-form"
-import { useEffect } from "react"
 
 import MyButton from "components/button"
 import MyLabel from "components/label"

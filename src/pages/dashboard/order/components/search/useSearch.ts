@@ -11,9 +11,11 @@ export const useSearch = (officeId: string) => {
 	const { orderId } = useParams()
 	const [search, setSearch] = useState("")
 	const [ids, setIds] = useState<string[]>([])
-	const { data, isLoading } = useQuery(["assigned-employees", officeId], () =>
-		getAssignedEmployess(officeId as string),
+	const { data = { data: { content: [] } }, isLoading } = useQuery(
+		["assigned-employees", officeId],
+		() => getAssignedEmployess(officeId as string),
 	)
+
 	const handleSearch = (e: any) => setSearch(e.target.value)
 
 	const { mutate, isLoading: assignIsLoading } = useMutation(

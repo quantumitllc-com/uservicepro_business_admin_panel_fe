@@ -2,7 +2,6 @@ import MyHeading from "components/heading"
 import MyText from "components/text"
 
 import {
-	AddIcon,
 	Avatar,
 	Button,
 	ChevronLeftIcon,
@@ -11,9 +10,8 @@ import {
 	Spinner,
 	minorScale,
 } from "evergreen-ui"
-import MyBadge from "components/badge"
-import MyButton from "components/button"
 import { useNavigate } from "react-router"
+import { Chip } from "components/chip"
 import { usePage } from "./usePage"
 import { ReactComponent as Folders } from "../icons/folders.svg"
 import { ReactComponent as Like } from "../icons/like.svg"
@@ -21,11 +19,13 @@ import { ReactComponent as Time } from "../icons/time.svg"
 import { Edit } from "../components/edit"
 import { StatusSelect } from "../components/status-select"
 import styles from "./styles.module.scss"
+import { AddService } from "../components/add-service"
 
 const EmployeeDetail = () => {
 	const navigate = useNavigate()
-	const { data, isLoading, employeeId } = usePage()
-
+	const { data, isLoading, employeeId, handleDelete, isLoadingServices } =
+		usePage()
+	console.log(data)
 	return (
 		<Pane>
 			<Pane>
@@ -50,7 +50,6 @@ const EmployeeDetail = () => {
 					Profile
 				</MyHeading>
 			</Pane>
-
 			{isLoading ? (
 				<Pane
 					display="flex"
@@ -74,13 +73,28 @@ const EmployeeDetail = () => {
 							border="1px solid #E9ECF1"
 							backgroundColor="var(--white)"
 						>
-							<Pane>
+							<Pane display="flex" alignItems="center" gap={10}>
 								<MyHeading fontSize={24}>
 									Employee Details
 									<MyText marginLeft={5}>
 										({employeeId})
 									</MyText>
 								</MyHeading>
+								<Pane
+									background={
+										data.onSite
+											? "var(--green)"
+											: "var(--grey)"
+									}
+									display="flex"
+									alignItems="center"
+									justifyContent="center"
+									borderRadius="10px"
+									padding="5px"
+									color={data.onSite ? "white" : "black"}
+								>
+									on site
+								</Pane>
 							</Pane>
 							<Pane
 								gap={15}
@@ -192,43 +206,50 @@ const EmployeeDetail = () => {
 							padding={minorScale(7)}
 							border="1px solid #E9ECF1"
 							backgroundColor="var(--white)"
+							minWidth="350px"
 						>
 							<Pane>
 								<MyHeading fontSize={24}>
-									Cleaning <EditIcon />
+									Services <EditIcon />
 								</MyHeading>
 							</Pane>
 							<Pane>
-								<Pane
-									marginBottom={20}
-									display="flex"
-									gap={15}
-									flexWrap="wrap"
-								>
-									<MyBadge backgroundColor="#A7B4D3">
-										House Cleaning
-									</MyBadge>
-									<MyBadge backgroundColor="#A7B4D3">
-										Car Cleaning
-									</MyBadge>
-									<MyBadge backgroundColor="#A7B4D3">
-										Pool Cleaning
-									</MyBadge>
-									<MyBadge backgroundColor="#A7B4D3">
-										Commercial Cleaning
-									</MyBadge>
-									<MyBadge backgroundColor="#A7B4D3">
-										Laundry and Dry Cleaning
-									</MyBadge>
-								</Pane>
-								<MyButton
-									iconBefore={AddIcon}
-									small="true"
-									appearance="primary"
-									backgroundColor="var(--green)"
-								>
-									Add service
-								</MyButton>
+								{data.services.length > 0 ? (
+									<Pane
+										width="100%"
+										display="flex"
+										flexWrap="wrap"
+										gap="10px 20px"
+										marginBottom="20px"
+									>
+										{data.services.map(
+											({
+												serviceId,
+												serviceName,
+											}: any) => (
+												<Chip
+													key={serviceId}
+													title={serviceName}
+													disabled={isLoadingServices}
+													onClick={() =>
+														handleDelete(serviceId)
+													}
+												/>
+											),
+										)}
+									</Pane>
+								) : (
+									<Pane
+										textAlign="center"
+										marginBottom="20px"
+									>
+										There is no service
+									</Pane>
+								)}
+								<AddService
+									id={data.officeId}
+									list={data.services}
+								/>
 							</Pane>
 						</Pane>
 					</Pane>
