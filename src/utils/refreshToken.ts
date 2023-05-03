@@ -1,31 +1,31 @@
-import axios from "axios";
+import axios from "axios"
 
-import { baseURL } from "http/";
-import { getTokens } from "./getTokens";
-import { clearStorage } from "./clearStorage";
+import { baseURL } from "http/"
+import { getTokens } from "./getTokens"
+import { clearStorage } from "./clearStorage"
 
 export const refreshToken = async () => {
-  const tokens = getTokens();
+	const tokens = getTokens()
 
-  const response = await axios
-    .post(
-      "refresh_token",
-      {},
-      {
-        baseURL,
-        headers: {
-          "Content-Type": "application/json",
-          refreshToken: tokens.refreshToken,
-        },
-      }
-    )
-    .then((res) => {
-      localStorage.setItem("tokens", JSON.stringify(res.data));
-    })
-    .catch(() => {
-      clearStorage();
-      window.location.href = "/sign-in";
-    });
+	const response = await axios
+		.post(
+			"refresh_token",
+			{},
+			{
+				baseURL,
+				headers: {
+					"Content-Type": "application/json",
+					refreshToken: tokens.refreshToken,
+				},
+			},
+		)
+		.then((res) => {
+			localStorage.setItem("tokens", JSON.stringify(res.data))
+		})
+		.catch(() => {
+			clearStorage()
+			window.location.href = "/sign-in"
+		})
 
-  return response;
-};
+	return response
+}

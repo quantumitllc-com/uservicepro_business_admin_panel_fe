@@ -1,9 +1,9 @@
 name: Deployment workflow
 on:
-  push:
-      branches: ["prod"]
-  pull_request:
-      branches: ["prod"]
+    push:
+        branches: ["prod"]
+    pull_request:
+        branches: ["prod"]
 
 jobs:
     deployment:
