@@ -7,6 +7,9 @@ import { Input } from "components/input";
 import MyButton from "components/button";
 import { useDetail } from "./useDetail";
 import { AssignedEmployess } from "../components/assigned-employess";
+import { ReactComponent as IconMasterCard } from "../icons/master-card.svg";
+import { ReactComponent as IconVisaCard } from "../icons/visa-card.svg";
+import { ReactComponent as IconUnionPayCard } from "../icons/unionpay-card.svg";
 
 const OrderDetail = () => {
   const {
@@ -21,6 +24,13 @@ const OrderDetail = () => {
     totalPrice,
   } = useDetail();
   console.log(data);
+
+  const cards = {
+    visa: <IconVisaCard />,
+    master: <IconMasterCard />,
+    unionpay: <IconUnionPayCard />,
+  };
+
   return (
     <Pane>
       <Pane paddingY={10}>
@@ -240,7 +250,52 @@ const OrderDetail = () => {
                   lineHeight='21px'
                   letterSpacing='0.35px'
                 >
-                  {data?.data?.paymentMethod ?? "-"}
+                  {data?.data?.paymentCredentials &&
+                  data?.data?.paymentMethod === "CARD" ? (
+                    <Pane display='grid' gridTemplateColumns='200px'>
+                      <Pane
+                        gap='10px'
+                        display='flex'
+                        justifyContent='space-between'
+                      >
+                        {cards[data?.data?.paymentCredentials?.brand]}
+                        <Pane
+                          color='#232728'
+                          fontSize='14px'
+                          fontWeight={600}
+                          lineHeight='21px'
+                          letterSpacing='0.35px'
+                          display='flex'
+                          alignItems='center'
+                        >
+                          **** **** ****
+                          {data?.data?.paymentCredentials?.last4}
+                        </Pane>
+                      </Pane>
+                      <Pane display='flex' justifyContent='space-between'>
+                        <Pane
+                          fontSize='12px'
+                          fontWeight={400}
+                          lineHeight='16px'
+                          letterSpacing='0.35px'
+                          color='rgba(35, 39, 40, 0.5)'
+                        >
+                          Expire
+                        </Pane>
+
+                        <Pane
+                          fontSize='12px'
+                          fontWeight={400}
+                          lineHeight='16px'
+                          letterSpacing='0.35px'
+                          color='rgba(35, 39, 40, 0.5)'
+                        >
+                          {data?.data?.paymentCredentials?.exp_month}/
+                          {data?.data?.paymentCredentials?.exp_year}
+                        </Pane>
+                      </Pane>
+                    </Pane>
+                  ) : null}
                 </Pane>
                 <Pane
                   fontSize='15px'
