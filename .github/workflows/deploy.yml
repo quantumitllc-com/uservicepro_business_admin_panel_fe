@@ -4,7 +4,7 @@ on:
         branches: ["prod"]
     pull_request:
         branches: ["prod"]
- 
+
 jobs:
     deployment:
         name: Deploy
@@ -43,11 +43,11 @@ jobs:
             - name: Notification Slack
               uses: rtCamp/action-slack-notify@v2
               env:
-                SLACK_CHANNEL: QuantumITLLC
-                SLACK_TITLE: About Project
-                SLACK_USERNAME: Quantum'sBot
-                SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-                SLACK_MESSAGE: "${{ github.actor }} created commit:  Commit message: ${{ github.event.commits[0].message }}"
+                  SLACK_CHANNEL: QuantumITLLC
+                  SLACK_TITLE: About Project
+                  SLACK_USERNAME: Quantum'sBot
+                  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+                  SLACK_MESSAGE: "${{ github.actor }} created commit:  Commit message: ${{ github.event.commits[0].message }}"
 
             - name: Telegram Notification
               uses: appleboy/telegram-action@master
