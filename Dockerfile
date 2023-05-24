@@ -25,4 +25,4 @@ ENV PORT=3000
 EXPOSE 3000
 
 # Ishga tushirish komandasi
-CMD ["yarn", "serve"]
+CMD npx serve -s build -p 3000
