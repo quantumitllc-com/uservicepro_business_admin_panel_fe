@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Node modullarini yuklab olish
-RUN npm install
+RUN npm install --force
 
 # Ish haqida ma'lumotni kochirish
 COPY . .
