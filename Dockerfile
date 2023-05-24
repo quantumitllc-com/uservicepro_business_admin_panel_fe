@@ -1,32 +1,16 @@
-# Kerakli React.js imajni olish
-FROM node:latest as builder
-
-# Ishlash direktoriyasi joylashtirish
+# Use an official Node runtime as a parent image
+FROM node:latest
+# Set the working directory to /app
 WORKDIR /app
-
-# Package.json faylni kochirish
+# Copy package.json and package-lock.json to the container
 COPY package*.json ./
-
-# Node modullarini yuklab olish
-RUN npm install --force
-
-# Ish haqida ma'lumotni kochirish
+# Install dependencies
+RUN npm install
+# Copy the rest of the application code to the container
 COPY . .
-
-# Build qilish
+# Build the production version of the application
 RUN npm run build
-
-# Prodakshn uchun ozgartirishlar
-FROM nginx:1.21-alpine
-
-# Nginx konfiguratsiyasini o'zgartirish
-COPY --from=builder /app/build /usr/share/nginx/html
-
-# Nginxni boshqarish uchun konfiguratsiyani kochirish
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
-# Nginxni ishga tushirish
-EXPOSE 80
-
-# Konteyner ishga tushirilganda nginxni boshlash
-CMD ["nginx", "-g", "daemon off;"]
+# Expose port 80 to the outside world
+EXPOSE 3000
+# Run the command to start the server
+CMD ["npm", "start"]
