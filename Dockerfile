@@ -1,16 +1,28 @@
-# Use an official Node runtime as a parent image
 FROM node:latest
-# Set the working directory to /app
+
+# Ilovamiz uchun ishqa muvaffaqiyatli o'rnatilgan konteyner uchun ishga tushirish katalogini yaratamiz
 WORKDIR /app
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
-# Install dependencies
+
+# package.json va yarn.lock fayllarni kopiya qilamiz
+COPY package.json yarn.lock ./
+
+# Ilovamiz uchun kerakli qo'shimcha paketlarni o'rnatamiz
 RUN yarn install
-# Copy the rest of the application code to the container
+
+# Barcha ilova fayllarini saqlash katalogiga nusxalab olish
 COPY . .
-# Build the production version of the application
+
+# Ilovamizni qurish va uni to'g'ridan-to'g'ri ishga tushirish
 RUN yarn build
-# Expose port 80 to the outside world
+
+# Ishga tushirish uchun serve paketini o'rnatamiz
+RUN yarn add serve
+
+# 80-portni ochish uchun to'g'ridan-to'g'ri sahifa nomini kiritamiz
+ENV PORT=3000
+
+# 80-portni tinglash
 EXPOSE 3000
-# Run the command to start the server
-CMD ["yarn", "start"]
+
+# Ishga tushirish komandasi
+CMD ["yarn", "serve"]
