@@ -24,19 +24,21 @@ jobs:
             - name: Docker push
               run: docker push zeromaxinc/business_admin_panel
 
-            - name: Log in to Server and Restarting Kubernetes
-              uses: appleboy/ssh-action@master
-              with:
-                  host: 157.230.98.254
-                  username: root
-                  key: ${{ secrets.SSH_PRIVATE_KEY }}
-                  port: 22
-                  script: |
-                      cd /root/uservicepro_business_admin_panel
-                      ls
-                      docker-compose down
-                      docker-compose build
-                      docker-compose up -d
+            # - name: Log in to Server and Restarting Kubernetes
+            #   uses: appleboy/ssh-action@master
+            #   with:
+            #       host: 157.230.98.254
+            #       username: root
+            #       key: ${{ secrets.SSH_PRIVATE_KEY }}
+            #       port: 22
+            #       script: |
+            #           cd /root/uservicepro_business_admin_panel
+            #           ls
+            #           docker-compose down
+            #           docker-compose build
+            #           docker-compose up -d
+
+
             - name: Configuration Git
               run: git config --global user.email "zeromax.adm@gmail.com" && git config --global user.name "zeromaxinc"
 
